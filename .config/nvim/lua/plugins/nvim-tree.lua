@@ -8,6 +8,15 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	lazy = false,
+  keys = {
+    {
+      "<leader>gi",
+      function()
+        require("nvim-tree.api").tree.toggle_gitignore_filter()
+      end,
+      desc = "Toggle GitIgnored files (nvim-tree)",
+    },
+  },
 	config = function()
 		require("nvim-tree").setup({
 			filters = {
