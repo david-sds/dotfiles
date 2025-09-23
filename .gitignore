@@ -1,0 +1,11 @@
+*
+
+!.gitignore
+
+!./.config/
+./.config/*
+
+!./.config/nvim/
+!./.config/tmux/
+
+./.config/nvim/lazy-lock.json
