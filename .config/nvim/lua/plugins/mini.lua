@@ -1,8 +1,8 @@
 -- ================================================================================================
 -- TITLE : mini.nvim
+-- ABOUT : Library of 40+ independent Lua modules.
 -- LINKS :
 --   > github : https://github.com/echasnovski/mini.nvim
--- ABOUT : Library of 40+ independent Lua modules.
 -- ================================================================================================
 
 return {

@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : nvim-treesitter
+-- ABOUT : The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it.
+-- LINKS :
+--   > github : https://github.com/nvim-treesitter/nvim-treesitter
+-- ================================================================================================
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -22,7 +29,7 @@ return {
       ignore_install = { "javascript" },
       highlight = {
         enable = true,
-        disable = function(lang, buf)
+        disable = function(_, buf)
             local max_filesize = 100 * 1024 -- 100 KB
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
             if ok and stats and stats.size > max_filesize then

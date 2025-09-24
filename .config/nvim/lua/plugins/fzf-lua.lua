@@ -1,8 +1,8 @@
 -- ================================================================================================
 -- TITLE : fzf-lua
+-- ABOUT : lua-based fzf wrapper and integration.
 -- LINKS :
 --   > github : https://github.com/ibhagwan/fzf-lua
--- ABOUT : lua-based fzf wrapper and integration.
 -- ================================================================================================
 
 return {
