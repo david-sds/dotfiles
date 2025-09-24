@@ -21,6 +21,7 @@ return {
 		require("nvim-tree").setup({
 			filters = {
 				dotfiles = false, -- Show hidden files (dotfiles)
+        git_ignored = false, -- Show git ignored files
 			},
 			view = {
 				adaptive_size = true,
