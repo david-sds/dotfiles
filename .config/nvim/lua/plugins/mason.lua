@@ -6,6 +6,14 @@
 -- ================================================================================================
 
 return {
-    "mason-org/mason.nvim",
-    opts = {}
+	"mason-org/mason.nvim",
+	opts = {
+		ensure_installed = {
+			"lua-language-server",
+			"stylua",
+			"typescript-language-server",
+			"prettierd",
+			"prisma-language-server",
+		},
+	},
 }
