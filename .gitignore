@@ -1,11 +1,16 @@
-# Ignores everything by default
+# Ignores everything
 *
 
-# Don't ignore these folders
-!./.config/nvim/
-!./.config/tmux/
-!./.config/alacritty/
+# Don't ignore these
+!/.config/
+!/.config/nvim/
+!/.config/tmux/
+!/.config/nvim/**
+!/.config/tmux/**
 
-# Don't ignore these files
-!.gitignore
-!.bashrc
+# Re-ignore these
+/.config/tmux/plugins/**
+
+# Don't re-ignore these
+!/.config/tmux/plugins/tpm/
+!/.config/tmux/plugins/tpm/**
