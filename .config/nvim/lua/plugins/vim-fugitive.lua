@@ -14,5 +14,15 @@ return {
 			":Git blame<CR>",
 			desc = "Open Blame (Current buffer)",
 		},
+		{
+			"<leader>gd",
+			":Gdiffsplit<CR>",
+			desc = "Show Git Diffs",
+		},
+		{
+			"<leader>gh",
+			":0GcLog<CR>",
+			desc = "Show Git History (Current buffer)",
+		},
 	},
 }

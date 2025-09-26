@@ -9,6 +9,7 @@ return {
 	"ibhagwan/fzf-lua",
 	lazy = false,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	opts = {},
 	keys = {
 		{
 			"<leader>ff",
@@ -66,7 +67,12 @@ return {
 			end,
 			desc = "FZF Workspace Symbols",
 		},
+		{
+			"<leader>gff",
+			function()
+				require("fzf-lua").git_files()
+			end,
+			desc = "FZF Git Files",
+		},
 	},
-
-	opts = {},
 }
