@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : conform.nvim
+-- ABOUT : Lightweight yet powerful formatter plugin for Neovim.
+-- LINKS :
+--   > github : https://github.com/stevearc/conform.nvim
+-- ================================================================================================
+
 return {
 	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },

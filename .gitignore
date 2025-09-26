@@ -12,6 +12,7 @@
 
 # Re-ignore these
 /.config/tmux/plugins/**
+/.config/nvim/lazy-lock.json
 
 # Don't re-ignore these
 !/.config/tmux/plugins/tpm/
