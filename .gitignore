@@ -2,9 +2,9 @@
 *
 
 # Don't ignore these folders
-!./.config/nvim/*
-!./.config/tmux/*
-!./.config/alacritty/*
+!./.config/nvim/
+!./.config/tmux/
+!./.config/alacritty/
 
 # Don't ignore these files
 !.gitignore
