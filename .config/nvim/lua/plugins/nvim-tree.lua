@@ -10,6 +10,11 @@ return {
 	lazy = false,
 	keys = {
 		{
+			"<leader>e",
+			"<Cmd>NvimTreeToggle<CR>",
+			desc = "Toggle File Explorer",
+		},
+		{
 			"<leader>gi",
 			function()
 				require("nvim-tree.api").tree.toggle_gitignore_filter()

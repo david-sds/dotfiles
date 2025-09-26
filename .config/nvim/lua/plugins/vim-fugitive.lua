@@ -8,4 +8,11 @@
 return {
 	lazy = false,
 	"tpope/vim-fugitive",
+	keys = {
+		{
+			"<leader>gB",
+			":Git blame<CR>",
+			desc = "Open Blame (Current buffer)",
+		},
+	},
 }
