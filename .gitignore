@@ -8,6 +8,3 @@
 # Don't ignore these files
 !.gitignore
 !.bashrc
-
-# Re-ignore these
-./.config/nvim/lazy-lock.json
