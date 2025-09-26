@@ -1,11 +1,13 @@
+# Ignores everything by default
 *
 
-!.gitignore
-
-!./.config/
-./.config/*
-
+# Don't ignore these folders
 !./.config/nvim/
 !./.config/tmux/
 
+# Don't ignore these files
+!.gitignore
+!.bashrc
+
+# Re-ignore these
 ./.config/nvim/lazy-lock.json
