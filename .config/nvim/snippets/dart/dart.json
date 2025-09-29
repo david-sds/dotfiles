@@ -1,13 +1,6 @@
 {
-    "Print": {
-      "prefix": "printJSON",
-      "body": [
-        "print(${1|\"hello\",\"world\",variable|})"
-      ],
-      "description": "Print with choice of hello, world, or variable"
-    },
     "Stateless Widget": {
-       "prefix": "statelessW",
+       "prefix": "stl",
         "body": [
             "class ${1:name} extends StatelessWidget {",
             "  const ${1:name}({super.key});\n",
@@ -20,7 +13,7 @@
         "description": "Create a Stateless widget"
     },
     "Stateful Widget": {
-        "prefix": "statefulW",
+        "prefix": "stf",
         "body": [
             "class ${1:name} extends StatefulWidget {",
             "  const ${1:name}({super.key});\n",
@@ -45,6 +38,44 @@
             "}"
         ],
         "description": "Describes the part of the user interface represented by this widget."
+    },
+    "MobX Store": {
+      "prefix": "mobx",
+      "body": [
+        "import 'package:mobx/mobx.dart';",
+        "",
+        "part '${TM_FILENAME_BASE/(.*)/${1:/downcase}/}.g.dart';",
+        "",
+        "class $1 extends _$1Base with _$$1 {}",
+        "",
+        "abstract class _$1Base with Store {",
+        "\t${0}",
+        "}"
+      ],
+      "description": "Create MobX Store"
+    },
+    "MobX Observer": {
+      "prefix": "obs",
+      "body": [
+        "Observer(builder: (_) {",
+        "   return Container(${0});",
+        "},",
+        ")"
+      ],
+      "description": "Create Widget Observer"
+    },
+    "MobX Getter Setter": {
+      "prefix": "obx",
+      "body": [
+        "@observable",
+        "$1 _$2 = $3;",
+        "@computed",
+        "$1 get $2 => _$2;",
+        "@action",
+        "set${2/(.*)/${1:/capitalize}/}($1 value) => _$2 = value;",
+        ""
+      ],
+      "description": "Create MobX Getter Setter"
     },
     "Custom Painter ": {
         "prefix": "customPainter",
