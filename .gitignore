@@ -2,8 +2,6 @@
 *
 
 # Don't ignore these
-!/.bashrc
-!/.bash_profile
 !/.config/
 !/.config/nvim/
 !/.config/tmux/
