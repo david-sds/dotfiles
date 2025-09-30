@@ -15,7 +15,7 @@ end
 
 function M.setup()
 	-- lsp
-	--------------------------------------------------------------------------------
+	-------------------------------------------------------------------------------------------------
 	-- See https://gpanders.com/blog/whats-new-in-neovim-0-11/ for a nice overview
 	-- of how the lsp setup works in neovim 0.11+.
 
@@ -27,18 +27,20 @@ function M.setup()
 	vim.lsp.enable("tsserver")
 	vim.lsp.enable("prisma_ls")
 
-	vim.api.nvim_create_autocmd("LspAttach", {
-		callback = function(ev)
-			local client = vim.lsp.get_client_by_id(ev.data.client_id)
-			if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
-				vim.opt.completeopt = { "menu", "menuone", "noinsert", "fuzzy", "popup" }
-				vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-				vim.keymap.set("i", "<C-Space>", function()
-					vim.lsp.completion.get()
-				end)
-			end
-		end,
-	})
+	-- The following code does nvim native autocomplete, this is being done by blink.cmp instead.
+	-------------------------------------------------------------------------------------------------
+	-- vim.api.nvim_create_autocmd("LspAttach", {
+	-- 	callback = function(ev)
+	-- 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+	-- 		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
+	-- 			vim.opt.completeopt = { "menu", "menuone", "noinsert", "fuzzy", "popup" }
+	-- 			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+	-- 			vim.keymap.set("i", "<C-Space>", function()
+	-- 				vim.lsp.completion.get()
+	-- 			end)
+	-- 		end
+	-- 	end,
+	-- })
 
 	-- Custom diagnostic severity icons
 	local diagnostic_signs = {

@@ -9,7 +9,11 @@ return {
 	"ibhagwan/fzf-lua",
 	lazy = false,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	opts = {},
+	opts = {
+		grep = {
+			rg_glob = true, -- Enable glob parsing (Requires ripgrep)
+		},
+	},
 	keys = {
 		{
 			"<leader>ff",
