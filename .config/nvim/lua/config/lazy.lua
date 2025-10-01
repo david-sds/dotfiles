@@ -30,7 +30,6 @@ require("config.globals")
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
-require("config.lsp")
 
 local plugins_dir = "plugins"
 
@@ -46,6 +45,8 @@ require("lazy").setup({
 	},
 	checker = { enabled = true },
 })
+
+require("config.lsp").setup()
 
 -- require("lazy").setup({
 --   spec = {

@@ -22,11 +22,11 @@ function M.setup()
 	-- This actually just enables the lsp servers.
 	-- The configuration is found in the lsp folder inside the nvim config folder,
 	-- so in ~.config/lsp/lua_ls.lua for lua_ls, for example.
-	vim.lsp.enable("lua_ls")
-	vim.lsp.enable("dartls")
-	vim.lsp.enable("tsserver")
-	vim.lsp.enable("prisma_ls")
-
+	-- vim.lsp.enable("lua_ls")
+	-- vim.lsp.enable("dartls")
+	-- vim.lsp.enable("tsserver")
+	-- vim.lsp.enable("prisma_ls")
+	--
 	-- The following code does nvim native autocomplete, this is being done by blink.cmp instead.
 	-------------------------------------------------------------------------------------------------
 	-- vim.api.nvim_create_autocmd("LspAttach", {
@@ -41,6 +41,13 @@ function M.setup()
 	-- 		end
 	-- 	end,
 	-- })
+
+	local cmp_nvim_lsp = require("cmp_nvim_lsp")
+	local capabilities = cmp_nvim_lsp.default_capabilities()
+
+	for _, server in ipairs({ "lua_ls", "tsserver", "dartls", "prisma_ls" }) do
+		vim.lsp.enable(server, { capabilities = capabilities, on_attach = M.on_attach })
+	end
 
 	-- Custom diagnostic severity icons
 	local diagnostic_signs = {
@@ -72,7 +79,5 @@ function M.setup()
 		},
 	})
 end
-
-M.setup()
 
 return M
