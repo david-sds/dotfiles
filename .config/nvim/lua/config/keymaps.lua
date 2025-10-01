@@ -39,3 +39,6 @@ vim.keymap.set("n", "<leader>rc", "<Cmd>e ~/.config/nvim/init.lua<CR>", { desc =
 
 -- Normal mode mappings
 vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
+
+-- Quit terminal mode
+vim.keymap.set("t", "<C-n>", "<Esc><C-\\><C-n>", { desc = "Enters normal mode while on terminal" })
