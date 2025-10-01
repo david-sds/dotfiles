@@ -18,9 +18,9 @@ return {
 	-- 	i(0, "Placeholder"),
 	-- 	t({ "();", "  }", "}" }),
 	-- }),
-	-- s("printLUA", {
-	-- 	t("print("),
-	-- 	c(1, { t('"hello"'), t('"world"'), t("variable") }),
-	-- 	t(")"),
-	-- }),
+	s("printLUA", {
+		t("print("),
+		c(1, { t('"hello"'), t('"world"'), t("variable") }),
+		t(")"),
+	}),
 }
