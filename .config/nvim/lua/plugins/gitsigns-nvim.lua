@@ -13,7 +13,7 @@ return {
 	end,
 	keys = {
 		{
-			"<leader>gp",
+			"<leader>gP",
 			":Gitsigns preview_hunk<CR>",
 			desc = "Preview Hunk",
 		},
@@ -26,6 +26,16 @@ return {
 			"<leader>gb",
 			":Gitsigns toggle_current_line_blame<CR>",
 			desc = "Toggle Blame (Current line)",
+		},
+		{
+			"<leader>gn",
+			":Gitsigns next_hunk<CR>",
+			desc = "Preview Hunk",
+		},
+		{
+			"<leader>gp",
+			":Gitsigns prev_hunk<CR>",
+			desc = "Preview Hunk",
 		},
 	},
 }

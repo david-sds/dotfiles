@@ -29,7 +29,7 @@ return {
 
 			cmp.setup({
 				completion = {
-					autocomplete = false,
+					-- autocomplete = false,
 				},
 				snippet = {
 					expand = function(args)
@@ -80,7 +80,7 @@ return {
 
 					["<C-y>"] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Replace,
-						select = false, -- ⛔ do not auto-select first item
+						select = true,
 					}),
 				},
 				-- window = {
