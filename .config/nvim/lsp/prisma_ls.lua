@@ -12,8 +12,7 @@ return {
 
 	settings = {
 		prisma = {
-			-- example settings
-			prismaFmtBinPath = "", -- set if you want custom prisma-fmt binary
+			prismaFmtBinPath = "",
 		},
 	},
 }

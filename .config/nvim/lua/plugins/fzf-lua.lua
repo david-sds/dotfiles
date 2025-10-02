@@ -78,5 +78,12 @@ return {
 			end,
 			desc = "FZF Git Files",
 		},
+		{
+			"<leader>gfd",
+			function()
+				require("fzf-lua").git_diff()
+			end,
+			desc = "FZF Git Files",
+		},
 	},
 }

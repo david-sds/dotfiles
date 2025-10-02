@@ -1,6 +1,6 @@
 local M = {}
 
-function M.on_attach(client, bufnr)
+function M.on_attach(_, bufnr)
 	local buf_map = function(mode, lhs, rhs, desc)
 		vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
 	end
@@ -14,21 +14,12 @@ function M.on_attach(client, bufnr)
 end
 
 function M.setup()
-	-- lsp
+	-- Enable LSP for native autocompletion support
 	-------------------------------------------------------------------------------------------------
-	-- See https://gpanders.com/blog/whats-new-in-neovim-0-11/ for a nice overview
-	-- of how the lsp setup works in neovim 0.11+.
-
-	-- This actually just enables the lsp servers.
-	-- The configuration is found in the lsp folder inside the nvim config folder,
-	-- so in ~.config/lsp/lua_ls.lua for lua_ls, for example.
 	-- vim.lsp.enable("lua_ls")
 	-- vim.lsp.enable("dartls")
 	-- vim.lsp.enable("tsserver")
 	-- vim.lsp.enable("prisma_ls")
-	--
-	-- The following code does nvim native autocomplete, this is being done by blink.cmp instead.
-	-------------------------------------------------------------------------------------------------
 	-- vim.api.nvim_create_autocmd("LspAttach", {
 	-- 	callback = function(ev)
 	-- 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -42,14 +33,15 @@ function M.setup()
 	-- 	end,
 	-- })
 
+	-- Enable LSP for nvim-cmp autocompletion support
+	-------------------------------------------------------------------------------------------------
 	local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local capabilities = cmp_nvim_lsp.default_capabilities()
-
 	for _, server in ipairs({ "lua_ls", "tsserver", "dartls", "prisma_ls" }) do
 		vim.lsp.enable(server, { capabilities = capabilities, on_attach = M.on_attach })
 	end
 
-	-- Custom diagnostic severity icons
+	-- Custom Diagnostic Severity Icons
 	local diagnostic_signs = {
 		Error = " ",
 		Warn = " ",
@@ -59,16 +51,9 @@ function M.setup()
 
 	-- Diagnostics
 	vim.diagnostic.config({
-		-- Use the default configuration
-		-- virtual_lines = true
-
-		-- Alternatively, customize specific options
 		virtual_lines = {
-			-- Only show virtual line diagnostics for the current cursor line
 			current_line = true,
 		},
-
-		-- Apply custom icons for diagnostic severity
 		signs = {
 			text = {
 				[vim.diagnostic.severity.ERROR] = diagnostic_signs.Error,
