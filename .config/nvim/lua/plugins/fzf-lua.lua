@@ -83,7 +83,7 @@ return {
 			function()
 				require("fzf-lua").git_diff()
 			end,
-			desc = "FZF Git Files",
+			desc = "FZF Git Diff",
 		},
 	},
 }

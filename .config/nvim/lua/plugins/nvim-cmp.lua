@@ -31,6 +31,16 @@ return {
 				completion = {
 					-- autocomplete = false,
 				},
+				enabled = function()
+					local context = require("cmp.config.context")
+					if context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment") then
+						return false
+					end
+					if require("luasnip").in_snippet() then
+						return false
+					end
+					return true
+				end,
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
