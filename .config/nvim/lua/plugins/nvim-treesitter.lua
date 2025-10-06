@@ -24,6 +24,7 @@ return {
 				"javascript",
 				"typescript",
 				"dart",
+				"json",
 			},
 			sync_install = false,
 			auto_install = true,
