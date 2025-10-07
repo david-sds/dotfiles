@@ -23,6 +23,8 @@ end
 return {
 	cmd = { "vscode-eslint-language-server", "--stdio" },
 
+	on_attach = on_attach,
+
 	filetypes = {
 		"javascript",
 		"javascriptreact",

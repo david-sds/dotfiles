@@ -23,6 +23,8 @@ return {
 				"typescript-language-server",
 				"prettierd",
 				"eslint-lsp",
+				-- html
+				"html-lsp",
 				-- css
 				"css-lsp",
 				-- json

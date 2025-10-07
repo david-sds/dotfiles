@@ -18,6 +18,8 @@ return {
 				typescript = { "prettierd" },
 				typescriptreact = { "prettierd" },
 				json = { "prettierd" },
+				md = { "prettierd" },
+				yaml = { "prettierd" },
 				sh = { "shfmt" },
 				bash = { "shfmt" },
 			},
