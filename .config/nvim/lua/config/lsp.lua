@@ -29,6 +29,7 @@ function M.setup()
 		"lua_ls",
 		"prisma_ls",
 		"typescript_ls",
+		"eslint_ls",
 	}) do
 		vim.lsp.enable(server, { capabilities = capabilities, on_attach = M.on_attach })
 	end
