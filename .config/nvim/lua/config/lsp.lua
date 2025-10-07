@@ -30,6 +30,7 @@ function M.setup()
 	vim.lsp.enable("eslint_ls")
 	vim.lsp.enable("css_ls")
 	vim.lsp.enable("html_ls")
+	vim.lsp.enable("bash_ls")
 
 	-- Custom Diagnostic Severity Icons
 	local diagnostic_signs = {

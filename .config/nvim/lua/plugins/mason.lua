@@ -32,6 +32,7 @@ return {
 				-- prisma
 				"prisma-language-server",
 				-- bash
+				"bash-language-server",
 				"shfmt",
 				"shellcheck",
 			},
