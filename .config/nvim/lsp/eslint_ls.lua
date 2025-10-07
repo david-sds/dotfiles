@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : eslint-lsp
+-- ABOUT : Language Server Protocol implementation for ESLint. The server uses the ESLint library installed in the opened workspace folder. If the folder doesn't provide one the extension looks for a global install version.
+-- LINKS :
+--   > github : https://github.com/Microsoft/vscode-eslint
+-- ================================================================================================
+
 -- Reference: https://github.com/dlvandenberg/dotfiles/blob/main/.config/nvim-11/lsp/eslint.lua
 
 local lsp_config_module = require("config.lsp")

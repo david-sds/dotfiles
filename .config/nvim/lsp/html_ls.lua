@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : html-lsp
+-- ABOUT : Language Server Protocol implementation for HTML.
+-- LINKS :
+--   > github : https://github.com/microsoft/vscode-html-languageservice
+-- ================================================================================================
+
 local lsp_config_module = require("config.lsp")
 local on_attach = lsp_config_module.on_attach
 

@@ -1,3 +1,12 @@
+-- ================================================================================================
+-- TITLE : nvim-dap
+-- ABOUT : nvim-dap is a Debug Adapter Protocol client implementation for Neovim.
+-- LINKS :
+--   > github : https://github.com/mfussenegger/nvim-dap
+--   > github : https://github.com/mfussenegger/nvim-dap-ui
+--   > github : https://github.com/nvim-neotest/nvim-nio
+-- ================================================================================================
+
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
