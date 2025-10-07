@@ -21,17 +21,13 @@ end
 
 function M.setup()
 	-- Enable LSP for nvim-cmp autocompletion support (Requires filenames at the lsp folder)
-	local cmp_nvim_lsp = require("cmp_nvim_lsp")
-	local capabilities = cmp_nvim_lsp.default_capabilities()
-	for _, server in ipairs({
-		"dart_ls",
-		"json_ls",
-		"lua_ls",
-		"prisma_ls",
-		"typescript_ls",
-	}) do
-		vim.lsp.enable(server, { capabilities = capabilities, on_attach = M.on_attach })
-	end
+	vim.lsp.enable("dart_ls")
+	vim.lsp.enable("json_ls")
+	vim.lsp.enable("lua_ls")
+	vim.lsp.enable("prisma_ls")
+	vim.lsp.enable("typescript_ls")
+	vim.lsp.enable("eslint_ls")
+	vim.lsp.enable("css_ls")
 
 	-- Custom Diagnostic Severity Icons
 	local diagnostic_signs = {

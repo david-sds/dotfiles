@@ -11,6 +11,7 @@
 --   > github : https://github.com/onsails/lspkind.nvim
 -- ================================================================================================
 
+---@type LazyPluginSpec[]
 return {
 	{
 		"hrsh7th/nvim-cmp",
@@ -27,10 +28,9 @@ return {
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
 
-			cmp.setup({
-				completion = {
-					-- autocomplete = false,
-				},
+			---@type cmp.ConfigSchema
+			local opts = {
+
 				enabled = function()
 					local context = require("cmp.config.context")
 					if context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment") then
@@ -95,14 +95,9 @@ return {
 						select = true,
 					}),
 				},
-				-- window = {
-				-- 	completion = cmp.config.window.bordered(),
-				-- 	documentation = cmp.config.window.bordered(),
-				-- },
-				-- experimental = {
-				-- 	ghost_text = true, -- inline preview like Blink
-				-- },
-			})
+			}
+
+			cmp.setup(opts)
 		end,
 	},
 }

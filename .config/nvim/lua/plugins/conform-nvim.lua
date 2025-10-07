@@ -18,6 +18,8 @@ return {
 				typescript = { "prettierd" },
 				typescriptreact = { "prettierd" },
 				json = { "prettierd" },
+				sh = { "shfmt" },
+				bash = { "shfmt" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
