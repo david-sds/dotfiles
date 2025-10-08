@@ -1,8 +1,8 @@
 -- ================================================================================================
--- TITLE : json-lsp
--- ABOUT : Language Server Protocol implementation for JSON.
+-- TITLE : yaml-language-server
+-- ABOUT : Language Server for YAML Files.
 -- LINKS :
---   > github : https://github.com/microsoft/vscode-json-languageservice
+--   > github : https://github.com/redhat-developer/yaml-language-server
 -- ================================================================================================
 
 local lsp_config_module = require("config.lsp")
@@ -10,18 +10,21 @@ local on_attach = lsp_config_module.on_attach
 
 local schemastore = require("schemastore")
 
+---@type vim.lsp.Config
 return {
 	on_attach = on_attach,
 
-	cmd = { "vscode-json-language-server", "--stdio" },
+	cmd = { "yaml-language-server", "--stdio" },
 
-	filetypes = { "json", "jsonc" },
+	filetypes = { "yaml", "yml" },
 
 	settings = {
-		json = {
-			schemas = schemastore.json.schemas(),
-			validate = { enable = true },
-			format = { enable = false },
+		yaml = {
+			schemas = schemastore.yaml.schemas(),
+			validate = true,
+			format = {
+				enable = true,
+			},
 		},
 	},
 }

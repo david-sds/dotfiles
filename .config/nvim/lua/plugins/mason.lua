@@ -35,6 +35,8 @@ return {
 				"bash-language-server",
 				"shfmt",
 				"shellcheck",
+				-- yaml
+				"yaml-language-server",
 			},
 			auto_update = false,
 			run_on_start = true,
