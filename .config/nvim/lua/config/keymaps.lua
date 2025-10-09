@@ -37,13 +37,13 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position"
 -- Quick config editing
 vim.keymap.set("n", "<leader>rc", "<Cmd>e ~/.config/nvim/init.lua<CR>", { desc = "Edit config" })
 
--- Normal mode mappings
-vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
-
--- Terminal mode
+vim.keymap.set("t", "<C-n>", "<Esc><C-\\><C-n>", { desc = "Enters normal mode while on terminal" })
+vim.keymap.set("t", "<C-Space>", [[<C-\><C-n>:]], { desc = "Command mode from terminal" })
 vim.keymap.set("n", "<leader>T", function()
 	vim.cmd("terminal")
 	vim.cmd("startinsert")
 end, { desc = "Open terminal in current window" })
-vim.keymap.set("t", "<C-n>", "<Esc><C-\\><C-n>", { desc = "Enters normal mode while on terminal" })
-vim.keymap.set("t", "<C-Space>", [[<C-\><C-n>:]], { desc = "Command mode from terminal" })
+
+-- Custom utilities
+vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
+vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
