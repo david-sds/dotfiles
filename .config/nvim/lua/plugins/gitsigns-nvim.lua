@@ -41,8 +41,8 @@ return {
 			"<leader>gr",
 			function()
 				require("gitsigns").detach()
-				require("gitsigns").attach()
 				require("nvim-tree.api").tree.reload()
+				require("gitsigns").attach()
 			end,
 			desc = "Reload Git",
 		},
