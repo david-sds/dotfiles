@@ -15,11 +15,6 @@ return {
 			desc = "Toggle File Explorer",
 		},
 		{
-			"<leader>re",
-			"<Cmd>NvimTreeRefresh<CR>",
-			desc = "Refresh File Explorer",
-		},
-		{
 			"<leader>gi",
 			function()
 				require("nvim-tree.api").tree.toggle_gitignore_filter()

@@ -37,5 +37,14 @@ return {
 			":Gitsigns preview_hunk<CR>",
 			desc = "Preview Hunk",
 		},
+		{
+			"<leader>gr",
+			function()
+				require("nvim-tree.api").tree.reload()
+				require("gitsigns").detach()
+				require("gitsigns").attach()
+			end,
+			desc = "Reload Git",
+		},
 	},
 }
