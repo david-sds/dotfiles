@@ -16,11 +16,27 @@ return {
 		dependencies = { "williamboman/mason.nvim" },
 		opts = {
 			ensure_installed = {
+				-- lua
 				"lua-language-server",
-				"typescript-language-server",
-				"prisma-language-server",
-				"prettierd",
 				"stylua",
+				-- typecript / javacript
+				"typescript-language-server",
+				"prettierd",
+				"eslint-lsp",
+				-- html
+				"html-lsp",
+				-- css
+				"css-lsp",
+				-- json
+				"json-lsp",
+				-- prisma
+				"prisma-language-server",
+				-- bash
+				"bash-language-server",
+				"shfmt",
+				"shellcheck",
+				-- yaml
+				"yaml-language-server",
 			},
 			auto_update = false,
 			run_on_start = true,

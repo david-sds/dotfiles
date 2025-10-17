@@ -17,6 +17,11 @@ return {
 				javascriptreact = { "prettierd" },
 				typescript = { "prettierd" },
 				typescriptreact = { "prettierd" },
+				json = { "prettierd" },
+				md = { "prettierd" },
+				yaml = { "prettierd" },
+				sh = { "shfmt" },
+				bash = { "shfmt" },
 			},
 			format_on_save = {
 				timeout_ms = 500,

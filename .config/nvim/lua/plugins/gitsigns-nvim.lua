@@ -13,11 +13,6 @@ return {
 	end,
 	keys = {
 		{
-			"<leader>gP",
-			":Gitsigns preview_hunk<CR>",
-			desc = "Preview Hunk",
-		},
-		{
 			"<leader>gu",
 			":Gitsigns reset_hunk<CR>",
 			desc = "Undo Hunk",
@@ -36,6 +31,20 @@ return {
 			"<leader>gp",
 			":Gitsigns prev_hunk<CR>",
 			desc = "Preview Hunk",
+		},
+		{
+			"<leader>gP",
+			":Gitsigns preview_hunk<CR>",
+			desc = "Preview Hunk",
+		},
+		{
+			"<leader>gr",
+			function()
+				require("gitsigns").detach()
+				require("nvim-tree.api").tree.reload()
+				require("gitsigns").attach()
+			end,
+			desc = "Reload Git",
 		},
 	},
 }

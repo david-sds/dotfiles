@@ -1,9 +1,17 @@
+-- ================================================================================================
+-- TITLE : typescript-language-server
+-- ABOUT : TypeScript & JavaScript Language Server.
+-- LINKS : https://github.com/typescript-language-server/typescript-language-server
+-- ================================================================================================
+
 local lsp_config_module = require("config.lsp")
 local on_attach = lsp_config_module.on_attach
 
 return {
 	on_attach = on_attach,
+
 	cmd = { "typescript-language-server", "--stdio" },
+
 	filetypes = {
 		"javascript",
 		"javascriptreact",
@@ -12,5 +20,6 @@ return {
 		"typescriptreact",
 		"typescript.tsx",
 	},
+
 	root_markers = { "tsconfig.json", "package.json", "jsconfig.json", ".git" },
 }

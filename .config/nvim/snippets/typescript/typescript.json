@@ -1,0 +1,67 @@
+{
+  "TypeScript Class": {
+    "prefix": "tsclass",
+    "body": [
+      "export class ${1:ClassName} {",
+      "  constructor(${2:params}) {",
+      "    $0",
+      "  }",
+      "}"
+    ],
+    "description": "Create a TypeScript class"
+  },
+  "TypeScript Interface": {
+    "prefix": "tsinterface",
+    "body": [
+      "export interface ${1:InterfaceName} {",
+      "  ${2:key}: ${3:type};",
+      "}"
+    ],
+    "description": "Create a TypeScript interface"
+  },
+  "TypeScript Function": {
+    "prefix": "tsfn",
+    "body": [
+      "function ${1:fnName}(${2:params}): ${3:void} {",
+      "  $0",
+      "}"
+    ],
+    "description": "Create a TypeScript function"
+  },
+  "TypeScript Arrow Function": {
+    "prefix": "tsarrow",
+    "body": [
+      "const ${1:fnName} = (${2:params}): ${3:void} => {",
+      "  $0",
+      "};"
+    ],
+    "description": "Create a TypeScript arrow function"
+  },
+  "TypeScript Import": {
+    "prefix": "tsimport",
+    "body": [
+      "import { ${1:module} } from '${2:package}';"
+    ],
+    "description": "TypeScript import statement"
+  },
+  "TypeScript Export": {
+    "prefix": "tsexport",
+    "body": [
+      "export { ${1:module} };"
+    ],
+    "description": "TypeScript export statement"
+  },
+  "TypeScript Async Function": {
+    "prefix": "tsasync",
+    "body": [
+      "async function ${1:fnName}(${2:params}): Promise<${3:void}> {",
+      "  try {",
+      "    $0",
+      "  } catch (error) {",
+      "    console.error(error);",
+      "  }",
+      "}"
+    ],
+    "description": "Create a TypeScript async function"
+  }
+}

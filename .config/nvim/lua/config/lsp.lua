@@ -1,3 +1,8 @@
+-- ================================================================================================
+-- TITLE : Neovim LSP
+-- ABOUT : Configuration for the native Neovim support for LSP's.
+-- ================================================================================================
+
 local M = {}
 
 function M.on_attach(_, bufnr)
@@ -11,35 +16,27 @@ function M.on_attach(_, bufnr)
 	buf_map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
 	buf_map("n", "gr", vim.lsp.buf.references, "Go to References")
 	buf_map("n", "gD", vim.lsp.buf.declaration, "Go to Declaration")
+	buf_map("n", "<leader>F", vim.lsp.buf.format, "Format buffer")
+
+	-- Check out the docs for more options:
+	-- :help vim.lsp
+	-- :help vim.lsp.buf
+	-- :help vim.lsp.diagnostic
+	-- :help vim.diagnostic
 end
 
 function M.setup()
-	-- Enable LSP for native autocompletion support
-	-------------------------------------------------------------------------------------------------
-	-- vim.lsp.enable("lua_ls")
-	-- vim.lsp.enable("dartls")
-	-- vim.lsp.enable("tsserver")
-	-- vim.lsp.enable("prisma_ls")
-	-- vim.api.nvim_create_autocmd("LspAttach", {
-	-- 	callback = function(ev)
-	-- 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-	-- 		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
-	-- 			vim.opt.completeopt = { "menu", "menuone", "noinsert", "fuzzy", "popup" }
-	-- 			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-	-- 			vim.keymap.set("i", "<C-Space>", function()
-	-- 				vim.lsp.completion.get()
-	-- 			end)
-	-- 		end
-	-- 	end,
-	-- })
-
-	-- Enable LSP for nvim-cmp autocompletion support
-	-------------------------------------------------------------------------------------------------
-	local cmp_nvim_lsp = require("cmp_nvim_lsp")
-	local capabilities = cmp_nvim_lsp.default_capabilities()
-	for _, server in ipairs({ "lua_ls", "tsserver", "dartls", "prisma_ls" }) do
-		vim.lsp.enable(server, { capabilities = capabilities, on_attach = M.on_attach })
-	end
+	-- Enable LSP for nvim-cmp autocompletion support (Requires filenames at the lsp folder)
+	vim.lsp.enable("dart_ls")
+	vim.lsp.enable("json_ls")
+	vim.lsp.enable("lua_ls")
+	vim.lsp.enable("prisma_ls")
+	vim.lsp.enable("typescript_ls")
+	vim.lsp.enable("eslint_ls")
+	vim.lsp.enable("css_ls")
+	vim.lsp.enable("html_ls")
+	vim.lsp.enable("bash_ls")
+	vim.lsp.enable("yaml_ls")
 
 	-- Custom Diagnostic Severity Icons
 	local diagnostic_signs = {
