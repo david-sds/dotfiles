@@ -2,19 +2,19 @@
 size = 12.0
 
 [font.normal]
-family = "DepartureMono Nerd Font Mono"
+family = "AdwaitaMono Nerd Font Mono"
 style = "Regular"
 
 [font.bold]
-family = "DepartureMono Nerd Font Mono"
+family = "AdwaitaMono Nerd Font Mono"
 style = "Bold"
 
 [font.italic]
-family = "DepartureMono Nerd Font Mono"
+family = "AdwaitaMono Nerd Font Mono"
 style = "Italic"
 
 [font.bold_italic]
-family = "DepartureMono Nerd Font Mono"
+family = "AdwaitaMono Nerd Font Mono"
 style = "Bold Italic"
 
 
