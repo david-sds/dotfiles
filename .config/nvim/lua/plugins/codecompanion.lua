@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : codecompanion.nvim
+-- ABOUT : Code with LLMs and Agents via the in-built adapters, the community adapters or by building your own.
+-- LINKS :
+--   > github : https://github.com/olimorris/codecompanion.nvim
+-- ================================================================================================
+
 return {
 	"olimorris/codecompanion.nvim",
 	cmd = {
@@ -13,6 +20,25 @@ return {
 			"MeanderingProgrammer/render-markdown.nvim",
 			ft = { "codecompanion" },
 		},
+	},
+	opts = {
+		strategies = {
+			chat = {
+				adapter = "gemini",
+			},
+			inline = {
+				adapter = "gemini",
+			},
+		},
+		gemini = function()
+			return require("codecompanion.adapters").extend("gemini", {
+				schema = {
+					model = {
+						default = "gemini-2.5-flash-preview-05-20",
+					},
+				},
+			})
+		end,
 	},
 	keys = {
 		{
@@ -63,24 +89,5 @@ return {
 			desc = "Clear CodeCompanionChat history",
 			mode = { "n", "v" },
 		},
-	},
-	opts = {
-		strategies = {
-			chat = {
-				adapter = "gemini",
-			},
-			inline = {
-				adapter = "gemini",
-			},
-		},
-		gemini = function()
-			return require("codecompanion.adapters").extend("gemini", {
-				schema = {
-					model = {
-						default = "gemini-2.5-flash-preview-05-20",
-					},
-				},
-			})
-		end,
 	},
 }
