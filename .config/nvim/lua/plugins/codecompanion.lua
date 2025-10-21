@@ -48,7 +48,7 @@ return {
 			mode = { "n", "v" },
 		},
 		{
-			"<leader>kt",
+			"<leader>kk",
 			"<CMD>CodeCompanionChat Toggle<CR>",
 			desc = "Toggle CodeCompanionChat",
 			mode = { "n", "v" },
@@ -63,18 +63,6 @@ return {
 			"<leader>ke",
 			"<CMD>CodeCompanion Explain<CR>",
 			desc = "Explain selected code",
-			mode = { "n", "v" },
-		},
-		{
-			"<leader>kr",
-			"<CMD>CodeCompanion Review<CR>",
-			desc = "Review selected code",
-			mode = { "n", "v" },
-		},
-		{
-			"<leader>ku",
-			"<CMD>CodeCompanion Tests<CR>",
-			desc = "Generate tests for selected code",
 			mode = { "n", "v" },
 		},
 		{
