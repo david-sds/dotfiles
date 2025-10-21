@@ -25,12 +25,12 @@ return {
 		{
 			"<leader>gn",
 			":Gitsigns next_hunk<CR>",
-			desc = "Preview Hunk",
+			desc = "Next Hunk",
 		},
 		{
 			"<leader>gp",
 			":Gitsigns prev_hunk<CR>",
-			desc = "Preview Hunk",
+			desc = "Previous Hunk",
 		},
 		{
 			"<leader>gP",
