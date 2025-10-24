@@ -32,6 +32,14 @@ return {
 			end,
 			desc = "Replay requests",
 		},
+		{ -- Set selected Kulala environment
+			"<leader>rs",
+			function()
+				require("kulala").set_selected_env()
+			end,
+			desc = "Set selected Kulala environment",
+			mode = "n",
+		},
 	},
 	ft = { "http", "rest" },
 	opts = {
