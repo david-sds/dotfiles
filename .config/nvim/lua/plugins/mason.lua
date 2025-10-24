@@ -29,6 +29,7 @@ return {
 				"css-lsp",
 				-- json
 				"json-lsp",
+				"jq",
 				-- prisma
 				"prisma-language-server",
 				-- bash
