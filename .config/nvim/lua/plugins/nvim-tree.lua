@@ -33,7 +33,7 @@ return {
 			},
 			update_focused_file = {
 				enable = true,
-				update_cwd = true, -- optional, changes the cwd too
+				update_cwd = false,
 			},
 		})
 	end,

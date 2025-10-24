@@ -22,6 +22,8 @@ return {
 				yaml = { "prettierd" },
 				sh = { "shfmt" },
 				bash = { "shfmt" },
+				http = { "kulala-fmt" },
+				rest = { "kulala-fmt" },
 			},
 			format_on_save = {
 				timeout_ms = 500,

@@ -29,6 +29,7 @@ return {
 				"css-lsp",
 				-- json
 				"json-lsp",
+				"jq",
 				-- prisma
 				"prisma-language-server",
 				-- bash
@@ -37,6 +38,8 @@ return {
 				"shellcheck",
 				-- yaml
 				"yaml-language-server",
+				--- kulala
+				"kulala-fmt",
 			},
 			auto_update = false,
 			run_on_start = true,
