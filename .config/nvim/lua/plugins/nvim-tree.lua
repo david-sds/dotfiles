@@ -29,8 +29,9 @@ return {
 				git_ignored = false,
 			},
 			view = {
+				width = 40,
 				preserve_window_proportions = true,
-				adaptive_size = true,
+				adaptive_size = false,
 			},
 			update_focused_file = {
 				enable = true,
