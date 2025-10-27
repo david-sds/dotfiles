@@ -25,15 +25,21 @@ return {
 	config = function()
 		require("nvim-tree").setup({
 			filters = {
-				dotfiles = false, -- Show hidden files (dotfiles)
-				git_ignored = true, -- Show git ignored files
+				dotfiles = false,
+				git_ignored = false,
 			},
 			view = {
+				preserve_window_proportions = true,
 				adaptive_size = true,
 			},
 			update_focused_file = {
 				enable = true,
-				update_cwd = false,
+				update_cwd = true,
+			},
+			actions = {
+				open_file = {
+					resize_window = false,
+				},
 			},
 		})
 	end,

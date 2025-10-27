@@ -16,6 +16,7 @@ return {
 			end,
 			mode = { "n", "v" },
 			desc = "Send request",
+			ft = { "http", "rest" },
 		},
 		{
 			"<leader>ra",
@@ -24,6 +25,7 @@ return {
 			end,
 			mode = { "n", "v" },
 			desc = "Run all requests",
+			ft = { "http", "rest" },
 		},
 		{
 			"<leader>rr",
@@ -31,6 +33,7 @@ return {
 				require("kulala").replay()
 			end,
 			desc = "Replay requests",
+			ft = { "http", "rest" },
 		},
 		{ -- Set selected Kulala environment
 			"<leader>rs",
@@ -39,10 +42,12 @@ return {
 			end,
 			desc = "Set selected Kulala environment",
 			mode = "n",
+			ft = { "http", "rest" },
 		},
 	},
 	ft = { "http", "rest" },
 	opts = {
 		global_keymaps = false,
+		default_env = "local",
 	},
 }
