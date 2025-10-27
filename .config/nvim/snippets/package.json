@@ -6,7 +6,7 @@
         "language": "dart",
         "path": "./dart/dart.json"
       },
-{
+      {
         "language": "typescript",
         "path": "./typescript/typescript.json"
       }
