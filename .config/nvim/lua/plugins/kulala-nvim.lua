@@ -35,12 +35,21 @@ return {
 			desc = "Replay requests",
 			ft = { "http", "rest" },
 		},
-		{ -- Set selected Kulala environment
+		{
 			"<leader>rs",
 			function()
 				require("kulala").set_selected_env()
 			end,
 			desc = "Set selected Kulala environment",
+			mode = "n",
+			ft = { "http", "rest" },
+		},
+		{
+			"<leader>ri",
+			function()
+				require("kulala").inspect()
+			end,
+			desc = "Inspect response",
 			mode = "n",
 			ft = { "http", "rest" },
 		},
