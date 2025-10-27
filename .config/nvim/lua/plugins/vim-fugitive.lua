@@ -15,7 +15,7 @@ return {
 			desc = "Open Blame (Current buffer)",
 		},
 		{
-			"<leader>gd",
+			"<leader>gD",
 			":Gdiffsplit<CR>",
 			desc = "Show Git Diffs",
 		},
