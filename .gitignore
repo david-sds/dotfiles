@@ -5,8 +5,14 @@
 !/.config/
 !/.config/nvim/
 !/.config/tmux/
+!/.config/alacritty/
+!/.config/waybar/
+!/.config/niri/
 !/.config/nvim/**
 !/.config/tmux/**
+!/.config/alacritty/**
+!/.config/waybar/**
+!/.config/niri/**
 
 # Re-ignore these
 /.config/tmux/plugins/**
