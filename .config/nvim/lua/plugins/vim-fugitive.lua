@@ -16,13 +16,33 @@ return {
 		},
 		{
 			"<leader>gD",
-			":Gdiffsplit<CR>",
+			":Gdiffsplit!<CR>",
 			desc = "Show Git Diffs",
 		},
 		{
-			"<leader>gh",
+			"<leader>gH",
 			":0GcLog<CR>",
 			desc = "Show Git History (Current buffer)",
+		},
+		{
+			"<leader>gh",
+			":normal! V<CR>j?<<<<<<<<CR>ok/>>>>>>><CR>:'<,'>diffget //2<CR>",
+			desc = "Get the hunk in the left",
+			mode = { "n", "v" },
+		},
+		{
+			"<leader>gl",
+			":normal! V<CR>j?<<<<<<<<CR>ok/>>>>>>><CR>:'<,'>diffget //3<CR>",
+			desc = "Get the hunk in the right",
+			mode = { "n", "v" },
+		},
+		{
+			"<leader>gg",
+			function()
+				vim.cmd("normal! V>")
+				vim.cmd("j?<<<<<<<")
+				vim.cmd("ok/>>>>>>")
+			end,
 		},
 	},
 }
