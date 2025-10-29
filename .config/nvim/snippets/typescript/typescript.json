@@ -20,12 +20,12 @@
     "description": "Create a TypeScript interface"
   },
   "TypeScript Function": {
-    "prefix": "fn",
+    "prefix": "function",
     "body": ["function ${1:fnName}(${2:params}): ${3:void} {", "  $0", "}"],
     "description": "Create a TypeScript function"
   },
   "TypeScript Arrow Function": {
-    "prefix": "afn",
+    "prefix": "arrow",
     "body": ["const ${1:fnName} = (${2:params}): ${3:void} => {", "  $0", "};"],
     "description": "Create a TypeScript arrow function"
   },
