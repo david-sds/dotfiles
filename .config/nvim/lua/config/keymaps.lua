@@ -47,3 +47,4 @@ end, { desc = "Open terminal in current window" })
 -- Custom utilities
 vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
+vim.keymap.set("n", "<leader>o", ":only<CR>", { desc = "Focus on current buffer" })
