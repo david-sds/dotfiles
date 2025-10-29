@@ -36,13 +36,5 @@ return {
 			desc = "Get the hunk in the right",
 			mode = { "n", "v" },
 		},
-		{
-			"<leader>gg",
-			function()
-				vim.cmd("normal! V>")
-				vim.cmd("j?<<<<<<<")
-				vim.cmd("ok/>>>>>>")
-			end,
-		},
 	},
 }
