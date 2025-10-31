@@ -1,4 +1,4 @@
--- ================================================================================================
+-- ============================================================================
 -- TITLE : lazy.nvim Bootstrap & Plugin Setup
 -- ABOUT :
 --   bootstraps the 'lazy.nvim' plugin manager by cloning it if not present, prepends it to the
@@ -7,7 +7,7 @@
 -- LINKS :
 --   > lazy.nvim github  : https://github.com/folke/lazy.nvim
 --   > lazy.nvim website : https://lazy.folke.io/installation
--- ================================================================================================
+-- ============================================================================
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 ---@diagnostic disable-next-line: undefined-field (fs_stat)
