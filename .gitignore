@@ -2,7 +2,7 @@
 *
 
 # Don't ignore these
-!/.bashrc_example
+!/.bashrc_examplej
 !/.config/
 !/.config/nvim/
 !/.config/tmux/
@@ -10,6 +10,7 @@
 !/.config/nvim/**
 !/.config/tmux/**
 !/.config/alacritty/**
+!/init.sh
 
 # Re-ignore these
 /.config/tmux/plugins/**
