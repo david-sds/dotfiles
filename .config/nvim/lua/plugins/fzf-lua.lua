@@ -1,15 +1,20 @@
--- ================================================================================================
+-- ============================================================================
 -- TITLE : fzf-lua
 -- ABOUT : lua-based fzf wrapper and integration.
 -- LINKS :
 --   > github : https://github.com/ibhagwan/fzf-lua
--- ================================================================================================
+-- ============================================================================
 
 return {
 	"ibhagwan/fzf-lua",
 	lazy = false,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
+		keymap = {
+			fzf = {
+				["ctrl-q"] = "select-all+accept",
+			},
+		},
 		grep = {
 			rg_glob = true, -- Enable glob parsing (Requires ripgrep)
 		},
@@ -83,7 +88,7 @@ return {
 			function()
 				require("fzf-lua").git_diff()
 			end,
-			desc = "FZF Git Diff",
+			desc = "FZF Git Diffs",
 		},
 	},
 }

@@ -1,4 +1,4 @@
--- ================================================================================================
+-- ============================================================================
 -- TITLE : nvim-cmp
 -- ABOUT : A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
 -- LINKS :
@@ -9,7 +9,7 @@
 --   > github : https://github.com/L3MON4D3/LuaSnip
 --   > github : https://github.com/saadparwaiz1/cmp_luasnip
 --   > github : https://github.com/onsails/lspkind.nvim
--- ================================================================================================
+-- ============================================================================
 
 ---@type LazyPluginSpec[]
 return {

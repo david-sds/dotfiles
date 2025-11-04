@@ -1,10 +1,10 @@
--- ================================================================================================
+-- ============================================================================
 -- TITLE : kulala.nvim
 -- ABOUT : A fully-featured REST Client Interface for Neovim.
 -- LINKS :
 --   > github : https://github.com/mistweaverco/kulala.nvim
 --   > docs: https://neovim.getkulala.net/docs/getting-started
--- ================================================================================================
+-- ============================================================================
 
 return {
 	"mistweaverco/kulala.nvim",

@@ -1,8 +1,8 @@
--- ================================================================================================
+-- ============================================================================
 -- TITLE : typescript-language-server
 -- ABOUT : TypeScript & JavaScript Language Server.
 -- LINKS : https://github.com/typescript-language-server/typescript-language-server
--- ================================================================================================
+-- ============================================================================
 
 local lsp_config_module = require("config.lsp")
 local on_attach = lsp_config_module.on_attach
