@@ -2,6 +2,7 @@
 *
 
 # Don't ignore these
+!/.bashrc_example
 !/.config/
 !/.config/nvim/
 !/.config/tmux/
