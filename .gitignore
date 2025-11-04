@@ -6,8 +6,10 @@
 !/.config/
 !/.config/nvim/
 !/.config/tmux/
+!/.config/alacritty/
 !/.config/nvim/**
 !/.config/tmux/**
+!/.config/alacritty/**
 
 # Re-ignore these
 /.config/tmux/plugins/**
