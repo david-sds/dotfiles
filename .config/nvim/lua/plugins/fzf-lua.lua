@@ -42,6 +42,13 @@ return {
 			desc = "FZF Buffers",
 		},
 		{
+			"<leader>fr",
+			function()
+				require("fzf-lua").resume()
+			end,
+			desc = "FZF Resume previous search",
+		},
+		{
 			"<leader>fh",
 			function()
 				require("fzf-lua").help_tags()
