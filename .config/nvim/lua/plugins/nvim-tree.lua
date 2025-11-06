@@ -7,6 +7,7 @@
 
 return {
 	"nvim-tree/nvim-tree.lua",
+	lazy = false,
 	keys = {
 		{
 			"<leader>e",
