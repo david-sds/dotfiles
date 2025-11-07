@@ -7,7 +7,6 @@
 
 return {
 	"lewis6991/gitsigns.nvim",
-	lazy = false,
 	config = function()
 		require("gitsigns").setup()
 	end,
@@ -23,19 +22,19 @@ return {
 			desc = "Toggle Blame (Current line)",
 		},
 		{
-			"<leader>gn",
+			"<leader>gp",
+			":Gitsigns preview_hunk<CR>",
+			desc = "Preview Hunk",
+		},
+		{
+			"]g",
 			":Gitsigns next_hunk<CR>",
 			desc = "Next Hunk",
 		},
 		{
-			"<leader>gp",
+			"[g",
 			":Gitsigns prev_hunk<CR>",
 			desc = "Previous Hunk",
-		},
-		{
-			"<leader>gP",
-			":Gitsigns preview_hunk<CR>",
-			desc = "Preview Hunk",
 		},
 		{
 			"<leader>gr",

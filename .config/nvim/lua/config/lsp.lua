@@ -17,16 +17,10 @@ function M.on_attach(_, bufnr)
 	buf_map("n", "gr", vim.lsp.buf.references, "Go to References")
 	buf_map("n", "gD", vim.lsp.buf.declaration, "Go to Declaration")
 	buf_map("n", "<leader>F", vim.lsp.buf.format, "Format buffer")
-
-	-- Check out the docs for more options:
-	-- :help vim.lsp
-	-- :help vim.lsp.buf
-	-- :help vim.lsp.diagnostic
-	-- :help vim.diagnostic
 end
 
 function M.setup()
-	-- Enable LSP for nvim-cmp autocompletion support (Requires filenames at the lsp folder)
+	-- Enable LSP for nvim-cmp autocompletion (Filenames at the lsp folder)
 	vim.lsp.enable("dart_ls")
 	vim.lsp.enable("json_ls")
 	vim.lsp.enable("lua_ls")
