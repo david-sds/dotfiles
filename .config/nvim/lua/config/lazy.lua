@@ -44,6 +44,10 @@ require("lazy").setup({
 		},
 	},
 	checker = { enabled = true },
+	change_detection = {
+		enabled = true,
+		notify = false,
+	},
 })
 
 require("config.lsp").setup()
