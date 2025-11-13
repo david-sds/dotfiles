@@ -41,6 +41,9 @@ return {
 					end
 					return true
 				end,
+				completion = {
+					autocomplete = { "InsertEnter", "TextChanged" },
+				},
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
