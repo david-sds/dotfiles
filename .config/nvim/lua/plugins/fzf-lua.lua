@@ -55,14 +55,14 @@ return {
 			desc = "FZF Help Tags",
 		},
 		{
-			"<leader>fx",
+			"<leader>fd",
 			function()
 				require("fzf-lua").diagnostics_document()
 			end,
 			desc = "FZF Diagnostics Document",
 		},
 		{
-			"<leader>fX",
+			"<leader>fD",
 			function()
 				require("fzf-lua").diagnostics_workspace()
 			end,
