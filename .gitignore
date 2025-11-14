@@ -6,8 +6,10 @@
 !/.config/
 !/.config/nvim/
 !/.config/tmux/
+!/.config/hypr/
 !/.config/nvim/**
 !/.config/tmux/**
+!/.config/hypr/bindings.conf
 
 # Re-ignore these
 /.config/tmux/plugins/**
