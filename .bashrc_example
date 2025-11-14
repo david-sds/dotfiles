@@ -29,7 +29,7 @@ load-nvmrc() {
 }
 PROMPT_COMMAND='load-nvmrc'
 
-export GEMINI_API_KEY="Get the gemini app key from a google console AI project"
+export GEMINI_API_KEY="Get your API key on: https://aistudio.google.com/app/api-keys"
 
 export PATH="$PATH:$HOME/fvm/default/bin"
 

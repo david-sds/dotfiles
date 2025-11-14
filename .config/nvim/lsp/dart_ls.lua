@@ -17,12 +17,13 @@ return {
 
 	settings = {
 		dart = {
-			analysisServer = {
-				enable = true,
-			},
 			flutter = {
 				flutterSdkPath = vim.env.FLUTTER_ROOT,
 			},
+			analysisServer = {
+				enable = true,
+			},
+			updateImportsOnRename = true,
 		},
 	},
 }
