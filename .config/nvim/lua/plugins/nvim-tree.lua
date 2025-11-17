@@ -32,6 +32,7 @@ return {
 				width = 40,
 				preserve_window_proportions = true,
 				adaptive_size = false,
+				relativenumber = true,
 			},
 			update_focused_file = {
 				enable = true,
