@@ -15,14 +15,14 @@ return {
 	end,
 	keys = {
 		{
-			"<leader>a",
+			"<leader>h",
 			function()
 				require("harpoon"):list():add()
 			end,
 			desc = "Harpoon: Add file",
 		},
 		{
-			"<leader>A",
+			"<leader>H",
 			function()
 				require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
 			end,
