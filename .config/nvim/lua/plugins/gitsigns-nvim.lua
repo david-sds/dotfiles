@@ -7,6 +7,8 @@
 
 return {
 	"lewis6991/gitsigns.nvim",
+	-- Attach before loading and before creating buffers
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require("gitsigns").setup()
 	end,
