@@ -10,7 +10,9 @@ return {
 	-- Attach before loading and before creating buffers
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
-		require("gitsigns").setup()
+		require("gitsigns").setup({
+			current_line_blame = true,
+		})
 	end,
 	keys = {
 		{
