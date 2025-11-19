@@ -31,7 +31,7 @@ return {
 			view = {
 				width = 40,
 				preserve_window_proportions = true,
-				adaptive_size = false,
+				adaptive_size = true,
 				relativenumber = true,
 			},
 			update_focused_file = {
