@@ -31,6 +31,6 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
 -- Custom utilities
-vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
+vim.keymap.set("n", "<leader>l", ":nohlsearch<CR>", { desc = "Clear search highlights" })
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
 vim.keymap.set("n", "<leader>o", ":only<CR>", { desc = "Focus on current buffer" })
