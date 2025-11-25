@@ -25,13 +25,8 @@ return {
 		}, {
 			group = lint_augroup,
 			callback = function()
-				-- executed when a event is triggered
 				lint.try_lint()
 			end,
 		})
-
-		vim.keymap.set("n", "<leader>ll", function()
-			lint.try_lint()
-		end, { desc = "Trigger [L]int" })
 	end,
 }

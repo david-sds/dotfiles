@@ -13,7 +13,7 @@ return {
 		version = "*",
 		keys = {
 			{
-				"<leader>C",
+				"<leader>cp",
 				function()
 					require("oklch-color-picker").pick_under_cursor({ fallback_open = {} })
 				end,
