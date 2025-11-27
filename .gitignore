@@ -4,12 +4,18 @@
 # Don't ignore these
 !/.bashrc_example
 !/.config/
+
 !/.config/nvim/
-!/.config/tmux/
-!/.config/hypr/
 !/.config/nvim/**
+
+!/.config/tmux/
 !/.config/tmux/**
+
+!/.config/hypr/
 !/.config/hypr/bindings.conf
+
+!/.config/walker/
+!/.config/walker/config.toml
 
 # Re-ignore these
 /.config/tmux/plugins/**
