@@ -7,9 +7,11 @@
 !/.config/nvim/
 !/.config/tmux/
 !/.config/alacritty/
+!/Scripts/
 !/.config/nvim/**
 !/.config/tmux/**
 !/.config/alacritty/**
+!/Scripts/**
 
 # Re-ignore these
 /.config/tmux/plugins/**
