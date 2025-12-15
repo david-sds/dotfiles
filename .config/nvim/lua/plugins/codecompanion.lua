@@ -34,7 +34,7 @@ return {
 			return require("codecompanion.adapters").extend("gemini", {
 				schema = {
 					model = {
-						default = "gemini-2.5-flash-native-audio-dialog",
+						default = "gemini-2.5-flash-preview-05-20",
 					},
 				},
 			})
