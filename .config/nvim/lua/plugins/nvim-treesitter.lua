@@ -3,12 +3,11 @@
 -- ABOUT : The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it.
 -- LINKS :
 --   > github : https://github.com/nvim-treesitter/nvim-treesitter
---   > github : https://github.com/nvim-treesitter/playground
 -- ============================================================================
 
 return {
 	"nvim-treesitter/nvim-treesitter",
-	dependencies = { "nvim-treesitter/playground", "nvim-treesitter/nvim-treesitter-context" },
+	dependencies = { "nvim-treesitter/nvim-treesitter-context" },
 	branch = "master",
 	lazy = false,
 	build = ":TSUpdate",
