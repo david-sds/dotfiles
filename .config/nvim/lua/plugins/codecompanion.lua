@@ -23,22 +23,26 @@ return {
 	},
 	opts = {
 		strategies = {
-			chat = {
-				adapter = "gemini",
-			},
-			inline = {
-				adapter = "gemini",
+			chat = { adapter = "openrouter" },
+			inline = { adapter = "openrouter" },
+		},
+		adapters = {
+			http = {
+				openrouter = function()
+					return require("codecompanion.adapters").extend("openai", {
+						env = {
+							api_key = "OPENROUTER_API_KEY",
+						},
+						url = "https://openrouter.ai/api/v1/chat/completions",
+						schema = {
+							model = {
+								default = "google/gemma-3-27b-it:free",
+							},
+						},
+					})
+				end,
 			},
 		},
-		gemini = function()
-			return require("codecompanion.adapters").extend("gemini", {
-				schema = {
-					model = {
-						default = "gemini-2.5-flash-preview-05-20",
-					},
-				},
-			})
-		end,
 	},
 	keys = {
 		{
