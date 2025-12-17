@@ -109,7 +109,7 @@
     "description": "Create MobX Getter Setter"
   },
   "Modular Get": {
-    "prefix": "modularGet",
+    "prefix": "modGet",
     "body": ["final _$1 = Modular.get<$2>();"],
     "description": "Create Modular Get"
   },
