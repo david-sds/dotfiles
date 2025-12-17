@@ -55,6 +55,13 @@ return {
 			desc = "FZF Help Tags",
 		},
 		{
+			"<leader>fk",
+			function()
+				require("fzf-lua").keymaps()
+			end,
+			desc = "FZF Keybinds",
+		},
+		{
 			"<leader>fd",
 			function()
 				require("fzf-lua").diagnostics_document()

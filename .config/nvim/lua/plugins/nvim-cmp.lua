@@ -6,6 +6,7 @@
 --   > github : https://github.com/hrsh7th/cmp-nvim-lsp
 --   > github : https://github.com/hrsh7th/cmp-path
 --   > github : https://github.com/hrsh7th/cmp-buffer
+--   > github : https://github.com/hrsh7th/cmdline
 --   > github : https://github.com/L3MON4D3/LuaSnip
 --   > github : https://github.com/saadparwaiz1/cmp_luasnip
 --   > github : https://github.com/onsails/lspkind.nvim
@@ -19,6 +20,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-cmdline",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"onsails/lspkind.nvim",
@@ -54,6 +56,7 @@ return {
 					{ name = "luasnip" },
 					{ name = "path" },
 					{ name = "buffer" },
+					{ name = "cmdline" },
 				}),
 				formatting = {
 					format = lspkind.cmp_format({
@@ -101,6 +104,13 @@ return {
 			}
 
 			cmp.setup(opts)
+
+			cmp.setup.filetype({ "sql", "mysql" }, {
+				sources = {
+					{ name = "buffer" },
+					{ name = "vim-dadbod-completion" },
+				},
+			})
 		end,
 	},
 }
