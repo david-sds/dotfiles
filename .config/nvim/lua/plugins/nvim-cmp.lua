@@ -56,7 +56,6 @@ return {
 					{ name = "luasnip" },
 					{ name = "path" },
 					{ name = "buffer" },
-					{ name = "cmdline" },
 				}),
 				formatting = {
 					format = lspkind.cmp_format({
@@ -109,6 +108,12 @@ return {
 				sources = {
 					{ name = "buffer" },
 					{ name = "vim-dadbod-completion" },
+				},
+			})
+
+			cmp.setup.filetype({ "bash", "sh" }, {
+				sources = {
+					{ name = "cmdline" },
 				},
 			})
 		end,
