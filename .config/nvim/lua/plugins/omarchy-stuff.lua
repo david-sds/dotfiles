@@ -104,7 +104,7 @@ return {
 		dir = vim.fn.stdpath("config"),
 		lazy = false,
 		priority = 1000,
-		dependencies = { "folke/snacks.nvim" },
+		-- dependencies = { "folke/snacks.nvim" },
 		config = function()
 			local transparency_file = vim.fn.stdpath("config") .. "/plugin/after/transparency.lua"
 
