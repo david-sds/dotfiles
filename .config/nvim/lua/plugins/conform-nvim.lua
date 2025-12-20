@@ -25,6 +25,7 @@ return {
 				http = { "kulala-fmt" },
 				rest = { "kulala-fmt" },
 				python = { "black" },
+				php = { "php_cs_fixer" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
@@ -32,4 +33,16 @@ return {
 			},
 		})
 	end,
+	keys = {
+		{
+			"<leader>F",
+			function()
+				require("conform").format({
+					async = false,
+					lsp_fallback = true,
+				})
+			end,
+			desc = "Format buffer",
+		},
+	},
 }

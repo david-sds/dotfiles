@@ -23,6 +23,9 @@ return {
 				"typescript-language-server",
 				"prettierd",
 				"eslint-lsp",
+				-- php
+				"phpactor",
+				"php-cs-fixer",
 				-- html
 				"html-lsp",
 				-- css
