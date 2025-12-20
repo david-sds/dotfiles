@@ -24,6 +24,7 @@ return {
 				bash = { "shfmt" },
 				http = { "kulala-fmt" },
 				rest = { "kulala-fmt" },
+				python = { "black" },
 			},
 			format_on_save = {
 				timeout_ms = 500,

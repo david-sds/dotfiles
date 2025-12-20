@@ -9,6 +9,10 @@ local on_attach = lsp_config_module.on_attach
 return {
 	on_attach = on_attach,
 
+	on_init = function(client)
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
+
 	cmd = { "dart", "language-server", "--protocol=lsp" },
 
 	filetypes = { "dart" },

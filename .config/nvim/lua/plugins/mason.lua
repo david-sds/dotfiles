@@ -30,6 +30,9 @@ return {
 				-- json
 				"json-lsp",
 				"jq",
+				-- python
+				"pyright",
+				"black",
 				-- prisma
 				"prisma-language-server",
 				-- bash

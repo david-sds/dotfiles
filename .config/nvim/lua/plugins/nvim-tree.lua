@@ -24,6 +24,10 @@ return {
 	},
 	config = function()
 		require("nvim-tree").setup({
+			git = {
+				enable = true,
+				timeout = 1000,
+			},
 			filters = {
 				dotfiles = false,
 				git_ignored = false,
