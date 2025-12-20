@@ -34,6 +34,10 @@ require("config.autocmds")
 local plugins_dir = "plugins"
 
 require("lazy").setup({
+	defaults = {
+		autocmds = false,
+		keymaps = false,
+	},
 	spec = {
 		{ import = plugins_dir },
 	},
