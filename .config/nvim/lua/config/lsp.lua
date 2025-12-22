@@ -16,7 +16,6 @@ function M.on_attach(_, bufnr)
 	buf_map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
 	buf_map("n", "gr", vim.lsp.buf.references, "Go to References")
 	buf_map("n", "gD", vim.lsp.buf.declaration, "Go to Declaration")
-	buf_map("n", "<leader>F", vim.lsp.buf.format, "Format buffer")
 end
 
 function M.setup()
@@ -32,6 +31,7 @@ function M.setup()
 	vim.lsp.enable("bash_ls")
 	vim.lsp.enable("yaml_ls")
 	vim.lsp.enable("python_ls")
+	vim.lsp.enable("php_ls")
 
 	-- Custom Diagnostic Severity Icons
 	local diagnostic_signs = {
