@@ -13,6 +13,7 @@
 
 !/.config/hypr/
 !/.config/hypr/bindings.conf
+!/.config/hypr/input.conf
 
 !/.config/walker/
 !/.config/walker/config.toml
