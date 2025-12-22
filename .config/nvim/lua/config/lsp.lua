@@ -32,6 +32,8 @@ function M.setup()
 	vim.lsp.enable("yaml_ls")
 	vim.lsp.enable("python_ls")
 	vim.lsp.enable("php_ls")
+	vim.lsp.enable("twiggy_ls")
+	vim.lsp.enable("emmet_ls")
 
 	-- Custom Diagnostic Severity Icons
 	local diagnostic_signs = {
