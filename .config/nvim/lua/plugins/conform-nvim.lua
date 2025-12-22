@@ -43,6 +43,7 @@ return {
 				})
 			end,
 			desc = "Format buffer",
+			mode = { "n", "v" },
 		},
 	},
 }
