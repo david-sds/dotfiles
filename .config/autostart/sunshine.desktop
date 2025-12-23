@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Sunshine
+Comment=Self-hosted game stream host for Moonlight
+Exec=/usr/bin/sunshine
+Icon=sunshine
+Terminal=false
+Type=Application
+Categories=Utility;Game;
+StartupNotify=true
+

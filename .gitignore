@@ -3,15 +3,23 @@
 
 # Don't ignore these
 !/.bashrc_example
+
 !/.config/
-!/.config/nvim/
-!/.config/tmux/
-!/.config/alacritty/
+
 !/Scripts/
-!/.config/nvim/**
-!/.config/tmux/**
-!/.config/alacritty/**
 !/Scripts/**
+
+!/.config/nvim/
+!/.config/nvim/**
+
+!/.config/tmux/
+!/.config/tmux/**
+
+!/.config/alacritty/
+!/.config/alacritty/**
+
+!/.config/autostart/
+!/.config/autostart/**
 
 # Re-ignore these
 /.config/tmux/plugins/**
