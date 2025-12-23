@@ -19,19 +19,15 @@ function M.on_attach(_, bufnr)
 end
 
 function M.setup()
-	-- Enable LSP for nvim-cmp autocompletion (Filenames at the lsp folder)
-	vim.lsp.enable("dart_ls")
-	vim.lsp.enable("json_ls")
-	vim.lsp.enable("lua_ls")
-	vim.lsp.enable("prisma_ls")
-	vim.lsp.enable("typescript_ls")
-	vim.lsp.enable("eslint_ls")
-	vim.lsp.enable("css_ls")
-	vim.lsp.enable("html_ls")
-	vim.lsp.enable("bash_ls")
-	vim.lsp.enable("yaml_ls")
-	vim.lsp.enable("python_ls")
-	vim.lsp.enable("php_ls")
+	-- Get the path nvim/lua/lsp directory and enable all LSPs
+	local lsp_dir = vim.fn.stdpath("config") .. "/lua/lsp"
+	if vim.fn.isdirectory(lsp_dir) == 1 then
+		local files = vim.fn.split(vim.fn.globpath(lsp_dir, "*.lua"), "\n")
+		for _, file in ipairs(files) do
+			local server_name = vim.fn.fnamemodify(file, ":t:r")
+			vim.lsp.enable(server_name)
+		end
+	end
 
 	-- Custom Diagnostic Severity Icons
 	local diagnostic_signs = {

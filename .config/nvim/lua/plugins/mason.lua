@@ -23,9 +23,6 @@ return {
 				"typescript-language-server",
 				"prettierd",
 				"eslint-lsp",
-				-- php
-				"phpactor",
-				"php-cs-fixer",
 				-- html
 				"html-lsp",
 				-- css
@@ -46,6 +43,14 @@ return {
 				"yaml-language-server",
 				--- kulala
 				"kulala-fmt",
+				-- php
+				"phpactor",
+				"php-cs-fixer",
+				-- twig
+				"twiggy-language-server",
+				"twig-cs-fixer",
+				-- emmet
+				"emmet-language-server",
 			},
 			auto_update = false,
 			run_on_start = true,

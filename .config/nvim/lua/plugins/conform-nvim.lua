@@ -26,6 +26,7 @@ return {
 				rest = { "kulala-fmt" },
 				python = { "black" },
 				php = { "php_cs_fixer" },
+				twig = { "twig-cs-fixer" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
@@ -43,6 +44,7 @@ return {
 				})
 			end,
 			desc = "Format buffer",
+			mode = { "n", "v" },
 		},
 	},
 }

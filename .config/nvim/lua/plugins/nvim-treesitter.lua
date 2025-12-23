@@ -27,6 +27,7 @@ return {
 			"json",
 			"http",
 			"xml",
+			"twig",
 		},
 		sync_install = false,
 		auto_install = true,
