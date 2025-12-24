@@ -7,32 +7,24 @@
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
 
-color_prompt=yes
+# Show git branch name
+source /usr/share/git/completion/git-prompt.sh
+export PS1='> \[\e[34m\]\W \[\e[0m\]$(__git_ps1 "\[\e[32m\](\[\e[31m\]%s\[\e[32m\])\[\e[0m\]")\[\e[37m\]\$\[\e[0m\] '
 
-parse_git_branch() {
-  git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
-if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
-else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ '
-fi
-unset color_prompt force_color_prompt
+export EDITOR=vim
+export VISUAL=vim
+export TERMINAL="alacritty"
+export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
+export OPENROUTER_API_KEY="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"
+export GEMINI_API_KEY="AIzaSyAp3SDiPy3JL1ZWgBoUI8K8JrXpm2d4KEg"
 
-# Auto-load Node version from .nvmrc
-load-nvmrc() {
-  if [ -f .nvmrc ]; then
-    nvm use --silent >/dev/null
-  fi
-}
-PROMPT_COMMAND='load-nvmrc'
+export PATH="$HOME/fvm/default/bin:$HOME/fvm/default/bin/cache/dart-sdk/bin/:$PATH"
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
-export GEMINI_API_KEY="Get your API key on: https://aistudio.google.com/app/api-keys"
+# NVM Config
+source /usr/share/nvm/init-nvm.sh
 
-export PATH="$PATH:$HOME/fvm/default/bin"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# SDKMAN Config (Must be at the end of the file)
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
