@@ -11,12 +11,16 @@
 !/.config/tmux/
 !/.config/tmux/**
 
+!/.config/alacritty/
+!/.config/alacritty/**
+
 !/.config/hypr/
 !/.config/hypr/bindings.conf
 !/.config/hypr/input.conf
 
 !/.config/walker/
 !/.config/walker/config.toml
+
 
 # Re-ignore these
 /.config/tmux/plugins/**
