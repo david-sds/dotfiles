@@ -1,4 +1,6 @@
 general.import = [ "~/.config/omarchy/current/theme/alacritty.toml" ]
+[window]
+padding = { x = 2, y = 2 }
 
 [font]
 size = 12.0
@@ -6,9 +8,6 @@ size = 12.0
 [font.offset]
 x = 0
 y = 0
-
-[window]
-padding = { x = 2, y = 2 }
 
 [font.glyph_offset]
 x = 0
