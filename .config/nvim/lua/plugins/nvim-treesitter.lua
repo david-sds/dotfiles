@@ -28,10 +28,12 @@ return {
 			"http",
 			"xml",
 			"twig",
+			"php",
 		},
 		sync_install = false,
 		auto_install = true,
 		ignore_install = { "javascript" },
+		indent = { enable = true },
 		highlight = {
 			enable = true,
 			disable = function(_, buf)
