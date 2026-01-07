@@ -4,13 +4,19 @@
 # Don't ignore these
 !/.bashrc_examplej
 !/.config/
+
 !/.config/nvim/
 !/.config/tmux/
 !/.config/alacritty/
 !/.config/nvim/**
+
+!/.config/tmux/
 !/.config/tmux/**
 !/.config/alacritty/**
 !/init.sh
+
+!/.config/alacritty/
+!/.config/alacritty/**
 
 # Re-ignore these
 /.config/tmux/plugins/**

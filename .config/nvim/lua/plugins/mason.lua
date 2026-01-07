@@ -38,7 +38,6 @@ return {
 				-- bash
 				"bash-language-server",
 				"shfmt",
-				"shellcheck",
 				-- yaml
 				"yaml-language-server",
 				--- kulala
@@ -46,6 +45,7 @@ return {
 				-- php
 				"phpactor",
 				"php-cs-fixer",
+				"phpstan",
 				-- twig
 				"twiggy-language-server",
 				"twig-cs-fixer",
