@@ -6,26 +6,24 @@
 -- ============================================================================
 
 return {
-	-- "mfussenegger/nvim-lint",
-	-- config = function()
-	-- 	local lint = require("lint")
-	--
-	-- 	lint.linters_by_ft = {
-	-- 		sh = { "shellcheck" },
-	-- 		bash = { "shellcheck" },
-	-- 		php = { "phpstan" },
-	-- 	}
-	--
-	-- 	vim.api.nvim_create_autocmd({
-	-- 		"BufReadPre",
-	-- 		"BufNewFile",
-	-- 		"BufEnter",
-	-- 		"BufWritePost",
-	-- 		"InsertLeave",
-	-- 	}, {
-	-- 		callback = function()
-	-- 			lint.try_lint()
-	-- 		end,
-	-- 	})
-	-- end,
+	"mfussenegger/nvim-lint",
+	config = function()
+		local lint = require("lint")
+
+		lint.linters_by_ft = {
+			php = { "phpstan" },
+		}
+
+		vim.api.nvim_create_autocmd({
+			"BufReadPre",
+			"BufNewFile",
+			"BufEnter",
+			"BufWritePost",
+			"InsertLeave",
+		}, {
+			callback = function()
+				lint.try_lint()
+			end,
+		})
+	end,
 }
