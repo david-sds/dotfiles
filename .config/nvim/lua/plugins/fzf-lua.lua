@@ -9,6 +9,9 @@ return {
 	"ibhagwan/fzf-lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
+		fzf_opts = {
+			["--no-wrap"] = "",
+		},
 		keymap = {
 			fzf = {
 				["ctrl-q"] = "select-all+accept",
