@@ -34,6 +34,7 @@ return {
 					vim.fn.stdpath("data") .. "/lazy/nvim-cmp/lua",
 					vim.fn.stdpath("data") .. "/lazy/conform.nvim/lua",
 					vim.fn.stdpath("data") .. "/lazy/oklch-color-picker.nvim/lua",
+					vim.fn.stdpath("data") .. "/lazy/fzf-lua",
 				},
 			},
 		},
