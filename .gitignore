@@ -21,6 +21,8 @@
 !/.config/walker/
 !/.config/walker/config.toml
 
+!/.config/waybar/
+!/.config/waybar/**
 
 # Re-ignore these
 /.config/tmux/plugins/**
