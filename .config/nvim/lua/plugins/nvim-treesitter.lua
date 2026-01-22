@@ -29,6 +29,7 @@ return {
 			"xml",
 			"twig",
 			"php",
+			"phpdoc",
 		},
 		sync_install = false,
 		auto_install = true,
