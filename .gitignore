@@ -13,7 +13,7 @@
 !/.config/tmux/
 !/.config/tmux/**
 !/.config/alacritty/**
-!/init.sh
+!/init
 
 !/.config/alacritty/
 !/.config/alacritty/**
