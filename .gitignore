@@ -6,12 +6,9 @@
 
 !/.config/
 
-<<<<<<< HEAD
 !/Scripts/
 !/Scripts/**
 
-=======
->>>>>>> origin/master
 !/.config/nvim/
 !/.config/nvim/**
 
@@ -21,12 +18,12 @@
 !/.config/alacritty/
 !/.config/alacritty/**
 
-<<<<<<< HEAD
 !/.config/autostart/
 !/.config/autostart/**
 
-=======
->>>>>>> origin/master
+!/.config/opencode/
+!/.config/opencode/**
+
 # Re-ignore these
 /.config/tmux/plugins/**
 /.config/nvim/lazy-lock.json
