@@ -34,6 +34,7 @@ function M.setup()
 	vim.lsp.enable("twiggy_ls")
 	vim.lsp.enable("typescript_ls")
 	vim.lsp.enable("yaml_ls")
+	vim.lsp.enable("markdown_ls")
 
 	-- Custom Diagnostic Severity Icons
 	local diagnostic_signs = {
