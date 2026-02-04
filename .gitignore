@@ -2,18 +2,16 @@
 *
 
 # Don't ignore these
-!/.bashrc_examplej
+!/.bashrc_example
+
 !/.config/
+!/init
 
 !/.config/nvim/
-!/.config/tmux/
-!/.config/alacritty/
 !/.config/nvim/**
 
 !/.config/tmux/
 !/.config/tmux/**
-!/.config/alacritty/**
-!/init
 
 !/.config/alacritty/
 !/.config/alacritty/**
