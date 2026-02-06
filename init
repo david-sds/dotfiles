@@ -20,9 +20,9 @@ tmux split-window -v -t "$SESSION":2
 
 # Run commands in panes
 tmux send-keys -t "$SESSION":1.1 'cd ~/Work/educria/' Enter
-tmux send-keys -t "$SESSION":1.2 'cd ~/Work/educria/educacao-criativa-app/ && flutter run -d chrome --dart-define env=-local' Enter
-tmux send-keys -t "$SESSION":2.1 'cd ~/Work/educria/educacao-criativa-app/ && dart run build_runner watch -d' Enter
-tmux send-keys -t "$SESSION":2.2 "cd ~/Work/educria/educacao-criativa-back/ && nvm use $(cat .nvmrc) && npm run start:local" Enter
+tmux send-keys -t "$SESSION":1.2 'cd ~/Work/educria/app/ && flutter run -d chrome --dart-define env=-local' Enter
+tmux send-keys -t "$SESSION":2.1 'cd ~/Work/educria/app/ && dart run build_runner watch -d' Enter
+tmux send-keys -t "$SESSION":2.2 "cd ~/Work/educria/back/ && nvm use $(cat .nvmrc) && npm run start:local" Enter
 tmux send-keys -t "$SESSION":3.1 "cd ~/Work/educria/ && nvim -c 'DBUI'" Enter
 tmux send-keys -t "$SESSION":4 'cd ~/.config/' Enter
 
