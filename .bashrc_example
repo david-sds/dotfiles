@@ -16,8 +16,7 @@ export EDITOR=vim
 export VISUAL=vim
 export TERMINAL="alacritty"
 export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
-export OPENROUTER_API_KEY="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"
-export GEMINI_API_KEY="AIzaSyAp3SDiPy3JL1ZWgBoUI8K8JrXpm2d4KEg"
+export OPENROUTER_API_KEY="https://openrouter.ai/settings/keys"
 
 export PATH="$HOME/fvm/default/bin:$HOME/fvm/default/bin/cache/dart-sdk/bin/:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"

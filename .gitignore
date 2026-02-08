@@ -23,6 +23,8 @@
 !/.config/waybar/
 !/.config/waybar/**
 
+!/.config/opencode/
+!/.config/opencode/**
 # Re-ignore these
 /.config/tmux/plugins/**
 /.config/nvim/lazy-lock.json
