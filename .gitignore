@@ -15,8 +15,7 @@
 !/.config/alacritty/**
 
 !/.config/hypr/
-!/.config/hypr/bindings.conf
-!/.config/hypr/input.conf
+!/.config/hypr/**
 
 !/.config/walker/
 !/.config/walker/config.toml

@@ -6,16 +6,16 @@
 -- ============================================================================
 
 return {
-	-- {
-	-- 	"rebelot/kanagawa.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		vim.cmd("colorscheme kanagawa-wave")
-	-- 		-- vim.cmd("colorscheme kanagawa-dragon")
-	-- 		-- vim.cmd("colorscheme kanagawa-lotus")
-	-- 	end,
-	-- },
+	{
+		"rebelot/kanagawa.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd("colorscheme kanagawa-wave")
+			-- vim.cmd("colorscheme kanagawa-dragon")
+			-- vim.cmd("colorscheme kanagawa-lotus")
+		end,
+	},
 	-- {
 	-- 	"polirritmico/monokai-nightasty.nvim",
 	-- 	-- config = function()

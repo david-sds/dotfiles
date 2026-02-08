@@ -25,6 +25,7 @@ return {
 			"typescript",
 			"dart",
 			"json",
+			-- "jsonc",
 			"http",
 			"xml",
 			"twig",
