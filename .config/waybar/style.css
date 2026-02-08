@@ -1,35 +1,94 @@
 * {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
   font-family: InconsolataGo Nerd Font;
-  font-size: 14px;
-  padding: 0;
-  margin: 0;
+  font-size: 12px;
 }
 
-#waybar {
-  color: #eeeeee;
-  background-color: #000000;
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
 }
 
 #workspaces button {
-  color: #eeeeee;
-  padding-left: 0.7em;
+  all: initial;
+  padding: 0 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
 }
 
 #workspaces button.empty {
-  color: #aaaaaa;
+  opacity: 0.5;
 }
 
-#memory,
-#custom-platform-profile {
-  padding-left: 1em
-}
-
-#wireplumber,
+#cpu,
 #battery,
-#idle_inhibitor,
-#language,
-#network,
-#bluetooth,
+#pulseaudio,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
 #tray {
-  padding-right: 1em
+  margin-right: 16px;
+}
+
+#bluetooth {
+  margin-right: 17px;
+}
+
+#network {
+  margin-right: 13px;
+}
+
+#custom-expand-icon {
+  margin-right: 18px;
+}
+
+tooltip {
+  padding: 2px;
+}
+
+#custom-update {
+  font-size: 10px;
+}
+
+#clock {
+  margin-left: 5px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#custom-screenrecording-indicator {
+  min-width: 12px;
+  margin-left: 5px;
+  font-size: 10px;
+  padding-bottom: 1px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #a55555;
+}
+
+#custom-voxtype {
+  min-width: 12px;
+  margin: 0 0 0 7.5px;
+}
+
+#custom-voxtype.recording {
+  color: #a55555;
+}
+
+#hyprland-language {
+  background-color: #a55556;
 }
