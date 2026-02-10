@@ -23,7 +23,9 @@ export CACHE_PATH="$HOME/Cache"
 export GOPATH="$CACHE_PATH/go"
 export PATH="$GOPATH/bin:$PATH"
 
-export PATH="$HOME/fvm/default/bin:$HOME/fvm/default/bin/cache/dart-sdk/bin/:$PATH"
+export FVM_CACHE_PATH="$CACHE_PATH/fvm"
+
+export PATH="$CACHE_PATH/fvm/default/bin:$CACHE_PATH/fvm/default/bin/cache/dart-sdk/bin/:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 # NVM Config
