@@ -18,6 +18,11 @@ export TERMINAL="alacritty"
 export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 export OPENROUTER_API_KEY="https://openrouter.ai/settings/keys"
 
+export CACHE_PATH="$HOME/Cache"
+
+export GOPATH="$CACHE_PATH/go"
+export PATH="$GOPATH/bin:$PATH"
+
 export PATH="$HOME/fvm/default/bin:$HOME/fvm/default/bin/cache/dart-sdk/bin/:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
