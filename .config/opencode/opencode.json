@@ -5,6 +5,18 @@
     "read": "allow",
     "glob": "allow",
     "grep": "allow",
-    "list": "allow"
+    "list": "allow",
+    "bash": {
+      "*": "ask",
+      "ls *": "allow",
+      "pwd": "allow",
+      "whoami": "allow",
+      "hostname": "allow",
+      "cat *": "allow",
+      "head *": "allow",
+      "tail *": "allow",
+      "grep *": "allow",
+      "find *": "allow"
+    }
   }
 }
