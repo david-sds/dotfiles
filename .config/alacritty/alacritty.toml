@@ -61,3 +61,7 @@ color = '#ffa066'
 [[colors.indexed_colors]]
 index = 17
 color = '#ff5d62'
+
+# Introduce Shift+Enter line break to Opencode.
+[keyboard]
+bindings = [ { key = "Return", mods = "Shift", chars = "\n" } ]

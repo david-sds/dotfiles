@@ -2,7 +2,19 @@
   "$schema": "https://opencode.ai/config.json",
   "permission": {
     "*": "ask",
+    "grep": "allow",
     "list": "allow",
-    "read": "allow"
+    "bash": {
+      "*": "ask",
+      "ls *": "allow",
+      "pwd": "allow",
+      "whoami": "allow",
+      "hostname": "allow",
+      "cat *": "allow",
+      "head *": "allow",
+      "tail *": "allow",
+      "grep *": "allow",
+      "find *": "allow"
+    }
   }
 }
