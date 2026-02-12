@@ -141,8 +141,9 @@
   },
   "hyprland/language": {
     "format": "{}  \u00a0\u00a0", // This symbol is the Nerd Font keyboard
-    "format-en": "US",
-    "format-pt": "PT",
+    "format-en": "   EN",
+    "format-en-intl": " INTL",
+    "format-pt": "   PT",
     "format-pt-nodeadkeys": "PT-ND",
     "on-click": "hyprctl switchxkblayout all next"
   }
