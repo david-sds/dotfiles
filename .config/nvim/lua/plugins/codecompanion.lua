@@ -36,7 +36,8 @@ return {
 						url = "https://openrouter.ai/api/v1/chat/completions",
 						schema = {
 							model = {
-								default = "google/gemma-3-27b-it:free",
+								-- default = "google/gemma-3-27b-it",
+								default = "meta-llama/llama-3.1-405b-instruct",
 							},
 						},
 					})

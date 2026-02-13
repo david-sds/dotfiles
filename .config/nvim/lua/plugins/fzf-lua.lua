@@ -37,18 +37,6 @@ return {
 			desc = "FZF Live Grep",
 		},
 		{
-			"<leader>fs",
-			function()
-				local mode = vim.api.nvim_get_mode().mode
-				local opts = (mode == "v" or mode == "V" or mode == "\22") and { type = mode } or vim.empty_dict() -- \22 is the escaped version of ctrl-v
-				local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), opts)
-
-				require("fzf-lua").live_grep({ search = selection[1] })
-			end,
-			mode = "v",
-			desc = "FZF Search (Live Grep Visual Mode)",
-		},
-		{
 			"<leader>fb",
 			function()
 				require("fzf-lua").buffers()
@@ -100,9 +88,21 @@ return {
 		{
 			"<leader>fS",
 			function()
-				require("fzf-lua").lsp_workspace_symbols()
+				local mode = vim.api.nvim_get_mode().mode
+				local search_term
+
+				if mode == "v" or mode == "V" or mode == "\22" then
+					local opts = { type = mode }
+					local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), opts)
+					search_term = selection[1]
+				else
+					search_term = vim.fn.expand("<cword>")
+				end
+
+				require("fzf-lua").live_grep({ search = search_term })
 			end,
-			desc = "FZF Workspace Symbols",
+			mode = { "n", "v" },
+			desc = "FZF Search (Live Grep)",
 		},
 		{
 			"<leader>gff",
