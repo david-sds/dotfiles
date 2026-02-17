@@ -77,7 +77,7 @@ tooltip {
 }
 
 #custom-screenrecording-indicator.active {
-  color: #a55555;
+  color: #ff5555;
 }
 
 #custom-voxtype {
@@ -86,9 +86,18 @@ tooltip {
 }
 
 #custom-voxtype.recording {
-  color: #a55555;
+  color: #ff5555;
 }
 
 #hyprland-language {
-  background-color: #a55556;
+  background-color: #ff5555;
+}
+
+#battery.critical:not(.charging) {
+  color: #ff5555;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }

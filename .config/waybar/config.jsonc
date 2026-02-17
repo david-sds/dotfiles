@@ -80,7 +80,7 @@
     "on-click": "omarchy-menu power",
     "states": {
       "warning": 20,
-      "critical": 10
+      "critical": 15
     }
   },
   "bluetooth": {
