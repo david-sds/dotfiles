@@ -43,7 +43,7 @@
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "alacritty -e btop"
+    "on-click": "~/.config/hypr/scripts/open_floating_tui.sh btop"
   },
   "clock": {
     "format": "{:L%A %H:%M}",
@@ -62,7 +62,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "alacritty -e impala"
+    "on-click": "~/.config/hypr/scripts/open_floating_tui.sh impala"
   },
   "battery": {
     "format": "{capacity}% {icon}",
@@ -90,11 +90,11 @@
     "format-connected": "󰂱",
     "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "alacritty -e bluetui"
+    "on-click": "~/.config/hypr/scripts/open_floating_tui.sh bluetui"
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "alacritty -e wiremix",
+    "on-click": "~/.config/hypr/scripts/open_floating_tui.sh wiremix",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
