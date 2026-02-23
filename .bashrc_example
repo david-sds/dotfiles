@@ -38,3 +38,4 @@ source /usr/share/nvm/init-nvm.sh
 
 # SDKMAN Config (Must be at the end of the file)
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
