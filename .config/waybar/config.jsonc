@@ -149,7 +149,7 @@
     "on-click": "hyprctl switchxkblayout all next"
   },
 "custom/power": {
-    "format": " ",
+    "format": "",
     "on-click": "~/.config/hypr/scripts/walker/powermenu.sh",
     "tooltip-format": "Open power menu"
   }
