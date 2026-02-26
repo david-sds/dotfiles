@@ -1,0 +1,25 @@
+# vim: syntax=toml
+
+# --- Global (The "Simple Blue" look) ---
+font=InconsolataGo Nerd Font 10
+default-timeout=5000
+background-color=#000000
+text-color=#ffffff
+
+# POSITIONING
+anchor=top-right
+layer=overlay
+margin=0
+
+# --- Low Urgency (Info - Green) ---
+[urgency=low]
+border-color=#21e469
+
+# --- Normal Urgency (Warning - Yellow) ---
+[urgency=normal]
+border-color=#f1be39
+
+# --- Critical Urgency (Error - Red) ---
+[urgency=critical]
+border-color=#db2617
+default-timeout=0

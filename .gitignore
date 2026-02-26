@@ -26,6 +26,9 @@
 !/.config/opencode/
 !/.config/opencode/**
 
+!/.config/mako/
+!/.config/mako/**
+
 # Re-ignore these
 /.config/tmux/plugins/**
 /.config/nvim/lazy-lock.json
