@@ -141,7 +141,7 @@
     "spacing": 17
   },
   "hyprland/language": {
-    "format": "{}  \u00a0\u00a0", // This symbol is the Nerd Font keyboard
+    "format": "{} \u00a0\u00a0", // This symbol is the Nerd Font keyboard
     "format-en": "   EN",
     "format-en-intl": " INTL",
     "format-pt": "   PT",
