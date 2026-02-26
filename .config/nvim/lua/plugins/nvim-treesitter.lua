@@ -31,6 +31,8 @@ return {
 			"twig",
 			"php",
 			"phpdoc",
+			"yaml",
+			"toml",
 		},
 		sync_install = false,
 		auto_install = true,
