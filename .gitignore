@@ -5,7 +5,6 @@
 !/.bashrc_example
 
 !/.config/
-!/init
 
 !/.config/nvim/
 !/.config/nvim/**
