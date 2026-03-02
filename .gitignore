@@ -24,6 +24,9 @@
 !/.config/opencode/
 !/.config/opencode/**
 
+!/.codex/
+!/.codex/config.toml
+
 # Re-ignore these
 /.config/tmux/plugins/**
 /.config/nvim/lazy-lock.json

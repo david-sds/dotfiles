@@ -18,5 +18,12 @@
       "grep *": "allow",
       "find *": "allow"
     }
+  },
+  "keybinds": {
+    "app_exit": "<leader>d",
+    "input_delete_to_line_end": "ctrl+shift+k",
+    "input_delete_to_line_start": "ctrl+shift+u",
+    "messages_half_page_up": "ctrl+u",
+    "messages_half_page_down": "ctrl+d"
   }
 }

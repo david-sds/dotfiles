@@ -1,0 +1,4 @@
+approval_mode = "suggest"
+approval_policy = "untrusted"
+sandbox_mode = "read-only"
+

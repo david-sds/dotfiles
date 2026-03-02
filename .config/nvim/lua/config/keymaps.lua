@@ -34,3 +34,5 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position"
 vim.keymap.set("n", "<leader>l", ":nohlsearch<CR>", { desc = "Clear search highlights" })
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
 vim.keymap.set("n", "<leader>o", ":only<CR>", { desc = "Focus on current buffer" })
+vim.keymap.set("n", "<leader>L", ":Lazy<CR>", { desc = "Open Lazy menu" })
+vim.keymap.set("n", "<leader>M", ":Mason<CR>", { desc = "Open Mason menu" })
