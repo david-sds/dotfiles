@@ -29,6 +29,9 @@
 !/.config/mako/
 !/.config/mako/**
 
+!/.codex/
+!/.codex/config.toml
+
 # Re-ignore these
 /.config/tmux/plugins/**
 /.config/nvim/lazy-lock.json
