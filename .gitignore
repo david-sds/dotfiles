@@ -29,8 +29,8 @@
 !/.config/mako/
 !/.config/mako/**
 
-!/.codex/
-!/.codex/config.toml
+!/.config/codex/
+!/.config/codex/config.toml
 
 # Re-ignore these
 /.config/tmux/plugins/**

@@ -28,6 +28,7 @@ export GOPATH="$CACHE_PATH/go"
 export PATH="$GOPATH/bin:$PATH"
 export FVM_CACHE_PATH="$CACHE_PATH/fvm"
 export SDKMAN_DIR="$HOME/.sdkman"
+export CODEX_HOME="$HOME/.config/codex"
 
 # Path variable
 export PATH="$CACHE_PATH/fvm/default/bin:$CACHE_PATH/fvm/default/bin/cache/dart-sdk/bin/:$PATH"
