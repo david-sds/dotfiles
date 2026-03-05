@@ -3,7 +3,7 @@ general.import = [ "~/.config/omarchy/current/theme/alacritty.toml" ]
 padding = { x = 4, y = 4 }
 
 [font]
-size = 14.0
+size = 16.0
 
 [font.normal]
 family = "InconsolataGo Nerd Font"
