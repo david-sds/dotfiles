@@ -17,4 +17,5 @@ return {
 	{ "echasnovski/mini.bufremove", version = "*", opts = {} },
 	{ "echasnovski/mini.notify", version = "*", opts = {} },
 	{ "echasnovski/mini.icons", version = "*", opts = {} },
+	{ "echasnovski/mini.operators", version = "*", opts = {} },
 }
