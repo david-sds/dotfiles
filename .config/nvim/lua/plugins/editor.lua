@@ -47,7 +47,7 @@ return {
 					rest = { "kulala-fmt" },
 					python = { "black" },
 					php = { "php_cs_fixer" },
-					-- twig = { "djlint" },
+					twig = { "djlint" },
 				},
 				format_on_save = {
 					timeout_ms = 500,
