@@ -1,19 +1,11 @@
--- ============================================================================
--- TITLE : nvim-cmp
--- ABOUT : A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
--- LINKS :
---   > github : https://github.com/hrsh7th/nvim-cmp
---   > github : https://github.com/hrsh7th/cmp-nvim-lsp
---   > github : https://github.com/hrsh7th/cmp-path
---   > github : https://github.com/hrsh7th/cmp-buffer
---   > github : https://github.com/hrsh7th/cmdline
---   > github : https://github.com/L3MON4D3/LuaSnip
---   > github : https://github.com/saadparwaiz1/cmp_luasnip
---   > github : https://github.com/onsails/lspkind.nvim
--- ============================================================================
-
----@type LazyPluginSpec[]
 return {
+
+	-- ============================================================================
+	-- TITLE : nvim-cmp
+	-- ABOUT : A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
+	-- LINKS :
+	--   > github : https://github.com/hrsh7th/nvim-cmp
+	-- ============================================================================
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
@@ -117,5 +109,71 @@ return {
 				},
 			})
 		end,
+	},
+
+	-- ============================================================================
+	-- TITLE : LuaSnip
+	-- ABOUT : Parse LSP-Style Snippets either directly in Lua, as a VSCode package or a SnipMate snippet collection.
+	-- LINKS :
+	--   > github : https://github.com/L3MON4D3/LuaSnip
+	-- ============================================================================
+	{
+		"L3MON4D3/LuaSnip",
+		build = "make install_jsregexp",
+		keys = {
+			{
+				"<C-y>",
+				function()
+					local ls = require("luasnip")
+					if ls.expandable() then
+						ls.expand()
+					end
+				end,
+				mode = "i",
+				desc = "Expand snippet",
+			},
+			{
+				"<C-n>",
+				function()
+					require("luasnip").jump(1)
+				end,
+				mode = { "i", "s" },
+				desc = "Next snippet jump",
+			},
+			{
+				"<C-p>",
+				function()
+					require("luasnip").jump(-1)
+				end,
+				mode = { "i", "s" },
+				desc = "Prev snippet jump",
+			},
+			{
+				"<C-e>",
+				function()
+					local ls = require("luasnip")
+					if ls.choice_active() then
+						ls.change_choice(1)
+					end
+				end,
+				mode = { "i", "s" },
+				desc = "Cycle snippet choice",
+			},
+		},
+		config = function()
+			require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/snippets" })
+			require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snippets" })
+		end,
+	},
+
+	-- ============================================================================
+	-- TITLE : SchemaStore.nvim
+	-- ABOUT : A Neovim plugin that provides the SchemaStore catalog for use with jsonls and yamlls.
+	-- LINKS :
+	--   > github : https://github.com/b0o/schemastore.nvim
+	-- ============================================================================
+	{
+		"b0o/schemastore.nvim",
+		lazy = true,
 	},
 }

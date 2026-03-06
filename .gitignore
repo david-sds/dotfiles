@@ -18,8 +18,8 @@
 !/.config/opencode/
 !/.config/opencode/**
 
-!/.codex/
-!/.codex/config.toml
+!/.config/codex/
+!/.config/codex/config.toml
 
 # Re-ignore these
 /.config/tmux/plugins/**
