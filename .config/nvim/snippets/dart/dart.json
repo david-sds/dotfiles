@@ -103,7 +103,7 @@
       "@computed",
       "$1 get $2 => _$2;",
       "@action",
-      "set${2/(.*)/${1:/capitalize}/}($1 value) => _$2 = value;",
+      "void set${2/(.*)/${1:/capitalize}/}($1 value) => _$2 = value;",
       ""
     ],
     "description": "Create MobX Getter Setter"
