@@ -123,4 +123,25 @@ return {
 			opts = {},
 		},
 	},
+
+	-- ============================================================================
+	-- TITLE : render-markdown.nvim
+	-- ABOUT : Plugin to improve viewing Markdown files in Neovim
+	-- LINKS :
+	--   > github : https://github.com/MeanderingProgrammer/render-markdown.nvim
+	-- ============================================================================
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		-- -@type render.md.UserConfig
+		opts = {},
+		keys = {
+			{
+				"<leader>m",
+				"<CMD>RenderMarkdown toggle<CR>",
+				desc = "Toogle RenderMarkdown",
+			},
+		},
+	},
 }
