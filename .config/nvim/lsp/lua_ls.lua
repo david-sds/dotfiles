@@ -30,6 +30,7 @@ return {
 				library = {
 					vim.fn.expand("$VIMRUNTIME/lua"),
 					vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
+					vim.fn.stdpath("data") .. "/lazy/nvim-tree.lua/lua",
 					vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua",
 					vim.fn.stdpath("data") .. "/lazy/nvim-cmp/lua",
 					vim.fn.stdpath("data") .. "/lazy/conform.nvim/lua",
