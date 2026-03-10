@@ -299,12 +299,13 @@ return {
 			{
 				"<leader>gi",
 				function()
-					require("nvim-tree.api").tree.toggle_gitignore_filter()
+					require("nvim-tree.api").filter.git.ignored.toggle()
 				end,
 				desc = "Toggle GitIgnored files (nvim-tree)",
 			},
 		},
 		config = function()
+			---@type nvim_tree.config
 			require("nvim-tree").setup({
 				git = {
 					enable = true,
