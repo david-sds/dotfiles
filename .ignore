@@ -1,0 +1,4 @@
+# Override .gitignore for ripgrep and fd searches on these:
+
+!Work/
+!Work/**
