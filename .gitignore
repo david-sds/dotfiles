@@ -4,6 +4,10 @@
 # Don't ignore these
 !/.bashrc_example
 !/.config/
+!/.local/
+
+!/.local/bin/
+!/.local/bin/**
 
 !/.config/nvim/
 !/.config/nvim/**
