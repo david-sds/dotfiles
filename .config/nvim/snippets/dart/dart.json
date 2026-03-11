@@ -113,6 +113,30 @@
     "body": ["final _$1 = Modular.get<$2>();"],
     "description": "Create Modular Get"
   },
+  "CN field+getter+setter": {
+    "prefix": "cnf",
+    "body": [
+      "${1:Type} _${2:name} = $3;",
+      "${1:Type} get ${2:name} => _${2:name};",
+      "set ${2:name}(${1:Type} value) {",
+      "  _${2:name} = value;",
+      "  notifyListeners();",
+      "}"
+    ],
+    "description": "ChangeNotifier nullable field with getter and notifying setter"
+  },
+  "ChangeNotifier ViewModel class": {
+    "prefix": "cnc",
+    "body": [
+      "class ${1:TestDetailsViewModel} extends ChangeNotifier {",
+      "  ${1:TestDetailsViewModel}({required ${2:TestsService} ${3:service},}) : _${3:service} = ${3:service};",
+      "",
+      "  final ${2:TestsService} _${3:service};",
+      "",
+      "}"
+    ],
+    "description": "Base ChangeNotifier ViewModel skeleton"
+  },
   "Custom Painter": {
     "prefix": "customPainter",
     "body": [
