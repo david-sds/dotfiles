@@ -2,7 +2,7 @@
 *
 
 # Don't ignore these
-!/.fdignore
+!/.ignore
 !/.bashrc_example
 !/.config/
 !/.local/
