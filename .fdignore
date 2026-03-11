@@ -1,0 +1,4 @@
+# Override .gitignore for fd searches on these:
+
+!Work/
+!Work/**
