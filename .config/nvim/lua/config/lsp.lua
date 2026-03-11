@@ -19,6 +19,8 @@ function M.on_attach(_, bufnr)
 end
 
 function M.setup()
+	vim.lsp.handlers["$/progress"] = function() end
+
 	-- Enable LSP for nvim-cmp autocompletion (Filenames at the lsp folder)
 	vim.lsp.enable("bash_ls")
 	vim.lsp.enable("css_ls")
