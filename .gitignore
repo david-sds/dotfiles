@@ -2,9 +2,14 @@
 *
 
 # Don't ignore these
+!/.fdignore
 !/.bashrc_example
 
 !/.config/
+!/.local/
+
+!/.local/bin/
+!/.local/bin/**
 
 !/Scripts/
 !/Scripts/**

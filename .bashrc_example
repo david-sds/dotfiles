@@ -31,6 +31,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export CODEX_HOME="$HOME/.config/codex"
 
 # Path variable
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$CACHE_PATH/fvm/default/bin:$CACHE_PATH/fvm/default/bin/cache/dart-sdk/bin/:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
