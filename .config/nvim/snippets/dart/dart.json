@@ -113,8 +113,8 @@
     "body": ["final _$1 = Modular.get<$2>();"],
     "description": "Create Modular Get"
   },
-  "CN field+getter+setter": {
-    "prefix": "cnf",
+  "ChangeNotifier field+getter+setter state": {
+    "prefix": "cns",
     "body": [
       "${1:Type} _${2:name} = $3;",
       "${1:Type} get ${2:name} => _${2:name};",
@@ -125,7 +125,7 @@
     ],
     "description": "ChangeNotifier nullable field with getter and notifying setter"
   },
-  "ChangeNotifier ViewModel class": {
+  "ChangeNotifier class": {
     "prefix": "cnc",
     "body": [
       "class ${1:TestDetailsViewModel} extends ChangeNotifier {",
