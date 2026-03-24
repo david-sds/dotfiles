@@ -37,6 +37,9 @@
 !/.config/codex/
 !/.config/codex/config.toml
 
+!/.config/xdg-desktop-portal/
+!/.config/xdg-desktop-portal/**
+
 # Re-ignore these
 /.config/tmux/plugins/**
 /.config/nvim/lazy-lock.json
