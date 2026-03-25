@@ -37,6 +37,13 @@ return {
 				desc = "FZF Live Grep",
 			},
 			{
+				"<leader>fa",
+				function()
+					require("fzf-lua").lsp_code_actions()
+				end,
+				desc = "FZF Find Code Action",
+			},
+			{
 				"<leader>fb",
 				function()
 					require("fzf-lua").buffers()
