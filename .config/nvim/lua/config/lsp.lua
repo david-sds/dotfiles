@@ -13,9 +13,11 @@ function M.on_attach(_, bufnr)
 	buf_map("n", "gd", vim.lsp.buf.definition, "Go to Definition")
 	buf_map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
 	buf_map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
-	buf_map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
 	buf_map("n", "gr", vim.lsp.buf.references, "Go to References")
 	buf_map("n", "gD", vim.lsp.buf.declaration, "Go to Declaration")
+	buf_map("n", "<leader>td", function()
+		vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+	end, "Toggle Diagnostics Signs")
 end
 
 function M.setup()
