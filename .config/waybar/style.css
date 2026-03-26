@@ -57,6 +57,22 @@ tooltip {
   padding: 2px;
 }
 
+#clock tooltip {
+  font-family: monospace;
+}
+
+#clock tooltip label {
+  color: #ffffff;
+}
+
+/* highlight current day (approximate) */
+#clock tooltip label span {
+  background-color: #3b82f6;
+  color: #000000;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
 #custom-update {
   font-size: 10px;
 }
