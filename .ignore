@@ -1,4 +1,9 @@
 # Override .gitignore for ripgrep and fd searches on these:
-
 !Work/
 !Work/**
+
+# Ignores common generated stuff
+Work/**/.git/
+Work/**/build/
+Work/**/node_modules/
+Work/**/dist/
