@@ -6,6 +6,9 @@
     "grep": "allow",
     "glob": "allow",
     "list": "allow",
+    "websearch": "allow",
+    "codesearch": "allow",
+    "webfetch": "allow",
     "bash": {
       "*": "ask",
       "ls *": "allow",
