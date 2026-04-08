@@ -95,6 +95,8 @@ return {
 					-- bash
 					"bash-language-server",
 					"shfmt",
+					-- markdown
+					"marksman",
 					-- yaml
 					"yaml-language-server",
 					--- kulala

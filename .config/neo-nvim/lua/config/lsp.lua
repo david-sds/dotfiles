@@ -1,5 +1,5 @@
 -- ============================================================================
--- TITLE : Neovim LSP
+-- TITLE : lsp
 -- ABOUT : Configuration for the native Neovim support for LSP's.
 -- ============================================================================
 
@@ -21,8 +21,6 @@ function M.on_attach(_, bufnr)
 end
 
 function M.setup()
-	vim.lsp.handlers["$/progress"] = function() end
-
 	-- Enable LSP for nvim-cmp autocompletion (Filenames at the lsp folder)
 	vim.lsp.enable("bash_ls")
 	vim.lsp.enable("css_ls")
@@ -42,8 +40,8 @@ function M.setup()
 
 	-- Custom Diagnostic Severity Icons
 	local diagnostic_signs = {
-		Error = " ",
-		Warn = " ",
+		Error = "",
+		Warn = "",
 		Hint = "",
 		Info = "",
 	}
@@ -65,3 +63,4 @@ function M.setup()
 end
 
 return M
+

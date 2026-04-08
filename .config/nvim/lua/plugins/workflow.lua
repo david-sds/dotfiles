@@ -21,6 +21,9 @@ return {
 				rg_glob = true, -- Enable glob parsing (Requires ripgrep)
 			},
 		},
+		config = function()
+			require("fzf-lua").register_ui_select()
+		end,
 		keys = {
 			{
 				"<leader>ff",
@@ -35,6 +38,13 @@ return {
 					require("fzf-lua").live_grep()
 				end,
 				desc = "FZF Live Grep",
+			},
+			{
+				"<leader>fa",
+				function()
+					require("fzf-lua").lsp_code_actions()
+				end,
+				desc = "FZF Find Code Action",
 			},
 			{
 				"<leader>fb",
