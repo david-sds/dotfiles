@@ -13,6 +13,9 @@
 !/.config/nvim/
 !/.config/nvim/**
 
+!/.config/neo-nvim/
+!/.config/neo-nvim/**
+
 !/.config/tmux/
 !/.config/tmux/**
 
