@@ -10,7 +10,12 @@ alias grep='grep --color=auto'
 
 # Show git branch name
 source /usr/share/git/completion/git-prompt.sh
-export PS1=' \[\e[34m\]\W \[\e[0m\]$(__git_ps1 "\[\e[32m\](\[\e[31m\]%s\[\e[32m\])\[\e[0m\]")\[\e[37m\]\$\[\e[0m\] '
+BLUE="\[\e[34m\]"
+GREEN="\[\e[32m\]"
+RED="\[\e[31m\]"
+WHITE="\[\e[37m\]"
+RESET="\[\e[0m\]"
+export PS1="$BLUE \W $RESET\$(__git_ps1 \"$GREEN($RED%s$GREEN)$RESET\")$WHITE\$$RESET "
 
 # System variables
 export EDITOR=vim
