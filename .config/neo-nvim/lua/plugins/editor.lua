@@ -1,8 +1,6 @@
 -- ============================================================================
 -- TITLE : mini.nvim
 -- ABOUT : Library of 40+ independent Lua modules.
--- LINKS :
---   > github : https://github.com/echasnovski/mini.nvim
 -- ============================================================================
 vim.pack.add({
 	"https://github.com/echasnovski/mini.ai",
@@ -35,8 +33,6 @@ require("mini.operators").setup()
 -- ============================================================================
 -- TITLE : conform.nvim
 -- ABOUT : Lightweight yet powerful formatter plugin for Neovim.
--- LINKS :
---   > github : https://github.com/stevearc/conform.nvim
 -- ============================================================================
 vim.pack.add({
 	"https://github.com/stevearc/conform.nvim",
@@ -76,8 +72,6 @@ end, { desc = "Format buffer" })
 -- ============================================================================
 -- TITLE : nvim-lint
 -- ABOUT : An asynchronous linter plugin for Neovim (>= 0.9.5) complementary to the built-in Language Server Protocol support.
--- LINKS :
---   > github : https://github.com/mfussenegger/nvim-lint
 -- ============================================================================
 vim.pack.add({ "https://github.com/mfussenegger/nvim-lint" })
 
@@ -102,8 +96,6 @@ vim.api.nvim_create_autocmd({
 -- ============================================================================
 -- TITLE : oklch-color-picker.nvim
 -- ABOUT : Sometimes the resolution of a cli just isn't enough
--- LINKS :
---   > github : https://github.com/eero-lehtinen/oklch-color-picker.nvim
 -- ============================================================================
 vim.pack.add({ "https://github.com/eero-lehtinen/oklch-color-picker.nvim" })
 
@@ -116,11 +108,15 @@ end, { desc = "Color pick under cursor" })
 -- ============================================================================
 -- TITLE : render-markdown.nvim
 -- ABOUT : Plugin to improve viewing Markdown files in Neovim
--- LINKS :
---   > github : https://github.com/MeanderingProgrammer/render-markdown.nvim
--- ============================================================================
+--
 -- dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
-vim.pack.add({ "https://github.com/MeanderingProgrammer/render-markdown.nvim" })
+--
+-- ============================================================================
+vim.pack.add({
+	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
+	"https://github.com/nvim-treesitter/nvim-treesitter",
+	"https://github.com/nvim-tree/nvim-web-devicons",
+})
 
 ---@module 'render-markdown'
 -- -@type render.md.UserConfig

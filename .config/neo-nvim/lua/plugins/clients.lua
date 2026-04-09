@@ -1,8 +1,6 @@
 -- ============================================================================
 -- TITLE : dadbod.vim
 -- ABOUT : Dadbod is a Vim plugin for interacting with databases.
--- LINKS :
---   > github : https://github.com/tpope/vim-dadbod
 -- ============================================================================
 vim.pack.add({
 	"https://github.com/tpope/vim-dadbod",
@@ -18,7 +16,6 @@ vim.keymap.set("n", "<leader>db", "<CMD>DBUIToggle<CR>", { desc = "Toggle Dadbod
 -- TITLE : kulala.nvim
 -- ABOUT : A fully-featured REST Client Interface for Neovim.
 -- LINKS :
---   > github : https://github.com/mistweaverco/kulala.nvim
 --   > docs: https://neovim.getkulala.net/docs/getting-started
 -- ============================================================================
 

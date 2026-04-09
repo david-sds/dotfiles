@@ -1,8 +1,6 @@
 -- ============================================================================
 -- TITLE : fzf-lua
 -- ABOUT : lua-based fzf wrapper and integration.
--- LINKS :
---   > github : https://github.com/ibhagwan/fzf-lua
 -- ============================================================================
 
 vim.pack.add({ "https://github.com/nvim-tree/nvim-web-devicons", "https://github.com/ibhagwan/fzf-lua" })
@@ -76,17 +74,15 @@ end, { desc = "FZF Git Diffs" })
 -- ============================================================================
 -- TITLE : vim-tmux-navigator
 -- ABOUT : Seamless navigation between Vim splits and tmux panes using the same shortcuts.
--- LINKS :
---   > github : https://github.com/christoomey/vim-tmux-navigator
 -- ============================================================================
 
 vim.pack.add({ "https://github.com/christoomey/vim-tmux-navigator" })
 
-vim.keymap.set("n", "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>")
-vim.keymap.set("n", "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>")
-vim.keymap.set("n", "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>")
-vim.keymap.set("n", "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>")
-vim.keymap.set("n", "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>")
+vim.keymap.set("n", "<c-h>", "<cmd><C-U>TmuxNavigateLeft<CR>")
+vim.keymap.set("n", "<c-j>", "<cmd><C-U>TmuxNavigateDown<CR>")
+vim.keymap.set("n", "<c-k>", "<cmd><C-U>TmuxNavigateUp<CR>")
+vim.keymap.set("n", "<c-l>", "<cmd><C-U>TmuxNavigateRight<CR>")
+vim.keymap.set("n", "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<CR>")
 
 -- ============================================================================
 -- TITLE : Harpoon
@@ -151,8 +147,6 @@ vim.keymap.set("n", "<C-n>", ui.nav_next, { desc = "Harpoon: Next file" })
 -- ============================================================================
 -- TITLE : nvim-tree.lua
 -- ABOUT : A file explorer tree for Neovim, written in Lua.
--- LINKS :
---   > github : https://github.com/nvim-tree/nvim-tree.lua
 -- ============================================================================
 vim.pack.add({ "https://github.com/nvim-tree/nvim-tree.lua" })
 
@@ -185,8 +179,6 @@ end, { desc = "Toggle GitIgnored files (nvim-tree)" })
 -- ============================================================================
 -- TITLE : oil.nvim
 -- ABOUT : A vim-vinegar like file explorer that lets you edit your filesystem like a normal Neovim buffer.
--- LINKS :
---   > github : https://github.com/stevearc/oil.nvim
 -- ============================================================================
 
 vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
@@ -198,8 +190,6 @@ vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 -- ============================================================================
 -- TITLE : replacer.nvim
 -- ABOUT : replacer.nvim makes quickfix windows editable, allowing changes to both the content of a file and its path.
--- LINKS :
---   > github : https://github.com/gabrielpoca/replacer.nvim
 -- ============================================================================
 
 vim.pack.add({ "https://github.com/gabrielpoca/replacer.nvim" })

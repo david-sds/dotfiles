@@ -1,9 +1,6 @@
 -- ============================================================================
 -- TITLE : LuaSnip
 -- ABOUT : Parse LSP-Style Snippets either directly in Lua, as a VSCode package or a SnipMate snippet collection.
--- LINKS :
---   > github : https://github.com/L3MON4D3/LuaSnip
---	build = "make install_jsregexp",
 -- ============================================================================
 vim.pack.add({ "https://github.com/L3MON4D3/LuaSnip" })
 
@@ -32,8 +29,6 @@ require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snippets
 -- ============================================================================
 -- TITLE : nvim-cmp
 -- ABOUT : A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
--- LINKS :
---   > github : https://github.com/hrsh7th/nvim-cmp
 -- ============================================================================
 
 vim.pack.add({
@@ -140,7 +135,5 @@ cmp.setup.filetype({ "bash", "sh" }, {
 -- ============================================================================
 -- TITLE : SchemaStore.nvim
 -- ABOUT : A Neovim plugin that provides the SchemaStore catalog for use with jsonls and yamlls.
--- LINKS :
---   > github : https://github.com/b0o/schemastore.nvim
 -- ============================================================================
-vim.pack.add({ "b0o/schemastore.nvim" })
+vim.pack.add({ "https://github.com/b0o/schemastore.nvim" })
