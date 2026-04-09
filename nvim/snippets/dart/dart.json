@@ -155,7 +155,7 @@
     ],
     "description": "Used for creating custom paint"
   },
-  "Custom Clipper ": {
+  "Custom Clipper": {
     "prefix": "customClipper",
     "body": [
       "class ${0:name}Clipper extends CustomClipper<Path> {",
@@ -170,7 +170,7 @@
     ],
     "description": "Used for creating custom shapes"
   },
-  "InitState ": {
+  "InitState": {
     "prefix": "init",
     "body": [
       "@override",
