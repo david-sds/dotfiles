@@ -14,6 +14,7 @@ vim.pack.add({
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"c",
+		"bash",
 		"lua",
 		"vim",
 		"vimdoc",
@@ -103,7 +104,7 @@ require("mason-tool-installer").setup({
 	auto_update = false,
 	run_on_start = true,
 })
-require('mason').setup()
+require("mason").setup()
 
 -- ============================================================================
 -- TITLE : trouble.nvim
@@ -128,4 +129,4 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<CR>", { desc = "Location List (Trouble)" })
 vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
 
-require('trouble').setup()
+require("trouble").setup()
