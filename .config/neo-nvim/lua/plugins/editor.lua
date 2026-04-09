@@ -72,79 +72,58 @@ vim.keymap.set({ "n", "v" }, "<leader>F", function()
 		lsp_fallback = true,
 	})
 end, { desc = "Format buffer" })
---
--- -- ============================================================================
--- -- TITLE : nvim-lint
--- -- ABOUT : An asynchronous linter plugin for Neovim (>= 0.9.5) complementary to the built-in Language Server Protocol support.
--- -- LINKS :
--- --   > github : https://github.com/mfussenegger/nvim-lint
--- -- ============================================================================
--- {
---   "mfussenegger/nvim-lint",
---   config = function()
---     local lint = require("lint")
---
---     lint.linters_by_ft = {
---       php = { "phpstan" },
---     }
---
---     vim.api.nvim_create_autocmd({
---       "BufReadPre",
---       "BufNewFile",
---       "BufEnter",
---       "BufWritePost",
---       "InsertLeave",
---     }, {
---       callback = function()
---         lint.try_lint()
---       end,
---     })
---   end,
--- },
---
--- -- ============================================================================
--- -- TITLE : oklch-color-picker.nvim
--- -- ABOUT : Sometimes the resolution of a cli just isn't enough
--- -- LINKS :
--- --   > github : https://github.com/eero-lehtinen/oklch-color-picker.nvim
--- -- ============================================================================
--- {
---   {
---     "eero-lehtinen/oklch-color-picker.nvim",
---     event = "VeryLazy",
---     version = "*",
---     keys = {
---       {
---         "<leader>cp",
---         function()
---           require("oklch-color-picker").pick_under_cursor({ fallback_open = {} })
---         end,
---         desc = "Color pick under cursor",
---       },
---     },
---     ---@type oklch.Opts
---     opts = {},
---   },
--- },
---
--- -- ============================================================================
--- -- TITLE : render-markdown.nvim
--- -- ABOUT : Plugin to improve viewing Markdown files in Neovim
--- -- LINKS :
--- --   > github : https://github.com/MeanderingProgrammer/render-markdown.nvim
--- -- ============================================================================
--- {
---   "MeanderingProgrammer/render-markdown.nvim",
---   dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
---   ---@module 'render-markdown'
---   -- -@type render.md.UserConfig
---   ft = { "markdown" },
---   opts = {},
---   keys = {
---     {
---       "<leader>m",
---       "<CMD>RenderMarkdown toggle<CR>",
---       desc = "Toogle RenderMarkdown",
---     },
---   },
--- },
+
+-- ============================================================================
+-- TITLE : nvim-lint
+-- ABOUT : An asynchronous linter plugin for Neovim (>= 0.9.5) complementary to the built-in Language Server Protocol support.
+-- LINKS :
+--   > github : https://github.com/mfussenegger/nvim-lint
+-- ============================================================================
+vim.pack.add({ "https://github.com/mfussenegger/nvim-lint" })
+
+local lint = require("lint")
+
+lint.linters_by_ft = {
+	php = { "phpstan" },
+}
+
+vim.api.nvim_create_autocmd({
+	"BufReadPre",
+	"BufNewFile",
+	"BufEnter",
+	"BufWritePost",
+	"InsertLeave",
+}, {
+	callback = function()
+		lint.try_lint()
+	end,
+})
+
+-- ============================================================================
+-- TITLE : oklch-color-picker.nvim
+-- ABOUT : Sometimes the resolution of a cli just isn't enough
+-- LINKS :
+--   > github : https://github.com/eero-lehtinen/oklch-color-picker.nvim
+-- ============================================================================
+vim.pack.add({ "https://github.com/eero-lehtinen/oklch-color-picker.nvim" })
+
+require("oklch-color-picker").setup()
+
+vim.keymap.set("n", "<leader>cp", function()
+	require("oklch-color-picker").pick_under_cursor({ fallback_open = {} })
+end, { desc = "Color pick under cursor" })
+
+-- ============================================================================
+-- TITLE : render-markdown.nvim
+-- ABOUT : Plugin to improve viewing Markdown files in Neovim
+-- LINKS :
+--   > github : https://github.com/MeanderingProgrammer/render-markdown.nvim
+-- ============================================================================
+-- dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+vim.pack.add({ "https://github.com/MeanderingProgrammer/render-markdown.nvim" })
+
+---@module 'render-markdown'
+-- -@type render.md.UserConfig
+require("render-markdown").setup()
+
+vim.keymap.set("n", "<leader>m", "<CMD>RenderMarkdown toggle<CR>", { desc = "Toogle RenderMarkdown" })
