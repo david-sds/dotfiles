@@ -1,1 +1,14 @@
-require("init")
+require("config.globals")
+require("config.options")
+require("config.keymaps")
+require("config.autocmds")
+
+require("plugins.grammar")
+require("plugins.editor")
+require("plugins.clients")
+require("plugins.completion")
+require("plugins.git")
+require("plugins.styles")
+require("plugins.workflow")
+
+require("config.lsp").setup()
