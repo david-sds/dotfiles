@@ -23,7 +23,7 @@ export VISUAL=vim
 export TERMINAL="alacritty"
 # System paths
 export XCOMPOSEFILE="$HOME/.XCompose"
-export HYPRSHOT_DIR="$HOME/Pictures/Screenshots"
+export HYPRSHOT_DIR="$HOME/Pictures/Screenshots/"
 # Keys
 export OPENROUTER_API_KEY="https://openrouter.ai/settings/keys"
 # Development
@@ -34,15 +34,21 @@ export PATH="$GOPATH/bin:$PATH"
 export FVM_CACHE_PATH="$CACHE_PATH/fvm"
 export SDKMAN_DIR="$HOME/.sdkman"
 export CODEX_HOME="$HOME/.config/codex"
-
+export ANDROID_HOME=$HOME/Android/Sdk # Change to /opt/android-sdk if using AUR
+export ANDROID_SDK_ROOT=$ANDROID_HOME
 # Path variable
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$CACHE_PATH/fvm/default/bin:$CACHE_PATH/fvm/default/bin/cache/dart-sdk/bin/:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+
+export QT_QPA_PLATFORM=wayland
+export XDG_CURRENT_DESKTOP=Hyprland
 
 # NVM Config
 source /usr/share/nvm/init-nvm.sh
 
 # SDKMAN Config (Must be at the end of the file)
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
