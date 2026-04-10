@@ -172,7 +172,7 @@ require("nvim-tree").setup({
 })
 
 vim.keymap.set("n", "<leader>e", "<CMD>NvimTreeToggle<CR>", { desc = "Toogle Nvim Tree" })
-vim.keymap.set("n", "<leader>gi", function()
+vim.keymap.set("n", "<leader>ti", function()
 	require("nvim-tree.api").filter.git.ignored.toggle()
 end, { desc = "Toggle GitIgnored files (nvim-tree)" })
 
