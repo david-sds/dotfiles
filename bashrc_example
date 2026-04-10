@@ -1,0 +1,48 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+# Show git branch name
+source /usr/share/git/completion/git-prompt.sh
+BLUE="\[\e[34m\]"
+GREEN="\[\e[32m\]"
+RED="\[\e[31m\]"
+WHITE="\[\e[37m\]"
+RESET="\[\e[0m\]"
+export PS1="$BLUE \W $RESET\$(__git_ps1 \"$GREEN($RED%s$GREEN)$RESET\")$WHITE\$$RESET "
+
+# System variables
+export EDITOR=vim
+export VISUAL=vim
+export TERMINAL="alacritty"
+# System paths
+export XCOMPOSEFILE="$HOME/.XCompose"
+export HYPRSHOT_DIR="$HOME/Pictures/Screenshots"
+# Keys
+export OPENROUTER_API_KEY="https://openrouter.ai/settings/keys"
+# Development
+export CHROME_EXECUTABLE="/usr/bin/chromium"
+export CACHE_PATH="$HOME/Cache"
+export GOPATH="$CACHE_PATH/go"
+export PATH="$GOPATH/bin:$PATH"
+export FVM_CACHE_PATH="$CACHE_PATH/fvm"
+export SDKMAN_DIR="$HOME/.sdkman"
+export CODEX_HOME="$HOME/.config/codex"
+
+# Path variable
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$CACHE_PATH/fvm/default/bin:$CACHE_PATH/fvm/default/bin/cache/dart-sdk/bin/:$PATH"
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+
+# NVM Config
+source /usr/share/nvm/init-nvm.sh
+
+# SDKMAN Config (Must be at the end of the file)
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
