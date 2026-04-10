@@ -3,15 +3,11 @@
 -- ABOUT : The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it.
 -- ============================================================================
 vim.pack.add({
-	"https://github.com/nvim-treesitter/playground",
+	"https://github.com/nvim-treesitter/nvim-treesitter",
 	"https://github.com/nvim-treesitter/nvim-treesitter-context",
-	{
-		src = "https://github.com/nvim-treesitter/nvim-treesitter",
-		version = "master",
-	},
 })
 
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.config").setup({
 	ensure_installed = {
 		"c",
 		"bash",
@@ -53,15 +49,9 @@ require("nvim-treesitter.configs").setup({
 
 vim.keymap.set(
 	"n",
-	"<leader>ttc",
+	"<leader>tt",
 	"<CMD>TSContext toggle<CR>",
 	{ desc = "Toggle Treesitter Context (nvim-treesitter-context)" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>ttp",
-	"<CMD>TSPlaygroundToggle<CR>",
-	{ desc = "Toggle Treesitter Playground (playground)" }
 )
 
 -- ============================================================================

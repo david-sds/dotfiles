@@ -34,11 +34,12 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position"
 vim.keymap.set("n", "<leader>l", "<CMD>nohlsearch<CR>", { desc = "Clear search highlights" })
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buffer" })
-vim.keymap.set("n", "<leader>M", "<CMD>Mason<CR>", { desc = "Open Mason menu" })
 vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
 vim.keymap.set("n", "<leader>U", function()
 	vim.pack.update()
 end, { desc = "Update vim.pack plugins" })
+vim.keymap.set("n", "<leader>I", "<CMD>InspectTree<CR>", { desc = "Inspect Tree" })
+vim.keymap.set("n", "<leader>M", "<CMD>Mason<CR>", { desc = "Open Mason menu" })
 
 -- Undotree toggle
 vim.cmd("packadd nvim.undotree")
