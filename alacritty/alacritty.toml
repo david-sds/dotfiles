@@ -2,19 +2,19 @@
 size = 12.0
 
 [font.normal]
-family = "AdwaitaMono Nerd Font Mono"
+family = "Hack Nerd Font Mono"
 style = "Regular"
 
 [font.bold]
-family = "AdwaitaMono Nerd Font Mono"
+family = "Hack Nerd Font Mono"
 style = "Bold"
 
 [font.italic]
-family = "AdwaitaMono Nerd Font Mono"
+family = "Hack Nerd Font Mono"
 style = "Italic"
 
 [font.bold_italic]
-family = "AdwaitaMono Nerd Font Mono"
+family = "Hack Nerd Font Mono"
 style = "Bold Italic"
 
 
@@ -22,7 +22,48 @@ style = "Bold Italic"
 x = 0
 y = 0
 
-# Kanagawa Wave Alacritty Colors
+###############################################################################
+###  VHS80
+###############################################################################
+
+# [colors]
+# [colors.primary]
+# background = "#121212"
+# foreground = "#d4d4d4"
+# dim_foreground = "#8a8a8d"
+#
+# [colors.cursor]
+# text = "#121212"
+# cursor = "#A85511"
+#
+# [colors.selection]
+# text = "CellForeground"
+# background = "#A85511"
+#
+# [colors.normal]
+# black = "#333333"
+# red = "#862020"
+# green = "#277D46"
+# yellow = "#A85511"
+# blue = "#8B7F2E"
+# magenta = "#932A37"
+# cyan = "#2F8383"
+# white = "#bebebe"
+#
+# [colors.bright]
+# black = "#8a8a8d"
+# red = "#C73838"
+# green = "#5BB775"
+# yellow = "#E07924"
+# blue = "#C6B441"
+# magenta = "#C73838"
+# cyan = "#46BEBE"
+# white = "#eaeaea"
+
+###############################################################################
+###  Kanagawa Wave Alacritty Colors
+###############################################################################
+
 [colors.primary]
 background = '#1f1f28'
 foreground = '#dcd7ba'

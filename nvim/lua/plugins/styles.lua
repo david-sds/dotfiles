@@ -1,12 +1,15 @@
 -- ============================================================================
--- TITLE : kanagawa.nvim
--- ABOUT : NeoVim dark colorscheme inspired by the colors of the famous painting by Katsushika Hokusai.
+-- TITLE : theme
+-- ABOUT : One of many possible nvim themes
 -- ============================================================================
-vim.pack.add({ "https://github.com/rebelot/kanagawa.nvim" })
-vim.cmd("colorscheme kanagawa-wave")
+-- vim.pack.add({ "https://github.com/rebelot/kanagawa.nvim" })
+-- vim.cmd("colorscheme kanagawa-wave")
 
 -- vim.pack.add({ "https://github.com/polirritmico/monokai-nightasty.nvim" })
 -- vim.cmd("colorscheme monokai-nightasty")
+
+vim.pack.add({ "https://github.com/tahayvr/vhs80.nvim" })
+vim.cmd.colorscheme("vhs80")
 
 -- ============================================================================
 -- TITLE : which-key
