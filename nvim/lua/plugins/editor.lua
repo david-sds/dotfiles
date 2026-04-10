@@ -122,4 +122,9 @@ vim.pack.add({
 -- -@type render.md.UserConfig
 require("render-markdown").setup()
 
-vim.keymap.set("n", "<leader>m", "<CMD>RenderMarkdown toggle<CR>", { desc = "Toogle RenderMarkdown" })
+vim.keymap.set(
+	"n",
+	"<leader>tm",
+	"<CMD>RenderMarkdown toggle<CR>",
+	{ desc = "Toogle RenderMarkdown (render-markdown.nvim)" }
+)

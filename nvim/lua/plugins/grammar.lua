@@ -51,6 +51,19 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 
+vim.keymap.set(
+	"n",
+	"<leader>ttc",
+	"<CMD>TSContext toggle<CR>",
+	{ desc = "Toggle Treesitter Context (nvim-treesitter-context)" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>ttp",
+	"<CMD>TSPlaygroundToggle<CR>",
+	{ desc = "Toggle Treesitter Playground (playground)" }
+)
+
 -- ============================================================================
 -- TITLE : mason.nvim
 -- ABOUT : Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP servers, DAP servers, linters, and formatters.
