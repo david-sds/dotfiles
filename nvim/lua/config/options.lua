@@ -1,8 +1,8 @@
 -- ============================================================================
--- TITLE : NeoVim options
+-- TITLE : options
 -- ABOUT : basic settings native to neovim
 -- ============================================================================/
--- ============================================================================
+
 -- Basic Settings
 vim.opt.number = true -- Line numbers
 vim.opt.relativenumber = true -- Relative line numbers
@@ -97,3 +97,4 @@ vim.opt.splitright = true -- Vertical splits open to the right
 -- Local configurations
 vim.opt.exrc = true
 vim.opt.secure = true
+
