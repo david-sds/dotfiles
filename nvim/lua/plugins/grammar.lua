@@ -6,45 +6,28 @@ vim.pack.add({
 	"https://github.com/nvim-treesitter/nvim-treesitter",
 	"https://github.com/nvim-treesitter/nvim-treesitter-context",
 })
-
-require("nvim-treesitter.config").setup({
-	ensure_installed = {
-		"c",
-		"bash",
-		"lua",
-		"vim",
-		"vimdoc",
-		"query",
-		"markdown",
-		"markdown_inline",
-		"javascript",
-		"typescript",
-		"dart",
-		"json",
-		-- "jsonc",
-		"http",
-		"xml",
-		"twig",
-		"php",
-		"phpdoc",
-		"yaml",
-		"toml",
-	},
-	sync_install = false,
-	auto_install = true,
-	ignore_install = { "javascript" },
-	indent = { enable = true },
-	highlight = {
-		enable = true,
-		disable = function(_, buf)
-			local max_filesize = 100 * 1024 -- 100 KB
-			local ok, stats = pcall(vim.fs.stat, vim.api.nvim_buf_get_name(buf))
-			if ok and stats and stats.size > max_filesize then
-				return true
-			end
-		end,
-		additional_vim_regex_highlighting = false,
-	},
+require("nvim-treesitter").install({
+	"c",
+	"bash",
+	"lua",
+	"vim",
+	"vimdoc",
+	"query",
+	"markdown",
+	"markdown_inline",
+	"javascript",
+	"typescript",
+	"dart",
+	"json",
+	"http",
+	"xml",
+	"twig",
+	"php",
+	"phpdoc",
+	"yaml",
+	"toml",
+	"sql",
+	"java",
 })
 
 vim.keymap.set(
