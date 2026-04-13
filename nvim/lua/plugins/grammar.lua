@@ -3,65 +3,38 @@
 -- ABOUT : The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it.
 -- ============================================================================
 vim.pack.add({
-	"https://github.com/nvim-treesitter/playground",
+	"https://github.com/nvim-treesitter/nvim-treesitter",
 	"https://github.com/nvim-treesitter/nvim-treesitter-context",
-	{
-		src = "https://github.com/nvim-treesitter/nvim-treesitter",
-		version = "master",
-	},
 })
-
-require("nvim-treesitter.configs").setup({
-	ensure_installed = {
-		"c",
-		"bash",
-		"lua",
-		"vim",
-		"vimdoc",
-		"query",
-		"markdown",
-		"markdown_inline",
-		"javascript",
-		"typescript",
-		"dart",
-		"json",
-		-- "jsonc",
-		"http",
-		"xml",
-		"twig",
-		"php",
-		"phpdoc",
-		"yaml",
-		"toml",
-	},
-	sync_install = false,
-	auto_install = true,
-	ignore_install = { "javascript" },
-	indent = { enable = true },
-	highlight = {
-		enable = true,
-		disable = function(_, buf)
-			local max_filesize = 100 * 1024 -- 100 KB
-			local ok, stats = pcall(vim.fs.stat, vim.api.nvim_buf_get_name(buf))
-			if ok and stats and stats.size > max_filesize then
-				return true
-			end
-		end,
-		additional_vim_regex_highlighting = false,
-	},
+require("nvim-treesitter").install({
+	"c",
+	"bash",
+	"lua",
+	"vim",
+	"vimdoc",
+	"query",
+	"markdown",
+	"markdown_inline",
+	"javascript",
+	"typescript",
+	"dart",
+	"json",
+	"http",
+	"xml",
+	"twig",
+	"php",
+	"phpdoc",
+	"yaml",
+	"toml",
+	"sql",
+	"java",
 })
 
 vim.keymap.set(
 	"n",
-	"<leader>ttc",
+	"<leader>tt",
 	"<CMD>TSContext toggle<CR>",
 	{ desc = "Toggle Treesitter Context (nvim-treesitter-context)" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>ttp",
-	"<CMD>TSPlaygroundToggle<CR>",
-	{ desc = "Toggle Treesitter Playground (playground)" }
 )
 
 -- ============================================================================
