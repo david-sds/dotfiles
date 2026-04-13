@@ -2,28 +2,20 @@
 -- TITLE : theme
 -- ABOUT : One of many possible nvim themes
 -- ============================================================================
-<<<<<<< HEAD
-=======
 
 vim.pack.add({ "https://github.com/sainnhe/gruvbox-material" })
 vim.g.gruvbox_material_background = "medium" -- hard, medium, soft
 vim.g.gruvbox_material_foreground = "mix" -- material, mix, original
 vim.cmd("colorscheme gruvbox-material")
 
->>>>>>> origin/master
 -- vim.pack.add({ "https://github.com/rebelot/kanagawa.nvim" })
 -- vim.cmd("colorscheme kanagawa-wave")
 
 -- vim.pack.add({ "https://github.com/polirritmico/monokai-nightasty.nvim" })
 -- vim.cmd("colorscheme monokai-nightasty")
 
-<<<<<<< HEAD
-vim.pack.add({ "https://github.com/tahayvr/vhs80.nvim" })
-vim.cmd.colorscheme("vhs80")
-=======
 -- vim.pack.add({ "https://github.com/tahayvr/vhs80.nvim" })
 -- vim.cmd.colorscheme("vhs80")
->>>>>>> origin/master
 
 -- ============================================================================
 -- TITLE : which-key
