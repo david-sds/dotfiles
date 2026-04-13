@@ -14,6 +14,9 @@ vim.cmd("colorscheme gruvbox-material")
 -- vim.pack.add({ "https://github.com/polirritmico/monokai-nightasty.nvim" })
 -- vim.cmd("colorscheme monokai-nightasty")
 
+-- vim.pack.add({ "https://github.com/tahayvr/vhs80.nvim" })
+-- vim.cmd.colorscheme("vhs80")
+
 -- ============================================================================
 -- TITLE : which-key
 -- ABOUT : WhichKey helps you remember your Neovim keymaps, by showing keybindings as you type.
