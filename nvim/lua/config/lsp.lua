@@ -62,5 +62,9 @@ function M.setup()
 	})
 end
 
-return M
+function M.is_real_file_buffer(bufnr)
+	local name = vim.api.nvim_buf_get_name(bufnr)
+	return name ~= nil and name ~= "" and vim.startswith(name, "/")
+end
 
+return M
