@@ -95,19 +95,6 @@
     ],
     "description": "Create Widget Observer"
   },
-  "MobX Getter Setter": {
-    "prefix": "obx",
-    "body": [
-      "@observable",
-      "$1 _$2 = $3;",
-      "@computed",
-      "$1 get $2 => _$2;",
-      "@action",
-      "void set${2/(.*)/${1:/capitalize}/}($1 value) => _$2 = value;",
-      ""
-    ],
-    "description": "Create MobX Getter Setter"
-  },
   "Modular Get": {
     "prefix": "modGet",
     "body": ["final _$1 = Modular.get<$2>();"],
