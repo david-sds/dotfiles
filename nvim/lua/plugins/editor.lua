@@ -46,6 +46,7 @@ require("conform").setup({
 		typescript = { "prettierd" },
 		typescriptreact = { "prettierd" },
 		json = { "prettierd" },
+		jsonc = { "prettierd" },
 		md = { "prettierd" },
 		yaml = { "prettierd" },
 		sh = { "shfmt" },
