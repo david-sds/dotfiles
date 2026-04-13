@@ -17,6 +17,8 @@ return {
 
 	filetypes = { "dart" },
 
+	-- root_markers = { "pubspec.yaml" },
+
 	root_dir = function(bufnr, on_dir)
 		if not lsp_config_module.is_real_file_buffer(bufnr) then
 			return

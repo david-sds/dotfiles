@@ -43,11 +43,32 @@ vim.pack.add({
 	"https://github.com/nvim-tree/nvim-web-devicons",
 })
 
+local function prefixed_filename()
+	local bufname = vim.api.nvim_buf_get_name(0)
+
+	if bufname == "" then
+		return "[No Name]"
+	end
+
+	local filename = vim.fn.fnamemodify(bufname, ":t")
+	local prefix = bufname:match("^(%w+)://")
+	if prefix then
+		return prefix .. ":" .. filename
+	end
+
+	return filename
+end
+
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
 		section_separators = { left = "", right = "" },
 		component_separators = "|",
+	},
+	sections = {
+		lualine_c = {
+			prefixed_filename,
+		},
 	},
 })
 
