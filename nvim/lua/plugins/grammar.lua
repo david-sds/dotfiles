@@ -6,6 +6,7 @@ vim.pack.add({
 	"https://github.com/nvim-treesitter/nvim-treesitter",
 	"https://github.com/nvim-treesitter/nvim-treesitter-context",
 })
+
 require("nvim-treesitter").install({
 	"c",
 	"bash",
@@ -28,6 +29,16 @@ require("nvim-treesitter").install({
 	"toml",
 	"sql",
 	"java",
+})
+
+-- Start Treesitter automatically for every filetype buffer.
+local ts_group = vim.api.nvim_create_augroup("TreesitterStartGroup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	group = ts_group,
+	pattern = "*",
+	callback = function(ev)
+		pcall(vim.treesitter.start, ev.buf)
+	end,
 })
 
 vim.keymap.set(
