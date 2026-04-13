@@ -17,7 +17,14 @@ return {
 
 	filetypes = { "dart" },
 
-	root_markers = { "pubspec.yaml" },
+	root_dir = function(bufnr, on_dir)
+		if not lsp_config_module.is_real_file_buffer(bufnr) then
+			return
+		end
+
+		local fname = vim.api.nvim_buf_get_name(bufnr)
+		on_dir(vim.fs.root(fname, { "pubspec.yaml" }) or vim.fs.dirname(fname))
+	end,
 
 	settings = {
 		dart = {
