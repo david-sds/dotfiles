@@ -17,6 +17,10 @@ style = "Bold"
 family = "InconsolataGo Nerd Font"
 style = "Italic"
 
+[font.bold_italic]
+family = "InconsolataGo Nerd Font"
+style = "bold italic"
+
 [font.offset]
 x = 0
 y = 0
@@ -25,43 +29,117 @@ y = 0
 x = 0
 y = 0
 
-# Kanagawa Wave Alacritty Colors
-[colors.primary]
-background = '#1f1f28'
-foreground = '#dcd7ba'
-
-[colors.normal]
-black = '#090618'
-red = '#c34043'
-green = '#76946a'
-yellow = '#c0a36e'
-blue = '#7e9cd8'
-magenta = '#957fb8'
-cyan = '#6a9589'
-white = '#c8c093'
-
-[colors.bright]
-black = '#727169'
-red = '#e82424'
-green = '#98bb6c'
-yellow = '#e6c384'
-blue = '#7fb4ca'
-magenta = '#938aa9'
-cyan = '#7aa89f'
-white = '#dcd7ba'
-
-[colors.selection]
-background = '#2d4f67'
-foreground = '#c8c093'
-
-[[colors.indexed_colors]]
-index = 16
-color = '#ffa066'
-
-[[colors.indexed_colors]]
-index = 17
-color = '#ff5d62'
-
 # Introduce Shift+Enter line break to Opencode.
 [keyboard]
 bindings = [ { key = "Return", mods = "Shift", chars = "\n" } ]
+
+###############################################################################
+# Gruvbox Material
+###############################################################################
+
+# Default colors
+[colors.primary]
+# hard contrast background = = '#1d2021'
+background = '#282828'
+# soft contrast background = = '#32302f'
+foreground = '#ebdbb2'
+
+# Normal colors
+[colors.normal]
+black   = '#1d2021'
+red     = '#cc241d'
+green   = '#98971a'
+yellow  = '#d79921'
+blue    = '#458588'
+magenta = '#b16286'
+cyan    = '#689d6a'
+white   = '#a89984'
+
+# Bright colors
+[colors.bright]
+black   = '#928374'
+red     = '#fb4934'
+green   = '#b8bb26'
+yellow  = '#fabd2f'
+blue    = '#83a598'
+magenta = '#d3869b'
+cyan    = '#8ec07c'
+white   = '#ebdbb2'
+
+###############################################################################
+# Kanagawa Wave Alacritty Colors
+###############################################################################
+
+# [colors.primary]
+# background = '#1f1f28'
+# foreground = '#dcd7ba'
+#
+# [colors.normal]
+# black = '#090618'
+# red = '#c34043'
+# green = '#76946a'
+# yellow = '#c0a36e'
+# blue = '#7e9cd8'
+# magenta = '#957fb8'
+# cyan = '#6a9589'
+# white = '#c8c093'
+#
+# [colors.bright]
+# black = '#727169'
+# red = '#e82424'
+# green = '#98bb6c'
+# yellow = '#e6c384'
+# blue = '#7fb4ca'
+# magenta = '#938aa9'
+# cyan = '#7aa89f'
+# white = '#dcd7ba'
+#
+# [colors.selection]
+# background = '#2d4f67'
+# foreground = '#c8c093'
+#
+# [[colors.indexed_colors]]
+# index = 16
+# color = '#ffa066'
+#
+# [[colors.indexed_colors]]
+# index = 17
+# color = '#ff5d62'
+
+###############################################################################
+###  VHS80
+###############################################################################
+
+# [colors]
+# [colors.primary]
+# background = "#121212"
+# foreground = "#d4d4d4"
+# dim_foreground = "#8a8a8d"
+#
+# [colors.cursor]
+# text = "#121212"
+# cursor = "#A85511"
+#
+# [colors.selection]
+# text = "CellForeground"
+# background = "#A85511"
+#
+# [colors.normal]
+# black = "#333333"
+# red = "#862020"
+# green = "#277D46"
+# yellow = "#A85511"
+# blue = "#8B7F2E"
+# magenta = "#932A37"
+# cyan = "#2F8383"
+# white = "#bebebe"
+#
+# [colors.bright]
+# black = "#8a8a8d"
+# red = "#C73838"
+# green = "#5BB775"
+# yellow = "#E07924"
+# blue = "#C6B441"
+# magenta = "#C73838"
+# cyan = "#46BEBE"
+# white = "#eaeaea"

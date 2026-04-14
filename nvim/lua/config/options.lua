@@ -97,4 +97,3 @@ vim.opt.splitright = true -- Vertical splits open to the right
 -- Local configurations
 vim.opt.exrc = true
 vim.opt.secure = true
-
