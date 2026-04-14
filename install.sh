@@ -14,7 +14,6 @@ ln -sT "$SCRIPT_DIR/mako" "$HOME/.config/mako"
 ln -sT "$SCRIPT_DIR/xdg-desktop-portal" "$HOME/.config/xdg-desktop-portal"
 
 mkdir -p "$HOME/.local/bin"
-
 for script in "$SCRIPT_DIR"/scripts/*; do
   if [ ! -f "$script" ] || [ ! -x "$script" ]; then
     continue
