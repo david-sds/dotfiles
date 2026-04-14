@@ -4,8 +4,8 @@
 -- ============================================================================
 
 vim.pack.add({ "https://github.com/sainnhe/gruvbox-material" })
-vim.g.gruvbox_material_background = "medium" -- hard, medium, soft
-vim.g.gruvbox_material_foreground = "mix" -- material, mix, original
+vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
+vim.g.gruvbox_material_foreground = "original" -- material, mix, original
 vim.cmd("colorscheme gruvbox-material")
 
 -- vim.pack.add({ "https://github.com/rebelot/kanagawa.nvim" })
