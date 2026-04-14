@@ -10,7 +10,15 @@ vim.pack.add({ "https://github.com/nvim-tree/nvim-web-devicons", "https://github
 ---@diagnostic disable: missing-fields
 require("fzf-lua").setup({
 	keymap = {
+		builtin = {
+			true,
+			["<C-d>"] = "preview-page-down",
+			["<C-u>"] = "preview-page-up",
+			["<C-j>"] = "preview-down",
+			["<C-k>"] = "preview-up",
+		},
 		fzf = {
+			true,
 			["ctrl-q"] = "select-all+accept",
 		},
 	},
