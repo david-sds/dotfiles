@@ -21,11 +21,3 @@ for script in "$SCRIPT_DIR"/scripts/*; do
   ln -s "$script" "$HOME/.local/bin/"
 done
 
-
-
-
-
-
-
-
-
