@@ -7,6 +7,7 @@ vim.pack.add({
 	"https://github.com/nvim-treesitter/nvim-treesitter-context",
 })
 
+-- Requires tree-sitter-cli
 require("nvim-treesitter").install({
 	"c",
 	"bash",
