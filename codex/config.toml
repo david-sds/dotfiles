@@ -7,3 +7,6 @@ theme = "gruvbox-dark"
 
 [projects."/home/david/Work/dotfiles"]
 trust_level = "trusted"
+
+[projects."/home/david/Work/obsidian-vault"]
+trust_level = "trusted"
