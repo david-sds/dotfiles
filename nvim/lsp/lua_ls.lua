@@ -8,6 +8,27 @@
 local lsp_config_module = require("config.lsp")
 local on_attach = lsp_config_module.on_attach
 
+local function core_pack_library(plugin_names)
+	local library = {
+		vim.fn.expand("$VIMRUNTIME/lua"),
+		vim.fn.stdpath("config") .. "/lua",
+	}
+	local core_pack = vim.fn.stdpath("data") .. "/site/pack/core/opt/"
+
+	for _, plugin_name in ipairs(plugin_names) do
+		local plugin_dir = core_pack .. plugin_name
+		local lua_dir = plugin_dir .. "/lua"
+
+		if vim.fn.isdirectory(lua_dir) == 1 then
+			table.insert(library, lua_dir)
+		elseif vim.fn.isdirectory(plugin_dir) == 1 then
+			table.insert(library, plugin_dir)
+		end
+	end
+
+	return library
+end
+
 return {
 	on_attach = on_attach,
 
@@ -27,16 +48,15 @@ return {
 				globals = { "vim" },
 			},
 			workspace = {
-				library = {
-					vim.fn.expand("$VIMRUNTIME/lua"),
-					vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
-					vim.fn.stdpath("data") .. "/lazy/nvim-tree.lua/lua",
-					vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua",
-					vim.fn.stdpath("data") .. "/lazy/nvim-cmp/lua",
-					vim.fn.stdpath("data") .. "/lazy/conform.nvim/lua",
-					vim.fn.stdpath("data") .. "/lazy/oklch-color-picker.nvim/lua",
-					vim.fn.stdpath("data") .. "/lazy/fzf-lua",
-				},
+				checkThirdParty = false,
+				library = core_pack_library({
+					"nvim-tree.lua",
+					"lazy.nvim",
+					"nvim-cmp",
+					"conform.nvim",
+					"oklch-color-picker.nvim",
+					"fzf-lua",
+				}),
 			},
 		},
 	},
