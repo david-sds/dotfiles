@@ -7,6 +7,7 @@ vim.pack.add({
 	"https://github.com/nvim-treesitter/nvim-treesitter-context",
 })
 
+-- Requires tree-sitter-cli
 require("nvim-treesitter").install({
 	"c",
 	"bash",
@@ -29,6 +30,7 @@ require("nvim-treesitter").install({
 	"toml",
 	"sql",
 	"java",
+	"commonlisp",
 })
 
 -- Start Treesitter automatically for every filetype buffer.
