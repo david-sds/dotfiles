@@ -1,6 +1,6 @@
 -- ============================================================================
 -- TITLE : lsp
--- ABOUT : Configuration for the native Neovim support for LSP's.
+-- ABOUT : configuration for the native neovim support for lsp's
 -- ============================================================================
 
 local M = {}

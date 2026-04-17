@@ -30,6 +30,7 @@ require("nvim-treesitter").install({
 	"toml",
 	"sql",
 	"java",
+	"commonlisp",
 })
 
 -- Start Treesitter automatically for every filetype buffer.
