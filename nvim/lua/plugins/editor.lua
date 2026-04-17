@@ -54,7 +54,8 @@ require("conform").setup({
 		http = { "kulala-fmt" },
 		rest = { "kulala-fmt" },
 		python = { "black" },
-		php = { "php_cs_fixer" },
+		-- php = { "phpcs" },
+		php = { "phpcbf" },
 		twig = { "djlint" },
 	},
 	format_on_save = {
@@ -79,13 +80,11 @@ vim.pack.add({ "https://github.com/mfussenegger/nvim-lint" })
 local lint = require("lint")
 
 lint.linters_by_ft = {
-	php = { "phpstan" },
+	-- php = { "phpstan" },
+	php = { "phpcs" },
 }
 
 vim.api.nvim_create_autocmd({
-	"BufReadPre",
-	"BufNewFile",
-	"BufEnter",
 	"BufWritePost",
 	"InsertLeave",
 }, {

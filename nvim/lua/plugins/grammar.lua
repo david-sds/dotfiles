@@ -94,6 +94,8 @@ require("mason-tool-installer").setup({
 		"phpactor",
 		"php-cs-fixer",
 		"phpstan",
+		"phpcs",
+		"phpcbf",
 		-- twig
 		"twiggy-language-server",
 		"twig-cs-fixer",
