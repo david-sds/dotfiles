@@ -2,22 +2,22 @@
 padding = { x = 2, y = 2 }
 
 [font]
-size = 14.0
+size = 13.0
 
 [font.normal]
-family = "DepartureMono Nerd Font Mono"
+family = "Monocraft"
 style = "Regular"
 
 [font.bold]
-family = "DepartureMono Nerd Font Mono"
+family = "Monocraft"
 style = "Bold"
 
 [font.italic]
-family = "DepartureMono Nerd Font Mono"
+family = "Monocraft"
 style = "Italic"
 
 [font.bold_italic]
-family = "DepartureMono Nerd Font Mono"
+family = "Monocraft"
 style = "Bold Italic"
 
 [font.glyph_offset]
