@@ -27,6 +27,8 @@ vim.keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps (which-key)" })
 
+require("which-key").setup()
+
 -- ============================================================================
 -- TITLE : nvim-web-devicons
 -- ABOUT : Provides Nerd Font 1 icons (glyphs) for use by Neovim plugins:
