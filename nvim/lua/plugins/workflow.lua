@@ -111,7 +111,7 @@ vim.keymap.set("n", "<leader>H", ui.toggle_quick_menu, { desc = "Harpoon: Toggle
 
 for i = 1, 10 do
 	local key = tostring(i % 10)
-	vim.keymap.set("n", key, function()
+	vim.keymap.set("n", "<leader>" .. key, function()
 		ui.nav_file(i)
 	end, { desc = string.format("Harpoon: Go to file %d", i) })
 end
