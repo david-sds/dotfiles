@@ -30,6 +30,7 @@ require("nvim-treesitter").install({
 	"toml",
 	"sql",
 	"java",
+	"prisma",
 	"commonlisp",
 })
 
