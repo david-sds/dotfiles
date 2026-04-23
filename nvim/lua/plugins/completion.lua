@@ -35,7 +35,7 @@ vim.pack.add({
 	"https://github.com/hrsh7th/nvim-cmp",
 	"https://github.com/hrsh7th/cmp-nvim-lsp",
 	"https://github.com/hrsh7th/cmp-path",
-	"https://github.com/hrsh7th/cmp-buffer",
+	-- "https://github.com/hrsh7th/cmp-buffer",
 	"https://github.com/hrsh7th/cmp-cmdline",
 	"https://github.com/saadparwaiz1/cmp_luasnip",
 	"https://github.com/onsails/lspkind.nvim",
@@ -70,7 +70,7 @@ local opts = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "buffer" },
+		-- { name = "buffer" },
 	}),
 	formatting = {
 		format = lspkind.cmp_format({
