@@ -102,6 +102,8 @@ lint.linters_by_ft = {
 	php = { "phpcs" },
 }
 
+-- Attempts to lint buffer
+local try_lint_group = vim.api.nvim_create_augroup("TryLintGroup", { clear = true })
 vim.api.nvim_create_autocmd({
 	"BufReadPre",
 	"BufNewFile",
@@ -109,6 +111,7 @@ vim.api.nvim_create_autocmd({
 	"BufWritePost",
 	"InsertLeave",
 }, {
+	group = try_lint_group,
 	callback = function()
 		lint.try_lint()
 	end,
