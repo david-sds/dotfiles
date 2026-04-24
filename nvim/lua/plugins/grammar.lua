@@ -128,4 +128,15 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<CR>", { desc = "Location List (Trouble)" })
 vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
 
-require("trouble").setup()
+---@type trouble.Config
+require("trouble").setup({})
+
+-- Darkens background color of trouble.nvim buffer (gruvbox-material)
+local trouble_colors_group = vim.api.nvim_create_augroup("TroubleColorsGroup", { clear = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = trouble_colors_group,
+	callback = function()
+		vim.api.nvim_set_hl(0, "TroubleNormal", { link = "NvimTreeNormal" })
+		vim.api.nvim_set_hl(0, "TroubleNormalNC", { link = "NvimTreeNormalNC" })
+	end,
+})
