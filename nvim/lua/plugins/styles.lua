@@ -48,14 +48,18 @@ vim.pack.add({
 -- Prefix special buffer with URI scheme
 local function smart_filename()
 	local name = vim.api.nvim_buf_get_name(0)
-	local filename = name:match("([^/]+)$") or "[No Name]"
+	if name == "" then
+		return "[No Name]"
+	end
+
+	local filename = name:match("([^/]+)$")
 
 	if vim.fn.filereadable(name) == 1 then
 		return filename
 	end
 
-	local scheme = name:match("^([%w_+-]+)://")
-	return (scheme or "buffer") .. "://" .. filename
+	local scheme = name:match("^([%w_+-]+)://") or "buffer"
+	return scheme .. "://" .. filename
 end
 
 require("lualine").setup({
