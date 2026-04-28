@@ -61,10 +61,6 @@ vim.keymap.set("n", "<leader>fk", function()
 end, { desc = "FZF Keybinds" })
 
 vim.keymap.set("n", "<leader>fd", function()
-	require("fzf-lua").diagnostics_document()
-end, { desc = "FZF Diagnostics Document" })
-
-vim.keymap.set("n", "<leader>fD", function()
 	require("fzf-lua").diagnostics_workspace()
 end, { desc = "FZF Diagnostics Workspace" })
 

@@ -68,10 +68,3 @@ require("lualine").setup({
 		lualine_c = { smart_filename },
 	},
 })
-
--- ============================================================================
--- TITLE : virt-column.nvim
--- ABOUT : Display a character as the colorcolumn.
--- ============================================================================
-vim.pack.add({ "https://github.com/lukas-reineke/virt-column.nvim" })
-require("virt-column").setup()
