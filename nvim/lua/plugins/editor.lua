@@ -2,6 +2,7 @@
 -- TITLE : mini.nvim
 -- ABOUT : Library of 40+ independent Lua modules.
 -- ============================================================================
+
 vim.pack.add({
 	"https://github.com/echasnovski/mini.ai",
 	"https://github.com/echasnovski/mini.comment",
@@ -39,6 +40,15 @@ vim.pack.add({
 })
 
 require("conform").setup({
+	-- Custom formatter.
+	formatters = {
+		phpcbf = {
+			command = vim.fn.expand("~/.config/composer/vendor/bin/phpcbf"),
+			args = { "--standard=moodle", "--no-cache", "$FILENAME" },
+			stdin = false,
+			exit_codes = { 0, 1 },
+		},
+	},
 	formatters_by_ft = {
 		lua = { "stylua" },
 		javascript = { "prettierd" },
@@ -54,7 +64,8 @@ require("conform").setup({
 		http = { "kulala-fmt" },
 		rest = { "kulala-fmt" },
 		python = { "black" },
-		php = { "php_cs_fixer" },
+		-- php = { "php_cs_fixer" },
+		php = { "phpcbf" },
 		twig = { "djlint" },
 	},
 	format_on_save = {
@@ -78,10 +89,21 @@ vim.pack.add({ "https://github.com/mfussenegger/nvim-lint" })
 
 local lint = require("lint")
 
+-- Custom linter.
+lint.linters.phpcs.cmd = vim.fn.expand("~/.config/composer/vendor/bin/phpcs")
+lint.linters.phpcs.args = {
+	"-q",
+	"--standard=Moodle",
+	"--report=json",
+	"-",
+}
 lint.linters_by_ft = {
-	php = { "phpstan" },
+	-- php = { "phpstan" },
+	php = { "phpcs" },
 }
 
+-- Attempts to lint buffer
+local try_lint_group = vim.api.nvim_create_augroup("TryLintGroup", { clear = true })
 vim.api.nvim_create_autocmd({
 	"BufReadPre",
 	"BufNewFile",
@@ -89,6 +111,7 @@ vim.api.nvim_create_autocmd({
 	"BufWritePost",
 	"InsertLeave",
 }, {
+	group = try_lint_group,
 	callback = function()
 		lint.try_lint()
 	end,

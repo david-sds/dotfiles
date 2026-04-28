@@ -45,17 +45,30 @@ vim.pack.add({
 	"https://github.com/nvim-tree/nvim-web-devicons",
 })
 
+-- Prefix special buffer with URI scheme
+local function smart_filename()
+	local name = vim.api.nvim_buf_get_name(0)
+	if name == "" then
+		return "[No Name]"
+	end
+
+	local filename = name:match("([^/]+)$")
+
+	if vim.fn.filereadable(name) == 1 then
+		return filename
+	end
+
+	local scheme = name:match("^([%w_+-]+)://") or "buffer"
+	return scheme .. "://" .. filename
+end
+
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
 		section_separators = { left = "", right = "" },
 		component_separators = "|",
 	},
+	sections = {
+		lualine_c = { smart_filename },
+	},
 })
-
--- ============================================================================
--- TITLE : virt-column.nvim
--- ABOUT : Display a character as the colorcolumn.
--- ============================================================================
-vim.pack.add({ "https://github.com/lukas-reineke/virt-column.nvim" })
-require("virt-column").setup()
