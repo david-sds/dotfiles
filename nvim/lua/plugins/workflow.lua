@@ -37,8 +37,10 @@ vim.keymap.set("n", "<leader>fg", function()
 end, { desc = "FZF Live Grep" })
 
 vim.keymap.set("v", "<leader>fg", function()
-	require("fzf-lua").grep_visual()
-end, { desc = "FZF Grep Selection" })
+	local opts = { type = vim.api.nvim_get_mode().mode }
+	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), opts)
+	require("fzf-lua").live_grep({ search = selection[1] })
+end, { desc = "FZF Live Grep (visual)" })
 
 vim.keymap.set("n", "<leader>fa", function()
 	require("fzf-lua").lsp_code_actions()
