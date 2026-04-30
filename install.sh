@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 mkdir -p "$HOME/.config"
@@ -20,4 +21,3 @@ for script in "$SCRIPT_DIR"/scripts/*; do
   fi
   ln -s "$script" "$HOME/.local/bin/"
 done
-
