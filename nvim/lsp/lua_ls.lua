@@ -57,6 +57,8 @@ return {
 					"oklch-color-picker.nvim",
 					"fzf-lua",
 					"trouble.nvim",
+					"grug-far.nvim",
+					"render-markdown.nvim",
 				}),
 			},
 		},
