@@ -162,12 +162,29 @@ require("oil").setup()
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- ============================================================================
--- TITLE : replacer.nvim
--- ABOUT : replacer.nvim makes quickfix windows editable, allowing changes to both the content of a file and its path.
+-- TITLE : grug-far.nvim
+-- ABOUT : Find And Replace plugin for neovim
 -- ============================================================================
 
-vim.pack.add({ "https://github.com/gabrielpoca/replacer.nvim" })
+vim.pack.add({ "https://github.com/MagicDuck/grug-far.nvim" })
 
 vim.keymap.set("n", "<leader>q", function()
-	require("replacer").run()
-end, { desc = "Edit Quickfix buffer" })
+	require("grug-far").open({ prefills = { search = "" } })
+end, { desc = "GrugFar Find & Replace (grug-far.nvim)" })
+
+vim.keymap.set("v", "<leader>q", function()
+	local opts = { type = vim.api.nvim_get_mode().mode }
+	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), opts)
+	require("grug-far").open({ prefills = { search = selection[1] } })
+end, { desc = "Find & Replace (grug-far.nvim)" })
+
+--- @type grug.far.OptionsOverride
+require("grug-far").setup({
+	startInInsertMode = false,
+	keymaps = {
+		close = {
+			i = "<C-q>",
+			n = "<leader>q",
+		},
+	},
+})
