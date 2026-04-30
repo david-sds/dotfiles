@@ -1,15 +1,16 @@
 # vim: syntax=toml
 
-# --- Global (The "Simple Blue" look) ---
+# LOOKS
 font=InconsolataGo Nerd Font 10
 default-timeout=5000
 background-color=#000000
 text-color=#ffffff
+border-radius=6
+margin=10
 
 # POSITIONING
 anchor=top-right
 layer=overlay
-margin=0
 
 # --- Low Urgency (Info - Green) ---
 [urgency=low]
