@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 xbindkeys
 xfconf-query -c xfwm4 -p /general/workspace_count -s 4
