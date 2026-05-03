@@ -58,6 +58,7 @@ return {
 					"fzf-lua",
 					"trouble.nvim",
 					"grug-far.nvim",
+					"render-markdown.nvim",
 				}),
 			},
 		},
