@@ -143,19 +143,8 @@ vim.pack.add({
 })
 
 ---@module 'render-markdown'
--- -@type render.md.UserConfig
-require("render-markdown").setup({
-	win_options = {
-		conceallevel = {
-			default = 0,
-			rendered = 0,
-		},
-		concealcursor = {
-			default = "",
-			rendered = "",
-		},
-	},
-})
+---@type render.md.Config
+require("render-markdown").setup({})
 
 vim.keymap.set(
 	"n",
