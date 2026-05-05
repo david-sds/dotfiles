@@ -1,7 +1,3 @@
-[terminal.shell]
-program = "/usr/bin/tmux"
-args = ["new-session"]
-
 [window]
 padding = { x = 4, y = 4 }
 
