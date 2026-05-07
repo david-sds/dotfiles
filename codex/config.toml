@@ -6,13 +6,7 @@ sandbox_mode = "read-only"
 theme = "gruvbox-dark"
 
 [tui.model_availability_nux]
-"gpt-5.5" = 2
+"gpt-5.5" = 3
 
-[projects."/home/david/Work/dotfiles"]
-trust_level = "trusted"
-
-[projects."/home/david/Work/obsidian-vault"]
-trust_level = "trusted"
-
-[projects."/home/david/Work/tmux-floax"]
+[projects."/home/david/Work"]
 trust_level = "trusted"
