@@ -32,6 +32,7 @@ require("nvim-treesitter").install({
 	"java",
 	"prisma",
 	"commonlisp",
+	"ledger",
 })
 
 -- Start Treesitter automatically for every filetype buffer.
