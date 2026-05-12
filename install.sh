@@ -9,6 +9,7 @@ ln -sT "$SCRIPT_DIR/alacritty" "$HOME/.config/alacritty"
 ln -sT "$SCRIPT_DIR/opencode" "$HOME/.config/opencode"
 ln -sT "$SCRIPT_DIR/codex" "$HOME/.config/codex"
 ln -sT "$SCRIPT_DIR/autostart" "$HOME/.config/autostart"
+ln -sT "$SCRIPT_DIR/lazygit" "$HOME/.config/lazygit"
 
 mkdir -p "$HOME/.local/bin"
 for script in "$SCRIPT_DIR"/scripts/*; do
