@@ -63,8 +63,6 @@ local function fetch_hledger_accounts()
 end
 
 local hledger_accounts_source = {}
----Invoke completion (required)
----@param callback fun(response) lsp.CompletionResponse(nil)
 function hledger_accounts_source:complete(_, callback)
 	local hledger_accounts = fetch_hledger_accounts()
 	local items = {}
