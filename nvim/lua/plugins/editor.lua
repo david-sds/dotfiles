@@ -152,3 +152,10 @@ vim.keymap.set(
 	"<CMD>RenderMarkdown toggle<CR>",
 	{ desc = "Toogle RenderMarkdown (render-markdown.nvim)" }
 )
+
+-- ============================================================================
+-- TITIE : neorepl
+-- ABOUT : neovim REPL for lua and vim script
+-- ============================================================================
+
+vim.pack.add({ "https://github.com/ii14/neorepl.nvim" })
