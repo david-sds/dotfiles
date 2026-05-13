@@ -83,6 +83,7 @@ end, { desc = "FZF Git Diffs" })
 -- ABOUT : Seamless navigation between Vim splits and tmux panes using the same shortcuts.
 -- ============================================================================
 
+vim.g.tmux_navigator_disable_when_zoomed = 1
 vim.pack.add({ "https://github.com/christoomey/vim-tmux-navigator" })
 
 vim.keymap.set("n", "<c-h>", "<cmd><C-U>TmuxNavigateLeft<CR>")
