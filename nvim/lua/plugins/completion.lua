@@ -45,6 +45,38 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
+local function fetch_hledger_accounts()
+	local f = io.popen("hledger accounts")
+	if not f then
+		return {}
+	end
+
+	local accounts = {}
+	for line in f:lines() do
+		if line ~= "" then
+			table.insert(accounts, line)
+		end
+	end
+
+	f:close()
+	return accounts
+end
+
+local hledger_accounts_source = {}
+function hledger_accounts_source:complete(_, callback)
+	local hledger_accounts = fetch_hledger_accounts()
+	local items = {}
+	for _, name in ipairs(hledger_accounts) do
+		table.insert(items, {
+			label = name,
+			kind = vim.lsp.protocol.CompletionItemKind.Field,
+		})
+	end
+	callback(items)
+end
+
+cmp.register_source("hledger_accounts", hledger_accounts_source)
+
 ---@type cmp.ConfigSchema
 local opts = {
 
@@ -127,9 +159,15 @@ cmp.setup.filetype({ "sql", "mysql" }, {
 })
 
 cmp.setup.filetype({ "bash", "sh" }, {
-	sources = {
+	sources = cmp.config.sources({
 		{ name = "cmdline" },
-	},
+	}, cmp.get_config().sources),
+})
+
+cmp.setup.filetype("ledger", {
+	sources = cmp.config.sources(cmp.get_config().sources, {
+		{ name = "hledger_accounts" },
+	}),
 })
 
 -- ============================================================================
