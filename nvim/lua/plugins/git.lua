@@ -9,7 +9,7 @@ require("gitsigns").setup()
 vim.keymap.set("n", "<leader>gu", "<CMD>Gitsigns reset_hunk<CR>", { desc = "Undo Hunk" })
 vim.keymap.set(
 	"n",
-	"<leader>gb",
+	"<leader>gB",
 	"<CMD>Gitsigns toggle_current_line_blame<CR>",
 	{ desc = "Toggle Blame (Current line)" }
 )
@@ -28,7 +28,7 @@ end, { desc = "Reload Git" })
 -- ============================================================================
 vim.pack.add({ "https://github.com/tpope/vim-fugitive" })
 
-vim.keymap.set("n", "<leader>gB", "<CMD>Git blame<CR>", { desc = "Open Blame (Current buffer)" })
+vim.keymap.set("n", "<leader>gb", "<CMD>Git blame<CR>", { desc = "Open Blame (Current buffer)" })
 vim.keymap.set("n", "<leader>gD", "<CMD>Gdiffsplit!<CR>", { desc = "Show Git Diffs" })
 vim.keymap.set("n", "<leader>gH", "<CMD>0GcLog<CR>", { desc = "Show Git History (Current buffer)" })
 vim.keymap.set(
