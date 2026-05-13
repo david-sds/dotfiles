@@ -29,11 +29,15 @@ vim.keymap.set("n", "<leader>l", "<CMD>nohlsearch<CR>", { desc = "Clear search h
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buffer" })
 vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
+vim.keymap.set("n", "<leader>I", "<CMD>InspectTree<CR>", { desc = "Inspect Tree" })
+
+-- Vim Pack
 vim.keymap.set("n", "<leader>U", function()
 	vim.pack.update()
 end, { desc = "Update vim.pack plugins" })
-vim.keymap.set("n", "<leader>I", "<CMD>InspectTree<CR>", { desc = "Inspect Tree" })
-vim.keymap.set("n", "<leader>M", "<CMD>Mason<CR>", { desc = "Open Mason menu" })
+vim.keymap.set("n", "<leader>P", function()
+	vim.pack.update(nil, { offline = true })
+end, { desc = "Manage vim.pack plugins" })
 
 -- Undotree toggle
 vim.cmd("packadd nvim.undotree")
