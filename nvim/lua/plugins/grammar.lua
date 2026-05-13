@@ -106,6 +106,8 @@ require("mason-tool-installer").setup({
 })
 require("mason").setup()
 
+vim.keymap.set("n", "<leader>M", "<CMD>Mason<CR>", { desc = "Open Mason menu" })
+
 -- ============================================================================
 -- TITLE : trouble.nvim
 -- ABOUT : A pretty diagnostics, references, quickfix and location list viewer for Neovim.
