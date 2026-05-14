@@ -9,6 +9,9 @@
     "websearch": "allow",
     "codesearch": "allow",
     "webfetch": "allow",
+    "external_directory": {
+      "~/.agents/skills/hal9001/**": "allow"
+    },
     "bash": {
       "*": "ask",
       "ls *": "allow",
@@ -20,6 +23,12 @@
       "tail *": "allow",
       "grep *": "allow",
       "find *": "allow"
+    },
+    "skill": {
+      "hal9001": "allow"
     }
+  },
+  "skills": {
+    "paths": ["/home/david/Config/hal9001"]
   }
 }
