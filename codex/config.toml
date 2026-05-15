@@ -5,6 +5,12 @@ sandbox_mode = "read-only"
 [tui]
 theme = "gruvbox-dark"
 
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[projects."/home/david/Config/hal9001"]
+trust_level = "trusted"
+
 [projects."/home/david/Work/dotfiles"]
 trust_level = "trusted"
 
