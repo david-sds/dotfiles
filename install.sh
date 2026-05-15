@@ -14,6 +14,7 @@ ln -sT "$SCRIPT_DIR/waybar" "$HOME/.config/waybar"
 ln -sT "$SCRIPT_DIR/mako" "$HOME/.config/mako"
 ln -sT "$SCRIPT_DIR/xdg-desktop-portal" "$HOME/.config/xdg-desktop-portal"
 ln -sT "$SCRIPT_DIR/lazygit" "$HOME/.config/lazygit"
+ln -sT "$SCRIPT_DIR/satty" "$HOME/.config/satty"
 
 mkdir -p "$HOME/.local/bin"
 for script in "$SCRIPT_DIR"/scripts/*; do
