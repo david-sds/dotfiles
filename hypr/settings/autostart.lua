@@ -1,0 +1,7 @@
+hl.on("hyprland.start", function()
+	hl.exec_cmd("waybar")
+	hl.exec_cmd("hyprpaper")
+	hl.exec_cmd("elephant")
+	hl.exec_cmd("walker --gapplication-service")
+	hl.exec_cmd("rclone mount gdrive: ~/GDrive --vfs-cache-mode full")
+end)

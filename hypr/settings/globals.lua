@@ -1,0 +1,15 @@
+return {
+	terminal = "alacritty",
+	fileManager = "nautilus",
+	browser = "zen-browser",
+	notes = "obsidian",
+	system = "btop",
+	wifi = "impala",
+	bluetooth = "bluetui",
+	audio = "wiremix",
+	default_gaps_in = 8,
+	default_gaps_out = 16,
+	default_border_size = 2,
+	default_rounding = 5,
+	default_rounding_power = 5,
+}
