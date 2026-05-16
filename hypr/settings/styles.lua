@@ -7,7 +7,7 @@ hl.config({
 		border_size = G.default_border_size,
 		col = {
 			active_border = 0xEE00DC5F,
-			inactive_border = 0xEE009D41,
+			inactive_border = 0xEE329D4E,
 		},
 		resize_on_border = false,
 		allow_tearing = false,
@@ -44,6 +44,9 @@ hl.config({
 		force_default_wallpaper = 0,
 		disable_hyprland_logo = true,
 		disable_splash_rendering = true,
+	},
+	xwayland = {
+		force_zero_scaling = true,
 	},
 })
 
