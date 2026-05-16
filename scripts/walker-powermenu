@@ -13,5 +13,5 @@ case "$selected" in
 *"Reboot"*) systemctl reboot ;;
 *"Suspend"*) systemctl suspend ;;
 *"Lock"*) hyprlock ;;
-*"Log Out"*) hyprctl dispatch exit ;;
+*"Log Out"*) hyprctl dispatch 'hl.dsp.exit()' ;;
 esac
