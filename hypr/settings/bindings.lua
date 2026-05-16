@@ -1,4 +1,5 @@
 G = require("settings.globals")
+U = require("utils")
 
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind("SUPER + Q", hl.dsp.window.kill())
@@ -10,7 +11,7 @@ hl.bind("SUPER + T", hl.dsp.layout("togglesplit"))
 hl.bind("SUPER + CTRL + J", hl.dsp.layout("splitratio +0.1"))
 hl.bind("SUPER + CTRL + K", hl.dsp.layout("splitratio -0.1"))
 
-hl.bind("SUPER + G", hl.dsp.exec_cmd("~/.local/bin/toggle-gaps"))
+hl.bind("SUPER + G", U.toggle_gaps)
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(G.terminal))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(G.fileManager))
 hl.bind("SUPER + B", hl.dsp.exec_cmd(G.browser))
@@ -37,27 +38,11 @@ hl.bind("SUPER + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
 hl.bind("SUPER + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
 hl.bind("SUPER + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 
-hl.bind("SUPER + 1", hl.dsp.focus({ workspace = 1 }))
-hl.bind("SUPER + 2", hl.dsp.focus({ workspace = 2 }))
-hl.bind("SUPER + 3", hl.dsp.focus({ workspace = 3 }))
-hl.bind("SUPER + 4", hl.dsp.focus({ workspace = 4 }))
-hl.bind("SUPER + 5", hl.dsp.focus({ workspace = 5 }))
-hl.bind("SUPER + 6", hl.dsp.focus({ workspace = 6 }))
-hl.bind("SUPER + 7", hl.dsp.focus({ workspace = 7 }))
-hl.bind("SUPER + 8", hl.dsp.focus({ workspace = 8 }))
-hl.bind("SUPER + 9", hl.dsp.focus({ workspace = 9 }))
-hl.bind("SUPER + 0", hl.dsp.focus({ workspace = 10 }))
-
-hl.bind("SUPER + SHIFT + 1", hl.dsp.window.move({ workspace = 1, follow = true }))
-hl.bind("SUPER + SHIFT + 2", hl.dsp.window.move({ workspace = 2, follow = true }))
-hl.bind("SUPER + SHIFT + 3", hl.dsp.window.move({ workspace = 3, follow = true }))
-hl.bind("SUPER + SHIFT + 4", hl.dsp.window.move({ workspace = 4, follow = true }))
-hl.bind("SUPER + SHIFT + 5", hl.dsp.window.move({ workspace = 5, follow = true }))
-hl.bind("SUPER + SHIFT + 6", hl.dsp.window.move({ workspace = 6, follow = true }))
-hl.bind("SUPER + SHIFT + 7", hl.dsp.window.move({ workspace = 7, follow = true }))
-hl.bind("SUPER + SHIFT + 8", hl.dsp.window.move({ workspace = 8, follow = true }))
-hl.bind("SUPER + SHIFT + 9", hl.dsp.window.move({ workspace = 9, follow = true }))
-hl.bind("SUPER + SHIFT + 0", hl.dsp.window.move({ workspace = 10, follow = true }))
+for i = 1, 10 do
+	local key = i % 10
+	hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
+	hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i, follow = true }))
+end
 
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
