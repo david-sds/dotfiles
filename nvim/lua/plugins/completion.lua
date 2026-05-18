@@ -91,7 +91,10 @@ local opts = {
 		return true
 	end,
 	completion = {
-		autocomplete = { "InsertEnter", "TextChanged" },
+		autocomplete = {
+			cmp.TriggerEvent.InsertEnter,
+			cmp.TriggerEvent.TextChanged,
+		},
 	},
 	snippet = {
 		expand = function(args)
