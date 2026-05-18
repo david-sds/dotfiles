@@ -85,9 +85,6 @@ local opts = {
 		if context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment") then
 			return false
 		end
-		if require("luasnip").in_snippet() then
-			return false
-		end
 		return true
 	end,
 	completion = {
@@ -138,7 +135,9 @@ local opts = {
 		end, { "i", "s" }),
 
 		["<C-e>"] = cmp.mapping(function(fallback)
-			if luasnip.choice_active() then
+			if cmp.visible() then
+				cmp.abort()
+			elseif luasnip.choice_active() then
 				luasnip.change_choice(1)
 			else
 				fallback()

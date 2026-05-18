@@ -5,20 +5,8 @@
 vim.pack.add({ "https://github.com/tpope/vim-fugitive" })
 
 vim.keymap.set("n", "<leader>gb", "<CMD>Git blame<CR>", { desc = "Open Blame (Current buffer)" })
-vim.keymap.set("n", "<leader>gD", "<CMD>Gdiffsplit!<CR>", { desc = "Show Git Diffs" })
-vim.keymap.set("n", "<leader>gH", "<CMD>0GcLog<CR>", { desc = "Show Git History (Current buffer)" })
-vim.keymap.set(
-	{ "n", "v" },
-	"<leader>gh",
-	":normal! V<CR>j?<<<<<<<<CR>ok/>>>>>>><CR>:'<,'>diffget //2<CR>",
-	{ desc = "Get the hunk in the left" }
-)
-vim.keymap.set(
-	{ "n", "v" },
-	"<leader>gl",
-	":normal! V<CR>j?<<<<<<<<CR>ok/>>>>>>><CR>:'<,'>diffget //3<CR>",
-	{ desc = "Get the hunk in the right" }
-)
+vim.keymap.set("n", "<leader>gd", "<CMD>Gdiffsplit!<CR>", { desc = "Show Git Diffs" })
+vim.keymap.set("n", "<leader>gh", "<CMD>0GcLog<CR>", { desc = "Show Git History (Current buffer)" })
 
 -- ============================================================================
 -- TITLE : gitsigns.nvim
@@ -35,9 +23,9 @@ vim.keymap.set(
 	"<CMD>Gitsigns toggle_current_line_blame<CR>",
 	{ desc = "Toggle Blame (Current line)" }
 )
-vim.keymap.set("n", "<leader>gp", "<CMD>Gitsigns preview_hunk<CR>", { desc = "Preview Hunk" })
 vim.keymap.set("n", "]g", "<CMD>Gitsigns next_hunk<CR>", { desc = "Next Hunk" })
 vim.keymap.set("n", "[g", "<CMD>Gitsigns prev_hunk<CR>", { desc = "Previous Hunk" })
+vim.keymap.set("n", "<leader>gp", "<CMD>Gitsigns preview_hunk<CR>", { desc = "Preview Hunk" })
 vim.keymap.set("n", "<leader>gr", function()
 	require("gitsigns").detach()
 	require("nvim-tree.api").tree.reload()
