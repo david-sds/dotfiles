@@ -4,6 +4,7 @@
 -- ============================================================================
 vim.pack.add({ "https://github.com/tpope/vim-fugitive" })
 
+vim.keymap.set("n", "<leader>gg", "<CMD>Git<CR>", { desc = "Show Git Summary" })
 vim.keymap.set("n", "<leader>gb", "<CMD>Git blame<CR>", { desc = "Open Blame (Current buffer)" })
 vim.keymap.set("n", "<leader>gd", "<CMD>Gdiffsplit!<CR>", { desc = "Show Git Diffs" })
 vim.keymap.set("n", "<leader>gh", "<CMD>0GcLog<CR>", { desc = "Show Git History (Current buffer)" })
