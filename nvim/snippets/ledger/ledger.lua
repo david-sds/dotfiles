@@ -2,7 +2,6 @@ local ls = require("luasnip")
 local s = ls.snippet
 local i = ls.insert_node
 local f = ls.function_node
-local t = ls.text_node
 local fmt = require("luasnip.extras.fmt").fmt
 local events = require("luasnip.util.events")
 local utils = dofile(vim.fn.stdpath("config") .. "/snippets/utils.lua")
