@@ -32,9 +32,9 @@ vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" }
 vim.keymap.set("n", "<leader>I", "<CMD>InspectTree<CR>", { desc = "Inspect Tree" })
 
 -- Tab managements
-vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>")
-vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>")
-vim.keymap.set("n", "<leader>to", "<cmd>tabonly<CR>")
+vim.keymap.set("n", "<leader>T", "<cmd>tabnew<CR>")
+vim.keymap.set("n", "<leader>W", "<cmd>tabclose<CR>")
+vim.keymap.set("n", "<leader>O", "<cmd>tabonly<CR>")
 
 -- Vim Pack
 vim.keymap.set("n", "<leader>U", function()
