@@ -27,13 +27,21 @@ hl.window_rule({
 })
 
 hl.window_rule({
-	name = "floating_term_rule",
+	name = "floating-term-rule",
 	match = {
 		class = "floating_term",
 	},
 	float = true,
 	center = true,
 	size = { "(monitor_w*0.6)", "(monitor_h*0.7)" },
+})
+
+hl.window_rule({
+	name = "gnome-calculator",
+	match = {
+		class = "org.gnome.Calculator",
+	},
+	float = true,
 })
 
 hl.workspace_rule({ workspace = "1", monitor = "eDP-1" })
