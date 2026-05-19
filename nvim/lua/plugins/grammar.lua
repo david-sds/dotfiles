@@ -45,13 +45,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.keymap.set(
-	"n",
-	"<leader>tt",
-	"<CMD>TSContext toggle<CR>",
-	{ desc = "Toggle Treesitter Context (nvim-treesitter-context)" }
-)
-
 -- ============================================================================
 -- TITLE : mason.nvim
 -- ABOUT : Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP servers, DAP servers, linters, and formatters.

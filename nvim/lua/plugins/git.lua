@@ -1,4 +1,10 @@
 -- ============================================================================
+-- TITLE : vim-fugitive
+-- ABOUT : Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim? Either way, it's "so awesome, it should be illegal". That's why it's called Fugitive.
+-- ============================================================================
+vim.pack.add({ "https://github.com/tpope/vim-fugitive" })
+
+-- ============================================================================
 -- TITLE : gitsigns.nvim
 -- ABOUT : Deep buffer integration for Git
 -- ============================================================================
@@ -27,6 +33,11 @@ vim.pack.add({ "https://github.com/sindrets/diffview.nvim" })
 require("diffview").setup({
 	file_panel = {
 		listing_style = "list",
+	},
+	file_history_panel = {
+		win_config = {
+			height = 10,
+		},
 	},
 })
 
