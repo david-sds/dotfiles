@@ -23,3 +23,13 @@ end, { desc = "Reload Git" })
 -- ABOUT : Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
 -- ============================================================================
 vim.pack.add({ "https://github.com/sindrets/diffview.nvim" })
+
+require("diffview").setup({
+	file_panel = {
+		listing_style = "list",
+	},
+})
+
+vim.keymap.set("n", "<leader>gd", "<CMD>DiffviewOpen<CR>", { desc = "Diff view open" })
+vim.keymap.set("n", "<leader>gh", "<CMD>DiffviewFileHistory %<CR>", { desc = "Diff view open" })
+vim.keymap.set("n", "<leader>gH", "<CMD>DiffviewFileHistory<CR>", { desc = "Diff view open" })
