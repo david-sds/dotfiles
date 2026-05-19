@@ -1,4 +1,10 @@
 -- ============================================================================
+-- TITLE : vim-fugitive
+-- ABOUT : Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim? Either way, it's "so awesome, it should be illegal". That's why it's called Fugitive.
+-- ============================================================================
+vim.pack.add({ "https://github.com/tpope/vim-fugitive" })
+
+-- ============================================================================
 -- TITLE : gitsigns.nvim
 -- ABOUT : Deep buffer integration for Git
 -- ============================================================================
@@ -7,15 +13,11 @@ vim.pack.add({ "https://github.com/lewis6991/gitsigns.nvim" })
 require("gitsigns").setup()
 
 vim.keymap.set("n", "<leader>gu", "<CMD>Gitsigns reset_hunk<CR>", { desc = "Undo Hunk" })
-vim.keymap.set(
-	"n",
-	"<leader>gB",
-	"<CMD>Gitsigns toggle_current_line_blame<CR>",
-	{ desc = "Toggle Blame (Current line)" }
-)
-vim.keymap.set("n", "<leader>gp", "<CMD>Gitsigns preview_hunk<CR>", { desc = "Preview Hunk" })
+vim.keymap.set("n", "<leader>gb", "<CMD>Gitsigns blame_line full=true<CR>", { desc = "Open Blame Preview" })
+vim.keymap.set("n", "<leader>gB", "<CMD>Gitsigns blame<CR>", { desc = "Open Blame (Current buffer)" })
 vim.keymap.set("n", "]g", "<CMD>Gitsigns next_hunk<CR>", { desc = "Next Hunk" })
 vim.keymap.set("n", "[g", "<CMD>Gitsigns prev_hunk<CR>", { desc = "Previous Hunk" })
+vim.keymap.set("n", "<leader>gp", "<CMD>Gitsigns preview_hunk<CR>", { desc = "Preview Hunk" })
 vim.keymap.set("n", "<leader>gr", function()
 	require("gitsigns").detach()
 	require("nvim-tree.api").tree.reload()
@@ -23,23 +25,22 @@ vim.keymap.set("n", "<leader>gr", function()
 end, { desc = "Reload Git" })
 
 -- ============================================================================
--- TITLE : vim-fugitive
--- ABOUT : Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim? Either way, it's "so awesome, it should be illegal". That's why it's called Fugitive.
+-- TITLE : Diffview.nvim
+-- ABOUT : Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
 -- ============================================================================
-vim.pack.add({ "https://github.com/tpope/vim-fugitive" })
+vim.pack.add({ "https://github.com/sindrets/diffview.nvim" })
 
-vim.keymap.set("n", "<leader>gb", "<CMD>Git blame<CR>", { desc = "Open Blame (Current buffer)" })
-vim.keymap.set("n", "<leader>gD", "<CMD>Gdiffsplit!<CR>", { desc = "Show Git Diffs" })
-vim.keymap.set("n", "<leader>gH", "<CMD>0GcLog<CR>", { desc = "Show Git History (Current buffer)" })
-vim.keymap.set(
-	{ "n", "v" },
-	"<leader>gh",
-	":normal! V<CR>j?<<<<<<<<CR>ok/>>>>>>><CR>:'<,'>diffget //2<CR>",
-	{ desc = "Get the hunk in the left" }
-)
-vim.keymap.set(
-	{ "n", "v" },
-	"<leader>gl",
-	":normal! V<CR>j?<<<<<<<<CR>ok/>>>>>>><CR>:'<,'>diffget //3<CR>",
-	{ desc = "Get the hunk in the right" }
-)
+require("diffview").setup({
+	file_panel = {
+		listing_style = "list",
+	},
+	file_history_panel = {
+		win_config = {
+			height = 10,
+		},
+	},
+})
+
+vim.keymap.set("n", "<leader>gd", "<CMD>DiffviewOpen<CR>", { desc = "Diff view open" })
+vim.keymap.set("n", "<leader>gh", "<CMD>DiffviewFileHistory %<CR>", { desc = "Diff view open" })
+vim.keymap.set("n", "<leader>gH", "<CMD>DiffviewFileHistory<CR>", { desc = "Diff view open" })
