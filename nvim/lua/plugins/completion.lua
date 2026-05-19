@@ -145,7 +145,7 @@ local opts = {
 		end, { "i", "s" }),
 
 		["<C-y>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
+			behavior = cmp.ConfirmBehavior.Insert,
 			select = true,
 		}),
 	},
