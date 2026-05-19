@@ -146,7 +146,7 @@ require("nvim-tree").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>e", "<CMD>NvimTreeToggle<CR>", { desc = "Toogle Nvim Tree" })
+vim.keymap.set("n", "<leader>E", "<CMD>NvimTreeToggle<CR>", { desc = "Toogle Nvim Tree" })
 vim.keymap.set("n", "<leader>ti", function()
 	require("nvim-tree.api").filter.git.ignored.toggle()
 end, { desc = "Toggle GitIgnored files (nvim-tree)" })
@@ -158,8 +158,31 @@ end, { desc = "Toggle GitIgnored files (nvim-tree)" })
 
 vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
 
-require("oil").setup()
-
+require("oil").setup({
+	default_file_explorer = true,
+	delete_to_trash = false,
+	use_default_keymaps = false,
+	keymaps = {
+		["g?"] = { "actions.show_help", mode = "n" },
+		["<CR>"] = { "actions.select", mode = "n" },
+		["<leader>sv"] = { "actions.select", opts = { vertical = true } },
+		["<leader>sh"] = { "actions.select", opts = { horizontal = true } },
+		["<C-p>"] = "actions.preview",
+		["<C-q>"] = "actions.close",
+		["<C-r>"] = "actions.refresh",
+		["-"] = { "actions.parent", mode = "n" },
+		["_"] = { "actions.open_cwd", mode = "n" },
+		["`"] = { "actions.cd", mode = "n" },
+		["gs"] = { "actions.change_sort", mode = "n" },
+		["gx"] = { "actions.open_external", mode = "n" },
+		["gy"] = { "actions.copy_to_system_clipboard", mode = "n" },
+		["g."] = { "actions.toggle_hidden", mode = "n" },
+		["g\\"] = { "actions.toggle_trash", mode = "n" },
+	},
+	view_options = {
+		show_hidden = true,
+	},
+})
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- ============================================================================
