@@ -39,7 +39,24 @@ hl.window_rule({
 hl.window_rule({
 	name = "gnome-calculator",
 	match = {
-		class = "org.gnome.Calculator",
+		class = "org.gnome.(Calculator|Loupe)",
+	},
+	float = true,
+})
+
+hl.window_rule({
+	name = "floating-gnome-apps",
+	match = {
+		class = "org.gnome.(Calculator|Loupe)",
+	},
+	float = true,
+})
+
+hl.window_rule({
+	name = "floating-alt-steam",
+	match = {
+		class = "steam",
+		title = "negative:.*Steam$",
 	},
 	float = true,
 })
