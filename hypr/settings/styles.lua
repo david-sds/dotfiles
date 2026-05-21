@@ -2,33 +2,33 @@ G = require("settings.globals")
 
 hl.config({
 	general = {
-		gaps_in = G.default_gaps_in,
-		gaps_out = G.default_gaps_out,
-		border_size = G.default_border_size,
+		gaps_in = G.default_general_gaps_in,
+		gaps_out = G.default_general_gaps_out,
+		border_size = G.default_general_border_size,
 		col = {
-			active_border = 0xEE8ec07c,
-			inactive_border = 0xEE5C8B5D,
+			active_border = G.default_general_col_active_border,
+			inactive_border = G.default_general_col_inactive_border,
 		},
 		resize_on_border = false,
 		allow_tearing = false,
 		layout = "dwindle",
 	},
 	decoration = {
-		rounding = G.default_rounding,
-		rounding_power = G.default_rounding_power,
+		rounding = G.default_decoration_rounding,
+		rounding_power = G.default_decoration_rounding_power,
 		active_opacity = 1,
 		inactive_opacity = 0.90,
 		shadow = {
 			enabled = true,
-			range = 4,
-			render_power = 4,
-			color = 0xEE5C8B5D,
+			range = 2,
+			render_power = 2,
+			color = G.default_decoration_shadow_color,
 		},
 		blur = {
 			enabled = true,
-			size = 6,
+			size = 3,
 			passes = 1,
-			vibrancy = 0.6696,
+			vibrancy = 0.6,
 		},
 	},
 	animations = {

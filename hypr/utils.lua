@@ -13,14 +13,14 @@ M.toggle_gaps = function()
 	if gaps_disabled[ws.id] then
 		hl.workspace_rule({
 			workspace = tostring(ws.id),
-			gaps_in = G.default_gaps_in,
-			gaps_out = G.default_gaps_out,
+			gaps_in = G.default_general_gaps_in,
+			gaps_out = G.default_general_gaps_out,
 			decorate = true,
 		})
 		hl.window_rule({
 			match = { workspace = tostring(ws.id) },
-			rounding = G.default_rounding,
-			border_size = G.default_border_size,
+			rounding = G.default_decoration_rounding,
+			border_size = G.default_general_border_size,
 		})
 		gaps_disabled[ws.id] = false
 	else
