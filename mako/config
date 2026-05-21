@@ -1,10 +1,11 @@
 # vim: syntax=toml
 
 # LOOKS
-font=InconsolataGo Nerd Font 10
+output=*
+font=InconsolataGo Nerd Font 14
 default-timeout=5000
-background-color=#000000
-text-color=#ffffff
+background-color=#282828
+text-color=#ebdbb2
 border-radius=6
 margin=10
 
@@ -14,13 +15,16 @@ layer=overlay
 
 # --- Low Urgency (Info - Green) ---
 [urgency=low]
-border-color=#21e469
+border-color=#98971a
 
 # --- Normal Urgency (Warning - Yellow) ---
 [urgency=normal]
-border-color=#f1be39
+border-color=#d79921
 
 # --- Critical Urgency (Error - Red) ---
 [urgency=critical]
-border-color=#db2617
+border-color=#cc241d
 default-timeout=0
+
+[hidden]
+border-color=#458588
