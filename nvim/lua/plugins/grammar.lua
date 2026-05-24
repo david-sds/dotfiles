@@ -56,6 +56,9 @@ vim.pack.add({
 
 require("mason-tool-installer").setup({
 	ensure_installed = {
+		-- c
+		"clangd",
+		"clang-format",
 		-- lua
 		"lua-language-server",
 		"stylua",
