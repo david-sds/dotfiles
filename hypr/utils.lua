@@ -39,4 +39,22 @@ M.toggle_gaps = function()
 	end
 end
 
+local zoom = 1.0
+M.change_zoom = function(delta)
+	return function()
+		zoom = math.max(1.0, math.min(4.0, zoom + delta))
+
+		hl.config({
+			cursor = {
+				zoom_factor = zoom,
+				zoom_disable_aa = true,
+			},
+			binds = {
+				pass_mouse_when_bound = false,
+				scroll_event_delay = 0,
+			},
+		})
+	end
+end
+
 return M

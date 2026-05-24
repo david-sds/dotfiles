@@ -1,6 +1,13 @@
 G = require("settings.globals")
 U = require("utils")
 
+hl.bind("SUPER + mouse_down", U.change_zoom(1), { repeating = true })
+hl.bind("SUPER + mouse_up", U.change_zoom(-1), { repeating = true })
+hl.bind("SUPER + equal", U.change_zoom(1), { repeating = true })
+hl.bind("SUPER + minus", U.change_zoom(-1), { repeating = true })
+hl.bind("SUPER + KP_Add", U.change_zoom(1), { repeating = true })
+hl.bind("SUPER + KP_Subtract", U.change_zoom(-1), { repeating = true })
+
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
