@@ -61,6 +61,14 @@ hl.window_rule({
 	float = true,
 })
 
+hl.window_rule({
+	name = "floating-color-picker",
+	match = {
+		title = "Oklch Color Picker",
+	},
+	float = true,
+})
+
 hl.workspace_rule({ workspace = "1", monitor = "eDP-1" })
 hl.workspace_rule({ workspace = "2", monitor = "eDP-1" })
 hl.workspace_rule({ workspace = "3", monitor = "eDP-1" })
