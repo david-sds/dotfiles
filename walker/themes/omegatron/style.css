@@ -1,11 +1,14 @@
 * {
-  all: unset;
-}
+  --background-color: #282828;
+  --background-selected-color: #32302f;
+  --primary-color: #8ec07c;
+  --text-color: #a89984;
+  --text-selected-color: #8bba7f;
 
-* {
+  all: unset;
   font-family: InconsolataGo Nerd Font;
   font-size: 14px;
-  color: white;
+  color: var(--text-color);
 }
 
 scrollbar {
@@ -21,13 +24,14 @@ scrollbar {
 }
 
 .box-wrapper {
-  background: alpha(black, 0.95);
+  background: alpha(var(--background-color), 0.95);
   padding: 20px;
-  border: 1px solid #21e469;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
 }
 
 .search-container {
-  background: black;
+  background: var(--background-color);
   padding: 10px;
 }
 
@@ -43,11 +47,12 @@ scrollbar {
 }
 
 child:selected {
-  background-color: #191919;
+  background-color: var(--background-selected-color);
+  border-radius: 10px;
 }
 
 child:selected .item-text-box * {
-  color: #21e469;
+  color: var(--text-selected-color);
 }
 
 .item-box {
@@ -78,7 +83,7 @@ child:selected .item-text-box * {
 }
 
 .keybind-hints {
-  background: white;
+  background: var(--text-color);
   padding: 10px;
   margin-top: 10px;
 }
