@@ -50,6 +50,7 @@ require("conform").setup({
 		},
 	},
 	formatters_by_ft = {
+		c = { "clang-format" },
 		lua = { "stylua" },
 		javascript = { "prettierd" },
 		javascriptreact = { "prettierd" },

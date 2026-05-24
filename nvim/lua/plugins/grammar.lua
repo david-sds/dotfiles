@@ -56,6 +56,9 @@ vim.pack.add({
 
 require("mason-tool-installer").setup({
 	ensure_installed = {
+		-- c
+		"clangd",
+		"clang-format",
 		-- lua
 		"lua-language-server",
 		"stylua",
@@ -93,6 +96,8 @@ require("mason-tool-installer").setup({
 		"twig-cs-fixer",
 		-- emmet
 		"emmet-language-server",
+		-- qml
+		"qmlls",
 	},
 	auto_update = false,
 	run_on_start = true,

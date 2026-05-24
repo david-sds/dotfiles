@@ -8,15 +8,6 @@ vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
 vim.g.gruvbox_material_foreground = "original" -- material, mix, original
 vim.cmd("colorscheme gruvbox-material")
 
--- vim.pack.add({ "https://github.com/rebelot/kanagawa.nvim" })
--- vim.cmd("colorscheme kanagawa-wave")
-
--- vim.pack.add({ "https://github.com/polirritmico/monokai-nightasty.nvim" })
--- vim.cmd("colorscheme monokai-nightasty")
-
--- vim.pack.add({ "https://github.com/tahayvr/vhs80.nvim" })
--- vim.cmd.colorscheme("vhs80")
-
 -- ============================================================================
 -- TITLE : which-key
 -- ABOUT : WhichKey helps you remember your Neovim keymaps, by showing keybindings as you type.
