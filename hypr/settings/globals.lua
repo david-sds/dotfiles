@@ -1,6 +1,6 @@
 return {
 	terminal = "alacritty",
-	fileManager = "nautilus",
+	fileManager = "nemo",
 	browser = "zen-browser",
 	notes = "obsidian",
 	system = "btop",
