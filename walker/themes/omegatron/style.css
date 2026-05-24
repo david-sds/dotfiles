@@ -53,6 +53,7 @@ child:selected {
 
 child:selected .item-text-box * {
   color: var(--text-selected-color);
+  font-weight: 500;
 }
 
 .item-box {
