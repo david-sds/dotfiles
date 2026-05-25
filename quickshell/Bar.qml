@@ -18,8 +18,6 @@ Scope {
 
             ClockWidget {
                 anchors.centerIn: parent
-
-                // no more time binding
             }
         }
     }
