@@ -41,8 +41,12 @@ require("codeium").setup({
 	virtual_text = {
 		enabled = true,
 		idle_delay = 300,
+		key_bindings = {
+			accept = "<C-y>",
+		},
 		filetypes = {
 			ledger = false,
+			c = false,
 		},
 	},
 })
