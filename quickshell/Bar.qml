@@ -1,11 +1,6 @@
 import Quickshell
-import Quickshell.Io
-import QtQuick
 
 Scope {
-    id: root
-    property string time
-
     Variants {
         model: Quickshell.screens
 
@@ -21,27 +16,11 @@ Scope {
 
             implicitHeight: 30
 
-            Text {
+            ClockWidget {
                 anchors.centerIn: parent
-                text: root.time
+
+                // no more time binding
             }
         }
-    }
-
-    Process {
-        id: dateProc
-        command: ["date"]
-        running: true
-
-        stdout: StdioCollector {
-            onStreamFinished: root.time = this.text
-        }
-    }
-
-    Timer {
-        interval: 1000
-        running: true
-        repeat: true
-        onTriggered: dateProc.running = true
     }
 }
