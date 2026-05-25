@@ -120,38 +120,6 @@ vim.keymap.set("n", "<C-p>", ui.nav_prev, { desc = "Harpoon: Previous file" })
 vim.keymap.set("n", "<C-n>", ui.nav_next, { desc = "Harpoon: Next file" })
 
 -- ============================================================================
--- TITLE : nvim-tree.lua
--- ABOUT : A file explorer tree for Neovim, written in Lua.
--- ============================================================================
-vim.pack.add({ "https://github.com/nvim-tree/nvim-tree.lua" })
-
-require("nvim-tree").setup({
-	git = {
-		enable = true,
-		timeout = 1000,
-	},
-	filters = {
-		dotfiles = false,
-		git_ignored = false,
-	},
-	view = {
-		width = 40,
-		preserve_window_proportions = true,
-		adaptive_size = true,
-		relativenumber = true,
-	},
-	update_focused_file = {
-		enable = true,
-		update_cwd = false,
-	},
-})
-
-vim.keymap.set("n", "<leader>E", "<CMD>NvimTreeToggle<CR>", { desc = "Toogle Nvim Tree" })
-vim.keymap.set("n", "<leader>ti", function()
-	require("nvim-tree.api").filter.git.ignored.toggle()
-end, { desc = "Toggle GitIgnored files (nvim-tree)" })
-
--- ============================================================================
 -- TITLE : oil.nvim
 -- ABOUT : A vim-vinegar like file explorer that lets you edit your filesystem like a normal Neovim buffer.
 -- ============================================================================
@@ -161,8 +129,8 @@ vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
 require("oil").setup({
 	default_file_explorer = true,
 	delete_to_trash = false,
-	use_default_keymaps = false,
 	keymaps = {
+		["~"] = "<cmd>edit $HOME<CR>",
 		["g?"] = { "actions.show_help", mode = "n" },
 		["<CR>"] = { "actions.select", mode = "n" },
 		["<leader>sv"] = { "actions.select", opts = { vertical = true } },

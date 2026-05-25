@@ -9,7 +9,7 @@ require("plugins.editor")
 require("plugins.clients")
 require("plugins.completion")
 require("plugins.git")
-require("plugins.styles")
 require("plugins.workflow")
+require("plugins.styles")
 
 require("config.lsp").setup()

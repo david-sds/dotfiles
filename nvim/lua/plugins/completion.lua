@@ -27,6 +27,27 @@ require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/snipp
 require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snippets" })
 
 -- ============================================================================
+-- TITLE : supermaven-nvim
+-- ABOUT : A neovim plugin for superman-style autocompletion
+-- ============================================================================
+
+vim.pack.add({
+	"https://github.com/Exafunction/windsurf.nvim",
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/hrsh7th/nvim-cmp",
+})
+
+require("codeium").setup({
+	virtual_text = {
+		enabled = true,
+		idle_delay = 300,
+		filetypes = {
+			ledger = false,
+		},
+	},
+})
+
+-- ============================================================================
 -- TITLE : nvim-cmp
 -- ABOUT : A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
 -- ============================================================================
@@ -79,7 +100,6 @@ cmp.register_source("hledger_accounts", hledger_accounts_source)
 
 ---@type cmp.ConfigSchema
 local opts = {
-
 	enabled = function()
 		local context = require("cmp.config.context")
 		if context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment") then
@@ -102,6 +122,7 @@ local opts = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
+		{ name = "codeium" },
 		-- { name = "buffer" },
 	}),
 	formatting = {
