@@ -96,6 +96,8 @@ require("mason-tool-installer").setup({
 		"twig-cs-fixer",
 		-- emmet
 		"emmet-language-server",
+		-- qml
+		"qmlls",
 	},
 	auto_update = false,
 	run_on_start = true,

@@ -129,8 +129,8 @@ vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
 require("oil").setup({
 	default_file_explorer = true,
 	delete_to_trash = false,
-	use_default_keymaps = false,
 	keymaps = {
+		["~"] = "<cmd>edit $HOME<CR>",
 		["g?"] = { "actions.show_help", mode = "n" },
 		["<CR>"] = { "actions.select", mode = "n" },
 		["<leader>sv"] = { "actions.select", opts = { vertical = true } },
