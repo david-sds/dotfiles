@@ -48,7 +48,7 @@ for script in "$SCRIPT_DIR"/scripts/*; do
 done
 
 RED='\033[0;31m'
-YELLOW='\033[1;33m'
+YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 for c in "${success[@]}"; do
