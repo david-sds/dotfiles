@@ -13,6 +13,7 @@ return {
 	default_decoration_rounding = 8,
 	default_decoration_rounding_power = 6,
 	default_general_col_active_border = 0xEE8ec07c,
-	default_general_col_inactive_border = 0xEE5C8B5D,
-	default_decoration_shadow_color = 0xEE5C8B5D,
+	default_general_col_inactive_border = 0xEE4c7a5d,
+	default_decoration_shadow_color = 0xEE4c7a5d,
+	default_decoration_shadow_color_inactive = 0x004C7A5D,
 }

@@ -21,8 +21,9 @@ hl.config({
 		shadow = {
 			enabled = true,
 			range = 2,
-			render_power = 2,
+			render_power = 4,
 			color = G.default_decoration_shadow_color,
+			color_inactive = G.default_decoration_shadow_color_inactive,
 		},
 		blur = {
 			enabled = true,
