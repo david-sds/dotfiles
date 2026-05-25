@@ -2,26 +2,63 @@
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
+success=()
+exists=()
+failed=()
+
 mkdir -p "$HOME/.config"
-ln -sT "$SCRIPT_DIR/nvim" "$HOME/.config/nvim"
-ln -sT "$SCRIPT_DIR/tmux" "$HOME/.config/tmux"
-ln -sT "$SCRIPT_DIR/alacritty" "$HOME/.config/alacritty"
-ln -sT "$SCRIPT_DIR/opencode" "$HOME/.config/opencode"
-ln -sT "$SCRIPT_DIR/codex" "$HOME/.config/codex"
-ln -sT "$SCRIPT_DIR/hypr" "$HOME/.config/hypr"
-ln -sT "$SCRIPT_DIR/walker" "$HOME/.config/walker"
-ln -sT "$SCRIPT_DIR/waybar" "$HOME/.config/waybar"
-ln -sT "$SCRIPT_DIR/mako" "$HOME/.config/mako"
-ln -sT "$SCRIPT_DIR/xdg-desktop-portal" "$HOME/.config/xdg-desktop-portal"
-ln -sT "$SCRIPT_DIR/lazygit" "$HOME/.config/lazygit"
-ln -sT "$SCRIPT_DIR/satty" "$HOME/.config/satty"
-ln -sT "$SCRIPT_DIR/zathura" "$HOME/.config/zathura"
-ln -sT "$SCRIPT_DIR/btop" "$HOME/.config/btop"
+configs=("nvim"
+  "tmux"
+  "alacritty"
+  "opencode"
+  "codex"
+  "hypr"
+  "walker"
+  "waybar"
+  "quickshell"
+  "mako"
+  "xdg-desktop-portal"
+  "lazygit"
+  "satty"
+  "zathura"
+  "btop"
+)
+for config in "${configs[@]}"; do
+  err=$(ln -sT "$SCRIPT_DIR/$config" "$HOME/.config/$config" 2>&1)
+  status=$?
+
+  if [ $status -eq 0 ]; then
+    success+=("$config")
+  else
+    if echo "$err" | grep -qi "exists"; then
+      exists+=("$config")
+    else
+      failed+=("$config:$err")
+    fi
+  fi
+done
 
 mkdir -p "$HOME/.local/bin"
 for script in "$SCRIPT_DIR"/scripts/*; do
-  if [ ! -f "$script" ] || [ ! -x "$script" ]; then
+  installed_script="$HOME/.local/bin/$script"
+  if [ ! -f "$installed_script" ] || [ ! -x "$installed_script" ]; then
     continue
   fi
-  ln -s "$script" "$HOME/.local/bin/"
+  ln -s "$script" "$installed_script"
+done
+
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+for c in "${success[@]}"; do
+  echo -e "${BLUE}[INFO]${NC} $c installed!"
+done
+
+for c in "${exists[@]}"; do
+  echo -e "${YELLOW}[WARN]${NC} $c already exists." >&2
+done
+
+for c in "${failed[@]}"; do
+  echo -e "${RED}[ERROR]${NC} $c failed!" >&2
 done
