@@ -47,10 +47,10 @@ for script in "$SCRIPT_DIR"/scripts/*; do
   ln -s "$script" "$installed_script"
 done
 
-RED='\033[0;31m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
+RED='\e[0;31m'
+YELLOW='\e[0;33m'
+BLUE='\e[0;34m'
+NC='\e[0m'
 for c in "${success[@]}"; do
   echo -e "${BLUE}[INFO]${NC} $c installed!"
 done
