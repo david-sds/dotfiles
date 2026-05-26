@@ -48,6 +48,16 @@ require("conform").setup({
 			stdin = false,
 			exit_codes = { 0, 1 },
 		},
+		hledger_fmt = {
+			command = "hledger-fmt",
+			args = { "format" },
+			stdin = true,
+		},
+		hledger_fmt_sort = {
+			command = "hledger-fmt",
+			args = { "sort" },
+			stdin = true,
+		},
 	},
 	formatters_by_ft = {
 		c = { "clang-format" },
@@ -67,6 +77,7 @@ require("conform").setup({
 		python = { "black" },
 		-- php = { "php_cs_fixer" },
 		php = { "phpcbf" },
+		ledger = { "hledger_fmt", "hledger_fmt_sort" },
 		twig = { "djlint" },
 	},
 	format_on_save = {
