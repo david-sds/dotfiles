@@ -41,8 +41,12 @@ require("codeium").setup({
 	virtual_text = {
 		enabled = true,
 		idle_delay = 300,
+		key_bindings = {
+			accept = "<C-g>",
+		},
 		filetypes = {
 			ledger = false,
+			c = false,
 		},
 	},
 })
@@ -188,9 +192,9 @@ cmp.setup.filetype({ "bash", "sh" }, {
 })
 
 cmp.setup.filetype("ledger", {
-	sources = cmp.config.sources(cmp.get_config().sources, {
+	sources = {
 		{ name = "hledger_accounts" },
-	}),
+	},
 })
 
 -- ============================================================================
