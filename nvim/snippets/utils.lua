@@ -85,7 +85,12 @@ M.parse_date = function(input)
 		sat = 6,
 	}
 
-	local target = weekdays[text:sub(1, 3)]
+	local weekday_abbr = text:sub(1, 3)
+	if weekday_abbr == "tod" then
+		return os.date("%Y-%m-%d")
+	end
+
+	local target = weekdays[weekday_abbr]
 	if target then
 		local today_wd = tonumber(os.date("%w"))
 		local diff = (today_wd - target) % 7

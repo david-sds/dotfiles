@@ -18,8 +18,8 @@ RESET="\[\e[0m\]"
 export PS1="$BLUE \W $RESET\$(__git_ps1 \"$GREEN($RED%s$GREEN)$RESET\")$WHITE\$$RESET "
 
 # System variables
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR='nvim -u ~/.config/nvim/minimal.lua'
+export VISUAL="$EDITOR"
 export TERMINAL="alacritty"
 # System paths
 export XCOMPOSEFILE="$HOME/.XCompose"
