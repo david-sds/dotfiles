@@ -31,9 +31,9 @@ vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buf
 vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
 
 -- Tab managements
-vim.keymap.set("n", "<leader>T", "<cmd>tabnew<CR>")
-vim.keymap.set("n", "<leader>W", "<cmd>tabclose<CR>")
-vim.keymap.set("n", "<leader>O", "<cmd>tabonly<CR>")
+vim.keymap.set("n", "<leader>T", "<CMD>tabnew<CR>")
+vim.keymap.set("n", "<leader>W", "<CMD>tabclose<CR>")
+vim.keymap.set("n", "<leader>O", "<CMD>tabonly<CR>")
 
 -- Inlay hints
 vim.keymap.set("n", "<leader>ti", function()
