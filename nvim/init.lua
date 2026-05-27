@@ -6,10 +6,12 @@ require("config.misc")
 
 require("plugins.grammar")
 require("plugins.editor")
-require("plugins.clients")
+require("plugins.diagnostics")
 require("plugins.completion")
 require("plugins.git")
 require("plugins.workflow")
+require("plugins.clients")
 require("plugins.styles")
+require("plugins.colorscheme")
 
 require("config.lsp").setup()

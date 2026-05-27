@@ -86,11 +86,11 @@ end, { desc = "FZF Git Diffs" })
 vim.g.tmux_navigator_disable_when_zoomed = 1
 vim.pack.add({ "https://github.com/christoomey/vim-tmux-navigator" })
 
-vim.keymap.set("n", "<c-h>", "<cmd><C-U>TmuxNavigateLeft<CR>")
-vim.keymap.set("n", "<c-j>", "<cmd><C-U>TmuxNavigateDown<CR>")
-vim.keymap.set("n", "<c-k>", "<cmd><C-U>TmuxNavigateUp<CR>")
-vim.keymap.set("n", "<c-l>", "<cmd><C-U>TmuxNavigateRight<CR>")
-vim.keymap.set("n", "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<CR>")
+vim.keymap.set("n", "<c-h>", "<CMD><C-U>TmuxNavigateLeft<CR>")
+vim.keymap.set("n", "<c-j>", "<CMD><C-U>TmuxNavigateDown<CR>")
+vim.keymap.set("n", "<c-k>", "<CMD><C-U>TmuxNavigateUp<CR>")
+vim.keymap.set("n", "<c-l>", "<CMD><C-U>TmuxNavigateRight<CR>")
+vim.keymap.set("n", "<c-\\>", "<CMD><C-U>TmuxNavigatePrevious<CR>")
 
 -- ============================================================================
 -- TITLE : Harpoon
@@ -131,7 +131,7 @@ require("oil").setup({
 	delete_to_trash = false,
 	use_default_keymaps = false,
 	keymaps = {
-		["~"] = "<cmd>edit $HOME<CR>",
+		["~"] = "<CMD>edit $HOME<CR>",
 		["g?"] = { "actions.show_help", mode = "n" },
 		["<CR>"] = { "actions.select", mode = "n" },
 		["<leader>sv"] = { "actions.select", opts = { vertical = true } },
@@ -144,7 +144,7 @@ require("oil").setup({
 		["`"] = { "actions.cd", mode = "n" },
 		["gs"] = { "actions.change_sort", mode = "n" },
 		["gx"] = { "actions.open_external", mode = "n" },
-		["gy"] = { "actions.copy_to_system_clipboard", mode = "n" },
+		["gy"] = { "actions.yank_entry", mode = "n" },
 		["g."] = { "actions.toggle_hidden", mode = "n" },
 		["g\\"] = { "actions.toggle_trash", mode = "n" },
 	},
