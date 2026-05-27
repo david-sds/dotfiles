@@ -29,12 +29,17 @@ vim.keymap.set("n", "<leader>l", "<CMD>nohlsearch<CR>", { desc = "Clear search h
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buffer" })
 vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
-vim.keymap.set("n", "<leader>I", "<CMD>InspectTree<CR>", { desc = "Inspect Tree" })
 
 -- Tab managements
 vim.keymap.set("n", "<leader>T", "<cmd>tabnew<CR>")
 vim.keymap.set("n", "<leader>W", "<cmd>tabclose<CR>")
 vim.keymap.set("n", "<leader>O", "<cmd>tabonly<CR>")
+
+-- Inlay hints
+vim.keymap.set("n", "<leader>ti", function()
+	local enabled = vim.lsp.inlay_hint.is_enabled()
+	vim.lsp.inlay_hint.enable(not enabled)
+end, { desc = "Toggle Inlay Hints" })
 
 -- Vim Pack
 vim.keymap.set("n", "<leader>U", function()
@@ -68,3 +73,13 @@ vim.keymap.set({ "n", "x", "o" }, "<A-i>", function()
 		vim.lsp.buf.selection_range(-vim.v.count1)
 	end
 end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+
+vim.keymap.set("v", "<leader>x", function()
+	local opts = { type = vim.api.nvim_get_mode().mode }
+	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), opts)
+
+	local text = table.concat(selection, "\n")
+	local result = load("return " .. text)()
+	vim.fn.setreg("z", result)
+	vim.cmd('normal! "zp')
+end, { desc = "Eval lua selection" })

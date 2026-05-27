@@ -47,6 +47,11 @@ return {
 			diagnostics = {
 				globals = { "vim" },
 			},
+			hint = {
+				enable = true,
+				setTypeHints = true,
+				paramType = true,
+			},
 			workspace = {
 				checkThirdParty = false,
 				library = core_pack_library({
