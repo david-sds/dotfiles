@@ -51,6 +51,8 @@ require("codeium").setup({
 	},
 })
 
+vim.keymap.set("n", "<leader>tc", "<CMD>Codeium Toggle<CR>", { desc = "Toggle Codeium" })
+
 -- ============================================================================
 -- TITLE : nvim-cmp
 -- ABOUT : A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
