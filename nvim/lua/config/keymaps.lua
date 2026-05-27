@@ -77,9 +77,8 @@ end, { desc = "Select child treesitter node or inner incremental lsp selections"
 vim.keymap.set("v", "<leader>x", function()
 	local opts = { type = vim.api.nvim_get_mode().mode }
 	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), opts)
-
 	local text = table.concat(selection, "\n")
-	local result = load("return " .. text)()
+	local result = vim.fn.expand(text)
 	vim.fn.setreg("z", result)
 	vim.cmd('normal! "zp')
-end, { desc = "Eval lua selection" })
+end, { desc = "Expand lua selection" })
