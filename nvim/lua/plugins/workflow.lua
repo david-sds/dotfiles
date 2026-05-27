@@ -144,7 +144,7 @@ require("oil").setup({
 		["`"] = { "actions.cd", mode = "n" },
 		["gs"] = { "actions.change_sort", mode = "n" },
 		["gx"] = { "actions.open_external", mode = "n" },
-		["gy"] = { "actions.copy_to_system_clipboard", mode = "n" },
+		["gy"] = { "actions.yank_entry", mode = "n" },
 		["g."] = { "actions.toggle_hidden", mode = "n" },
 		["g\\"] = { "actions.toggle_trash", mode = "n" },
 	},
