@@ -16,8 +16,8 @@ hl.config({
 	decoration = {
 		rounding = G.default_decoration_rounding,
 		rounding_power = G.default_decoration_rounding_power,
-		active_opacity = 1,
-		inactive_opacity = 0.90,
+		active_opacity = G.default_decoration_opacity,
+		inactive_opacity = G.default_decoration_inactive_opacity,
 		shadow = {
 			enabled = true,
 			range = 2,

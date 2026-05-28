@@ -1,6 +1,6 @@
 return {
 	terminal = "alacritty",
-	fileManager = "nemo",
+	fileManager = "nautilus",
 	browser = "zen-browser",
 	notes = "obsidian",
 	system = "btop",
@@ -12,8 +12,12 @@ return {
 	default_general_border_size = 2,
 	default_decoration_rounding = 8,
 	default_decoration_rounding_power = 6,
+	default_decoration_opacity = 1,
+	default_decoration_inactive_opacity = 0.9,
 	default_general_col_active_border = 0xEE8ec07c,
 	default_general_col_inactive_border = 0xEE4c7a5d,
-	default_decoration_shadow_color = 0xEE4c7a5d,
-	default_decoration_shadow_color_inactive = 0x004C7A5D,
+	default_decoration_shadow_color = 0xee504945,
+	default_decoration_shadow_color_inactive = 0xee504945,
+	custom_general_col_active_border = 0xeefb4934,
+	custom_general_col_inactive_border = 0xeec14a4a,
 }
