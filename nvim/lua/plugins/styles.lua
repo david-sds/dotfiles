@@ -1,14 +1,4 @@
 -- ============================================================================
--- TITLE : kanagawa.nvim
--- ABOUT : NeoVim dark colorscheme inspired by the colors of the famous painting by Katsushika Hokusai.
--- ============================================================================
-
-vim.pack.add({ "https://github.com/sainnhe/gruvbox-material" })
-vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
-vim.g.gruvbox_material_foreground = "original" -- material, mix, original
-vim.cmd("colorscheme gruvbox-material")
-
--- ============================================================================
 -- TITLE : which-key
 -- ABOUT : WhichKey helps you remember your Neovim keymaps, by showing keybindings as you type.
 -- ============================================================================
@@ -63,3 +53,24 @@ require("lualine").setup({
 		lualine_c = { smart_filename },
 	},
 })
+
+-- ============================================================================
+-- TITLE : render-markdown.nvim
+-- ABOUT : Plugin to improve viewing Markdown files in Neovim
+-- ============================================================================
+vim.pack.add({
+	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
+	"https://github.com/nvim-treesitter/nvim-treesitter",
+	"https://github.com/nvim-tree/nvim-web-devicons",
+})
+
+---@module 'render-markdown'
+---@type render.md.Config
+require("render-markdown").setup({})
+
+vim.keymap.set(
+	"n",
+	"<leader>tm",
+	"<CMD>RenderMarkdown toggle<CR>",
+	{ desc = "Toogle RenderMarkdown (render-markdown.nvim)" }
+)
