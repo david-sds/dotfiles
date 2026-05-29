@@ -1,3 +1,5 @@
+local utils = require("utils.vim")
+
 -- ============================================================================
 -- TITLE : fzf-lua
 -- ABOUT : lua-based fzf wrapper and integration.
@@ -37,10 +39,17 @@ vim.keymap.set("n", "<leader>fg", function()
 end, { desc = "FZF Live Grep" })
 
 vim.keymap.set("v", "<leader>fg", function()
-	local opts = { type = vim.api.nvim_get_mode().mode }
-	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), opts)
-	require("fzf-lua").live_grep({ search = selection[1] })
+	local selection = utils.get_visual_selection()
+	require("fzf-lua").live_grep({ search = selection })
 end, { desc = "FZF Live Grep (visual)" })
+
+vim.keymap.set("v", "<leader>fG", function()
+	local selection = utils.get_visual_selection()
+	require("fzf-lua").live_grep({
+		search = [[\<]] .. selection .. [[\>]],
+		no_esc = true,
+	})
+end, { desc = "FZF Grep Word (visual)" })
 
 vim.keymap.set("n", "<leader>fa", function()
 	require("fzf-lua").lsp_code_actions()
@@ -166,9 +175,8 @@ vim.keymap.set("n", "<leader>q", function()
 end, { desc = "GrugFar Find & Replace (grug-far.nvim)" })
 
 vim.keymap.set("v", "<leader>q", function()
-	local opts = { type = vim.api.nvim_get_mode().mode }
-	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), opts)
-	require("grug-far").open({ prefills = { search = selection[1] } })
+	local selection = utils.get_visual_selection()
+	require("grug-far").open({ prefills = { search = selection } })
 end, { desc = "Find & Replace (grug-far.nvim)" })
 
 --- @type grug.far.OptionsOverride
