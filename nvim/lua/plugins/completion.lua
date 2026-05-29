@@ -37,9 +37,11 @@ vim.pack.add({
 	"https://github.com/hrsh7th/nvim-cmp",
 })
 
-require("codeium").setup({
+local codeium = require("codeium")
+codeium.setup({
 	virtual_text = {
-		enabled = true,
+		enabled = false,
+		manual = true,
 		idle_delay = 300,
 		key_bindings = {
 			accept = "<C-g>",
@@ -50,6 +52,7 @@ require("codeium").setup({
 		},
 	},
 })
+codeium.s.enabled = false
 
 vim.keymap.set("n", "<leader>tc", "<CMD>Codeium Toggle<CR>", { desc = "Toggle Codeium" })
 

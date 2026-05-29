@@ -3,6 +3,8 @@
 -- ABOUT: sets some quality-of-life keymaps
 -- ============================================================================
 
+local utils = require("utils.vim")
+
 -- Better window navigation - Better window navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
@@ -74,11 +76,34 @@ vim.keymap.set({ "n", "x", "o" }, "<A-i>", function()
 	end
 end, { desc = "Select child treesitter node or inner incremental lsp selections" })
 
+-- Expand visual selection
+vim.keymap.set("v", "<leader>e", function()
+	local selection = utils.get_visual_selection()
+	local res = vim.fn.expand(selection)
+	vim.api.nvim_paste(res, true, -1)
+end, { desc = "Expand visual selection" })
+
+-- Eval Lua visual selection and paste result
+local eval_env = {
+	os = { date = os.date, time = os.time },
+	vim = {
+		inspect = vim.inspect,
+		fn = { stdpath = vim.fn.stdpath, expand = vim.fn.expand },
+	},
+	tonumber = tonumber,
+	tostring = tostring,
+	math = math,
+	string = string,
+	table = table,
+}
 vim.keymap.set("v", "<leader>x", function()
-	local opts = { type = vim.api.nvim_get_mode().mode }
-	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), opts)
-	local text = table.concat(selection, "\n")
-	local result = vim.fn.expand(text)
-	vim.fn.setreg("z", result)
-	vim.cmd('normal! "zp')
-end, { desc = "Expand lua selection" })
+	local selection = utils.get_visual_selection()
+	local eval = load("return " .. selection, nil, "t", eval_env)()
+	local res
+	if type(eval) == "table" then
+		res = vim.inspect(eval)
+	else
+		res = tostring(eval)
+	end
+	vim.api.nvim_paste(res, true, -1)
+end, { desc = "Eval lua visual selection" })
