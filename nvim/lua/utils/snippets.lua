@@ -26,7 +26,7 @@ M.parse_date = function(input)
 	local today = os.date("*t", now)
 	local year = today.year
 	local month = today.month
-	local text = tostring():lower():match("^%s*(.-)%s*$")
+	local text = tostring(input):lower():match("^%s*(.-)%s*$")
 
 	local normalized = text:gsub("[%s/%-]+", "-")
 
