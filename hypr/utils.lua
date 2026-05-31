@@ -73,7 +73,7 @@ end
 local zoom = 1.0
 M.change_zoom = function(delta)
 	return function()
-		zoom = math.max(1.0, math.min(4.0, zoom + delta))
+		zoom = math.max(1.0, zoom + delta)
 
 		hl.config({
 			cursor = {
