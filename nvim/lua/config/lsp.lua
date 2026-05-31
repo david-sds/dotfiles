@@ -5,19 +5,16 @@
 
 local M = {}
 
+-- LSP on attach keymaps
 function M.on_attach(_, bufnr)
-	local buf_map = function(mode, lhs, rhs, desc)
-		vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
-	end
-
-	buf_map("n", "gd", vim.lsp.buf.definition, "Go to Definition")
-	buf_map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-	buf_map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
-	buf_map("n", "gr", vim.lsp.buf.references, "Go to References")
-	buf_map("n", "gD", vim.lsp.buf.declaration, "Go to Declaration")
-	buf_map("n", "<leader>td", function()
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to Definition" })
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Documentation" })
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
+	vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "Go to References" })
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Go to Declaration" })
+	vim.keymap.set("n", "<leader>td", function()
 		vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-	end, "Toggle Diagnostics Signs")
+	end, { buffer = bufnr, desc = "Toggle Diagnostics Signs" })
 end
 
 function M.setup()
@@ -50,11 +47,6 @@ function M.setup()
 			},
 		},
 	})
-end
-
-function M.is_real_file_buffer(bufnr)
-	local name = vim.api.nvim_buf_get_name(bufnr)
-	return name ~= nil and name ~= "" and vim.startswith(name, "/")
 end
 
 return M

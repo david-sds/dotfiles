@@ -3,7 +3,7 @@ local s = ls.snippet
 local i = ls.insert_node
 local f = ls.function_node
 local fmt = require("luasnip.extras.fmt").fmt
-local utils = dofile(vim.fn.stdpath("config") .. "/snippets/utils.lua")
+local utils = require("utils.snippets")
 
 return {
 	s(
@@ -21,12 +21,12 @@ return {
 				i(1),
 				i(2),
 				i(3),
-				f(utils.opy, { 1 }),
-				f(utils.opy, { 2 }),
-				f(utils.opy, { 2 }),
-				f(utils.apitalize, { 2 }),
-				f(utils.opy, { 1 }),
-				f(utils.opy, { 2 }),
+				f(utils.copy, { 1 }),
+				f(utils.copy, { 2 }),
+				f(utils.copy, { 2 }),
+				f(utils.capitalize, { 2 }),
+				f(utils.copy, { 1 }),
+				f(utils.copy, { 2 }),
 			}
 		)
 	),
