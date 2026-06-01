@@ -3,7 +3,7 @@ local s = ls.snippet
 local i = ls.insert_node
 local f = ls.function_node
 local fmt = require("luasnip.extras.fmt").fmt
-local utils = dofile(vim.fn.stdpath("config") .. "/snippets/utils.lua")
+local utils = require("utils.snippets")
 
 return {
 	s(

@@ -4,7 +4,7 @@ local i = ls.insert_node
 local f = ls.function_node
 local t = ls.text_node
 local fmt = require("luasnip.extras.fmt").fmt
-local utils = dofile(vim.fn.stdpath("config") .. "/snippets/utils.lua")
+local utils = require("utils.snippets")
 
 local DATE_REGEX_BASE = "([%a%d/%-]+)"
 local function get_date_regex(prefix)
