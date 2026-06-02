@@ -1,4 +1,5 @@
 import Quickshell
+import QtQuick
 
 Scope {
     Variants {
@@ -8,6 +9,8 @@ Scope {
             required property var modelData
             screen: modelData
 
+            color: 'black'
+
             anchors {
                 top: true
                 left: true
@@ -16,8 +19,23 @@ Scope {
 
             implicitHeight: 30
 
-            ClockWidget {
+            Workspaces {
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.leftMargin: 8
+            }
+
+            Text {
                 anchors.centerIn: parent
+                text: Time.time
+                color: 'white'
+            }
+
+            Text {
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.rightMargin: 8
+                text: "right"
             }
         }
     }
