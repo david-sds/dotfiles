@@ -1,5 +1,6 @@
 import Quickshell
 import QtQuick
+import "components"
 
 Scope {
     Variants {
@@ -26,16 +27,21 @@ Scope {
             }
 
             Text {
+                font.family: Globals.fontFamily
+                font.pixelSize: Globals.fontPixelSize
                 anchors.centerIn: parent
                 text: Time.time
                 color: 'white'
             }
 
-            Text {
+            Row {
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.rightMargin: 8
-                text: "right"
+                spacing: 12
+
+                Battery {}
+                Power {}
             }
         }
     }

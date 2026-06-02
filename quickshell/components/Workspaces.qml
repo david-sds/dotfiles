@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell.Hyprland
+import ".."
 
 Row {
     id: root
@@ -18,7 +19,7 @@ Row {
             height: 22
             radius: 4
 
-            color: isActive ? "#ffffff" : "#000000"
+            color: isActive ? Globals.highlightColor : Globals.backgroundColor
 
             MouseArea {
                 anchors.fill: parent
@@ -26,9 +27,11 @@ Row {
             }
 
             Text {
+                font.family: Globals.fontFamily
+                font.pixelSize: Globals.fontPixelSize
                 anchors.centerIn: parent
                 text: (parent.index + 1) % 10
-                color: parent.isActive ? "#000000" : (parent.ws ? "#ffffff" : "#686868")
+                color: parent.isActive ? Globals.backgroundColor : (parent.ws ? Globals.highlightColor : Globals.foregroundColor)
             }
         }
     }
