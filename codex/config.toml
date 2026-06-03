@@ -16,3 +16,6 @@ trust_level = "trusted"
 
 [projects."/home/david/Work"]
 trust_level = "trusted"
+
+[projects."/home/david/Work/educria"]
+trust_level = "trusted"

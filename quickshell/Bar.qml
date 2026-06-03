@@ -38,10 +38,11 @@ Scope {
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.rightMargin: 8
-                spacing: 16
+                spacing: 6
 
-                Audio {}
+                Network {}
                 Resources {}
+                Audio {}
                 Battery {}
                 Power {}
             }

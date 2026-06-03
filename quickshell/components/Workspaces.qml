@@ -31,7 +31,7 @@ Row {
                 font.pixelSize: Globals.fontPixelSize
                 anchors.centerIn: parent
                 text: (parent.index + 1) % 10
-                color: parent.isActive ? Globals.backgroundColor : (parent.ws ? Globals.highlightColor : Globals.foregroundColor)
+                color: parent.isActive ? Globals.backgroundColor : (parent.ws ? Globals.highlightColor : "#686868")
             }
         }
     }

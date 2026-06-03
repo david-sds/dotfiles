@@ -14,7 +14,7 @@ Rectangle {
     property bool isHeadphones: defaultSinkPort.toLowerCase().includes("headphone") || defaultSinkPort.toLowerCase().includes("headset")
     property string icon: muted ? formatMutedIcon : (isHeadphones ? headphoneIcon : defaultIcons[iconIndex])
 
-    width: 22
+    width: 50
     height: 22
     radius: 4
     color: Globals.backgroundColor

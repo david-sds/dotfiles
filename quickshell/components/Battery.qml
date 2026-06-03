@@ -11,7 +11,7 @@ Rectangle {
     property bool plugged: UPower.displayDevice && UPower.displayDevice.state === UPowerDeviceState.FullyCharged
     property string icon: plugged ? "" : (charging ? chargingIcons[iconIndex] : defaultIcons[iconIndex])
 
-    width: 22
+    width: 50
     height: 22
     radius: 4
 
