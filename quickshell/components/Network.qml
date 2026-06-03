@@ -21,6 +21,17 @@ Rectangle {
     radius: 4
     color: Globals.backgroundColor
 
+    Process {
+        id: networkProc
+    }
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: networkProc.exec(["sh", "-c", "$HOME/.local/bin/open-floating-tui impala"])
+    }
+
     Text {
         anchors.centerIn: parent
         font.family: Globals.fontFamily

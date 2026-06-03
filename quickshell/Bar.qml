@@ -40,6 +40,7 @@ Scope {
                 anchors.rightMargin: 8
                 spacing: 6
 
+                Bluetooth {}
                 Network {}
                 Resources {}
                 Audio {}
