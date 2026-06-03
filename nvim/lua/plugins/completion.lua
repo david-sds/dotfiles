@@ -40,7 +40,7 @@ vim.pack.add({
 local codeium = require("codeium")
 codeium.setup({
 	virtual_text = {
-		enabled = false,
+		enabled = true,
 		manual = true,
 		idle_delay = 300,
 		key_bindings = {
