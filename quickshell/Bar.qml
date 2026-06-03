@@ -7,6 +7,7 @@ Scope {
         model: Quickshell.screens
 
         PanelWindow {
+            id: panelWindow
             required property var modelData
             screen: modelData
 
@@ -38,8 +39,11 @@ Scope {
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.rightMargin: 8
-                spacing: 6
+                spacing: 16
 
+                Tray {
+                    parentWindow: panelWindow
+                }
                 Keyboard {}
                 Bluetooth {}
                 Network {}

@@ -11,13 +11,14 @@ Rectangle {
     property bool plugged: UPower.displayDevice && UPower.displayDevice.state === UPowerDeviceState.FullyCharged
     property string icon: plugged ? "" : (charging ? chargingIcons[iconIndex] : defaultIcons[iconIndex])
 
-    width: 50
+    width: batteryText.implicitWidth
     height: 22
     radius: 4
 
     color: Globals.backgroundColor
 
     Text {
+        id: batteryText
         anchors.centerIn: parent
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize

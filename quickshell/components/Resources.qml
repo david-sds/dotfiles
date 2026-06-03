@@ -3,11 +3,9 @@ import Quickshell.Io
 import ".."
 
 Rectangle {
-
-    width: 22
+    width: resourcesText.implicitWidth
     height: 22
     radius: 4
-
     color: Globals.backgroundColor
 
     Process {
@@ -21,6 +19,7 @@ Rectangle {
     }
 
     Text {
+        id: resourcesText
         anchors.centerIn: parent
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize

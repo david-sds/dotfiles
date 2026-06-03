@@ -16,7 +16,7 @@ Rectangle {
     property int iconIndex: Math.min(Math.floor(signalStrength / 20), 4)
     property string icon: wiredConnected ? ethernetIcon : (wifiConnected ? defaultIcons[iconIndex] : disconnectedIcon)
 
-    width: 22
+    width: networkText.implictWidth
     height: 22
     radius: 4
     color: Globals.backgroundColor
@@ -33,6 +33,7 @@ Rectangle {
     }
 
     Text {
+        id: networkText
         anchors.centerIn: parent
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize

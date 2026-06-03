@@ -13,8 +13,8 @@ Rectangle {
     property string icon: ""
     property string currentLayout
 
+    width: kbText.implicitWidth
     height: 22
-    width: 22
     radius: 4
     color: Globals.backgroundColor
 
@@ -50,6 +50,7 @@ Rectangle {
     }
 
     Text {
+        id: kbText
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
         font.family: Globals.fontFamily

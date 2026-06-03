@@ -9,7 +9,7 @@ Rectangle {
     property bool isBluetoothOn: Bluetooth.defaultAdapter?.enabled ?? false
     property string icon: isBluetoothOn ? bluetoothOnIcon : bluetoothOffIcon
 
-    width: 22
+    width: bluetoothText.implicitWidth
     height: 22
     radius: 4
     color: Globals.backgroundColor
@@ -26,6 +26,7 @@ Rectangle {
     }
 
     Text {
+        id: bluetoothText
         anchors.centerIn: parent
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize

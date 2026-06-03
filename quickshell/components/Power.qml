@@ -3,7 +3,7 @@ import Quickshell.Io
 import ".."
 
 Rectangle {
-    width: 22
+    width: powerText.implicitWidth
     height: 22
     radius: 4
 
@@ -20,6 +20,7 @@ Rectangle {
     }
 
     Text {
+        id: powerText
         anchors.centerIn: parent
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize
