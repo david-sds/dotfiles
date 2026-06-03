@@ -1,11 +1,13 @@
 import QtQuick
 import Quickshell.Io
-import Quickshell.Networking
+import Quickshell.Bluetooth
 import ".."
 
 Rectangle {
     property string bluetoothOnIcon: ""
     property string bluetoothOffIcon: "󰂲"
+    property bool isBluetoothOn: Bluetooth.defaultAdapter?.enabled ?? false
+    property string icon: isBluetoothOn ? bluetoothOnIcon : bluetoothOffIcon
 
     width: 22
     height: 22
