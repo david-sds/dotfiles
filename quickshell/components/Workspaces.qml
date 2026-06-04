@@ -19,7 +19,7 @@ Row {
             height: 22
             radius: 4
 
-            color: isActive ? Globals.highlightColor : Globals.backgroundColor
+            color: /*isActive ? Globals.foregroundColor : */ Globals.backgroundColor
 
             MouseArea {
                 anchors.fill: parent
@@ -31,7 +31,7 @@ Row {
                 font.pixelSize: Globals.fontPixelSize
                 anchors.centerIn: parent
                 text: (parent.index + 1) % 10
-                color: parent.isActive ? Globals.backgroundColor : (parent.ws ? Globals.highlightColor : "#686868")
+                color: parent.isActive ? Globals.primaryColor : (parent.ws ? Globals.secondaryColor : Globals.grey)
             }
         }
     }

@@ -11,7 +11,7 @@ Scope {
             required property var modelData
             screen: modelData
 
-            color: 'black'
+            color: Globals.backgroundColor
 
             anchors {
                 top: true
@@ -32,7 +32,7 @@ Scope {
                 font.pixelSize: Globals.fontPixelSize
                 anchors.centerIn: parent
                 text: Time.time
-                color: 'white'
+                color: Globals.foregroundColor
             }
 
             Row {

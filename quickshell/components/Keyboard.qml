@@ -55,7 +55,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize
-        color: Globals.highlightColor
+        color: mouseArea.containsMouse ? Globals.primaryColor : Globals.foregroundColor
         text: parent.currentLayout + " " + parent.icon
     }
 }

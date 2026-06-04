@@ -7,7 +7,7 @@ Rectangle {
     height: 22
     radius: 4
 
-    color: mouseArea.containsMouse ? Globals.highlightColor : Globals.backgroundColor
+    color: Globals.backgroundColor
 
     Process {
         id: powerProc
@@ -24,7 +24,7 @@ Rectangle {
         anchors.centerIn: parent
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize
-        color: mouseArea.containsMouse ? Globals.backgroundColor : Globals.highlightColor
+        color: mouseArea.containsMouse ? Globals.primaryColor : Globals.foregroundColor
         text: ''
     }
 }

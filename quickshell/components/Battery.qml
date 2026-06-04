@@ -22,7 +22,7 @@ Rectangle {
         anchors.centerIn: parent
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize
-        color: Globals.highlightColor
+        color: Globals.foregroundColor
         text: icon + ' ' + percentage + '%'
     }
 }
