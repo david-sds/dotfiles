@@ -34,8 +34,8 @@ Rectangle {
                 property var item: systemTrayItems.values[index]
                 Image {
                     anchors.centerIn: parent
-                    width: 12
-                    height: 12
+                    width: 14
+                    height: 14
                     source: item.icon
                     fillMode: Image.PreserveAspectFit
                 }
