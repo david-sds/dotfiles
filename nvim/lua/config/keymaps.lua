@@ -31,6 +31,14 @@ vim.keymap.set("n", "<leader>l", "<CMD>nohlsearch<CR>", { desc = "Clear search h
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buffer" })
 vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
+vim.keymap.set("n", "<leader>K", function()
+	local current = vim.api.nvim_get_current_buf()
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if buf ~= current then
+			vim.api.nvim_buf_delete(buf, { force = true })
+		end
+	end
+end, { desc = "Closes all buffers and reopens last" })
 
 -- Tab managements
 vim.keymap.set("n", "<leader>T", "<CMD>tabnew<CR>")
