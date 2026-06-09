@@ -34,6 +34,7 @@ require("nvim-treesitter").install({
 	"commonlisp",
 	"ledger",
 	"qmljs",
+	"typst",
 })
 
 -- Start Treesitter automatically for every filetype buffer.
@@ -99,6 +100,8 @@ require("mason-tool-installer").setup({
 		"emmet-language-server",
 		-- qml
 		"qmlls",
+		-- typst
+		"tinymist",
 	},
 	auto_update = false,
 	run_on_start = true,
