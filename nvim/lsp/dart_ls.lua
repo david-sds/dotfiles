@@ -18,7 +18,8 @@ return {
 	filetypes = { "dart" },
 
 	root_dir = function(bufnr, on_dir)
-		if not lsp_config_module.is_real_file_buffer(bufnr) then
+		local name = vim.api.nvim_buf_get_name(bufnr)
+		if vim.fn.filereadable(name) == 0 then
 			return
 		end
 

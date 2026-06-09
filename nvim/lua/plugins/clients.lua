@@ -12,6 +12,13 @@ vim.g.db_ui_use_nerd_fonts = 1
 
 vim.keymap.set("n", "<leader>db", "<CMD>tabnew | DBUI<CR>", { desc = "Open Dadbod Tab" })
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "mysql",
+	callback = function()
+		vim.bo.commentstring = "-- %s"
+	end,
+})
+
 -- ============================================================================
 -- TITLE : kulala.nvim
 -- ABOUT : A fully-featured REST Client Interface for Neovim.
