@@ -1,12 +1,16 @@
 G = require("settings.globals")
 U = require("utils")
 
-hl.bind("SUPER + mouse_down", U.change_zoom(1), { repeating = true })
-hl.bind("SUPER + mouse_up", U.change_zoom(-1), { repeating = true })
-hl.bind("SUPER + equal", U.change_zoom(1), { repeating = true })
-hl.bind("SUPER + minus", U.change_zoom(-1), { repeating = true })
-hl.bind("SUPER + KP_Add", U.change_zoom(1), { repeating = true })
-hl.bind("SUPER + KP_Subtract", U.change_zoom(-1), { repeating = true })
+U.multibind({
+	"SUPER + mouse_up",
+	"SUPER + minus",
+	"SUPER + KP_Subtract",
+}, U.change_zoom(-1), { repeating = true })
+U.multibind({
+	"SUPER + mouse_down",
+	"SUPER + equal",
+	"SUPER + KP_Add",
+}, U.change_zoom(1), { repeating = true })
 
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind("SUPER + Q", hl.dsp.window.close())
@@ -52,6 +56,36 @@ for i = 1, 10 do
 	hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
 	hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i, follow = true }))
 end
+
+local function get_relative_workspace_id(diff)
+	local wid = hl.get_active_workspace().id
+	return ((wid + diff - 1) % 10) + 1
+end
+
+U.multibind({
+	"SUPER + Page_Up",
+	"SUPER + ALT + L",
+}, function()
+	hl.dispatch(hl.dsp.focus({ workspace = get_relative_workspace_id(1) }))
+end)
+U.multibind({
+	"SUPER + Page_Down",
+	"SUPER + ALT + H",
+}, function()
+	hl.dispatch(hl.dsp.focus({ workspace = get_relative_workspace_id(-1) }))
+end)
+U.multibind({
+	"SUPER + SHIFT + Page_Up",
+	"SUPER + SHIFT + ALT + L",
+}, function()
+	hl.dispatch(hl.dsp.window.move({ workspace = get_relative_workspace_id(1), follow = true }))
+end)
+U.multibind({
+	"SUPER + SHIFT + Page_Down",
+	"SUPER + SHIFT + ALT + H",
+}, function()
+	hl.dispatch(hl.dsp.window.move({ workspace = get_relative_workspace_id(-1), follow = true }))
+end)
 
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })

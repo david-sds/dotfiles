@@ -90,4 +90,13 @@ M.change_zoom = function(delta)
 	end
 end
 
+---@param keys_list string[]
+---@param dispatcher HL.Dispatcher|function
+---@param opts? HL.BindOptions
+M.multibind = function(keys_list, dispatcher, opts)
+	for _, value in ipairs(keys_list) do
+		hl.bind(value, dispatcher, opts)
+	end
+end
+
 return M
