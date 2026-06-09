@@ -22,6 +22,8 @@ Row {
             color: /*isActive ? Globals.foregroundColor : */ Globals.backgroundColor
 
             MouseArea {
+                id: mouseArea
+                hoverEnabled: true
                 anchors.fill: parent
                 onClicked: Hyprland.dispatch('hl.dsp.focus({ workspace = "' + (parent.index + 1) + '" })')
             }
@@ -31,7 +33,7 @@ Row {
                 font.pixelSize: Globals.fontPixelSize
                 anchors.centerIn: parent
                 text: (parent.index + 1) % 10
-                color: parent.isActive ? Globals.primaryColor : (parent.ws ? Globals.secondaryColor : Globals.grey)
+                color: mouseArea.containsMouse || parent.isActive ? Globals.primaryColor : (parent.ws ? Globals.secondaryColor : Globals.grey)
             }
         }
     }
