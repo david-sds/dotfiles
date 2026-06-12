@@ -139,6 +139,7 @@ require("oil").setup({
 	default_file_explorer = true,
 	delete_to_trash = false,
 	use_default_keymaps = false,
+	columns = { "icon", "size", "permissions" },
 	keymaps = {
 		["~"] = "<CMD>edit $HOME<CR>",
 		["g?"] = { "actions.show_help", mode = "n" },
