@@ -2,48 +2,52 @@
 -- TITLE : nvim-treesitter
 -- ABOUT : The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it.
 -- ============================================================================
+
 vim.pack.add({
-	"https://github.com/nvim-treesitter/nvim-treesitter",
-	"https://github.com/nvim-treesitter/nvim-treesitter-context",
+	"https://github.com/arborist-ts/arborist.nvim",
 })
 
--- Requires tree-sitter-cli
-require("nvim-treesitter").install({
-	"c",
-	"bash",
-	"lua",
-	"vim",
-	"vimdoc",
-	"query",
-	"markdown",
-	"markdown_inline",
-	"javascript",
-	"typescript",
-	"dart",
-	"json",
-	"http",
-	"xml",
-	"twig",
-	"php",
-	"phpdoc",
-	"yaml",
-	"toml",
-	"sql",
-	"java",
-	"prisma",
-	"commonlisp",
-	"ledger",
-	"qmljs",
-	"typst",
+require("arborist").setup({
+	update_cadence = "manual",
+	install_popular = false,
+	ensure_installed = {
+		"bash",
+		"lua",
+		"vim",
+		"vimdoc",
+		"query",
+		"markdown",
+		"markdown_inline",
+		"javascript",
+		"typescript",
+		"dart",
+		"json",
+		"http",
+		"xml",
+		"twig",
+		"php",
+		"phpdoc",
+		"yaml",
+		"toml",
+		"sql",
+		"java",
+		"prisma",
+		"commonlisp",
+		"ledger",
+		"qmljs",
+		"typst",
+	},
 })
 
--- Start Treesitter automatically for every filetype buffer.
-local ts_group = vim.api.nvim_create_augroup("TreesitterStartGroup", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-	group = ts_group,
-	pattern = "*",
-	callback = function(ev)
-		pcall(vim.treesitter.start, ev.buf)
+local yaml_colors = vim.api.nvim_create_augroup("YamlColors", { clear = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = yaml_colors,
+	pattern = "gruvbox-material",
+	callback = function()
+		vim.api.nvim_set_hl(0, "@property.yaml", { link = "Green" })
+		vim.api.nvim_set_hl(0, "@string.yaml", { link = "Aqua" })
+		vim.api.nvim_set_hl(0, "@property.json", { link = "Green" })
+		vim.api.nvim_set_hl(0, "@string.json", { link = "Aqua" })
 	end,
 })
 
