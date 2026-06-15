@@ -1,12 +1,15 @@
 -- ============================================================================
--- TITLE : arborist.nvim
--- ABOUT : WASM-first tree-sitter parser manager for Neovim 0.12+.
+-- TITLE : nvim-treesitter
+-- ABOUT : The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it.
 -- ============================================================================
 
 vim.pack.add({
 	"https://github.com/arborist-ts/arborist.nvim",
 })
+
 require("arborist").setup({
+	update_cadence = "manual",
+	install_popular = false,
 	ensure_installed = {
 		"bash",
 		"lua",
@@ -41,11 +44,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	group = yaml_colors,
 	pattern = "gruvbox-material",
 	callback = function()
-		vim.api.nvim_set_hl(0, "@property.yaml", { link = "Yellow" })
+		vim.api.nvim_set_hl(0, "@property.yaml", { link = "Green" })
 		vim.api.nvim_set_hl(0, "@string.yaml", { link = "Aqua" })
-		vim.api.nvim_set_hl(0, "@boolean.yaml", { link = "Purple" })
-		vim.api.nvim_set_hl(0, "@number.yaml", { link = "Orange" })
-		vim.api.nvim_set_hl(0, "@constant.builtin.yaml", { link = "Red" })
+		vim.api.nvim_set_hl(0, "@property.json", { link = "Green" })
+		vim.api.nvim_set_hl(0, "@string.json", { link = "Aqua" })
 	end,
 })
 
