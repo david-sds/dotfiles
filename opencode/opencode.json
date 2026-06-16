@@ -10,7 +10,7 @@
     "codesearch": "allow",
     "webfetch": "allow",
     "external_directory": {
-      "~/.agents/skills/hal9001/**": "allow"
+      "~/.agents/skills/**": "allow"
     },
     "bash": {
       "*": "ask",
@@ -25,7 +25,8 @@
       "find *": "allow"
     },
     "skill": {
-      "hal9001": "allow"
+      "hal9001": "allow",
+      "custom-cv": "allow"
     }
   },
   "skills": {
