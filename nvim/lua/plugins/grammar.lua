@@ -1,41 +1,45 @@
 -- ============================================================================
--- TITLE : nvim-treesitter
--- ABOUT : The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it.
+-- TITLE : arborist.nvim
+-- ABOUT : WASM-first tree-sitter parser manager for Neovim 0.12+. Parsers install automatically when you open files. No manual steps, no maintenance.
 -- ============================================================================
 
 vim.pack.add({
-	"https://github.com/nvim-treesitter/nvim-treesitter",
-	"https://github.com/nvim-treesitter/nvim-treesitter-context",
+	"https://github.com/arborist-ts/arborist.nvim",
 })
 
--- Requires tree-sitter-cli
-require("nvim-treesitter").install({
-	"c",
-	"bash",
-	"lua",
-	"vim",
-	"vimdoc",
-	"query",
-	"markdown",
-	"markdown_inline",
-	"javascript",
-	"typescript",
-	"dart",
-	"json",
-	"http",
-	"xml",
-	"twig",
-	"php",
-	"phpdoc",
-	"yaml",
-	"toml",
-	"sql",
-	"java",
-	"prisma",
-	"commonlisp",
-	"ledger",
-	"qmljs",
-	"typst",
+require("arborist").setup({
+	update_cadence = "manual",
+	install_popular = false,
+	ensure_installed = {
+		"bash",
+		"lua",
+		"vim",
+		"vimdoc",
+		"query",
+		"markdown",
+		"markdown_inline",
+		"javascript",
+		"typescript",
+		"dart",
+		"json",
+		"http",
+		"xml",
+		"twig",
+		"php",
+		"phpdoc",
+		"yaml",
+		"toml",
+		"sql",
+		"java",
+		"prisma",
+		"commonlisp",
+		"ledger",
+		"qmljs",
+		"typst",
+	},
+	ignore = {
+		"env",
+	},
 })
 
 local yaml_colors = vim.api.nvim_create_augroup("YamlColors", { clear = true })
