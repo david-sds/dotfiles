@@ -52,7 +52,9 @@ vim.keymap.set("v", "<leader>fG", function()
 end, { desc = "FZF Grep Word (visual)" })
 
 vim.keymap.set("n", "<leader>fa", function()
-	require("fzf-lua").lsp_code_actions()
+	require("fzf-lua").lsp_code_actions({
+		no_resume = true,
+	})
 end, { desc = "FZF Find Code Action" })
 
 vim.keymap.set("n", "<leader>fb", function()
