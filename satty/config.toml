@@ -1,6 +1,6 @@
 [general]
 output-filename = "Pictures/Screenshots/%Y-%m-%d-%H%M%S_satty.png"
-save-after-copy = true
+copy-command = "wl-copy"
 initial-tool = "arrow"
 early-exit = true
 
