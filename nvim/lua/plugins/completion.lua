@@ -75,26 +75,20 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
-local function fetch_hledger_accounts()
-	local f = io.popen("hledger accounts")
-	if not f then
-		return {}
-	end
-
-	local accounts = {}
-	for line in f:lines() do
-		if line ~= "" then
-			table.insert(accounts, line)
-		end
-	end
-
-	f:close()
-	return accounts
+local hledger_accounts = {}
+local function refresh_hledger_accounts()
+	vim.fn.jobstart({ "hledger", "accounts" }, {
+		stdout_buffered = true,
+		on_stdout = function(_, data)
+			hledger_accounts = vim.tbl_filter(function(x)
+				return x ~= ""
+			end, data)
+		end,
+	})
 end
 
 local hledger_accounts_source = {}
 function hledger_accounts_source:complete(_, callback)
-	local hledger_accounts = fetch_hledger_accounts()
 	local items = {}
 	for _, name in ipairs(hledger_accounts) do
 		table.insert(items, {
@@ -104,8 +98,14 @@ function hledger_accounts_source:complete(_, callback)
 	end
 	callback(items)
 end
-
 cmp.register_source("hledger_accounts", hledger_accounts_source)
+
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
+	pattern = "*.journal",
+	callback = function()
+		refresh_hledger_accounts()
+	end,
+})
 
 ---@type cmp.ConfigSchema
 local opts = {

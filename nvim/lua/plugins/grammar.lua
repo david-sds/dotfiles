@@ -1,6 +1,6 @@
 -- ============================================================================
--- TITLE : nvim-treesitter
--- ABOUT : The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it.
+-- TITLE : arborist.nvim
+-- ABOUT : WASM-first tree-sitter parser manager for Neovim 0.12+. Parsers install automatically when you open files. No manual steps, no maintenance.
 -- ============================================================================
 
 vim.pack.add({
@@ -36,6 +36,9 @@ require("arborist").setup({
 		"ledger",
 		"qmljs",
 		"typst",
+	},
+	ignore = {
+		"env",
 	},
 })
 
