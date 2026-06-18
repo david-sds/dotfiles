@@ -5,7 +5,7 @@
 --   > github : https://github.com/redhat-developer/yaml-language-server
 -- ============================================================================
 
-local lsp_config_module = require("config.lsp")
+local lsp_config_module = require("core.lsp")
 local on_attach = lsp_config_module.on_attach
 
 local schemastore = require("schemastore")
