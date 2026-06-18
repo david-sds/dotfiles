@@ -5,7 +5,15 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[[ ! -n "$TMUX" ]] && [[ ! -n "$NVIM" ]] && tmux
+# Exec Tmux on every session
+if [[ -z $TMUX && -z $NVIM ]]; then
+  exec tmux
+fi
+
+# Attach to a single Tmux session if in a Neovim terminal
+if [[ -n $NVIM ]]; then
+  exec tmux new-session -A -s nvim
+fi
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
