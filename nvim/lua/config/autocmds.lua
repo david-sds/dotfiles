@@ -44,14 +44,15 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Help pages adjustments
 local help_pages_group = vim.api.nvim_create_augroup("HelpPagesGroup", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd("BufWinEnter", {
 	group = help_pages_group,
-	pattern = "help",
 	callback = function()
-		vim.schedule(function()
-			vim.cmd("wincmd L")
-			vim.cmd("vertical resize 82")
-			vim.cmd("set wrap")
-		end)
+		if vim.bo.filetype ~= "help" then
+			return
+		end
+
+		vim.cmd("wincmd L")
+		vim.cmd("vertical resize 85")
+		vim.wo.wrap = true
 	end,
 })
