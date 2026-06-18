@@ -5,7 +5,7 @@
 --   > github : https://github.com/LuaLS/lua-language-server
 -- ============================================================================
 
-local lsp_config_module = require("config.lsp")
+local lsp_config_module = require("core.lsp")
 local on_attach = lsp_config_module.on_attach
 
 local function core_pack_library(plugin_names)

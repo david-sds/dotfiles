@@ -7,7 +7,7 @@
 
 -- Reference: https://github.com/dlvandenberg/dotfiles/blob/main/.config/nvim-11/lsp/eslint.lua
 
-local lsp_config_module = require("config.lsp")
+local lsp_config_module = require("core.lsp")
 local on_attach = lsp_config_module.on_attach
 
 local function insert_package_json(config_files, field, fname)

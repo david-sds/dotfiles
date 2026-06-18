@@ -3,6 +3,14 @@
 -- ABOUT : automatically run code on defined events (e.g. save, yank)
 -- ============================================================================
 
+local U = require("utils.vim")
+
+U.close_with_q({
+	"nvim-undotree",
+	"help",
+	"qf",
+})
+
 -- Restore last cursor position when reopening a file
 local last_cursor_group = vim.api.nvim_create_augroup("LastCursorGroup", { clear = true })
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -26,19 +34,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 			higroup = "IncSearch",
 			timeout = 200,
 		})
-	end,
-})
-
--- Close buffer with Q
-local close_q_group = vim.api.nvim_create_augroup("CloseWithQGroup", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-	group = close_q_group,
-	pattern = {
-		"nvim-undotree",
-		"help",
-	},
-	callback = function(event)
-		vim.keymap.set("n", "q", "<CMD>quit!<CR>", { buffer = event.buf, silent = true })
 	end,
 })
 
