@@ -1,3 +1,5 @@
+local U = require("utils.vim")
+
 -- ============================================================================
 -- TITLE : gitsigns.nvim
 -- ABOUT : Deep buffer integration for Git
@@ -17,6 +19,8 @@ vim.keymap.set("n", "<leader>gr", function()
 	require("nvim-tree.api").tree.reload()
 	require("gitsigns").attach()
 end, { desc = "Reload Git" })
+
+U.close_with_q("gitsigns-blame")
 
 -- ============================================================================
 -- TITLE : Diffview.nvim

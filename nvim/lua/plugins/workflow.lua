@@ -52,7 +52,9 @@ vim.keymap.set("v", "<leader>fG", function()
 end, { desc = "FZF Grep Word (visual)" })
 
 vim.keymap.set("n", "<leader>fa", function()
-	require("fzf-lua").lsp_code_actions()
+	require("fzf-lua").lsp_code_actions({
+		no_resume = true,
+	})
 end, { desc = "FZF Find Code Action" })
 
 vim.keymap.set("n", "<leader>fb", function()
@@ -137,11 +139,10 @@ vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
 
 require("oil").setup({
 	default_file_explorer = true,
-	delete_to_trash = false,
+	delete_to_trash = true,
 	use_default_keymaps = false,
 	columns = { "icon", "size", "permissions" },
 	keymaps = {
-		["~"] = "<CMD>edit $HOME<CR>",
 		["g?"] = { "actions.show_help", mode = "n" },
 		["<CR>"] = { "actions.select", mode = "n" },
 		["<leader>sv"] = { "actions.select", opts = { vertical = true } },
@@ -157,6 +158,18 @@ require("oil").setup({
 		["gy"] = { "actions.yank_entry", mode = "n" },
 		["g."] = { "actions.toggle_hidden", mode = "n" },
 		["g\\"] = { "actions.toggle_trash", mode = "n" },
+		["gh"] = {
+			"<CMD>edit $HOME<CR>",
+			mode = "n",
+			nowait = true,
+			desc = "Go to the Home directory",
+		},
+		["g/"] = {
+			"<CMD>edit /<CR>",
+			mode = "n",
+			nowait = true,
+			desc = "Go to the Home directory",
+		},
 	},
 	view_options = {
 		show_hidden = true,
