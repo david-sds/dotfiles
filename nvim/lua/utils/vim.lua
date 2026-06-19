@@ -5,6 +5,19 @@ M.get_visual_selection = function()
 	return vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), opts)[1]
 end
 
+M.open_floating_win = function(buf)
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(vim.o.lines * 0.8)
+	return vim.api.nvim_open_win(buf, true, {
+		relative = "editor",
+		width = width,
+		height = height,
+		col = math.floor((vim.o.columns - width) / 2),
+		row = math.floor((vim.o.lines - height) / 2),
+		border = "none",
+	})
+end
+
 -- Close buffer with Q
 local close_q_group = vim.api.nvim_create_augroup("CloseWithQGroup", { clear = true })
 M.close_with_q = function(pattern)
