@@ -115,3 +115,47 @@ vim.keymap.set("v", "<leader>x", function()
 	end
 	vim.api.nvim_paste(res, true, -1)
 end, { desc = "Eval lua visual selection" })
+
+local term_buf = nil
+local term_win = nil
+
+local function get_term_win(term_buf)
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(vim.o.lines * 0.8)
+	return vim.api.nvim_open_win(term_buf, true, {
+		relative = "editor",
+		width = width,
+		height = height,
+		col = math.floor((vim.o.columns - width) / 2),
+		row = math.floor((vim.o.lines - height) / 2),
+		border = "none",
+	})
+end
+
+local function toggle_float_term()
+	if term_win and vim.api.nvim_win_is_valid(term_win) then
+		vim.api.nvim_win_close(term_win, true)
+		term_win = nil
+		return
+	end
+
+	if not term_buf or not vim.api.nvim_buf_is_valid(term_buf) then
+		term_buf = vim.api.nvim_create_buf(false, true)
+		term_win = get_term_win(term_buf)
+		vim.fn.jobstart(vim.o.shell, { term = true })
+	else
+		term_win = get_term_win(term_buf)
+	end
+
+	vim.cmd.startinsert()
+end
+
+vim.keymap.set("n", "<A-i>", toggle_float_term)
+vim.keymap.set("i", "<A-i>", function()
+	vim.cmd.stopinsert()
+	toggle_float_term()
+end)
+vim.keymap.set("t", "<A-i>", function()
+	vim.cmd.stopinsert()
+	toggle_float_term()
+end)
