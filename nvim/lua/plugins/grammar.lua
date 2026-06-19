@@ -39,6 +39,7 @@ require("arborist").setup({
 	},
 	ignore = {
 		"env",
+		"conf",
 	},
 })
 
