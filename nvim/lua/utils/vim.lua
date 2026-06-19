@@ -14,7 +14,7 @@ M.open_floating_win = function(buf)
 		height = height,
 		col = math.floor((vim.o.columns - width) / 2),
 		row = math.floor((vim.o.lines - height) / 2),
-		border = "none",
+		border = "rounded",
 	})
 end
 
