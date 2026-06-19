@@ -26,30 +26,24 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 -- Better J behavior
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
--- Custom utilities
-vim.keymap.set("n", "<leader>l", "<CMD>nohlsearch<CR>", { desc = "Clear search highlights" })
-vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
-vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buffer" })
-vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
-vim.keymap.set("n", "<leader>K", function()
-	local current = vim.api.nvim_get_current_buf()
-	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if buf ~= current then
-			vim.api.nvim_buf_delete(buf, { force = true })
-		end
-	end
-end, { desc = "Closes all buffers and reopens last" })
-
 -- Tab managements
 vim.keymap.set("n", "<leader>T", "<CMD>tabnew<CR>")
 vim.keymap.set("n", "<leader>W", "<CMD>tabclose<CR>")
 vim.keymap.set("n", "<leader>O", "<CMD>tabonly<CR>")
 
--- Inlay hints
-vim.keymap.set("n", "<leader>ti", function()
+-- Toggle Inlay hints
+vim.keymap.set("n", "<leader>i", function()
 	local enabled = vim.lsp.inlay_hint.is_enabled()
 	vim.lsp.inlay_hint.enable(not enabled)
 end, { desc = "Toggle Inlay Hints" })
+
+-- Toggle Undotree
+vim.cmd("packadd nvim.undotree")
+vim.keymap.set("n", "<leader>u", function()
+	require("undotree").open({
+		command = math.floor(vim.api.nvim_win_get_width(0) / 3) .. "vnew",
+	})
+end, { desc = "[U]ndotree toggle" })
 
 -- Vim Pack
 vim.keymap.set("n", "<leader>U", function()
@@ -58,14 +52,6 @@ end, { desc = "Update vim.pack plugins" })
 vim.keymap.set("n", "<leader>P", function()
 	vim.pack.update(nil, { offline = true })
 end, { desc = "Manage vim.pack plugins" })
-
--- Undotree toggle
-vim.cmd("packadd nvim.undotree")
-vim.keymap.set("n", "<leader>u", function()
-	require("undotree").open({
-		command = math.floor(vim.api.nvim_win_get_width(0) / 3) .. "vnew",
-	})
-end, { desc = "[U]ndotree toggle" })
 
 -- incremental selection treesitter/lsp
 vim.keymap.set({ "n", "x", "o" }, "<A-o>", function()
@@ -83,6 +69,20 @@ vim.keymap.set({ "n", "x", "o" }, "<A-i>", function()
 		vim.lsp.buf.selection_range(-vim.v.count1)
 	end
 end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+
+-- Custom utilities
+vim.keymap.set("n", "<leader>l", "<CMD>nohlsearch<CR>", { desc = "Clear search highlights" })
+vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
+vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buffer" })
+vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
+vim.keymap.set("n", "<leader>K", function()
+	local current = vim.api.nvim_get_current_buf()
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if buf ~= current then
+			vim.api.nvim_buf_delete(buf, { force = true })
+		end
+	end
+end, { desc = "Closes all buffers and reopens last" })
 
 -- Expand visual selection
 vim.keymap.set("v", "<leader>e", function()
@@ -115,3 +115,47 @@ vim.keymap.set("v", "<leader>x", function()
 	end
 	vim.api.nvim_paste(res, true, -1)
 end, { desc = "Eval lua visual selection" })
+
+local term_buf = nil
+local term_win = nil
+
+local function get_term_win(term_buf)
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(vim.o.lines * 0.8)
+	return vim.api.nvim_open_win(term_buf, true, {
+		relative = "editor",
+		width = width,
+		height = height,
+		col = math.floor((vim.o.columns - width) / 2),
+		row = math.floor((vim.o.lines - height) / 2),
+		border = "none",
+	})
+end
+
+local function toggle_float_term()
+	if term_win and vim.api.nvim_win_is_valid(term_win) then
+		vim.api.nvim_win_close(term_win, true)
+		term_win = nil
+		return
+	end
+
+	if not term_buf or not vim.api.nvim_buf_is_valid(term_buf) then
+		term_buf = vim.api.nvim_create_buf(false, true)
+		term_win = get_term_win(term_buf)
+		vim.fn.jobstart(vim.o.shell, { term = true })
+	else
+		term_win = get_term_win(term_buf)
+	end
+
+	vim.cmd.startinsert()
+end
+
+vim.keymap.set("n", "<A-i>", toggle_float_term)
+vim.keymap.set("i", "<A-i>", function()
+	vim.cmd.stopinsert()
+	toggle_float_term()
+end)
+vim.keymap.set("t", "<A-i>", function()
+	vim.cmd.stopinsert()
+	toggle_float_term()
+end)

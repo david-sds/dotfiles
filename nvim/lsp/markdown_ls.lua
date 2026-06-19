@@ -5,7 +5,7 @@
 --   > github : https://github.com/artempyanykh/marksman
 -- ============================================================================
 
-local lsp_config_module = require("config.lsp")
+local lsp_config_module = require("core.lsp")
 local on_attach = lsp_config_module.on_attach
 
 ---@type vim.lsp.Config
