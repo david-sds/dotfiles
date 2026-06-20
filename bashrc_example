@@ -1,6 +1,4 @@
-#
-# ~/.bashrc
-#
+# vim: filetype=bash
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -10,13 +8,12 @@ if [[ -z $TMUX && -z $NVIM ]]; then
   exec tmux
 fi
 
-# Attach to a single Tmux session if in a Neovim terminal
-if [[ -n $NVIM ]]; then
-  exec tmux new-session -A -s nvim
-fi
-
+# Aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+
+# Functions
+o() { (xdg-open "$@" >/dev/null 2>&1 &) }
 
 # Show git branch name
 source /usr/share/git/completion/git-prompt.sh

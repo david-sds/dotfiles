@@ -3,7 +3,7 @@
 -- ABOUT: sets some quality-of-life keymaps
 -- ============================================================================
 
-local utils = require("utils.vim")
+local U = require("utils.vim")
 
 -- Better window navigation - Better window navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
@@ -86,7 +86,7 @@ end, { desc = "Closes all buffers and reopens last" })
 
 -- Expand visual selection
 vim.keymap.set("v", "<leader>e", function()
-	local selection = utils.get_visual_selection()
+	local selection = U.get_visual_selection()
 	local res = vim.fn.expand(selection)
 	vim.api.nvim_paste(res, true, -1)
 end, { desc = "Expand visual selection" })
@@ -105,7 +105,7 @@ local eval_env = {
 	table = table,
 }
 vim.keymap.set("v", "<leader>x", function()
-	local selection = utils.get_visual_selection()
+	local selection = U.get_visual_selection()
 	local eval = load("return " .. selection, nil, "t", eval_env)()
 	local res
 	if type(eval) == "table" then
@@ -115,3 +115,33 @@ vim.keymap.set("v", "<leader>x", function()
 	end
 	vim.api.nvim_paste(res, true, -1)
 end, { desc = "Eval lua visual selection" })
+
+-- Toogles floating terminal
+local term_buf = nil
+local term_win = nil
+local function toggle_float_term()
+	if term_win and vim.api.nvim_win_is_valid(term_win) then
+		vim.api.nvim_win_close(term_win, true)
+		term_win = nil
+		return
+	end
+
+	if not term_buf or not vim.api.nvim_buf_is_valid(term_buf) then
+		term_buf = vim.api.nvim_create_buf(false, true)
+		term_win = U.open_floating_win(term_buf)
+		vim.fn.jobstart(vim.o.shell, { term = true })
+	else
+		term_win = U.open_floating_win(term_buf)
+	end
+
+	vim.cmd.startinsert()
+end
+vim.keymap.set("n", "<A-i>", toggle_float_term)
+vim.keymap.set("i", "<A-i>", function()
+	vim.cmd.stopinsert()
+	toggle_float_term()
+end)
+vim.keymap.set("t", "<A-i>", function()
+	vim.cmd.stopinsert()
+	toggle_float_term()
+end)
