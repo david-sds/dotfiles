@@ -127,9 +127,6 @@ for i = 1, 10 do
 	end, { desc = string.format("Harpoon: Go to file %d", i) })
 end
 
-vim.keymap.set("n", "<C-p>", ui.nav_prev, { desc = "Harpoon: Previous file" })
-vim.keymap.set("n", "<C-n>", ui.nav_next, { desc = "Harpoon: Next file" })
-
 -- ============================================================================
 -- TITLE : oil.nvim
 -- ABOUT : A vim-vinegar like file explorer that lets you edit your filesystem like a normal Neovim buffer.
