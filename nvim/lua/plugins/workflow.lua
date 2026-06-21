@@ -111,19 +111,27 @@ vim.keymap.set("n", "<c-\\>", "<CMD><C-U>TmuxNavigatePrevious<CR>")
 -- ============================================================================
 vim.pack.add({
 	"https://github.com/nvim-lua/plenary.nvim",
-	"https://github.com/ThePrimeagen/harpoon",
+	{
+		src = "https://github.com/ThePrimeagen/harpoon",
+		version = "harpoon2",
+	},
 })
 
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
+local harpoon = require("harpoon")
 
-vim.keymap.set("n", "<leader>h", mark.add_file, { desc = "Harpoon: Add file" })
-vim.keymap.set("n", "<leader>H", ui.toggle_quick_menu, { desc = "Harpoon: Toggle menu" })
+harpoon:setup()
+
+vim.keymap.set("n", "<leader>h", function()
+	harpoon:list():add()
+end, { desc = "Harpoon: Add file" })
+vim.keymap.set("n", "<leader>H", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "Harpoon: Toggle menu" })
 
 for i = 1, 10 do
 	local key = tostring(i % 10)
 	vim.keymap.set("n", "<leader>" .. key, function()
-		ui.nav_file(i)
+		harpoon:list():select(i)
 	end, { desc = string.format("Harpoon: Go to file %d", i) })
 end
 
