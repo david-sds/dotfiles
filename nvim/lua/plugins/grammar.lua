@@ -1,15 +1,13 @@
 -- ============================================================================
--- TITLE : arborist.nvim
--- ABOUT : WASM-first tree-sitter parser manager for Neovim 0.12+. Parsers install automatically when you open files. No manual steps, no maintenance.
+-- TITLE : tree-sitter-manager.nvim
+-- ABOUT : A lightweight Tree-sitter parser manager for Neovim.
 -- ============================================================================
 
 vim.pack.add({
-	"https://github.com/arborist-ts/arborist.nvim",
+	"https://github.com/romus204/tree-sitter-manager.nvim",
 })
 
-require("arborist").setup({
-	update_cadence = "manual",
-	install_popular = false,
+require("tree-sitter-manager").setup({
 	ensure_installed = {
 		"bash",
 		"lua",
@@ -36,10 +34,6 @@ require("arborist").setup({
 		"ledger",
 		"qmljs",
 		"typst",
-	},
-	ignore = {
-		"env",
-		"conf",
 	},
 })
 
