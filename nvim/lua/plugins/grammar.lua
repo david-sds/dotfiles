@@ -16,6 +16,7 @@ require("tree-sitter-manager").setup({
 		"query",
 		"markdown",
 		"markdown_inline",
+		"ecma",
 		"javascript",
 		"typescript",
 		"dart",
@@ -35,6 +36,9 @@ require("tree-sitter-manager").setup({
 		"qmljs",
 		"typst",
 	},
+	parser_dir = vim.fn.stdpath("data") .. "/site/parser",
+	query_dir = vim.fn.stdpath("data") .. "/site/queries",
+	highlight = true,
 })
 
 local yaml_colors = vim.api.nvim_create_augroup("YamlColors", { clear = true })
