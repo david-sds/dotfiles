@@ -31,6 +31,13 @@ require("mini.notify").setup()
 require("mini.icons").setup()
 require("mini.operators").setup()
 
+-- Remove indent scope on terminal mode
+vim.api.nvim_create_autocmd("TermOpen", {
+	callback = function(args)
+		vim.b[args.buf].miniindentscope_disable = true
+	end,
+})
+
 -- ============================================================================
 -- TITLE : conform.nvim
 -- ABOUT : Lightweight yet powerful formatter plugin for Neovim.

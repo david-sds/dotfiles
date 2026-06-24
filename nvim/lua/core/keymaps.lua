@@ -3,7 +3,7 @@
 -- ABOUT: sets some quality-of-life keymaps
 -- ============================================================================
 
-local utils = require("utils.vim")
+local U = require("utils.vim")
 
 -- Better window navigation - Better window navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
@@ -70,6 +70,20 @@ vim.keymap.set({ "n", "x", "o" }, "<A-i>", function()
 	end
 end, { desc = "Select child treesitter node or inner incremental lsp selections" })
 
+-- Manage Argument List
+vim.keymap.set("n", "<leader>h", "<CMD>argadd %<CR>", { desc = "Add to Argument list" })
+vim.keymap.set("n", "<leader>H", "<CMD>args<CR>", { desc = "Delete from Argument list" })
+
+for i = 1, 10 do
+	local key = tostring(i % 10)
+	vim.keymap.set(
+		"n",
+		"<leader>" .. key,
+		"<CMD>argu " .. i .. "<CR>",
+		{ desc = string.format("Go to argument %d", i) }
+	)
+end
+
 -- Custom utilities
 vim.keymap.set("n", "<leader>l", "<CMD>nohlsearch<CR>", { desc = "Clear search highlights" })
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
@@ -86,7 +100,7 @@ end, { desc = "Closes all buffers and reopens last" })
 
 -- Expand visual selection
 vim.keymap.set("v", "<leader>e", function()
-	local selection = utils.get_visual_selection()
+	local selection = U.get_visual_selection()
 	local res = vim.fn.expand(selection)
 	vim.api.nvim_paste(res, true, -1)
 end, { desc = "Expand visual selection" })
@@ -105,7 +119,7 @@ local eval_env = {
 	table = table,
 }
 vim.keymap.set("v", "<leader>x", function()
-	local selection = utils.get_visual_selection()
+	local selection = U.get_visual_selection()
 	local eval = load("return " .. selection, nil, "t", eval_env)()
 	local res
 	if type(eval) == "table" then
@@ -116,22 +130,9 @@ vim.keymap.set("v", "<leader>x", function()
 	vim.api.nvim_paste(res, true, -1)
 end, { desc = "Eval lua visual selection" })
 
+-- Toogles floating terminal
 local term_buf = nil
 local term_win = nil
-
-local function get_term_win(term_buf)
-	local width = math.floor(vim.o.columns * 0.8)
-	local height = math.floor(vim.o.lines * 0.8)
-	return vim.api.nvim_open_win(term_buf, true, {
-		relative = "editor",
-		width = width,
-		height = height,
-		col = math.floor((vim.o.columns - width) / 2),
-		row = math.floor((vim.o.lines - height) / 2),
-		border = "none",
-	})
-end
-
 local function toggle_float_term()
 	if term_win and vim.api.nvim_win_is_valid(term_win) then
 		vim.api.nvim_win_close(term_win, true)
@@ -141,15 +142,14 @@ local function toggle_float_term()
 
 	if not term_buf or not vim.api.nvim_buf_is_valid(term_buf) then
 		term_buf = vim.api.nvim_create_buf(false, true)
-		term_win = get_term_win(term_buf)
+		term_win = U.open_floating_win(term_buf)
 		vim.fn.jobstart(vim.o.shell, { term = true })
 	else
-		term_win = get_term_win(term_buf)
+		term_win = U.open_floating_win(term_buf)
 	end
 
 	vim.cmd.startinsert()
 end
-
 vim.keymap.set("n", "<A-i>", toggle_float_term)
 vim.keymap.set("i", "<A-i>", function()
 	vim.cmd.stopinsert()

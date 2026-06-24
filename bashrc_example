@@ -8,11 +8,6 @@ if [[ -z $TMUX && -z $NVIM ]]; then
   exec tmux
 fi
 
-# Attach to a single Tmux session if in a Neovim terminal
-if [[ -n $NVIM ]]; then
-  exec tmux new-session -A -s nvim
-fi
-
 # Aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -57,4 +52,3 @@ source /usr/share/nvm/init-nvm.sh
 
 # SDKMAN Config (Must be at the end of the file)
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
