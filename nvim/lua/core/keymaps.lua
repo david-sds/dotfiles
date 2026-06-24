@@ -72,7 +72,7 @@ end, { desc = "Select child treesitter node or inner incremental lsp selections"
 
 -- Manage Argument List
 vim.keymap.set("n", "<leader>h", "<CMD>argadd %<CR>", { desc = "Add to Argument list" })
-vim.keymap.set("n", "<leader>H", "<CMD>argdel %<CR>", { desc = "Delete from Argument list" })
+vim.keymap.set("n", "<leader>H", "<CMD>args<CR>", { desc = "Delete from Argument list" })
 
 for i = 1, 10 do
 	local key = tostring(i % 10)
