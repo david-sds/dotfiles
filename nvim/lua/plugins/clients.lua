@@ -29,8 +29,30 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.pack.add({ "https://github.com/mistweaverco/kulala.nvim" })
 
 require("kulala").setup({
-	global_keymaps = false,
 	default_env = "local",
+	global_keymaps = false,
+	kulala_keymaps = {
+		false,
+		["Show verbose"] = false,
+		["Show headers"] = false,
+		["Show body"] = false,
+		["Show script output"] = false,
+		["Show report"] = false,
+		["Previous tab"] = {
+			"H",
+			function()
+				require("kulala.ui").show_previous_tab()
+			end,
+			mode = { "n" },
+		},
+		["Next tab"] = {
+			"L",
+			function()
+				require("kulala.ui").show_next_tab()
+			end,
+			mode = { "n" },
+		},
+	},
 })
 
 vim.keymap.set({ "n", "v" }, "<leader>ke", function()
