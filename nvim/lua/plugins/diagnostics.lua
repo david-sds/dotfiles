@@ -29,8 +29,8 @@ local trouble_colors_group = vim.api.nvim_create_augroup("TroubleColorsGroup", {
 vim.api.nvim_create_autocmd("ColorScheme", {
 	group = trouble_colors_group,
 	callback = function()
-		vim.api.nvim_set_hl(0, "TroubleNormal", { link = "NvimTreeNormal" })
-		vim.api.nvim_set_hl(0, "TroubleNormalNC", { link = "NvimTreeNormalNC" })
+		vim.api.nvim_set_hl(0, "TroubleNormal", { link = "Normal" })
+		vim.api.nvim_set_hl(0, "TroubleNormalNC", { link = "NormalNC" })
 	end,
 })
 
