@@ -14,10 +14,10 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 -- Splitting & Resizing
 vim.keymap.set("n", "<leader>sv", "<CMD>vsplit<CR>", { desc = "Split window vertically" })
 vim.keymap.set("n", "<leader>sh", "<CMD>split<CR>", { desc = "Split window horizontally" })
-vim.keymap.set("n", "<C-Up>", "<CMD>resize +2<CR>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-Down>", "<CMD>resize -2<CR>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<C-Left>", "<CMD>vertical resize -2<CR>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-Right>", "<CMD>vertical resize +2<CR>", { desc = "Increase window width" })
+vim.keymap.set("n", "<C-A-h>", "<CMD>vertical resize -2<CR>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-A-j>", "<CMD>resize -2<CR>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-A-l>", "<CMD>vertical resize +2<CR>", { desc = "Increase window width" })
+vim.keymap.set("n", "<C-A-k>", "<CMD>resize +2<CR>", { desc = "Increase window height" })
 
 -- Better indenting in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
@@ -90,13 +90,16 @@ vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy 
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buffer" })
 vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
 vim.keymap.set("n", "<leader>K", function()
-	local current = vim.api.nvim_get_current_buf()
+	local visible = {}
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		visible[vim.api.nvim_win_get_buf(win)] = true
+	end
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if buf ~= current then
-			vim.api.nvim_buf_delete(buf, { force = true })
+		if vim.api.nvim_buf_is_loaded(buf) and not visible[buf] then
+			pcall(vim.api.nvim_buf_delete, buf, { force = true })
 		end
 	end
-end, { desc = "Closes all buffers and reopens last" })
+end, { desc = "Close all hidden buffers" })
 
 -- Expand visual selection
 vim.keymap.set("v", "<leader>e", function()
