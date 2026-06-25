@@ -14,10 +14,10 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 -- Splitting & Resizing
 vim.keymap.set("n", "<leader>sv", "<CMD>vsplit<CR>", { desc = "Split window vertically" })
 vim.keymap.set("n", "<leader>sh", "<CMD>split<CR>", { desc = "Split window horizontally" })
-vim.keymap.set("n", "<C-Up>", "<CMD>resize +2<CR>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-Down>", "<CMD>resize -2<CR>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<C-Left>", "<CMD>vertical resize -2<CR>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-Right>", "<CMD>vertical resize +2<CR>", { desc = "Increase window width" })
+vim.keymap.set("n", "<C-A-h>", "<CMD>vertical resize -2<CR>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-A-j>", "<CMD>resize -2<CR>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-A-l>", "<CMD>vertical resize +2<CR>", { desc = "Increase window width" })
+vim.keymap.set("n", "<C-A-k>", "<CMD>resize +2<CR>", { desc = "Increase window height" })
 
 -- Better indenting in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
