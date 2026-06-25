@@ -5,12 +5,12 @@ U.multibind({
 	"SUPER + mouse_up",
 	"SUPER + minus",
 	"SUPER + KP_Subtract",
-}, U.change_zoom(-1), { repeating = true })
+}, U.change_zoom(-0.5))
 U.multibind({
 	"SUPER + mouse_down",
 	"SUPER + equal",
 	"SUPER + KP_Add",
-}, U.change_zoom(1), { repeating = true })
+}, U.change_zoom(0.5))
 
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind("SUPER + Q", hl.dsp.window.close())
