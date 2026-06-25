@@ -90,13 +90,16 @@ vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy 
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buffer" })
 vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
 vim.keymap.set("n", "<leader>K", function()
-	local current = vim.api.nvim_get_current_buf()
+	local visible = {}
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		visible[vim.api.nvim_win_get_buf(win)] = true
+	end
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if buf ~= current then
-			vim.api.nvim_buf_delete(buf, { force = true })
+		if vim.api.nvim_buf_is_loaded(buf) and not visible[buf] then
+			pcall(vim.api.nvim_buf_delete, buf, { force = true })
 		end
 	end
-end, { desc = "Closes all buffers and reopens last" })
+end, { desc = "Close all hidden buffers" })
 
 -- Expand visual selection
 vim.keymap.set("v", "<leader>e", function()
