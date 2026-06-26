@@ -5,4 +5,4 @@ tmux list-sessions -F "#{session_name} #{session_attached}" |
     [ "$a" = "0" ] && tmux kill-session -t "$s"
   done
 
-tmux display-message " Tmux sessions cleared!"
+tmux display-message "Tmux sessions cleared!"
