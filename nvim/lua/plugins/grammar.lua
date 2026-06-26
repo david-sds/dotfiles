@@ -115,3 +115,9 @@ require("mason-tool-installer").setup({
 require("mason").setup()
 
 vim.keymap.set("n", "<leader>M", "<CMD>Mason<CR>", { desc = "Open Mason menu" })
+
+-- ============================================================================
+-- TITLE : SchemaStore.nvim
+-- ABOUT : A Neovim plugin that provides the SchemaStore catalog for use with jsonls and yamlls.
+-- ============================================================================
+vim.pack.add({ "https://github.com/b0o/schemastore.nvim" })
