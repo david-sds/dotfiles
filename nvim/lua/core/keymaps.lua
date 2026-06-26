@@ -73,6 +73,6 @@ vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" }
 vim.keymap.set("n", "<leader>K", U.close_hidden_buffers, { desc = "Close all hidden buffers" })
 vim.keymap.set("v", "<leader>x", U.expand_selection, { desc = "Expand visual selection" })
 vim.keymap.set("v", "<leader>x", U.eval_selection, { desc = "Eval lua visual selection" })
-vim.keymap.set({ "n", "i", "v", "t" }, "<A-f>", U.toggle_floating_term, { desc = "Toggles floating terminal" })
+vim.keymap.set({ "n", "i", "v", "t" }, "<A-CR>", U.toggle_floating_term, { desc = "Toggles floating terminal" })
 vim.keymap.set({ "n", "x", "o" }, "<A-o>", U.increase_selection, { desc = "Select parent node" })
 vim.keymap.set({ "n", "x", "o" }, "<A-i>", U.decrease_selection, { desc = "Select child node" })
