@@ -9,3 +9,4 @@ git commit -m "$INITIAL_BRANCH push-conf-master at $(date '+%Y-%m-%d %H:%M:%S')"
 git push
 git checkout "$INITIAL_BRANCH"
 git merge origin/master --no-edit
+git push
