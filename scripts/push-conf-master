@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+cd "$HOME/Config/dotfiles"
+INITIAL_BRANCH=$(git branch --show-current)
+git checkout master
+git pull
+git add .
+git commit -m "$INITIAL_BRANCH push-conf-master at $(date '+%Y-%m-%d %H:%M:%S')"
+git checkout "$INITIAL_BRANCH"
+git merge origin/master
