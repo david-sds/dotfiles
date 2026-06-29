@@ -15,9 +15,7 @@ vim.api.nvim_create_autocmd("WinNew", {
 	callback = function()
 		local win = vim.api.nvim_get_current_win()
 		if vim.api.nvim_win_get_config(win).relative ~= "" then
-			vim.defer_fn(function()
-				vim.wo[win].winhighlight = "Visual:Search"
-			end, 50)
+			vim.wo[win].winhighlight = "Visual:Search"
 		end
 	end,
 })
