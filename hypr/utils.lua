@@ -78,8 +78,8 @@ M.change_zoom = function(delta)
 		hl.config({
 			cursor = {
 				zoom_factor = zoom,
-				zoom_rigid = true,
-				zoom_detached_camera = false,
+				zoom_rigid = false,
+				zoom_detached_camera = true,
 				zoom_disable_aa = true,
 			},
 			binds = {
