@@ -116,6 +116,17 @@ require("mason").setup()
 
 vim.keymap.set("n", "<leader>M", "<CMD>Mason<CR>", { desc = "Open Mason menu" })
 
+-- Green visual highlight on all floating windows
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "mason",
+	callback = function()
+		local win = vim.api.nvim_get_current_win()
+		if vim.api.nvim_win_get_config(win).relative ~= "" then
+			vim.wo[win].winhighlight = "Visual:Search"
+		end
+	end,
+})
+
 -- ============================================================================
 -- TITLE : SchemaStore.nvim
 -- ABOUT : A Neovim plugin that provides the SchemaStore catalog for use with jsonls and yamlls.
