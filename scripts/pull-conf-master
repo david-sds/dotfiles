@@ -2,4 +2,4 @@
 
 cd "$HOME/Config/dotfiles"
 git fetch
-git merge origin/master
+git merge origin/master --no-edit
