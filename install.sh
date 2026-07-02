@@ -40,8 +40,9 @@ done
 
 mkdir -p "$HOME/.local/bin"
 for script in "$SCRIPT_DIR"/scripts/*; do
-  installed_script="$HOME/.local/bin/$script"
-  if [ ! -f "$installed_script" ] || [ ! -x "$installed_script" ]; then
+  script_name=$(basename $script)
+  installed_script="$HOME/.local/bin/$script_name"
+  if [ -x "$installed_script" ]; then
     continue
   fi
   ln -s "$script" "$installed_script"
