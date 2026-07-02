@@ -1,3 +1,5 @@
+local U = require("utils.vim")
+
 -- ============================================================================
 -- TITLE : dadbod.vim
 -- ABOUT : Dadbod is a Vim plugin for interacting with databases.
@@ -18,6 +20,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.bo.commentstring = "-- %s"
 	end,
 })
+
+U.close_with_q("dbout")
 
 -- ============================================================================
 -- TITLE : kulala.nvim
