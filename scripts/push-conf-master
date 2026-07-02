@@ -2,11 +2,27 @@
 
 cd "$HOME/Config/dotfiles"
 INITIAL_BRANCH=$(git branch --show-current)
+
+# Stash changes
+stash_msg="${INITIAL_BRANCH}-$(date '+%Y-%m-%d %H:%M:%S')"
+echo "STASH_MSG $stash_msg"
+git stash push -u -m "$stash_msg"
+stash_index=$(git stash list | grep -E ": ${stash_msg}$" | head -n1 | cut -d: -f1)
+echo "STASH_INDEX $stash_index"
+
+# Checkout last vesion of master
 git checkout master
 git pull
+
+# Get stashed changes
+git stash pop "$stash_index"
+
+# Apply changes in master
 git add .
 git commit -m "$INITIAL_BRANCH push-conf-master at $(date '+%Y-%m-%d %H:%M:%S')"
 git push
+
+# Go back and update initial branch
 git checkout "$INITIAL_BRANCH"
 git merge origin/master --no-edit
 git push
