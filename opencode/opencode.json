@@ -30,6 +30,11 @@
     }
   },
   "skills": {
-    "paths": ["/home/david/Config/hal9001"]
-  }
+    "paths": [
+      "/home/david/Config/hal9001"
+    ]
+  },
+  "plugin": [
+    "./plugins/caveman/plugin.js"
+  ]
 }
