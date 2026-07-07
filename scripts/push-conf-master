@@ -32,4 +32,6 @@ if command -v hyprctl >/dev/null 2>&1; then
   hyprctl reload
 fi
 
-tmux source-file ~/.config/tmux/tmux.conf
+if command -v tmux >/dev/null 2>&1; then
+  tmux source-file ~/.config/tmux/tmux.conf
+fi
