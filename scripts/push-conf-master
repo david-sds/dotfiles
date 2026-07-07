@@ -31,3 +31,5 @@ git push
 if command -v hyprctl >/dev/null 2>&1; then
   hyprctl reload
 fi
+
+tmux source-file ~/.config/tmux/tmux.conf

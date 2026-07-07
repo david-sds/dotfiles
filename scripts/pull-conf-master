@@ -3,3 +3,5 @@
 cd "$HOME/Config/dotfiles"
 git fetch
 git merge origin/master --no-edit
+
+tmux source-file ~/.config/tmux/tmux.conf
