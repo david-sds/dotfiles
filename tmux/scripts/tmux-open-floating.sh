@@ -12,6 +12,11 @@ if [ "$(tmux display-message -p '#{pane_floating_flag}')" = "1" ]; then
   tmux swap-pane -s "$PANE" -t "$SESSION:$FLOAT_WIN_NAME" -d
   tmux kill-pane -t "$SESSION:$WINDOW.$PANE"
 else
+  if tmux list-windows -t "$SESSION" | grep "$WINDOW:" | grep -q "$FLOAT_WIN_NAME"; then
+    tmux display-message "Cannot float within the floating window"
+    exit 0
+  fi
+
   NEW_PANE_INDEX=$(tmux new-pane \
     -x "#{e|*|f|0:#{client_width},0.8}" \
     -y "#{e|*|f|0:#{client_height},0.8}" \
