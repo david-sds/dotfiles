@@ -3,6 +3,7 @@
 SESSION="$1"
 WINDOW="$2"
 PANE="$3"
+PANE_CWD="$4"
 FLOAT_WIN_NAME='floating'
 
 if [ "$(tmux display-message -p '#{pane_floating_flag}')" = "1" ]; then
@@ -17,14 +18,17 @@ else
     exit 0
   fi
 
-  NEW_PANE_INDEX=$(tmux new-pane \
-    -x "#{e|*|f|0:#{client_width},0.8}" \
-    -y "#{e|*|f|0:#{client_height},0.8}" \
-    -X "#{e|*|f|0:#{client_width},0.1}" \
-    -Y "#{e|*|f|0:#{client_height},0.1}" \
-    -S "fg=blue" \
-    -R "fg=red" \
-    -P -F '#{pane_index}')
+  NEW_PANE_INDEX=$(
+    tmux new-pane \
+      -c "$PANE_CWD" \
+      -x "#{e|*|f|0:#{client_width},0.8}" \
+      -y "#{e|*|f|0:#{client_height},0.8}" \
+      -X "#{e|*|f|0:#{client_width},0.1}" \
+      -Y "#{e|*|f|0:#{client_height},0.1}" \
+      -S "fg=blue" \
+      -R "fg=red" \
+      -P -F '#{pane_index}'
+  )
 
   OTHER_FLOAT=$(tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{pane_floating_flag}' |
     awk -v new="$SESSION:$WINDOW.$NEW_PANE_INDEX" '$2==1 && $1!=new {print $1; exit}')
