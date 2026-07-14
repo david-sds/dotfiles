@@ -16,7 +16,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: powerProc.exec(["sh", "-c", "$HOME/.local/bin/walker-powermenu"])
+        onClicked: powerProc.exec(["sh", "-c", "walker-powermenu"])
     }
 
     Text {

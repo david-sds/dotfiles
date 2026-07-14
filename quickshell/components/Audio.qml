@@ -70,7 +70,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: audioProc.exec(["sh", "-c", "$HOME/.local/bin/open-floating-tui wiremix"])
+        onClicked: audioProc.exec(["sh", "-c", "open-floating-tui wiremix"])
     }
 
     Text {

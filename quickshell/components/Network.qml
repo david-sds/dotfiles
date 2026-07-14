@@ -29,7 +29,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: networkProc.exec(["sh", "-c", "$HOME/.local/bin/open-floating-tui impala"])
+        onClicked: networkProc.exec(["sh", "-c", "open-floating-tui impala"])
     }
 
     Text {

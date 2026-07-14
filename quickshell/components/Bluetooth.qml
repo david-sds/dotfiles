@@ -22,7 +22,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: bluetoothProc.exec(["sh", "-c", "$HOME/.local/bin/open-floating-tui bluetui"])
+        onClicked: bluetoothProc.exec(["sh", "-c", "open-floating-tui bluetui"])
     }
 
     Text {

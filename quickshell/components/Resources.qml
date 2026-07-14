@@ -15,7 +15,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: resourcesProc.exec(["sh", "-c", "$HOME/.local/bin/open-floating-tui btop"])
+        onClicked: resourcesProc.exec(["sh", "-c", "open-floating-tui btop"])
     }
 
     Text {
