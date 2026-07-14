@@ -12,9 +12,17 @@ ln -sT "$SCRIPT_DIR/autostart" "$HOME/.config/autostart"
 ln -sT "$SCRIPT_DIR/lazygit" "$HOME/.config/lazygit"
 
 mkdir -p "$HOME/.local/bin"
-for script in "$SCRIPT_DIR"/scripts/*; do
+for script in "$SCRIPT_DIR"/scripts/local/*; do
   if [ ! -f "$script" ] || [ ! -x "$script" ]; then
     continue
   fi
   ln -s "$script" "$HOME/.local/bin/"
+done
+
+mkdir -p "/usr/local/bin"
+for script in "$SCRIPT_DIR"/scripts/global/*; do
+  if [ ! -f "$script" ] || [ ! -x "$script" ]; then
+    continue
+  fi
+  ln -s "$script" "/usr/local/bin/"
 done
