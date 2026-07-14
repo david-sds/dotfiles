@@ -39,9 +39,19 @@ for config in "${configs[@]}"; do
 done
 
 mkdir -p "$HOME/.local/bin"
-for script in "$SCRIPT_DIR"/scripts/*; do
+for script in "$SCRIPT_DIR"/scripts/local/*; do
   script_name=$(basename $script)
   installed_script="$HOME/.local/bin/$script_name"
+  if [ -x "$installed_script" ]; then
+    continue
+  fi
+  ln -s "$script" "$installed_script"
+done
+
+mkdir -p "/usr/local/bin"
+for script in "$SCRIPT_DIR"/scripts/global/*; do
+  script_name=$(basename $script)
+  installed_script="/usr/local/bin/$script_name"
   if [ -x "$installed_script" ]; then
     continue
   fi
