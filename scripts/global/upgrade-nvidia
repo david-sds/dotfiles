@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+paru -S \
+  nvidia-580xx-dkms \
+  nvidia-580xx-utils \
+  nvidia-580xx-settings \
+  opencl-nvidia-580xx \
+  lib32-nvidia-580xx-utils \
+  lib32-opencl-nvidia-580xx \
+  libxnvctrl-580xx
