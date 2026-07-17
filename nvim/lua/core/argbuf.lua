@@ -1,11 +1,16 @@
--- Manage Argument List
-local argsdir = "~/.local/share/nvim/argsdir" -- args directory path
+-- ============================================================================
+-- Argument Management Buffer
+-- ============================================================================
+
+-- Configuration
+local argsdir = "~/.local/share/nvim/argsdir"
 local argsdir_path = vim.fn.expand(argsdir)
 if vim.fn.isdirectory(argsdir_path) == 0 then
-	vim.fn.mkdir(argsdir_path, "p") -- Create if not exists
+	vim.fn.mkdir(argsdir_path, "p")
 end
 local argbuf_name = "argbuf://"
 
+-- Utils
 local function get_current_path()
 	return argsdir_path .. "/" .. vim.fn.getcwd():gsub("/", "_")
 end
@@ -51,6 +56,7 @@ local function load()
 	persist()
 end
 
+-- Functions
 local function add_current_file()
 	add_arg(vim.fn.expand("%:p"))
 	persist()
