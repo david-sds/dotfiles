@@ -3,6 +3,7 @@ require("core.options")
 require("core.keymaps")
 require("core.autocmds")
 require("core.misc")
+require("core.argbuf")
 
 require("plugins.grammar")
 require("plugins.editor")
