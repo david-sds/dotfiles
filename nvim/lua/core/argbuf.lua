@@ -1,5 +1,6 @@
 -- ============================================================================
--- Argument Management Buffer
+-- TITLE : argbuf
+-- ABOUT : Argument management buffer
 -- ============================================================================
 
 -- Configuration
@@ -23,12 +24,19 @@ local function get_args()
 	return args
 end
 
-local function add_arg(file)
+local function is_arg(file)
 	local args = get_args()
 	for _, arg in ipairs(args) do
 		if vim.fn.fnamemodify(arg, ":p") == file then
-			return
+			return true
 		end
+	end
+	return false
+end
+
+local function add_arg(file)
+	if is_arg(file) then
+		return
 	end
 	vim.cmd("argadd " .. file)
 end
