@@ -71,6 +71,7 @@ local function get_arg_buf()
 		vim.api.nvim_win_close(vim.api.nvim_get_current_win(), true)
 		vim.cmd("e " .. line)
 	end, { buffer = buf, nowait = true, silent = true })
+<<<<<<< HEAD
 	vim.keymap.set("n", "q", "<CMD>quit<CR>", { buffer = buf, nowait = true, silent = true })
 
 	vim.bo[buf].buftype = "acwrite"
