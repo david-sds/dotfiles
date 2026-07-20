@@ -113,7 +113,7 @@ local function open_arg_buf_win()
 		vim.api.nvim_buf_set_lines(buf, 0, -1, true, args_state)
 	end
 
-	local width = math.floor(vim.o.columns * 0.40)
+	local width = math.floor(vim.o.columns * 0.80)
 	local height = math.floor(vim.o.lines * 0.40)
 	return vim.api.nvim_open_win(buf, true, {
 		relative = "editor",
