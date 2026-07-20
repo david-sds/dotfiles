@@ -4,14 +4,14 @@
 -- ============================================================================
 
 -- Configuration
+local argbuf_name = "argbuf://"
 local argsdir = "~/.local/share/nvim/argsdir"
 local argsdir_path = vim.fn.expand(argsdir)
 if vim.fn.isdirectory(argsdir_path) == 0 then
 	vim.fn.mkdir(argsdir_path, "p")
 end
-local argbuf_name = "argbuf://"
 
--- Utils
+-- Functions
 local function get_current_path()
 	return argsdir_path .. "/" .. vim.fn.getcwd():gsub("/", "_")
 end
@@ -47,12 +47,12 @@ local function persist()
 	vim.fn.writefile(args, current_path)
 end
 
-local function reset_state()
+local function clean_state()
 	vim.cmd("%argdelete")
 end
 
 local function load()
-	reset_state()
+	clean_state()
 	local current_path = get_current_path()
 	if vim.fn.filereadable(current_path) == 0 then
 		return
@@ -64,18 +64,14 @@ local function load()
 	persist()
 end
 
--- Functions
 local function add_current_file()
 	add_arg(vim.fn.expand("%:p"))
 	persist()
 end
 
-local function get_arg_buf()
-	local buf = vim.fn.bufnr(argbuf_name)
-	if buf == -1 then
-		buf = vim.api.nvim_create_buf(false, true)
-		vim.api.nvim_buf_set_name(buf, argbuf_name)
-	end
+local function create_arg_buf()
+	local buf = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_name(buf, argbuf_name)
 
 	vim.keymap.set("n", "<CR>", function()
 		local line = vim.api.nvim_get_current_line():gsub("%s+$", "")
@@ -105,14 +101,23 @@ local function get_arg_buf()
 	return buf
 end
 
-local function open_arg_buf_win()
-	local buf = get_arg_buf()
+local function get_arg_buf()
+	local buf = vim.fn.bufnr(argbuf_name)
+	if buf == -1 then
+		buf = create_arg_buf()
+	end
+
 	local args_state = get_args()
 	local current_lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
 	if not vim.deep_equal(current_lines, args_state) then
 		vim.api.nvim_buf_set_lines(buf, 0, -1, true, args_state)
 	end
 
+	return buf
+end
+
+local function open_arg_buf_win()
+	local buf = get_arg_buf()
 	local width = math.floor(vim.o.columns * 0.80)
 	local height = math.floor(vim.o.lines * 0.40)
 	return vim.api.nvim_open_win(buf, true, {
@@ -140,7 +145,7 @@ vim.api.nvim_create_autocmd("BufWriteCmd", {
 
 		local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
 
-		reset_state()
+		clean_state()
 		for _, line in ipairs(lines) do
 			local l = line:gsub("%s+$", "")
 			if l ~= "" then
