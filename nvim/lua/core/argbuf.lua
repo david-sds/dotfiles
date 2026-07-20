@@ -38,7 +38,7 @@ local function add_arg(file)
 	if is_arg(file) then
 		return
 	end
-	vim.cmd("argadd " .. file)
+	vim.cmd("$argadd " .. file)
 end
 
 local function persist()
