@@ -12,6 +12,6 @@ case "$selected" in
 *"Shutdown"*) systemctl poweroff ;;
 *"Reboot"*) systemctl reboot ;;
 *"Suspend"*) systemctl suspend ;;
-*"Lock"*) hyprlock ;;
+*"Lock"*) bash ~/.local/share/quickshell-lockscreen/lock.sh ;;
 *"Log Out"*) hyprctl dispatch 'hl.dsp.exit()' ;;
 esac
