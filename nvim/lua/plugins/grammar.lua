@@ -1,44 +1,51 @@
 -- ============================================================================
--- TITLE : tree-sitter-manager.nvim
--- ABOUT : A lightweight Tree-sitter parser manager for Neovim.
+-- TITLE : nvim-treesitter
+-- ABOUT : The nvim-treesitter plugin provides functions for installing, updating, and removing tree-sitter parsers; a collection of queries for enabling tree-sitter features built into Neovim for these languages; a staging ground for treesitter-based features considered for upstreaming to Neovim.
 -- ============================================================================
 
 vim.pack.add({
-	"https://github.com/romus204/tree-sitter-manager.nvim",
+	"https://github.com/nvim-treesitter/nvim-treesitter",
+	"https://github.com/nvim-treesitter/nvim-treesitter-context",
 })
 
-require("tree-sitter-manager").setup({
-	ensure_installed = {
-		"bash",
-		"lua",
-		"vim",
-		"vimdoc",
-		"query",
-		"markdown",
-		"markdown_inline",
-		"ecma",
-		"javascript",
-		"typescript",
-		"dart",
-		"json",
-		"http",
-		"xml",
-		"twig",
-		"php",
-		"phpdoc",
-		"yaml",
-		"toml",
-		"sql",
-		"java",
-		"prisma",
-		"commonlisp",
-		"ledger",
-		"qmljs",
-		"typst",
-	},
-	parser_dir = vim.fn.stdpath("data") .. "/site/parser",
-	query_dir = vim.fn.stdpath("data") .. "/site/queries",
-	highlight = true,
+-- Requires tree-sitter-cli
+require("nvim-treesitter").install({
+	"bash",
+	"lua",
+	"vim",
+	"vimdoc",
+	"query",
+	"markdown",
+	"markdown_inline",
+	"ecma",
+	"javascript",
+	"typescript",
+	"dart",
+	"json",
+	"http",
+	"xml",
+	"twig",
+	"php",
+	"phpdoc",
+	"yaml",
+	"toml",
+	"sql",
+	"java",
+	"prisma",
+	"commonlisp",
+	"ledger",
+	"qmljs",
+	"typst",
+})
+
+-- Start Treesitter automatically for every filetype buffer.
+local ts_group = vim.api.nvim_create_augroup("TreesitterStartGroup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	group = ts_group,
+	pattern = "*",
+	callback = function(ev)
+		pcall(vim.treesitter.start, ev.buf)
+	end,
 })
 
 local yaml_colors = vim.api.nvim_create_augroup("YamlColors", { clear = true })
