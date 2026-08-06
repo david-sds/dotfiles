@@ -21,10 +21,10 @@ else
   NEW_PANE_INDEX=$(
     tmux new-pane \
       -c "$PANE_CWD" \
-      -x "#{e|*|f|0:#{client_width},0.8}" \
-      -y "#{e|*|f|0:#{client_height},0.8}" \
-      -X "#{e|*|f|0:#{client_width},0.1}" \
-      -Y "#{e|*|f|0:#{client_height},0.1}" \
+      -x "80%" \
+      -y "80%" \
+      -X "10%" \
+      -Y "10%" \
       -S "fg=blue" \
       -R "fg=red" \
       -P -F '#{pane_index}'
