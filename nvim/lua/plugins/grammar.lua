@@ -111,8 +111,6 @@ require("mason-tool-installer").setup({
 		"twig-cs-fixer",
 		-- emmet
 		"emmet-language-server",
-		-- qml
-		"qmlls",
 		-- typst
 		"tinymist",
 	},

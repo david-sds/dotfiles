@@ -12,7 +12,7 @@ local on_attach = lsp_config_module.on_attach
 return {
 	on_attach = on_attach,
 
-	cmd = { "qmlls" },
+	cmd = { "qmlls", "-d", "/usr/share/doc/qt6" },
 
 	filetypes = { "qml" },
 
