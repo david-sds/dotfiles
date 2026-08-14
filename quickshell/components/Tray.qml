@@ -1,8 +1,10 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell.Services.SystemTray
 import ".."
 
 Rectangle {
+    id: root
     property QtObject parentWindow: null
     property var systemTrayItems: SystemTray.items
     property string icon: ""
@@ -26,27 +28,30 @@ Rectangle {
         // }
 
         Repeater {
-            model: systemTrayItems.values
+            model: root.systemTrayItems.values
             Rectangle {
+                id: trayIcon
                 width: 16
                 height: 16
                 color: Globals.backgroundColor
-                property var item: systemTrayItems.values[index]
+                required property int index
+                property SystemTrayItem item: root.systemTrayItems.values[index]
                 Image {
                     anchors.centerIn: parent
                     width: 14
                     height: 14
-                    source: item.icon
+                    source: trayIcon.item.icon
                     fillMode: Image.PreserveAspectFit
                 }
+
                 MouseArea {
                     id: mouseArea
                     anchors.fill: parent
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
                     onClicked: mouse => {
-                        if (mouse.button === Qt.RightButton && item.hasMenu) {
+                        if (mouse.button === Qt.RightButton && trayIcon.item.hasMenu) {
                             var pos = mouseArea.mapToItem(null, mouse.x, mouse.y);
-                            item.display(parentWindow, pos.x, pos.y);
+                            trayIcon.item.display(root.parentWindow, pos.x, pos.y);
                         }
                     }
                 }

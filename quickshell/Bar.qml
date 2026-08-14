@@ -41,6 +41,7 @@ Scope {
                 anchors.rightMargin: 8
                 spacing: 16
 
+                Teste {}
                 Tray {
                     parentWindow: panelWindow
                 }

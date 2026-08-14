@@ -1,0 +1,3 @@
+module qs
+Bar 1.0 Bar.qml
+singleton Globals 1.0 Globals.qml

@@ -4,6 +4,7 @@ import Quickshell.Io
 import ".."
 
 Rectangle {
+    id: root
     readonly property var layouts: ({
             "us intl": "INTL",
             "us": "EN",
@@ -26,7 +27,7 @@ Rectangle {
         stdout: StdioCollector {
             waitForEnd: true
             onStreamFinished: {
-                currentLayout = layouts[text.trim()];
+                root.currentLayout = root.layouts[text.trim()];
             }
         }
     }

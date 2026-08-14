@@ -3,6 +3,7 @@ import Quickshell.Services.UPower
 import ".."
 
 Rectangle {
+    id: root
     property int percentage: UPower.displayDevice ? Math.round(UPower.displayDevice.percentage * 100) : 0
     property var defaultIcons: ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     property var chargingIcons: ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
@@ -23,6 +24,6 @@ Rectangle {
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize
         color: Globals.foregroundColor
-        text: icon + ' ' + percentage + '%'
+        text: root.icon + ' ' + root.percentage + '%'
     }
 }
