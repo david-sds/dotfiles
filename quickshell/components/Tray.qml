@@ -20,13 +20,6 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         spacing: 12
 
-        // Text {
-        //     font.family: Globals.fontFamily
-        //     font.pixelSize: Globals.fontPixelSize
-        //     color: Globals.foregroundColor
-        //     text: icon
-        // }
-
         Repeater {
             model: root.systemTrayItems.values
             Rectangle {
@@ -38,8 +31,8 @@ Rectangle {
                 property SystemTrayItem item: root.systemTrayItems.values[index]
                 Image {
                     anchors.centerIn: parent
-                    width: 14
-                    height: 14
+                    width: 16
+                    height: 16
                     source: trayIcon.item.icon
                     fillMode: Image.PreserveAspectFit
                 }
@@ -49,13 +42,37 @@ Rectangle {
                     anchors.fill: parent
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
                     onClicked: mouse => {
-                        if (mouse.button === Qt.RightButton && trayIcon.item.hasMenu) {
-                            var pos = mouseArea.mapToItem(null, mouse.x, mouse.y);
-                            trayIcon.item.display(root.parentWindow, pos.x, pos.y);
+                        if ((mouse.button === Qt.LeftButton || mouse.button === Qt.RightButton) && trayIcon.item.hasMenu) {
+                            trayMenuLoader.active = false;
+                            trayMenuLoader.pendingAnchor = trayIcon;
+                            trayMenuLoader.pendingMenu = trayIcon.item.menu;
+                            trayMenuLoader.active = true;
                         }
                     }
                 }
             }
+        }
+    }
+
+    Loader {
+        id: trayMenuLoader
+        active: false
+        property Item pendingAnchor: null
+        property var pendingMenu: null
+        sourceComponent: Component {
+            TrayMenu {
+                isRoot: true
+            }
+        }
+        onLoaded: {
+            item.anchorItem = trayMenuLoader.pendingAnchor;
+            item.anchorRect = Qt.rect(0, trayMenuLoader.pendingAnchor.height, 1, 1);
+            item.menuHandle = trayMenuLoader.pendingMenu;
+            item.rootRef = item;
+            item.closeRequested.connect(function () {
+                trayMenuLoader.active = false;
+            });
+            item.visible = true;
         }
     }
 }

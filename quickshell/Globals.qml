@@ -20,4 +20,6 @@ QtObject {
     readonly property string foregroundColor: foreground
     readonly property string primaryColor: red
     readonly property string secondaryColor: green
+    readonly property string borderColor: grey
+    readonly property string disabledColor: '#555555'
 }
