@@ -7,7 +7,8 @@ exists=()
 failed=()
 
 mkdir -p "$HOME/.config"
-configs=("nvim"
+configs=(
+  "nvim"
   "tmux"
   "alacritty"
   "opencode"
@@ -43,8 +44,10 @@ for script in "$SCRIPT_DIR"/scripts/local/*; do
   script_name=$(basename $script)
   installed_script="$HOME/.local/bin/$script_name"
   if [ -x "$installed_script" ]; then
+    exists+=("local script $script_name")
     continue
   fi
+  success+=("local script $script_name")
   ln -s "$script" "$installed_script"
 done
 
@@ -53,8 +56,10 @@ for script in "$SCRIPT_DIR"/scripts/global/*; do
   script_name=$(basename $script)
   installed_script="/usr/local/bin/$script_name"
   if [ -x "$installed_script" ]; then
+    exists+=("global script $script_name")
     continue
   fi
+  success+=("global script $script_name")
   ln -s "$script" "$installed_script"
 done
 
