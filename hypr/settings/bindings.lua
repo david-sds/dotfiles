@@ -16,7 +16,7 @@ hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
 hl.bind("SUPER + T", hl.dsp.window.float())
-hl.bind("SUPER + P", hl.dsp.window.pseudo())
+hl.bind("SUPER + Y", hl.dsp.window.pseudo())
 hl.bind("SUPER + S", hl.dsp.layout("togglesplit"))
 
 hl.bind("SUPER + CTRL + J", hl.dsp.layout("splitratio +0.1"))
@@ -27,7 +27,6 @@ hl.bind("SUPER + O", U.toggle_opacity)
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(G.terminal))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(G.fileManager))
 hl.bind("SUPER + B", hl.dsp.exec_cmd(G.browser))
-hl.bind("SUPER + N", hl.dsp.exec_cmd(G.notes))
 hl.bind("SUPER + C", hl.dsp.exec_cmd("hyprpicker | wl-copy"))
 hl.bind("SUPER + SHIFT + B", hl.dsp.exec_cmd("open-floating-tui " .. G.bluetooth))
 hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("open-floating-tui " .. G.wifi))
@@ -62,29 +61,27 @@ local function get_relative_workspace_id(diff)
 	return ((wid + diff - 1) % 10) + 1
 end
 
-U.multibind({
-	"SUPER + Page_Up",
-	"SUPER + ALT + L",
-}, function()
-	hl.dispatch(hl.dsp.focus({ workspace = get_relative_workspace_id(1) }))
+hl.bind("SUPER + N", function()
+	hl.dispatch(hl.dsp.focus({
+		workspace = get_relative_workspace_id(1),
+	}))
 end)
-U.multibind({
-	"SUPER + Page_Down",
-	"SUPER + ALT + H",
-}, function()
-	hl.dispatch(hl.dsp.focus({ workspace = get_relative_workspace_id(-1) }))
+hl.bind("SUPER + P", function()
+	hl.dispatch(hl.dsp.focus({
+		workspace = get_relative_workspace_id(-1),
+	}))
 end)
-U.multibind({
-	"SUPER + SHIFT + Page_Up",
-	"SUPER + SHIFT + ALT + L",
-}, function()
-	hl.dispatch(hl.dsp.window.move({ workspace = get_relative_workspace_id(1), follow = true }))
+hl.bind("SUPER + SHIFT + N", function()
+	hl.dispatch(hl.dsp.window.move({
+		workspace = get_relative_workspace_id(1),
+		follow = true,
+	}))
 end)
-U.multibind({
-	"SUPER + SHIFT + Page_Down",
-	"SUPER + SHIFT + ALT + H",
-}, function()
-	hl.dispatch(hl.dsp.window.move({ workspace = get_relative_workspace_id(-1), follow = true }))
+hl.bind("SUPER + SHIFT + P", function()
+	hl.dispatch(hl.dsp.window.move({
+		workspace = get_relative_workspace_id(-1),
+		follow = true,
+	}))
 end)
 
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
