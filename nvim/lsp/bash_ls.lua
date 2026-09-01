@@ -16,7 +16,11 @@ return {
 
 	filetypes = { "sh", "bash", "zsh" },
 
+<<<<<<< Updated upstream
 	root_markers = { ".git" },
+=======
+	root_markers = { ".git", ".bashrc", ".profile" },
+>>>>>>> Stashed changes
 
 	settings = {
 		bashIde = {
