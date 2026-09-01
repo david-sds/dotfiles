@@ -9,8 +9,11 @@
     "websearch": "allow",
     "codesearch": "allow",
     "webfetch": "allow",
+    "todowrite": "allow",
     "external_directory": {
-      "~/.agents/skills/**": "allow"
+      "~/.agents/skills/**": "allow",
+      "~/.config/opencode/**": "allow",
+      "~": "allow"
     },
     "bash": {
       "*": "ask",
@@ -22,19 +25,19 @@
       "head *": "allow",
       "tail *": "allow",
       "grep *": "allow",
-      "find *": "allow"
+      "find *": "allow",
+      "git log *": "allow",
+      "curl *": "allow",
+      "wc *": "allow"
     },
     "skill": {
       "hal9001": "allow",
-      "custom-cv": "allow"
+      "custom-curriculum": "allow",
+      "custom-cover-letter": "allow"
     }
   },
   "skills": {
-    "paths": [
-      "/home/david/Config/hal9001"
-    ]
+    "paths": ["/home/david/Config/hal9001"]
   },
-  "plugin": [
-    "./plugins/caveman/plugin.js"
-  ]
+  "plugin": ["./plugins/caveman/plugin.js"]
 }
