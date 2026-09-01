@@ -8,7 +8,7 @@
 local lsp_config_module = require("core.lsp")
 local on_attach = lsp_config_module.on_attach
 
-local schemastore = require("schemastore")
+local ok, schemastore = pcall(require, "schemastore")
 
 ---@type vim.lsp.Config
 return {
@@ -20,7 +20,7 @@ return {
 
 	settings = {
 		yaml = {
-			schemas = schemastore.yaml.schemas(),
+			schemas = ok and schemastore.yaml.schemas() or {},
 			validate = true,
 			format = {
 				enable = true,
