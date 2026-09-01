@@ -8,7 +8,7 @@
 local lsp_config_module = require("core.lsp")
 local on_attach = lsp_config_module.on_attach
 
-local schemastore = require("schemastore")
+local ok, schemastore = pcall(require, "schemastore")
 
 return {
 	on_attach = on_attach,
@@ -19,7 +19,7 @@ return {
 
 	settings = {
 		json = {
-			schemas = schemastore.json.schemas(),
+			schemas = ok and schemastore.json.schemas() or {},
 			validate = { enable = true },
 			format = { enable = false },
 		},
