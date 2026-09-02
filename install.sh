@@ -8,21 +8,15 @@ failed=()
 
 mkdir -p "$HOME/.config"
 configs=(
+  # "alacritty"
+  # "btop"
+  # "hypr"
+  # "lazygit"
   "nvim"
-  "tmux"
-  "alacritty"
-  "opencode"
-  "codex"
-  "hypr"
-  "walker"
-  "waybar"
-  "quickshell"
-  "mako"
-  "xdg-desktop-portal"
-  "lazygit"
-  "satty"
-  "zathura"
-  "btop"
+  # "opencode"
+  # "scripts"
+  # "tmux"
+  # "zathura"
 )
 for config in "${configs[@]}"; do
   err=$(ln -sT "$SCRIPT_DIR/$config" "$HOME/.config/$config" 2>&1)
