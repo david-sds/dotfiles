@@ -13,7 +13,7 @@ configs=(
   "hypr"
   "lazygit"
   "nvim"
-  # "opencode"
+  "opencode"
   "tmux"
   "omarchy"
   # "zathura"
