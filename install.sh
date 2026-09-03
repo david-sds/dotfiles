@@ -9,14 +9,13 @@ failed=()
 mkdir -p "$HOME/.config"
 configs=(
   "alacritty"
-  # "btop"
   "hypr"
   "lazygit"
   "nvim"
   "opencode"
   "tmux"
   "omarchy"
-  # "zathura"
+  "zathura"
 )
 for config in "${configs[@]}"; do
   err=$(ln -sT "$SCRIPT_DIR/$config" "$HOME/.config/$config" 2>&1)
