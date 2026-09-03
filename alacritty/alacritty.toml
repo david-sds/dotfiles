@@ -1,71 +1,29 @@
-# -----------------------------------------------------------------------------
-# Window
-# -----------------------------------------------------------------------------
-[window]
-padding = { x = 4, y = 4 }
+general.import = [ "~/.local/state/omarchy/current/theme/alacritty.toml" ]
 
-# -----------------------------------------------------------------------------
-# Font
-# -----------------------------------------------------------------------------
+[env]
+TERM = "xterm-256color"
 
-# Sizing
+[terminal]
+osc52 = "CopyPaste"
+
 [font]
-size = 16.0
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+size = 12.0
 
-# Positioning
-[font.glyph_offset]
-x = 0
-y = 0
-[font.offset]
-x = 0
-y = 0
+[window]
+padding.x = 8
+padding.y = 8
+decorations = "None"
 
-# Styles
-[font.normal]
-family = "InconsolataGo Nerd Font"
-style = "Regular"
+[keyboard]
+bindings = [
+{ key = "Insert", mods = "Shift", action = "Paste" },
+{ key = "Insert", mods = "Control", action = "Copy" },
+# Send Shift+Return as CSI-u so TUIs can distinguish it from Return without treating it as Alt+Return.
+{ key = "Return", mods = "Shift", chars = "\u001B[13;2u" },
+# Legacy encoding sends Alt+Shift+Return the same as Alt+Return; send CSI-u so tmux can match M-S-Enter.
+{ key = "Return", mods = "Alt|Shift", chars = "\u001B[13;4u" }
+]
 
-[font.bold]
-family = "InconsolataGo Nerd Font"
-style = "Bold"
-
-[font.italic]
-family = "InconsolataGo Nerd Font"
-style = "Italic"
-
-[font.bold_italic]
-family = "InconsolataGo Nerd Font"
-style = "bold italic"
-
-# -----------------------------------------------------------------------------
-# Gruvbox Material
-# -----------------------------------------------------------------------------
-
-# Main colors
-[colors.primary]
-# hard bg = '#1d2021'
-# soft bg = = '#32302f'
-background = '#282828'
-foreground = '#ebdbb2'
-
-# Normal colors
-[colors.normal]
-black   = '#282828'
-red     = '#cc241d'
-green   = '#98971a'
-yellow  = '#d79921'
-blue    = '#458588'
-magenta = '#b16286'
-cyan    = '#689d6a'
-white   = '#a89984'
-
-# Bright colors
-[colors.bright]
-black   = '#928374'
-red     = '#fb4934'
-green   = '#b8bb26'
-yellow  = '#fabd2f'
-blue    = '#83a598'
-magenta = '#d3869b'
-cyan    = '#8ec07c'
-white   = '#ebdbb2'

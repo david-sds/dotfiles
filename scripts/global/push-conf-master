@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd "$HOME/Config/dotfiles"
+cd "$HOME/Core/dotfiles"
 INITIAL_BRANCH=$(git branch --show-current)
 
 # Stash changes

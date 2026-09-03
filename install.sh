@@ -8,13 +8,12 @@ failed=()
 
 mkdir -p "$HOME/.config"
 configs=(
-  # "alacritty"
+  "alacritty"
   # "btop"
   "hypr"
-  # "lazygit"
+  "lazygit"
   "nvim"
   # "opencode"
-  "scripts"
   "tmux"
   "omarchy"
   # "zathura"
