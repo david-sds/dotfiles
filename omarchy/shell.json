@@ -61,6 +61,21 @@
     "lock": 300,
     "screensaver": 150
   },
-  "plugins": [],
-  "version": 1
+  "plugins": [
+    {
+      "id": "david.clipboard"
+    },
+    {
+      "id": "david.emojis"
+    }
+  ],
+  "version": 1,
+  "disabledPlugins": [
+    "omarchy.clipboard",
+    "omarchy.emojis"
+  ],
+  "cloneSourceRestores": [
+    "david.clipboard",
+    "david.emojis"
+  ]
 }
