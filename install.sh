@@ -10,12 +10,13 @@ mkdir -p "$HOME/.config"
 configs=(
   # "alacritty"
   # "btop"
-  # "hypr"
+  "hypr"
   # "lazygit"
   "nvim"
   # "opencode"
-  # "scripts"
-  # "tmux"
+  "scripts"
+  "tmux"
+  "omarchy"
   # "zathura"
 )
 for config in "${configs[@]}"; do

@@ -13,6 +13,6 @@ require("plugins.git")
 require("plugins.workflow")
 require("plugins.clients")
 require("plugins.styles")
-require("plugins.colorscheme")
+require("plugins.omarchy")
 
 require("core.lsp").setup()

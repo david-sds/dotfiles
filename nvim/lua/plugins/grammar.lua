@@ -108,7 +108,6 @@ require("mason-tool-installer").setup({
 		"phpstan",
 		-- twig
 		"twiggy-language-server",
-		"twig-cs-fixer",
 		-- emmet
 		"emmet-language-server",
 		-- typst

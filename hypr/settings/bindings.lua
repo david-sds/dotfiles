@@ -1,119 +1,94 @@
-G = require("settings.globals")
-U = require("utils")
+-- Keep only your personal keybinding overrides here. Add new bindings or
+-- unbind defaults before replacing them.
+
+-- See current bindings and descriptions:
+--   omarchy menu keybindings --print
+
+-- To disable every Omarchy default binding, set this in
+-- ~/.config/hypr/hyprland.lua before require("default.hypr.omarchy"), then add
+-- only the bindings you want below:
+--   omarchy_default_bindings = false
+
+-- To disable all preinstalled app/webapp bindings, set:
+--   omarchy_preinstalled_bindings = false
+
+-- Add a new binding.
+-- o.bind("SUPER + SHIFT + R", "SSH", "alacritty -e ssh your-server")
+
+-- Change an existing binding by unbinding it first, then binding the key again.
+-- This example changes SUPER+SPACE from the launcher to the Omarchy root menu.
+-- hl.unbind("SUPER + SPACE")
+-- o.bind("SUPER + SPACE", "Omarchy menu", "omarchy-menu toggle root")
+
+-- Disable a default binding without replacing it.
+-- hl.unbind("SUPER + SHIFT + B")
+
+-- Logitech MX Keys examples:
+-- o.bind("SUPER + SHIFT + S", nil, "omarchy-capture-screenshot")
+-- o.bind("SUPER + H", nil, "voxtype record toggle")
+-- o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
+
+-- META+J/K/L moved to SHIFT variants (originals unbound)
+
+hl.unbind("SUPER + W")
+o.bind("SUPER + Q", "Close window", hl.dsp.window.close())
+
+hl.unbind("SUPER + J")
+o.bind("SUPER + CTRL + J", "Toggle window split", hl.dsp.layout("togglesplit"))
+
+hl.unbind("SUPER + K")
+o.bind("SUPER + CTRL + K", "Keybindings", "omarchy-menu-keybindings")
+
+hl.unbind("SUPER + L")
+hl.unbind("SUPER + CTRL + L")
+o.bind("SUPER + CTRL + L", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
+
+o.bind("SUPER + H", "Select left window", hl.dsp.focus({ direction = "left" }))
+o.bind("SUPER + L", "Select right window", hl.dsp.focus({ direction = "right" }))
+o.bind("SUPER + K", "Select upper window", hl.dsp.focus({ direction = "up" }))
+o.bind("SUPER + J", "Select bottom window", hl.dsp.focus({ direction = "down" }))
+
+o.bind("SUPER + SHIFT + H", "Move window left", hl.dsp.window.move({ direction = "left" }))
+o.bind("SUPER + SHIFT + L", "Move right window", hl.dsp.window.move({ direction = "right" }))
+o.bind("SUPER + SHIFT + K", "Move upper window", hl.dsp.window.move({ direction = "up" }))
+o.bind("SUPER + SHIFT + J", "Move bottom window", hl.dsp.window.move({ direction = "down" }))
+
+hl.unbind("SUPER + N")
+hl.unbind("SUPER + P")
+hl.unbind("SUPER + SHIFT + N")
+hl.unbind("SUPER + SHIFT + P")
+
+-- Utils
+U = require("hypr.utils")
 
 U.multibind({
 	"SUPER + mouse_up",
-	"SUPER + minus",
 	"SUPER + KP_Subtract",
 }, U.change_zoom(-0.5))
 U.multibind({
 	"SUPER + mouse_down",
-	"SUPER + equal",
 	"SUPER + KP_Add",
 }, U.change_zoom(0.5))
 
-hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("walker"))
-hl.bind("SUPER + Q", hl.dsp.window.close())
-hl.bind("SUPER + F", hl.dsp.window.fullscreen())
-hl.bind("SUPER + T", hl.dsp.window.float())
-hl.bind("SUPER + Y", hl.dsp.window.pseudo())
-hl.bind("SUPER + S", hl.dsp.layout("togglesplit"))
-
-hl.bind("SUPER + CTRL + J", hl.dsp.layout("splitratio +0.1"))
-hl.bind("SUPER + CTRL + K", hl.dsp.layout("splitratio -0.1"))
-
-hl.bind("SUPER + G", U.toggle_gaps)
-hl.bind("SUPER + O", U.toggle_opacity)
-hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(G.terminal))
-hl.bind("SUPER + E", hl.dsp.exec_cmd(G.fileManager))
-hl.bind("SUPER + B", hl.dsp.exec_cmd(G.browser))
-hl.bind("SUPER + C", hl.dsp.exec_cmd("hyprpicker | wl-copy"))
-hl.bind("SUPER + SHIFT + B", hl.dsp.exec_cmd("open-floating-tui " .. G.bluetooth))
-hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("open-floating-tui " .. G.wifi))
-hl.bind("SUPER + SHIFT + A", hl.dsp.exec_cmd("open-floating-tui " .. G.audio))
-hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("open-floating-tui " .. G.system))
-
-hl.bind("SUPER + ESCAPE", hl.dsp.exec_cmd("walker-powermenu"))
-
-hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region -z"))
-hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region -z --raw | satty --filename - --floating-hack"))
-hl.bind("SUPER + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
-hl.bind("SUPER + SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m window --raw | satty --filename - --floating-hack"))
-
-hl.bind("SUPER + H", hl.dsp.focus({ direction = "left" }))
-hl.bind("SUPER + L", hl.dsp.focus({ direction = "right" }))
-hl.bind("SUPER + K", hl.dsp.focus({ direction = "up" }))
-hl.bind("SUPER + J", hl.dsp.focus({ direction = "down" }))
-
-hl.bind("SUPER + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
-hl.bind("SUPER + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
-hl.bind("SUPER + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
-hl.bind("SUPER + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
-
-for i = 1, 10 do
-	local key = i % 10
-	hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
-	hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i, follow = true }))
-end
-
-local function get_relative_workspace_id(diff)
-	local wid = hl.get_active_workspace().id
-	return ((wid + diff - 1) % 10) + 1
-end
-
-hl.bind("SUPER + N", function()
+o.bind("SUPER + N", "Go to next workspace", function()
 	hl.dispatch(hl.dsp.focus({
-		workspace = get_relative_workspace_id(1),
+		workspace = U.get_relative_workspace_id(1),
 	}))
 end)
-hl.bind("SUPER + P", function()
+o.bind("SUPER + P", "Go to previous workspace", function()
 	hl.dispatch(hl.dsp.focus({
-		workspace = get_relative_workspace_id(-1),
+		workspace = U.get_relative_workspace_id(-1),
 	}))
 end)
-hl.bind("SUPER + SHIFT + N", function()
+o.bind("SUPER + SHIFT + N", "Move window to next workspace", function()
 	hl.dispatch(hl.dsp.window.move({
-		workspace = get_relative_workspace_id(1),
+		workspace = U.get_relative_workspace_id(1),
 		follow = true,
 	}))
 end)
-hl.bind("SUPER + SHIFT + P", function()
+o.bind("SUPER + SHIFT + P", "Move window to previous workspace", function()
 	hl.dispatch(hl.dsp.window.move({
-		workspace = get_relative_workspace_id(-1),
+		workspace = U.get_relative_workspace_id(-1),
 		follow = true,
 	}))
 end)
-
-hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
-
-hl.bind(
-	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
-	{ repeating = true, locked = true }
-)
-hl.bind(
-	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
-	{ repeating = true, locked = true }
-)
-hl.bind(
-	"XF86AudioMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
-	{ repeating = true, locked = true }
-)
-hl.bind(
-	"XF86AudioMicMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
-	{ repeating = true, locked = true }
-)
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { repeating = true, locked = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { repeating = true, locked = true })
-
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
-
-hl.bind("ALT + TAB", hl.dsp.window.cycle_next({ next = true }))
-hl.bind("ALT + SHIFT + TAB", hl.dsp.window.cycle_next({ next = false }))
