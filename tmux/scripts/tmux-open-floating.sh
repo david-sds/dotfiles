@@ -6,6 +6,18 @@ PANE="$3"
 PANE_CWD="$4"
 FLOAT_WIN_NAME='floating'
 
+if tmux list-windows -t "$SESSION" | grep -q "$FLOAT_WIN_NAME"; then
+  FLOATING_PANES=$(tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{pane_floating_flag}' |
+    awk '$2==1 {print $1}')
+
+  if [ -n "$FLOATING_PANES" ]; then
+    while read -r p; do
+      tmux kill-pane -t "$p"
+    done <<<"$FLOATING_PANES"
+    exit 0
+  fi
+fi
+
 if [ "$(tmux display-message -p '#{pane_floating_flag}')" = "1" ]; then
   if ! tmux list-windows -t "$SESSION" | grep -q "$FLOAT_WIN_NAME"; then
     tmux new-window -t "$SESSION:" -n "$FLOAT_WIN_NAME" -d
