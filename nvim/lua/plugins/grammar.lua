@@ -33,7 +33,6 @@ require("nvim-treesitter").install({
 	"java",
 	"prisma",
 	"commonlisp",
-	"ledger",
 	"qmljs",
 	"typst",
 })
