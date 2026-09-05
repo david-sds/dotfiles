@@ -16,6 +16,7 @@ configs=(
   "tmux"
   "omarchy"
   "zathura"
+  "satty"
 )
 for config in "${configs[@]}"; do
   err=$(ln -sT "$SCRIPT_DIR/$config" "$HOME/.config/$config" 2>&1)
