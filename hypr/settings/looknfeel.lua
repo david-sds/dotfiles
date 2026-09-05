@@ -48,3 +48,11 @@
 --     column_width = 0.97,
 --   },
 -- })
+
+-- Never auto-hide the cursor (default hides it while typing).
+-- Fullscreen video apps like VLC still hide it on their own.
+hl.config({
+  cursor = {
+    hide_on_key_press = false,
+  },
+})
