@@ -70,6 +70,9 @@
     },
     {
       "id": "david.keyboard-layout"
+    },
+    {
+      "id": "david.image-picker"
     }
   ],
   "version": 1,
@@ -78,13 +81,15 @@
     "omarchy.emojis",
     "omarchy.keyboard-layout",
     "omarchy.menu",
-    "omarchy.workspaces"
+    "omarchy.workspaces",
+    "omarchy.image-picker"
   ],
   "cloneSourceRestores": [
     "david.clipboard",
     "david.emojis",
     "david.keyboard-layout",
     "david.menu",
-    "david.workspaces"
+    "david.workspaces",
+    "david.image-picker"
   ]
 }
