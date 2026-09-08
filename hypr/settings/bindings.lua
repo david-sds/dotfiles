@@ -47,6 +47,9 @@ o.bind("ALT + SHIFT + TAB", "Focus on previous window", hl.dsp.window.cycle_next
 o.bind("ALT + TAB", "Reveal active window on top", hl.dsp.window.bring_to_top())
 o.bind("ALT + SHIFT + TAB", "Reveal active window on top", hl.dsp.window.bring_to_top())
 
+o.bind("SUPER + mouse:272", "Drag window", hl.dsp.window.drag(), { mouse = true })
+o.bind("SUPER + mouse:273", "Resize window", hl.dsp.window.resize(), { mouse = true })
+
 o.bind(
 	"SUPER + LEFT",
 	"Expand window left",
