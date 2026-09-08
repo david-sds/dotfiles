@@ -47,10 +47,30 @@ o.bind("ALT + SHIFT + TAB", "Focus on previous window", hl.dsp.window.cycle_next
 o.bind("ALT + TAB", "Reveal active window on top", hl.dsp.window.bring_to_top())
 o.bind("ALT + SHIFT + TAB", "Reveal active window on top", hl.dsp.window.bring_to_top())
 
-o.bind("SUPER + LEFT", "Expand window left", hl.dsp.window.resize({ x = -100, y = 0, relative = true }))
-o.bind("SUPER + RIGHT", "Shrink window left", hl.dsp.window.resize({ x = 100, y = 0, relative = true }))
-o.bind("SUPER + UP", "Shrink window up", hl.dsp.window.resize({ x = 0, y = -100, relative = true }))
-o.bind("SUPER + DOWN", "Expand window down", hl.dsp.window.resize({ x = 0, y = 100, relative = true }))
+o.bind(
+	"SUPER + LEFT",
+	"Expand window left",
+	hl.dsp.window.resize({ x = -50, y = 0, relative = true }),
+	{ repeating = true }
+)
+o.bind(
+	"SUPER + RIGHT",
+	"Shrink window left",
+	hl.dsp.window.resize({ x = 50, y = 0, relative = true }),
+	{ repeating = true }
+)
+o.bind(
+	"SUPER + UP",
+	"Shrink window up",
+	hl.dsp.window.resize({ x = 0, y = -50, relative = true }),
+	{ repeating = true }
+)
+o.bind(
+	"SUPER + DOWN",
+	"Expand window down",
+	hl.dsp.window.resize({ x = 0, y = 50, relative = true }),
+	{ repeating = true }
+)
 
 if o.cmd_present("voxtype") then
 	o.bind("SUPER + CTRL + X", "Toggle dictation", "voxtype record toggle")
@@ -95,6 +115,11 @@ o.bind(
 
 o.bind("SUPER + C", "Color picker", "pkill hyprpicker || hyprpicker -a")
 
+o.bind(
+	"ALT + PRINT",
+	"Screenrecording",
+	"omarchy-capture-screenrecording --stop-recording || omarchy-menu toggle trigger.capture.screenrecord"
+)
 o.bind("SUPER + ALT + code:34", "Make webcam overlay smaller", "omarchy-capture-webcam-resize smaller")
 o.bind("SUPER + ALT + code:35", "Make webcam overlay larger", "omarchy-capture-webcam-resize larger")
 o.bind("SUPER + CTRL + PRINT", "Extract text (OCR) from screenshot", "omarchy-capture-text")
