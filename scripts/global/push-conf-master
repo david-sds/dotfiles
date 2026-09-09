@@ -25,9 +25,9 @@ git checkout "$INITIAL_BRANCH"
 git merge origin/master --no-edit
 git push
 
-# Reload hyprctl if on hyprland
+# Reload stuff
 if command -v omarchy >/dev/null 2>&1; then
-  omarchy refresh shell
+  omarchy restart shell
 fi
 
 if command -v hyprctl >/dev/null 2>&1; then
