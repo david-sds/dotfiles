@@ -29,12 +29,14 @@
       "find *": "allow",
       "git log *": "allow",
       "curl *": "allow",
-      "wc *": "allow"
+      "wc *": "allow",
+      "readlink *": "allow"
     },
     "skill": {
       "hal9001": "allow",
       "custom-curriculum": "allow",
-      "custom-cover-letter": "allow"
+      "custom-cover-letter": "allow",
+      "vault-persistence": "allow"
     }
   },
   "skills": {
