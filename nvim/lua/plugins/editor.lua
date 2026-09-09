@@ -76,10 +76,30 @@ require("conform").setup({
 		php = { "phpcbf" },
 		twig = { "djlint" },
 	},
-	format_on_save = {
-		timeout_ms = 500,
-		lsp_format = "fallback",
-	},
+	format_on_save = function(bufnr)
+		if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+			return
+		end
+		return { timeout_ms = 500, lsp_format = "fallback" }
+	end,
+})
+
+vim.api.nvim_create_user_command("FormatDisable", function(args)
+	if args.bang then
+		-- FormatDisable! will disable formatting just for this buffer
+		vim.b.disable_autoformat = true
+	else
+		vim.g.disable_autoformat = true
+	end
+end, {
+	desc = "Disable autoformat-on-save",
+	bang = true,
+})
+vim.api.nvim_create_user_command("FormatEnable", function()
+	vim.b.disable_autoformat = false
+	vim.g.disable_autoformat = false
+end, {
+	desc = "Re-enable autoformat-on-save",
 })
 
 vim.keymap.set({ "n", "v" }, "<leader>F", function()
@@ -88,6 +108,22 @@ vim.keymap.set({ "n", "v" }, "<leader>F", function()
 		lsp_fallback = true,
 	})
 end, { desc = "Format buffer" })
+
+vim.keymap.set("n", "<leader>tf", function()
+	if vim.b.disable_autoformat then
+		vim.cmd("FormatEnable")
+	else
+		vim.cmd("FormatDisable!")
+	end
+end, { desc = "Toggle autoformat (buffer)" })
+
+vim.keymap.set("n", "<leader>tF", function()
+	if vim.g.disable_autoformat then
+		vim.cmd("FormatEnable")
+	else
+		vim.cmd("FormatDisable")
+	end
+end, { desc = "Toggle autoformat (global)" })
 
 -- ============================================================================
 -- TITLE : oklch-color-picker.nvim
@@ -101,33 +137,27 @@ vim.keymap.set("n", "<leader>cp", function()
 	require("oklch-color-picker").pick_under_cursor({ fallback_open = {} })
 end, { desc = "Color pick under cursor" })
 
+-- ============================================================================
+-- TITLE : TreeSJ
+-- ABOUT : Neovim plugin for splitting/joining blocks of code like arrays, hashes, statements, objects, dictionaries, etc.
+-- ============================================================================
 vim.pack.add({ "https://github.com/wansmer/treesj" })
 
 local tsj = require("treesj")
 
-local langs = {--[[ configuration for languages ]]
-}
-
 tsj.setup({
-	---@type boolean Use default keymaps (<space>m - toggle, <space>j - join, <space>s - split)
-	use_default_keymaps = true,
-	---@type boolean Node with syntax error will not be formatted
+	use_default_keymaps = false,
 	check_syntax_error = true,
-	---If line after join will be longer than max value,
-	---@type number If line after join will be longer than max value, node will not be formatted
-	max_join_length = 120,
-	---Cursor behavior:
-	---hold - cursor follows the node/place on which it was called
-	---start - cursor jumps to the first symbol of the node being formatted
-	---end - cursor jumps to the last symbol of the node being formatted
-	---@type 'hold'|'start'|'end'
+	max_join_length = 1000,
 	cursor_behavior = "hold",
-	---@type boolean Notify about possible problems or not
 	notify = true,
-	---@type boolean Use `dot` for repeat action
 	dot_repeat = true,
-	---@type nil|function Callback for treesj error handler. func (err_text, level, ...other_text)
 	on_error = nil,
-	---@type table Presets for languages
-	-- langs = {}, -- See the default presets in lua/treesj/langs
 })
+
+-- For default preset
+vim.keymap.set("n", "<leader>m", require("treesj").toggle)
+-- For extending default preset with `recursive = true`
+vim.keymap.set("n", "<leader>M", function()
+	require("treesj").toggle({ split = { recursive = true } })
+end)

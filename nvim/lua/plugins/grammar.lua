@@ -120,8 +120,6 @@ require("mason-tool-installer").setup({
 })
 require("mason").setup()
 
-vim.keymap.set("n", "<leader>M", "<CMD>Mason<CR>", { desc = "Open Mason menu" })
-
 -- Green visual highlight on all floating windows
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "mason",
