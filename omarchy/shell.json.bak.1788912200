@@ -1,0 +1,95 @@
+{
+  "bar": {
+    "centerAnchor": "omarchy.clock",
+    "layout": {
+      "center": [
+        {
+          "id": "omarchy.indicators"
+        },
+        {
+          "format": "dddd HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "id": "omarchy.clock",
+          "verticalFormat": "HH\n—\nmm"
+        },
+        {
+          "id": "omarchy.system-update"
+        },
+        {
+          "id": "omarchy.weather"
+        },
+        {
+          "id": "david.keyboard-layout"
+        }
+      ],
+      "left": [
+        {
+          "id": "david.menu"
+        },
+        {
+          "id": "david.workspaces"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray"
+        },
+        {
+          "id": "omarchy.agents"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "omarchy.audio"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "omarchy.power"
+        }
+      ]
+    },
+    "position": "top",
+    "transparent": true
+  },
+  "idle": {
+    "lock": 300,
+    "screensaver": 150
+  },
+  "plugins": [
+    {
+      "id": "david.clipboard"
+    },
+    {
+      "id": "david.emojis"
+    },
+    {
+      "id": "david.keyboard-layout"
+    },
+    {
+      "id": "david.image-picker"
+    }
+  ],
+  "version": 1,
+  "disabledPlugins": [
+    "omarchy.clipboard",
+    "omarchy.emojis",
+    "omarchy.keyboard-layout",
+    "omarchy.menu",
+    "omarchy.workspaces",
+    "omarchy.image-picker"
+  ],
+  "cloneSourceRestores": [
+    "david.clipboard",
+    "david.emojis",
+    "david.keyboard-layout",
+    "david.menu",
+    "david.workspaces",
+    "david.image-picker"
+  ]
+}

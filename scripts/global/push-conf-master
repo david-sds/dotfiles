@@ -26,7 +26,9 @@ git merge origin/master --no-edit
 git push
 
 # Reload hyprctl if on hyprland
-if command -v hyprctl >/dev/null 2>&1; then
+if command -v omarchy >/dev/null 2>&1; then
+  omarchy refresh shell
+elif command -v hyprctl >/dev/null 2>&1; then
   hyprctl reload
 fi
 
