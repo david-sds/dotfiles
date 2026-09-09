@@ -160,26 +160,26 @@ local function apply()
 	vim.api.nvim_exec_autocmds("VimEnter", { modeline = false })
 
 	-- Use terminal background: normal text and signcolumn become transparent.
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-	vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-	vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
-	vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none" })
-	for _, name in ipairs({
-		"GitSignsAdd",
-		"GitSignsChange",
-		"GitSignsDelete",
-		"GitSignsAddLnr",
-		"GitSignsChangeLnr",
-		"GitSignsDeleteLnr",
-	}) do
-		local fg = vim.api.nvim_get_hl_by_id(vim.api.nvim_get_hl_id_by_name(name), true).foreground
-		local attrs = { bg = "none" }
-		if fg then
-			attrs.fg = string.format("#%06x", fg)
-		end
-		vim.api.nvim_set_hl(0, name, attrs)
-	end
+	-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	-- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+	-- vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+	-- vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+	-- vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none" })
+	-- for _, name in ipairs({
+	-- 	"GitSignsAdd",
+	-- 	"GitSignsChange",
+	-- 	"GitSignsDelete",
+	-- 	"GitSignsAddLnr",
+	-- 	"GitSignsChangeLnr",
+	-- 	"GitSignsDeleteLnr",
+	-- }) do
+	-- 	local fg = vim.api.nvim_get_hl_by_id(vim.api.nvim_get_hl_id_by_name(name), true).foreground
+	-- 	local attrs = { bg = "none" }
+	-- 	if fg then
+	-- 		attrs.fg = string.format("#%06x", fg)
+	-- 	end
+	-- 	vim.api.nvim_set_hl(0, name, attrs)
+	-- end
 
 	setup_float_highlight()
 end
