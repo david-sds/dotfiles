@@ -16,13 +16,11 @@ return {
 
 	filetypes = { "python" },
 
-	-- root_markers = {
-	-- 	"pyproject.toml",
-	-- 	".git",
-	-- 	"setup.py",
-	-- 	"setup.cfg",
-	-- 	"requirements.txt",
-	-- },
+	root_markers = {
+		"pyproject.toml",
+		".git",
+		"requirements.txt",
+	},
 
 	settings = {
 		python = {
