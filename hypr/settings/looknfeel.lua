@@ -53,7 +53,7 @@
 -- Fullscreen video apps like VLC still hide it on their own.
 hl.config({
 	general = {
-		layout = "scrolling",
+		layout = "dwindle",
 	},
 	cursor = {
 		hide_on_key_press = false,
