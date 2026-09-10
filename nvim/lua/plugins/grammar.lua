@@ -33,7 +33,6 @@ require("nvim-treesitter").install({
 	"java",
 	"prisma",
 	"commonlisp",
-	"ledger",
 	"qmljs",
 	"typst",
 })
@@ -118,8 +117,6 @@ require("mason-tool-installer").setup({
 	run_on_start = true,
 })
 require("mason").setup()
-
-vim.keymap.set("n", "<leader>M", "<CMD>Mason<CR>", { desc = "Open Mason menu" })
 
 -- Green visual highlight on all floating windows
 vim.api.nvim_create_autocmd("FileType", {

@@ -1,3 +1,5 @@
+local U = require("utils.aux")
+
 -- ============================================================================
 -- TITLE : LuaSnip
 -- ABOUT : Parse LSP-Style Snippets either directly in Lua, as a VSCode package or a SnipMate snippet collection.
@@ -27,36 +29,6 @@ require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/snipp
 require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snippets" })
 
 -- ============================================================================
--- TITLE : supermaven-nvim
--- ABOUT : A neovim plugin for superman-style autocompletion
--- ============================================================================
-
-vim.pack.add({
-	"https://github.com/Exafunction/windsurf.nvim",
-	"https://github.com/nvim-lua/plenary.nvim",
-	"https://github.com/hrsh7th/nvim-cmp",
-})
-
-local codeium = require("codeium")
-codeium.setup({
-	virtual_text = {
-		enabled = true,
-		manual = true,
-		idle_delay = 300,
-		key_bindings = {
-			accept = "<C-g>",
-		},
-		filetypes = {
-			ledger = false,
-			c = false,
-		},
-	},
-})
-codeium.s.enabled = false
-
-vim.keymap.set("n", "<leader>tc", "<CMD>Codeium Toggle<CR>", { desc = "Toggle Codeium" })
-
--- ============================================================================
 -- TITLE : nvim-cmp
 -- ABOUT : A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
 -- ============================================================================
@@ -75,35 +47,12 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
-local hledger_accounts = {}
-local function refresh_hledger_accounts()
-	vim.fn.jobstart({ "hledger", "accounts" }, {
-		stdout_buffered = true,
-		on_stdout = function(_, data)
-			hledger_accounts = vim.tbl_filter(function(x)
-				return x ~= ""
-			end, data)
-		end,
-	})
-end
-
-local hledger_accounts_source = {}
-function hledger_accounts_source:complete(_, callback)
-	local items = {}
-	for _, name in ipairs(hledger_accounts) do
-		table.insert(items, {
-			label = name,
-			kind = vim.lsp.protocol.CompletionItemKind.Field,
-		})
-	end
-	callback(items)
-end
-cmp.register_source("hledger_accounts", hledger_accounts_source)
+cmp.register_source("hledger_accounts", U.hledger_accounts_source)
 
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
 	pattern = "*.journal",
 	callback = function()
-		refresh_hledger_accounts()
+		U.refresh_hledger_accounts()
 	end,
 })
 
