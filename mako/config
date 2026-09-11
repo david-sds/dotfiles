@@ -2,7 +2,7 @@
 
 # LOOKS
 output=*
-font=InconsolataGo Nerd Font 14
+font=JetBrainsMono Nerd Font 10
 default-timeout=5000
 background-color=#282828
 text-color=#ebdbb2
@@ -12,6 +12,9 @@ margin=10
 # POSITIONING
 anchor=top-right
 layer=overlay
+
+on-button-left=exec ~/.config/mako/mako-default-action.sh $id
+on-button-right=exec ~/.config/mako/mako-default-action.sh $id
 
 # --- Low Urgency (Info - Green) ---
 [urgency=low]

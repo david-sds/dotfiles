@@ -2,8 +2,8 @@ pragma Singleton
 import QtQuick
 
 QtObject {
-    readonly property string fontFamily: "InconsolataGo Nerd Font Propo"
-    readonly property int fontPixelSize: 14
+    readonly property string fontFamily: "JetBrainsMono Nerd Font Propo"
+    readonly property int fontPixelSize: 12
 
     readonly property string background: '#141617'
     readonly property string foreground: '#ebdbb2'

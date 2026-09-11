@@ -12,6 +12,8 @@ U.multibind({
 	"SUPER + KP_Add",
 }, U.change_zoom(0.5))
 
+hl.bind("SUPER + CTRL + L", U.toggle_layout)
+
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
@@ -27,7 +29,7 @@ hl.bind("SUPER + O", U.toggle_opacity)
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(G.terminal))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(G.fileManager))
 hl.bind("SUPER + B", hl.dsp.exec_cmd(G.browser))
-hl.bind("SUPER + C", hl.dsp.exec_cmd("hyprpicker | wl-copy"))
+hl.bind("SUPER + C", hl.dsp.exec_cmd("pkill hyprpicker || hyprpicker -a"))
 hl.bind("SUPER + SHIFT + B", hl.dsp.exec_cmd("open-floating-tui " .. G.bluetooth))
 hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("open-floating-tui " .. G.wifi))
 hl.bind("SUPER + SHIFT + A", hl.dsp.exec_cmd("open-floating-tui " .. G.audio))
@@ -86,6 +88,11 @@ end)
 
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+hl.bind("SUPER + LEFT", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
+hl.bind("SUPER + RIGHT", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
+hl.bind("SUPER + UP", hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
+hl.bind("SUPER + DOWN", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
 
 hl.bind(
 	"XF86AudioRaiseVolume",

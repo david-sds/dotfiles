@@ -35,6 +35,7 @@ require("nvim-treesitter").install({
 	"commonlisp",
 	"qmljs",
 	"typst",
+	"python",
 })
 
 -- Start Treesitter automatically for every filetype buffer.
@@ -107,7 +108,7 @@ require("mason-tool-installer").setup({
 		"phpstan",
 		-- twig
 		"twiggy-language-server",
-		"twig-cs-fixer",
+		-- "twig-cs-fixer",
 		-- emmet
 		"emmet-language-server",
 		-- typst

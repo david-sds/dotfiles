@@ -61,7 +61,7 @@ local opts = {
 	enabled = function()
 		local context = require("cmp.config.context")
 		if context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment") then
-			return false
+			return vim.bo.filetype == "lua"
 		end
 		return true
 	end,

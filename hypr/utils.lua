@@ -2,6 +2,52 @@ local G = require("settings.globals")
 
 local M = {}
 
+local function _shellesc(s)
+	return (s:gsub("'", "'\\''"))
+end
+---@enum Urgency
+local Urgency = {
+	INFO = "low",
+	WARNING = "normal",
+	ERROR = "critical",
+}
+---@param title string The notification title
+---@param body string The notification body
+---@param urgency Urgency Urgency level INFO/WARNING/ERROR
+---@return boolean success True if notify-send ran without error
+M.notify = function(title, body, urgency)
+	local ok = os.execute(
+		string.format(
+			"notify-send -u '%s' '%s' '%s'",
+			_shellesc(urgency),
+			_shellesc(title),
+			_shellesc(body)
+		)
+	)
+	return ok == true
+end
+
+M.toggle_layout = function()
+	local config = hl.get_config("general.layout")
+	local layouts = { "dwindle", "scrolling" }
+
+	for i, layout in ipairs(layouts) do
+		if config == layout then
+			local next_index = (i % #layouts) + 1
+			local next_layout = layouts[next_index]
+
+			hl.config({ general = { layout = next_layout } })
+
+			M.notify(
+				"Changing layout!",
+				layout:upper() .. " > " .. next_layout:upper(),
+				Urgency.INFO
+			)
+			break
+		end
+	end
+end
+
 local gaps_disabled = {}
 M.toggle_gaps = function()
 	local ws = hl.get_active_workspace()
@@ -46,26 +92,34 @@ M.toggle_opacity = function()
 	end
 
 	if transparency_disabled[ws.id] then
-		hl.dispatch(hl.dsp.window.set_prop({ prop = "opacity_override", value = G.default_decoration_opacity }))
-		hl.dispatch(
-			hl.dsp.window.set_prop({ prop = "opacity_inactive_override", value = G.default_decoration_inactive_opacity })
-		)
-		hl.dispatch(
-			hl.dsp.window.set_prop({ prop = "active_border_color", value = G.default_general_col_active_border })
-		)
-		hl.dispatch(
-			hl.dsp.window.set_prop({ prop = "inactive_border_color", value = G.default_general_col_inactive_border })
-		)
+		hl.dispatch(hl.dsp.window.set_prop({
+			prop = "opacity_override",
+			value = G.default_decoration_opacity,
+		}))
+		hl.dispatch(hl.dsp.window.set_prop({
+			prop = "opacity_inactive_override",
+			value = G.default_decoration_inactive_opacity,
+		}))
+		hl.dispatch(hl.dsp.window.set_prop({
+			prop = "active_border_color",
+			value = G.default_general_col_active_border,
+		}))
+		hl.dispatch(hl.dsp.window.set_prop({
+			prop = "inactive_border_color",
+			value = G.default_general_col_inactive_border,
+		}))
 		transparency_disabled[ws.id] = false
 	else
 		hl.dispatch(hl.dsp.window.set_prop({ prop = "opacity_override", value = 1 }))
 		hl.dispatch(hl.dsp.window.set_prop({ prop = "opacity_inactive_override", value = 1 }))
-		hl.dispatch(
-			hl.dsp.window.set_prop({ prop = "active_border_color", value = G.custom_general_col_active_border })
-		)
-		hl.dispatch(
-			hl.dsp.window.set_prop({ prop = "inactive_border_color", value = G.custom_general_col_inactive_border })
-		)
+		hl.dispatch(hl.dsp.window.set_prop({
+			prop = "active_border_color",
+			value = G.custom_general_col_active_border,
+		}))
+		hl.dispatch(hl.dsp.window.set_prop({
+			prop = "inactive_border_color",
+			value = G.custom_general_col_inactive_border,
+		}))
 		transparency_disabled[ws.id] = true
 	end
 end

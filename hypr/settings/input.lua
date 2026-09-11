@@ -5,6 +5,8 @@ hl.config({
 		kb_options = "compose:caps,grp:shifts_toggle",
 		kb_model = "",
 		kb_rules = "",
+		repeat_rate = 50,
+		repeat_delay = 300,
 		numlock_by_default = true,
 		follow_mouse = 1,
 		sensitivity = 0,
@@ -25,7 +27,7 @@ hl.gesture({
 hl.gesture({
 	fingers = 3,
 	direction = "horizontal",
-	action = "workspace",
+	action = "scroll_move",
 })
 
 hl.device({

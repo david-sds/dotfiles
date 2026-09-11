@@ -37,7 +37,7 @@ Rectangle {
         anchors.centerIn: parent
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize
-        color: Globals.foregroundColor
+        color: mouseArea.containsMouse ? Globals.primaryColor : Globals.foregroundColor
         text: parent.icon
     }
 }
