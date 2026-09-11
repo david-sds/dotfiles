@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 success=()
 exists=()
 failed=()
+
+#------------------------------------------------------------------------------
+# Install .config directories
+#------------------------------------------------------------------------------
 
 mkdir -p "$HOME/.config"
 configs=(
@@ -15,7 +19,6 @@ configs=(
   "codex"
   "hypr"
   "walker"
-  "waybar"
   "quickshell"
   "mako"
   "xdg-desktop-portal"
@@ -23,24 +26,37 @@ configs=(
   "satty"
   "zathura"
   "btop"
+  "xfce4"
+  "imv"
 )
 for config in "${configs[@]}"; do
-  err=$(ln -sT "$SCRIPT_DIR/$config" "$HOME/.config/$config" 2>&1)
+  config_path="$DOTFILES/configs/$config"
+
+  if [ ! -e "$config_path" ]; then
+    failed+=("$config:source not found: $config_path")
+    continue
+  fi
+
+  err=$(ln -sT "$config_path" "$HOME/.config/$config" 2>&1)
   status=$?
 
   if [ $status -eq 0 ]; then
-    success+=("$config")
+    success+=("$config config")
   else
     if echo "$err" | grep -qi "exists"; then
-      exists+=("$config")
+      exists+=("$config config")
     else
       failed+=("$config:$err")
     fi
   fi
 done
 
+# -----------------------------------------------------------------------------
+# Install local and global scripts
+# -----------------------------------------------------------------------------
+
 mkdir -p "$HOME/.local/bin"
-for script in "$SCRIPT_DIR"/scripts/local/*; do
+for script in "$DOTFILES"/scripts/local/*; do
   script_name=$(basename $script)
   installed_script="$HOME/.local/bin/$script_name"
   if [ -x "$installed_script" ]; then
@@ -52,7 +68,7 @@ for script in "$SCRIPT_DIR"/scripts/local/*; do
 done
 
 mkdir -p "/usr/local/bin"
-for script in "$SCRIPT_DIR"/scripts/global/*; do
+for script in "$DOTFILES"/scripts/global/*; do
   script_name=$(basename $script)
   installed_script="/usr/local/bin/$script_name"
   if [ -x "$installed_script" ]; then
@@ -62,6 +78,50 @@ for script in "$SCRIPT_DIR"/scripts/global/*; do
   success+=("global script $script_name")
   ln -s "$script" "$installed_script"
 done
+
+# -----------------------------------------------------------------------------
+# Install desktop files
+# -----------------------------------------------------------------------------
+
+mkdir -p "$HOME/.local/share/applications/"
+for desktop_file in "$DOTFILES"/desktop-files/local/*; do
+  desktop_file_name=$(basename $desktop_file)
+  installed_desktop_file="$HOME/.local/share/applications/$desktop_file_name"
+  if [ -e "$installed_desktop_file" ]; then
+    exists+=("local desktop_file $desktop_file_name")
+    continue
+  fi
+  success+=("local desktop_file $desktop_file_name")
+  ln -s "$desktop_file" "$installed_desktop_file"
+done
+
+mkdir -p "/usr/share/applications/"
+for desktop_file in "$DOTFILES"/desktop-files/global/*; do
+  desktop_file_name=$(basename $desktop_file)
+  installed_desktop_file="/usr/share/applications/$desktop_file_name"
+  if [ -e "$installed_desktop_file" ]; then
+    exists+=("global desktop_file $desktop_file_name")
+    continue
+  fi
+  success+=("global desktop_file $desktop_file_name")
+  ln -s "$desktop_file" "$installed_desktop_file"
+done
+
+mkdir -p "$HOME/.local/share/xfce4/helpers"
+for desktop_file in "$DOTFILES"/desktop-files/xfce4-helpers/*; do
+  desktop_file_name=$(basename $desktop_file)
+  installed_desktop_file="$HOME/.local/share/xfce4/helpers/$desktop_file_name"
+  if [ -e "$installed_desktop_file" ]; then
+    exists+=("global desktop_file $desktop_file_name")
+    continue
+  fi
+  success+=("global desktop_file $desktop_file_name")
+  ln -s "$desktop_file" "$installed_desktop_file"
+done
+
+# -----------------------------------------------------------------------------
+# Log the results
+# -----------------------------------------------------------------------------
 
 RED='\e[0;31m'
 YELLOW='\e[0;33m'
@@ -76,5 +136,5 @@ for c in "${exists[@]}"; do
 done
 
 for c in "${failed[@]}"; do
-  echo -e "${RED}[ERROR]${NC} $c failed!" >&2
+  echo -e "${RED}[ERROR]${NC} $c!" >&2
 done
