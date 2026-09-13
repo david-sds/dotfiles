@@ -15,7 +15,7 @@ NC='\e[0m'
 
 log_success() {
   local msg=$1
-  echo -e "${BLUE}[INFO]${NC} $msg!"
+  echo -e "${BLUE}[INFO]${NC} $msg was linked successfully!"
 }
 
 log_exists() {
@@ -25,7 +25,7 @@ log_exists() {
 
 log_failed() {
   local msg=$1
-  echo -e "${RED}[ERROR]${NC} $msg!" >&2
+  echo -e "${RED}[ERROR]${NC} $msg" >&2
 }
 
 #------------------------------------------------------------------------------
@@ -95,8 +95,15 @@ for script in "$DOTFILES"/bin/local/*; do
     log_exists "local script $script_name"
     continue
   fi
-  log_success "local script $script_name"
-  ln -sfT "$script" "$installed_script"
+
+  err=$(ln -sfT "$script" "$installed_script" 2>&1)
+  status=$?
+
+  if [ $status -eq 0 ]; then
+    log_success "$config script"
+  else
+    log_failed "$config:$err"
+  fi
 done
 
 mkdir -p "/usr/local/bin"
@@ -107,8 +114,15 @@ for script in "$DOTFILES"/bin/global/*; do
     log_exists "global script $script_name"
     continue
   fi
-  log_success "global script $script_name"
-  ln -sfT "$script" "$installed_script"
+
+  err=$(ln -sfT "$script" "$installed_script" 2>&1)
+  status=$?
+
+  if [ $status -eq 0 ]; then
+    log_success "$config script"
+  else
+    log_failed "$config:$err"
+  fi
 done
 
 # -----------------------------------------------------------------------------
@@ -125,8 +139,15 @@ for service_file in "$DOTFILES"/service/local/*; do
     log_exists "local service $service_file_name"
     continue
   fi
-  log_success "local service $service_file_name"
-  ln -sfT "$service_file" "$installed_service_file"
+
+  err=$(ln -sfT "$service_file" "$installed_service_file" 2>&1)
+  status=$?
+
+  if [ $status -eq 0 ]; then
+    log_success "local service $service_file_name"
+  else
+    log_failed "$config:$err"
+  fi
 done
 
 # -----------------------------------------------------------------------------
@@ -143,8 +164,16 @@ for desktop_file in "$DOTFILES"/desktop/local/*; do
     log_exists "local desktop file $desktop_file_name"
     continue
   fi
-  log_success "local desktop file $desktop_file_name"
-  ln -sfT "$desktop_file" "$installed_desktop_file"
+
+  err=$(ln -sfT "$desktop_file" "$installed_desktop_file" 2>&1)
+  status=$?
+
+  if [ $status -eq 0 ]; then
+    log_success "local desktop file $service_file_name"
+  else
+    log_failed "$config:$err"
+  fi
+
 done
 
 mkdir -p "/usr/share/applications/"
@@ -155,8 +184,15 @@ for desktop_file in "$DOTFILES"/desktop/global/*; do
     log_exists "global desktop file $desktop_file_name"
     continue
   fi
-  log_success "global desktop file $desktop_file_name"
-  ln -sfT "$desktop_file" "$installed_desktop_file"
+
+  err=$(ln -sfT "$desktop_file" "$installed_desktop_file" 2>&1)
+  status=$?
+
+  if [ $status -eq 0 ]; then
+    log_success "global desktop file $service_file_name"
+  else
+    log_failed "$config:$err"
+  fi
 done
 
 mkdir -p "$HOME/.local/share/xfce4/helpers"
@@ -167,8 +203,15 @@ for desktop_file in "$DOTFILES"/desktop/xfce4-helpers/*; do
     log_exists "xfce4 desktop helper file $desktop_file_name"
     continue
   fi
-  log_success "xfce4 desktop helper file $desktop_file_name"
-  ln -sfT "$desktop_file" "$installed_desktop_file"
+
+  err=$(ln -sfT "$desktop_file" "$installed_desktop_file" 2>&1)
+  status=$?
+
+  if [ $status -eq 0 ]; then
+    log_success "xfce4 desktop helper file $service_file_name"
+  else
+    log_failed "$config:$err"
+  fi
 done
 
 printf '%s\n' "> Finished!"
