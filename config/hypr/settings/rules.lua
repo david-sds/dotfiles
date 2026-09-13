@@ -95,3 +95,11 @@ hl.window_rule({
 	},
 	float = true,
 })
+
+hl.window_rule({
+	name = "floating-imv",
+	match = {
+		class = "imv",
+	},
+	float = true,
+})

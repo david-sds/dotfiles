@@ -1,15 +1,18 @@
-#!/bin/sh
-# Minimal freedesktop Terminal Exec spec implementation.
-# Only terminal installed is Alacritty, so route everything to it.
+#!/usr/bin/env bash
+
 while [ $# -gt 0 ]; do
   case "$1" in
-    --app-id) shift 2 ;;
-    --app-id=*) shift ;;
-    --) shift; break ;;
-    -*) shift ;;
-    *) break ;;
+  --app-id) shift 2 ;;
+  --app-id=*) shift ;;
+  --)
+    shift
+    break
+    ;;
+  -*) shift ;;
+  *) break ;;
   esac
 done
+
 if [ $# -eq 0 ]; then
   exec alacritty
 else

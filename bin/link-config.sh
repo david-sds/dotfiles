@@ -52,6 +52,7 @@ configs=(
   "btop"
   "xfce4"
   "imv"
+  "vlc"
 )
 for config in "${configs[@]}"; do
   config_path="$DOTFILES/config/$config"
