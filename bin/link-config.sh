@@ -116,4 +116,4 @@ for script in "$DOTFILES"/bin/global/*; do
   fi
 done
 
-printf "%s\n" "> Finished!"
+printf '%s\n' "> Finished!"

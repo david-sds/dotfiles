@@ -1,0 +1,1 @@
+/home/david/Core/vault/src/skills/custom-cover-letter.md
