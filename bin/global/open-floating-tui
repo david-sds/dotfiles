@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+  echo "Usage: open-floating-tui <command>"
+  exit 1
+fi
+
+alacritty --class floating_term -e "$1"

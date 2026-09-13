@@ -47,7 +47,7 @@ prefix = "="
 provider = "calc"
 
 [[providers.prefixes]]
-prefix = "@"
+prefix = "?"
 provider = "websearch"
 
 [[providers.prefixes]]

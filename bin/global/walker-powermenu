@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-options="  Shutdown
-  Reboot
-󰤄  Suspend
-  Lock
-󰍃  Log Out"
+options="   Shutdown
+   Reboot
+󰤄   Suspend
+   Lock
+󰍃   Log Out"
 
 selected=$(echo -e "$options" | walker --dmenu -H)
 

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Wraps the real alacritty binary to scope a custom fontconfig (colorful
+# emoji fix, see configs/alacritty/fontconfig.conf) to just this app instead
+# of touching the system-wide font config. Relies on ~/.local/bin coming
+# before /usr/bin in PATH; the real binary is invoked by absolute path to
+# avoid re-resolving this same script.
+export FONTCONFIG_FILE="$HOME/.config/alacritty/fontconfig.conf"
+exec /usr/bin/alacritty "$@"

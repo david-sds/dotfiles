@@ -1,0 +1,16 @@
+# vim: syntax=toml
+
+[Unit]
+Description=Self-hosted game stream host for Moonlight
+StartLimitIntervalSec=500
+StartLimitBurst=5
+After=graphical-session.target xdg-desktop-autostart.target xdg-desktop-portal.service
+
+[Service]
+ExecStart=/usr/bin/sunshine
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=graphical-session.target
+Alias=sunshine.service

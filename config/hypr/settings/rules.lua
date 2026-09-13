@@ -10,6 +10,13 @@ hl.workspace_rule({ workspace = "8", monitor = "HDMI-A-1" })
 hl.workspace_rule({ workspace = "9", monitor = "HDMI-A-1" })
 hl.workspace_rule({ workspace = "10", monitor = "HDMI-A-1" })
 
+hl.workspace_rule({
+	workspace = "special:special",
+	layout = "scrolling",
+	gaps_in = 20,
+	gaps_out = 100,
+})
+
 hl.window_rule({
 	name = "suppress-maximize-events",
 	match = { class = ".*" },

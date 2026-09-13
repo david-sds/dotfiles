@@ -1,3 +1,4 @@
+# vim: ft=toml
 # Default config for imv
 
 [options]

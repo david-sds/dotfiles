@@ -19,7 +19,10 @@ hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
 hl.bind("SUPER + T", hl.dsp.window.float())
 hl.bind("SUPER + Y", hl.dsp.window.pseudo())
-hl.bind("SUPER + S", hl.dsp.layout("togglesplit"))
+hl.bind("SUPER + R", hl.dsp.layout("togglesplit"))
+
+hl.bind("SUPER + apostrophe", hl.dsp.workspace.toggle_special())
+hl.bind("SUPER + grave", hl.dsp.workspace.toggle_special())
 
 hl.bind("SUPER + CTRL + J", hl.dsp.layout("splitratio +0.1"))
 hl.bind("SUPER + CTRL + K", hl.dsp.layout("splitratio -0.1"))
