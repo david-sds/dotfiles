@@ -13,6 +13,8 @@ U.multibind({
 	"SUPER + KP_Add",
 }, U.change_zoom(0.5), { repeating = true })
 
+hl.bind("SUPER + SHIFT + equal", U.reset_zoom())
+
 hl.bind("SUPER + CTRL + L", U.toggle_layout)
 
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("walker"))

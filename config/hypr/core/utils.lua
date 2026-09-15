@@ -131,6 +131,22 @@ M.toggle_opacity = function()
 end
 
 local zoom = 1.0
+M.reset_zoom = function()
+	return function()
+		hl.config({
+			cursor = {
+				zoom_factor = 1,
+				zoom_rigid = false,
+				zoom_detached_camera = true,
+				zoom_disable_aa = true,
+			},
+			binds = {
+				pass_mouse_when_bound = false,
+				scroll_event_delay = 0,
+			},
+		})
+	end
+end
 M.change_zoom = function(delta)
 	return function()
 		zoom = math.max(1.0, zoom + delta)
