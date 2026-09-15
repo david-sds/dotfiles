@@ -1,16 +1,17 @@
 G = require("core.globals")
 U = require("core.utils")
 
+hl.bind("SUPER + mouse_up", U.change_zoom(-0.5))
 U.multibind({
-	"SUPER + mouse_up",
 	"SUPER + minus",
 	"SUPER + KP_Subtract",
-}, U.change_zoom(-0.5))
+}, U.change_zoom(-0.5), { repeating = true })
+
+hl.bind("SUPER + mouse_down", U.change_zoom(0.5))
 U.multibind({
-	"SUPER + mouse_down",
 	"SUPER + equal",
 	"SUPER + KP_Add",
-}, U.change_zoom(0.5))
+}, U.change_zoom(0.5), { repeating = true })
 
 hl.bind("SUPER + CTRL + L", U.toggle_layout)
 
