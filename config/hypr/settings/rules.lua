@@ -89,6 +89,14 @@ hl.window_rule({
 })
 
 hl.window_rule({
+	name = "floating-file-operation-thunar",
+	match = {
+		title = "File Operation Progress",
+	},
+	float = true,
+})
+
+hl.window_rule({
 	name = "floating-scrcpy",
 	match = {
 		class = "scrcpy",
