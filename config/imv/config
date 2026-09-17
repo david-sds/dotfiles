@@ -25,6 +25,7 @@ upscaling_method = nearest_neighbour
 # Define some key bindings
 q = quit
 y = exec echo working!
+e = exec setsid -f satty --filename "$imv_current_file" --floating-hack
 
 # Image navigation
 <Left> = prev

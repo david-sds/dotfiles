@@ -13,6 +13,10 @@ hl.config({
 		allow_tearing = false,
 		layout = "dwindle",
 	},
+	cursor = {
+		hide_on_key_press = false,
+		hide_on_touch = false,
+	},
 	decoration = {
 		rounding = G.default_decoration_rounding,
 		rounding_power = G.default_decoration_rounding_power,
