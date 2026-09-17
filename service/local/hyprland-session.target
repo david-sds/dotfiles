@@ -1,3 +1,4 @@
+# vim: syntax=toml
 # Modeled on sway's contrib/sway-session.target (Hyprland ships no official
 # equivalent); not a verbatim copy — sway wasn't installed here to diff against.
 [Unit]

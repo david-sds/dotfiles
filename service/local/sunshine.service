@@ -1,5 +1,4 @@
 # vim: syntax=toml
-
 [Unit]
 Description=Self-hosted game stream host for Moonlight
 StartLimitIntervalSec=500
