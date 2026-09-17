@@ -81,6 +81,15 @@ hl.window_rule({
 })
 
 hl.window_rule({
+	name = "floating-thunar-rename",
+	match = {
+		class = "thunar",
+		title = "Rename.*",
+	},
+	float = true,
+})
+
+hl.window_rule({
 	name = "floating-color-picker",
 	match = {
 		title = "Oklch Color Picker",
