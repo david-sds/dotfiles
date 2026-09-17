@@ -1,6 +1,8 @@
 G = require("core.globals")
 U = require("core.utils")
 
+hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("~/.local/share/quickshell-lockscreen/lock.sh"))
+
 hl.bind("SUPER + mouse_up", U.change_zoom(-0.5))
 U.multibind({
 	"SUPER + minus",
