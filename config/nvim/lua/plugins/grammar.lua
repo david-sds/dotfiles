@@ -89,7 +89,7 @@ require("mason-tool-installer").setup({
 		"json-lsp",
 		"jq",
 		-- python
-		"pyright",
+		"basedpyright",
 		"black",
 		-- prisma
 		"prisma-language-server",
