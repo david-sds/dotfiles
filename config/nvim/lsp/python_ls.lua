@@ -20,6 +20,7 @@ return {
 		"pyproject.toml",
 		".git",
 		"requirements.txt",
+		".venv",
 	},
 
 	settings = {
