@@ -157,7 +157,7 @@ vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 vim.pack.add({ "https://github.com/MagicDuck/grug-far.nvim" })
 
-vim.keymap.set("n", "<leader>r", function()
+vim.keymap.set("n", "<leader>q", function()
 	require("grug-far").open({ prefills = { search = "" } })
 end, { desc = "GrugFar Find & Replace (grug-far.nvim)" })
 
