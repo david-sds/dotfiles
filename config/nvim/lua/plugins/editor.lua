@@ -55,16 +55,6 @@ require("conform").setup({
 			stdin = false,
 			exit_codes = { 0, 1 },
 		},
-		hledger_fmt = {
-			command = "hledger-fmt",
-			args = { "format" },
-			stdin = true,
-		},
-		hledger_fmt_sort = {
-			command = "hledger-fmt",
-			args = { "sort" },
-			stdin = true,
-		},
 	},
 	formatters_by_ft = {
 		c = { "clang-format" },
@@ -84,13 +74,32 @@ require("conform").setup({
 		python = { "black" },
 		-- php = { "php_cs_fixer" },
 		php = { "phpcbf" },
-		ledger = { "hledger_fmt", "hledger_fmt_sort" },
 		twig = { "djlint" },
 	},
-	format_on_save = {
-		timeout_ms = 500,
-		lsp_format = "fallback",
-	},
+	format_on_save = function(bufnr)
+		if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+			return
+		end
+		return { timeout_ms = 500, lsp_format = "fallback" }
+	end,
+})
+
+vim.api.nvim_create_user_command("FormatDisable", function(args)
+	if args.bang then
+		-- FormatDisable! will disable formatting just for this buffer
+		vim.b.disable_autoformat = true
+	else
+		vim.g.disable_autoformat = true
+	end
+end, {
+	desc = "Disable autoformat-on-save",
+	bang = true,
+})
+vim.api.nvim_create_user_command("FormatEnable", function()
+	vim.b.disable_autoformat = false
+	vim.g.disable_autoformat = false
+end, {
+	desc = "Re-enable autoformat-on-save",
 })
 
 vim.keymap.set({ "n", "v" }, "<leader>F", function()
@@ -99,6 +108,22 @@ vim.keymap.set({ "n", "v" }, "<leader>F", function()
 		lsp_fallback = true,
 	})
 end, { desc = "Format buffer" })
+
+vim.keymap.set("n", "<leader>tf", function()
+	if vim.b.disable_autoformat then
+		vim.cmd("FormatEnable")
+	else
+		vim.cmd("FormatDisable!")
+	end
+end, { desc = "Toggle autoformat (buffer)" })
+
+vim.keymap.set("n", "<leader>tF", function()
+	if vim.g.disable_autoformat then
+		vim.cmd("FormatEnable")
+	else
+		vim.cmd("FormatDisable")
+	end
+end, { desc = "Toggle autoformat (global)" })
 
 -- ============================================================================
 -- TITLE : oklch-color-picker.nvim
@@ -111,3 +136,28 @@ require("oklch-color-picker").setup()
 vim.keymap.set("n", "<leader>cp", function()
 	require("oklch-color-picker").pick_under_cursor({ fallback_open = {} })
 end, { desc = "Color pick under cursor" })
+
+-- ============================================================================
+-- TITLE : TreeSJ
+-- ABOUT : Neovim plugin for splitting/joining blocks of code like arrays, hashes, statements, objects, dictionaries, etc.
+-- ============================================================================
+vim.pack.add({ "https://github.com/wansmer/treesj" })
+
+local tsj = require("treesj")
+
+tsj.setup({
+	use_default_keymaps = false,
+	check_syntax_error = true,
+	max_join_length = 1000,
+	cursor_behavior = "hold",
+	notify = true,
+	dot_repeat = true,
+	on_error = nil,
+})
+
+-- For default preset
+vim.keymap.set("n", "<leader>m", require("treesj").toggle)
+-- For extending default preset with `recursive = true`
+vim.keymap.set("n", "<leader>M", function()
+	require("treesj").toggle({ split = { recursive = true } })
+end)

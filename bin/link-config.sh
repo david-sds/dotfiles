@@ -37,7 +37,6 @@ printf '%s\n' "> Installing .config directories..."
 mkdir -p "$HOME/.config"
 configs=(
   "alacritty"
-  "autostart"
   "codex"
   "lazygit"
   "nvim"

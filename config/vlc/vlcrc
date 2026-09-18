@@ -1,0 +1,13 @@
+﻿# vim: ft=toml
+
+[core]
+http-port=8765
+vod-server=any
+metadata-network-access=1
+extraintf=http
+
+[qt]
+qt-privacy-ask=0
+
+[lua]
+http-password=vlcremote123
