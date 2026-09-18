@@ -91,9 +91,9 @@ for script in "$DOTFILES"/bin/local/*; do
   status=$?
 
   if [ $status -eq 0 ]; then
-    log_success "$config script"
+    log_success "local script $script_name"
   else
-    log_failed "$config:$err"
+    log_failed "local script $script_name:$err"
   fi
 done
 
@@ -110,9 +110,9 @@ for script in "$DOTFILES"/bin/global/*; do
   status=$?
 
   if [ $status -eq 0 ]; then
-    log_success "$config script"
+    log_success "global script $script_name"
   else
-    log_failed "$config:$err"
+    log_failed "global script $script_name:$err"
   fi
 done
 
