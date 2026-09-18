@@ -69,6 +69,7 @@ configs=(
   "xfce4"
   "imv"
   "vlc"
+  "mimeapps.list"
 )
 for config in "${configs[@]}"; do
   config_path="$DOTFILES/config/$config"
