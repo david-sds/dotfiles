@@ -22,6 +22,8 @@ image/webp=imv.desktop
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 text/x-lua=nvim.desktop
 text/x-python=nvim.desktop
+text/plain=nvim.desktop
+application/xml=nvim.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;
@@ -47,3 +49,4 @@ video/matroska=vlc.desktop;
 text/x-lua=nvim.desktop;
 text/plain=nvim.desktop;
 text/x-python=nvim.desktop;
+application/xml=nvim.desktop;
