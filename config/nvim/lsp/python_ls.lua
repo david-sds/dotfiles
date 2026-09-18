@@ -12,7 +12,7 @@ local on_attach = lsp_config_module.on_attach
 return {
 	on_attach = on_attach,
 
-	cmd = { "pyright-langserver", "--stdio" },
+	cmd = { "basedpyright-langserver", "--stdio" },
 
 	filetypes = { "python" },
 
@@ -24,10 +24,10 @@ return {
 	},
 
 	settings = {
-		python = {
+		basedpyright = {
 			analysis = {
-				use = "languageServer",
-				typeCheckingMode = "basic", -- Or "strict"
+				useLibraryCodeForTypes = true,
+				typeCheckingMode = "basic",
 				autoSearchPaths = true,
 				diagnosticMode = "workspace",
 			},
