@@ -11,6 +11,7 @@ Rectangle {
     property bool charging: UPower.displayDevice && UPower.displayDevice.state === UPowerDeviceState.Charging
     property bool plugged: UPower.displayDevice && UPower.displayDevice.state === UPowerDeviceState.FullyCharged
     property string icon: plugged ? "" : (charging ? chargingIcons[iconIndex] : defaultIcons[iconIndex])
+    property string colorIcon: percentage <= 15 ? (charging ? Globals.yellow : Globals.red) : Globals.foregroundColor
 
     width: batteryText.implicitWidth
     height: 22
@@ -23,7 +24,7 @@ Rectangle {
         anchors.centerIn: parent
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize
-        color: Globals.foregroundColor
+        color: parent.colorIcon
         text: root.icon + ' ' + root.percentage + '%'
     }
 }

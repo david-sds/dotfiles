@@ -79,6 +79,6 @@ Rectangle {
         font.family: Globals.fontFamily
         font.pixelSize: Globals.fontPixelSize
         color: mouseArea.containsMouse ? Globals.primaryColor : Globals.foregroundColor
-        text: icon + ' ' + volume + '%'
+        text: parent.icon + ' ' + parent.volume + '%'
     }
 }
