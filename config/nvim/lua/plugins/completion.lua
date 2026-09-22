@@ -80,7 +80,6 @@ local opts = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "codeium" },
 		-- { name = "buffer" },
 	}),
 	formatting = {
@@ -88,6 +87,13 @@ local opts = {
 			mode = "symbol_text", -- show symbol + text
 			maxwidth = 50,
 			ellipsis_char = "…",
+			menu = {
+				nvim_lsp = "[LSP]",
+				luasnip = "[Snip]",
+				path = "[Path]",
+				cmdline = "[Cmd]",
+				hledger_accounts = "[Ledger]",
+			},
 		}),
 	},
 	mapping = {
