@@ -5,7 +5,7 @@ local utils = require("utils.vim")
 -- ABOUT : lua-based fzf wrapper and integration.
 -- ============================================================================
 
-vim.pack.add({ "https://github.com/nvim-tree/nvim-web-devicons", "https://github.com/ibhagwan/fzf-lua" })
+vim.pack.add({ "https://github.com/ibhagwan/fzf-lua" })
 
 ---@module "fzf-lua"
 ---@type fzf-lua.Config|{}

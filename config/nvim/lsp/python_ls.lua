@@ -17,10 +17,14 @@ return {
 	filetypes = { "python" },
 
 	root_markers = {
+		"pyrightconfig.json",
 		"pyproject.toml",
-		".git",
+		"setup.py",
+		"setup.cfg",
 		"requirements.txt",
-		".venv",
+		"Pipfile",
+		"manage.py",
+		".git",
 	},
 
 	settings = {
@@ -29,7 +33,7 @@ return {
 				useLibraryCodeForTypes = true,
 				typeCheckingMode = "basic",
 				autoSearchPaths = true,
-				diagnosticMode = "workspace",
+				diagnosticMode = "openFilesOnly",
 			},
 		},
 	},
