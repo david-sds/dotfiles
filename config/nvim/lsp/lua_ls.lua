@@ -55,7 +55,6 @@ return {
 			workspace = {
 				checkThirdParty = false,
 				library = core_pack_library({
-					-- "nvim-tree.lua",
 					-- "lazy.nvim",
 					-- "nvim-cmp",
 					-- "conform.nvim",

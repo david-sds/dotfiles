@@ -16,7 +16,6 @@ vim.keymap.set("n", "[g", "<CMD>Gitsigns prev_hunk<CR>", { desc = "Previous Hunk
 vim.keymap.set("n", "<leader>gp", "<CMD>Gitsigns preview_hunk<CR>", { desc = "Preview Hunk" })
 vim.keymap.set("n", "<leader>gr", function()
 	require("gitsigns").detach()
-	require("nvim-tree.api").tree.reload()
 	require("gitsigns").attach()
 end, { desc = "Reload Git" })
 

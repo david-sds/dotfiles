@@ -11,13 +11,6 @@ end, { desc = "Buffer Local Keymaps (which-key)" })
 require("which-key").setup()
 
 -- ============================================================================
--- TITLE : nvim-web-devicons
--- ABOUT : Provides Nerd Font 1 icons (glyphs) for use by Neovim plugins:
--- ============================================================================
-vim.pack.add({ "https://github.com/nvim-tree/nvim-web-devicons" })
-require("nvim-web-devicons").setup()
-
--- ============================================================================
 -- TITLE : lualine.nvim
 -- ABOUT : A blazing fast and easy to configure Neovim statusline written in Lua.
 -- ============================================================================
@@ -61,7 +54,6 @@ require("lualine").setup({
 vim.pack.add({
 	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
 	"https://github.com/nvim-treesitter/nvim-treesitter",
-	"https://github.com/nvim-tree/nvim-web-devicons",
 })
 
 ---@module 'render-markdown'
