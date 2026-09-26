@@ -12,7 +12,9 @@ local on_attach = lsp_config_module.on_attach
 return {
 	on_attach = on_attach,
 
-	cmd = { "qmlls", "-d", "/usr/share/doc/qt6" },
+	-- System qmlls (matches the installed Qt 6); plain "qmlls" resolves to Mason's
+	-- outdated standalone build, since Mason's bin comes first in PATH.
+	cmd = { "qmlls6", "-d", "/usr/share/doc/qt6" },
 
 	filetypes = { "qml" },
 
