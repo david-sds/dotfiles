@@ -57,6 +57,10 @@ require("conform").setup({
 			stdin = false,
 			exit_codes = { 0, 1 },
 		},
+		-- Qt 6 formatter (reads .qmlformat.ini); /usr/bin/qmlformat is the Qt 5 one.
+		qmlformat = {
+			command = "/usr/lib/qt6/bin/qmlformat",
+		},
 	},
 	formatters_by_ft = {
 		c = { "clang-format" },
@@ -77,6 +81,7 @@ require("conform").setup({
 		-- php = { "php_cs_fixer" },
 		php = { "phpcbf" },
 		twig = { "djlint" },
+		qml = { "qmlformat" },
 	},
 	format_on_save = function(bufnr)
 		if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
