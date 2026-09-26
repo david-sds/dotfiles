@@ -1,31 +1,85 @@
 #!/usr/bin/env bash
+#
+# push-conf-master - land this branch's uncommitted config changes on master,
+# then fold master back into the branch.
+#
+# What actually moves: only the *uncommitted* working tree is carried to
+# master (via the stash). Commits that already live on the branch stay on the
+# branch and reach master later, through pull-conf-master.
+#
+# Conflict policy: the three steps that can conflict - pull, stash pop, merge -
+# stop the script with a recovery hint and exit 1. Because it stops there, the
+# "git add . && git commit && git push" below is never reached with conflict
+# markers in the tree, so they cannot be published to master.
+#
+set -uo pipefail
 
-cd "$HOME/Core/dotfiles"
+REPO="$HOME/Core/dotfiles"
+cd "$REPO" || { echo "error: cannot cd to $REPO" >&2; exit 1; }
+
 INITIAL_BRANCH=$(git branch --show-current)
 
-# Stash changes
+# Stop with a recovery hint. git has already printed the exact cause above
+# (conflict, diverged branch, unfinished merge, locked index, network/auth), so
+# this only needs to say where we stopped and how to get back to a clean state.
+die() {
+  {
+    echo
+    echo "push-conf-master: stopped at '$1'. nothing committed, nothing pushed."
+    echo "  you started on: $INITIAL_BRANCH"
+    echo "  your stashed work is not lost:  git stash list"
+    echo "  hint: $2"
+  } >&2
+  exit 1
+}
+
+# --- stash the working tree -------------------------------------------------
+# -u carries untracked files too, so a brand new config file is not left behind.
+# On a clean tree this is a no-op, so an empty stash_index means "nothing to
+# carry" rather than an error - that is why the pop below is conditional.
 stash_msg="${INITIAL_BRANCH}-$(date '+%Y-%m-%d %H:%M:%S')"
 git stash push -u -m "$stash_msg"
-stash_index=$(git stash list | grep -E ": ${stash_msg}$" | head -n1 | cut -d: -f1)
+stash_index=$(git stash list | grep -F ": $stash_msg" | head -n1 | cut -d: -f1)
 
-# Checkout last vesion of master
-git checkout master
-git pull
+# --- move to the latest master ----------------------------------------------
+# checkout fails if the previous run left unmerged files behind, and without
+# this check we would carry on and act on whatever branch we are still on.
+git checkout master || die "git checkout master" \
+  "git reset --hard   # clears the unfinished merge from a previous run"
 
-# Get stashed changes
-git stash pop "$stash_index"
+git pull || die "git pull" \
+  "git reset --hard && git checkout $INITIAL_BRANCH
+   still says 'rebase in progress'? also: git rebase --abort"
 
-# Apply changes in master
+# --- reapply the working tree on master -------------------------------------
+if [ -n "$stash_index" ]; then
+  git stash pop "$stash_index" || die "git stash pop" \
+    "git reset --hard
+     git checkout $INITIAL_BRANCH
+     git stash pop      # replays your changes back onto $INITIAL_BRANCH"
+else
+  echo "-- working tree was clean, nothing to carry to master"
+fi
+
+# --- commit and publish to master -------------------------------------------
+# Reached only when nothing above conflicted, so git add . cannot be staging
+# conflict markers. The push is unguarded on purpose: a rejection here is not
+# a conflict, it just means master moved, and the merge below sorts that out.
 git add .
 git commit -m "$INITIAL_BRANCH push-conf-master at $(date '+%Y-%m-%d %H:%M:%S')"
 git push
 
-# Go back and update initial branch
-git checkout "$INITIAL_BRANCH"
-git merge origin/master --no-edit
+# --- back to the branch, folded together with master ------------------------
+git checkout "$INITIAL_BRANCH" || die "git checkout $INITIAL_BRANCH" \
+  "git reset --hard && git checkout $INITIAL_BRANCH"
+
+git merge origin/master --no-edit || die "git merge origin/master" \
+  "git reset --hard
+   then: pull-conf-master      # retries this merge"
+
 git push
 
-# Reload stuff
+# --- reload stuff -----------------------------------------------------------
 if command -v omarchy >/dev/null 2>&1; then
   omarchy restart shell
 fi
