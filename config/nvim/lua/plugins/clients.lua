@@ -24,61 +24,52 @@ vim.api.nvim_create_autocmd("FileType", {
 U.close_with_q("dbout")
 
 -- ============================================================================
--- TITLE : kulala.nvim
--- ABOUT : A fully-featured REST Client Interface for Neovim.
+-- TITLE : rest.nvim
+-- ABOUT : A fast Neovim HTTP client written in Lua.
 -- LINKS :
---   > docs: https://neovim.getkulala.net/docs/getting-started
+--   > docs: https://github.com/rest-nvim/rest.nvim
 -- ============================================================================
+vim.pack.add({
+	"https://github.com/rest-nvim/rest.nvim",
+	-- luarocks dependencies, installed from git instead
+	"https://github.com/nvim-neotest/nvim-nio",
+	"https://github.com/j-hui/fidget.nvim",
+	"https://github.com/manoelcampos/xml2lua",
+	"https://github.com/lunarmodules/lua-mimetypes",
+})
 
-vim.pack.add({ "https://github.com/mistweaverco/kulala.nvim" })
+-- xml2lua and mimetypes keep their modules at the repo root, not in lua/
+local pack_dir = vim.fn.stdpath("data") .. "/site/pack/core/opt/"
+package.path = pack_dir .. "xml2lua/?.lua;" .. pack_dir .. "lua-mimetypes/?.lua;" .. package.path
 
-require("kulala").setup({
-	default_env = "local",
-	global_keymaps = false,
-	kulala_keymaps = {
-		false,
-		["Show verbose"] = false,
-		["Show headers"] = false,
-		["Show body"] = false,
-		["Show script output"] = false,
-		["Show report"] = false,
-		["Previous tab"] = {
-			"H",
-			function()
-				require("kulala.ui").show_previous_tab()
-			end,
-			mode = { "n" },
-		},
-		["Next tab"] = {
-			"L",
-			function()
-				require("kulala.ui").show_next_tab()
-			end,
-			mode = { "n" },
-		},
+vim.g.rest_nvim = {
+	ui = {
+		keybinds = { prev = "H", next = "L" },
 	},
+}
+
+-- rest.nvim formats response bodies with `gq`, which needs a formatprg for the body's filetype
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "json",
+	callback = function()
+		vim.bo.formatprg = "jq ."
+	end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "xml",
+	callback = function()
+		vim.bo.formatprg = "xmllint --format -"
+	end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "http",
 	callback = function()
-		vim.keymap.set({ "n", "v" }, "<leader>ke", function()
-			require("kulala").run()
-		end, { desc = "Send request" })
-		vim.keymap.set({ "n", "v" }, "<leader>ka", function()
-			require("kulala").run_all()
-		end, { desc = "Run all requests" })
-		vim.keymap.set("n", "<leader>kr", function()
-			require("kulala").replay()
-		end, { desc = "Replay requests" })
-		vim.keymap.set("n", "<leader>ks", function()
-			require("kulala").set_selected_env()
-		end, { desc = "Set selected Kulala environment" })
-		vim.keymap.set("n", "<leader>ki", function()
-			require("kulala").inspect()
-		end, { desc = "Inspect response" })
-		vim.keymap.set("n", "<leader>kk", function()
-			require("kulala").scripts_clear_global()
-		end, { desc = "Clear global cache" })
+		vim.keymap.set("n", "<leader>ke", "<CMD>Rest run<CR>", { buffer = true, desc = "Send request" })
+		vim.keymap.set("n", "<leader>kr", "<CMD>Rest last<CR>", { buffer = true, desc = "Replay last request" })
+		vim.keymap.set("n", "<leader>ks", "<CMD>Rest env select<CR>", { buffer = true, desc = "Select env file" })
+		vim.keymap.set("n", "<leader>ki", "<CMD>Rest open<CR>", { buffer = true, desc = "Open response pane" })
 	end,
 })
+
+U.close_with_q("rest_nvim_result")

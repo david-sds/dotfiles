@@ -76,8 +76,6 @@ require("conform").setup({
 		xml = { "xmllint" },
 		sh = { "shfmt" },
 		bash = { "shfmt" },
-		http = { "kulala-fmt" },
-		rest = { "kulala-fmt" },
 		python = { "black" },
 		-- php = { "php_cs_fixer" },
 		php = { "phpcbf" },
