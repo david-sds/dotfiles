@@ -48,7 +48,7 @@ vim.g.rest_nvim = {
 	},
 }
 
--- rest.nvim formats response bodies with `gq`, which needs a formatprg for the body's filetype
+-- Formatting output
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "json",
 	callback = function()
