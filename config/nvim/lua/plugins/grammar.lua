@@ -99,8 +99,6 @@ require("mason-tool-installer").setup({
 		"marksman",
 		-- yaml
 		"yaml-language-server",
-		--- kulala
-		"kulala-fmt",
 		-- php
 		"phpactor",
 		"php-cs-fixer",
