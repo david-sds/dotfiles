@@ -81,6 +81,15 @@ hl.window_rule({
 })
 
 hl.window_rule({
+	name = "floating-obsidian-settings",
+	match = {
+		class = "md.obsidian.Obsidian",
+		title = "Settings.*",
+	},
+	float = true,
+})
+
+hl.window_rule({
 	name = "floating-thunar-rename",
 	match = {
 		class = "thunar",
