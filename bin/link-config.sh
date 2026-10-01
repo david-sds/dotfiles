@@ -70,6 +70,7 @@ configs=(
   "imv"
   "vlc"
   "mimeapps.list"
+  "kglobalshortcutsrc"
 )
 for config in "${configs[@]}"; do
   config_path="$DOTFILES/config/$config"
