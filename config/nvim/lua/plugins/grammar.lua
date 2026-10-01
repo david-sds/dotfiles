@@ -133,3 +133,27 @@ vim.api.nvim_create_autocmd("FileType", {
 -- ABOUT : A Neovim plugin that provides the SchemaStore catalog for use with jsonls and yamlls.
 -- ============================================================================
 vim.pack.add({ "https://github.com/b0o/schemastore.nvim" })
+
+-- ============================================================================
+-- TITLE : otter.nvim
+-- ABOUT : Otter.nvim provides lsp features, including code completion, for code embedded in other documents.
+-- ============================================================================
+vim.pack.add({ "https://github.com/jmbuhr/otter.nvim" })
+
+require("otter").setup({
+	buffers = {
+		preambles = {
+			lua = {
+				"response, client, request = response --[[@as rest.Response]], client --[[@as rest.HandlerEnv.Client]], request --[[@as rest.HandlerEnv.Request]]",
+			},
+		},
+	},
+})
+
+-- For rest.nvim scripts
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "http",
+	callback = function()
+		require("otter").activate({ "lua" }, true, false)
+	end,
+})
