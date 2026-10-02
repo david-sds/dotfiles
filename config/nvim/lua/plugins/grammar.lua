@@ -90,7 +90,7 @@ require("mason-tool-installer").setup({
 		"jq",
 		-- python
 		"basedpyright",
-		"black",
+		"ruff",
 		-- prisma
 		"prisma-language-server",
 		-- bash
