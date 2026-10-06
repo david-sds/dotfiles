@@ -34,6 +34,9 @@ return {
 				typeCheckingMode = "basic",
 				autoSearchPaths = true,
 				diagnosticMode = "openFilesOnly",
+				-- Editable installs via setuptools import hooks are invisible to static
+				-- analysis; relative to the detected project root (no-op elsewhere).
+				extraPaths = { "terceiros/PyNFe", "terceiros/python-sped" },
 				-- Type-inference complaints → warning. Real breakage (undefined names,
 				-- missing imports, syntax) stays as error.
 				diagnosticSeverityOverrides = {
