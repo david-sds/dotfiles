@@ -285,9 +285,6 @@ ShowOSD=Display\tCtrl+Alt+P
 [services][org.kde.spectacle.desktop]
 CurrentMonitorScreenShot=none
 OpenWithoutScreenshot=none
-<<<<<<< Updated upstream
-=======
 
 [services][systemsettings.desktop]
 kcm-screenlocker=none
->>>>>>> Stashed changes
