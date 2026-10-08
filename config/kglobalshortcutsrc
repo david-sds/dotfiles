@@ -281,10 +281,7 @@ _launch=Search\tAlt+F2\tMeta+Space
 
 [services][org.kde.kscreen.desktop]
 ShowOSD=Display\tCtrl+Alt+P
-<<<<<<< Updated upstream
 
 [services][org.kde.spectacle.desktop]
 CurrentMonitorScreenShot=none
 OpenWithoutScreenshot=none
-=======
->>>>>>> Stashed changes
