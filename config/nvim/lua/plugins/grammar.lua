@@ -20,6 +20,8 @@ require("nvim-treesitter").install({
 	"ecma",
 	"javascript",
 	"typescript",
+	"jsx",
+	"tsx",
 	"dart",
 	"json",
 	"http",
@@ -37,6 +39,9 @@ require("nvim-treesitter").install({
 	"typst",
 	"python",
 })
+
+-- Show only the first line of each context (hides long parameter lists)
+require("treesitter-context").setup({ multiline_threshold = 1 })
 
 -- Start Treesitter automatically for every filetype buffer.
 local ts_group = vim.api.nvim_create_augroup("TreesitterStartGroup", { clear = true })
