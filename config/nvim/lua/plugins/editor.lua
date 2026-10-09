@@ -77,7 +77,7 @@ require("conform").setup({
 		sh = { "shfmt" },
 		bash = { "shfmt" },
 		-- python = { "black" },
-		python = { "ruff" },
+		python = { "ruff_format" },
 		-- php = { "php_cs_fixer" },
 		php = { "phpcbf" },
 		twig = { "djlint" },
