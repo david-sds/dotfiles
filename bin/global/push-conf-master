@@ -5,7 +5,7 @@ cd "$HOME/Core/dotfiles"
 
 WORKTREE="${TMPDIR:-/tmp}/push-conf-master.$$"
 trap \
-  'printf "push-conf-master failed. Worktree (if any): %s\n" "$WORKTREE" >&2' \
+  'printf "push-conf-master failed on %s\n" "$WORKTREE" >&2' \
   ERR
 
 if [ -z "$(git status --porcelain --ignore-submodules=dirty)" ]; then
