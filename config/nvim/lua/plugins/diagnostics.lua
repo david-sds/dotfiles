@@ -54,10 +54,17 @@ lint.linters.xmllint = {
 	ignore_exitcode = true,
 	parser = require("lint.parser").from_errorformat("-:%l: %m"),
 }
+
+lint.linters.mypy = require("lint.util").wrap(lint.linters.mypy, function(d)
+	d.severity = vim.diagnostic.severity.WARN
+	return d
+end)
+
 lint.linters_by_ft = {
 	-- php = { "phpstan" },
 	php = { "phpcs" },
 	xml = { "xmllint" },
+	python = { "mypy" },
 }
 
 -- Attempts to lint buffer
