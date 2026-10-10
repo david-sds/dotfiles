@@ -4,9 +4,7 @@ set -e
 cd "$HOME/Core/dotfiles"
 
 WORKTREE="${TMPDIR:-/tmp}/push-conf-master.$$"
-trap \
-  'printf "push-conf-master failed on %s\n" "$WORKTREE" >&2' \
-  ERR
+trap 'printf "push-conf-master failed on %s\n" "$WORKTREE" >&2' ERR
 
 if [ -z "$(git status --porcelain --ignore-submodules=dirty)" ]; then
   echo "Nothing to publish."
