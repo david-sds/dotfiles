@@ -1,39 +1,56 @@
 #!/usr/bin/env bash
 
+set -e
 cd "$HOME/Core/dotfiles"
-INITIAL_BRANCH=$(git branch --show-current)
 
-# Stash changes
-stash_msg="${INITIAL_BRANCH}-$(date '+%Y-%m-%d %H:%M:%S')"
-git stash push -u -m "$stash_msg"
-stash_index=$(git stash list | grep -E ": ${stash_msg}$" | head -n1 | cut -d: -f1)
+WORKTREE="${TMPDIR:-/tmp}/push-conf-master.$$"
+trap \
+  'printf "push-conf-master failed. Worktree (if any): %s\n" "$WORKTREE" >&2' \
+  ERR
 
-# Checkout last vesion of master
-git checkout master
-git pull
+if [ -z "$(git status --porcelain --ignore-submodules=dirty)" ]; then
+  echo "Nothing to publish."
+  exit 0
+fi
 
-# Get stashed changes
-git stash pop "$stash_index"
+git fetch origin master
+if [ "$(git rev-list --count origin/master..master)" -ne 0 ]; then
+  echo "Local master has unpushed commits."
+  exit 1
+fi
 
-# Apply changes in master
-git add .
-git commit -m "$INITIAL_BRANCH push-conf-master at $(date '+%Y-%m-%d %H:%M:%S')"
-git push
+# Init variables
+BRANCH=$(git branch --show-current)
+TIMESTAMP=$(printf '%(%Y-%m-%d %H:%M:%S)T' -1)
 
-# Go back and update initial branch
-git checkout "$INITIAL_BRANCH"
+# Commit changes
+git add -A
+git commit -m "$BRANCH push-conf-master at $TIMESTAMP"
+COMMIT=$(git rev-parse HEAD)
+
+# Master's temporary Worktree
+git worktree add -B master "$WORKTREE" origin/master
+
+# Updates master
+git -C "$WORKTREE" cherry-pick "$COMMIT"
+git -C "$WORKTREE" push
+
+# Update current branch
 git merge origin/master --no-edit
 git push
 
-# Reload stuff
-if command -v omarchy >/dev/null 2>&1; then
-  omarchy restart shell
-fi
+# Remove temporary Worktree
+git worktree remove --force "$WORKTREE"
 
+# Reload stuff
 if command -v hyprctl >/dev/null 2>&1; then
-  hyprctl reload
+  hyprctl reload || true
 fi
 
 if command -v tmux >/dev/null 2>&1; then
-  tmux source-file ~/.config/tmux/tmux.conf
+  tmux source-file ~/.config/tmux/tmux.conf || true
+fi
+
+if command -v omarchy >/dev/null 2>&1; then
+  omarchy restart shell || true
 fi
