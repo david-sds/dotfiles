@@ -138,3 +138,12 @@ hl.window_rule({
 	},
 	float = true,
 })
+
+hl.window_rule({
+	name = "floating-xarchiver-thunar-menu",
+	match = {
+		class = "app.zen_browser.zen",
+		title = "Library",
+	},
+	float = true,
+})
