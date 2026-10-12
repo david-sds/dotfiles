@@ -20,6 +20,8 @@ require("nvim-treesitter").install({
 	"ecma",
 	"javascript",
 	"typescript",
+	"jsx",
+	"tsx",
 	"dart",
 	"json",
 	"http",
@@ -36,6 +38,9 @@ require("nvim-treesitter").install({
 	"qmljs",
 	"typst",
 })
+
+-- Show only the first line of each context (hides long parameter lists)
+require("treesitter-context").setup({ multiline_threshold = 1 })
 
 -- Start Treesitter automatically for every filetype buffer.
 local ts_group = vim.api.nvim_create_augroup("TreesitterStartGroup", { clear = true })
@@ -89,7 +94,7 @@ require("mason-tool-installer").setup({
 		"jq",
 		-- python
 		"basedpyright",
-		"black",
+		"ruff",
 		-- prisma
 		"prisma-language-server",
 		-- bash
@@ -99,15 +104,12 @@ require("mason-tool-installer").setup({
 		"marksman",
 		-- yaml
 		"yaml-language-server",
-		--- kulala
-		"kulala-fmt",
 		-- php
 		"phpactor",
 		"php-cs-fixer",
 		"phpstan",
 		-- twig
 		"twiggy-language-server",
-		"twig-cs-fixer",
 		-- emmet
 		"emmet-language-server",
 		-- qml
@@ -136,3 +138,27 @@ vim.api.nvim_create_autocmd("FileType", {
 -- ABOUT : A Neovim plugin that provides the SchemaStore catalog for use with jsonls and yamlls.
 -- ============================================================================
 vim.pack.add({ "https://github.com/b0o/schemastore.nvim" })
+
+-- ============================================================================
+-- TITLE : otter.nvim
+-- ABOUT : Otter.nvim provides lsp features, including code completion, for code embedded in other documents.
+-- ============================================================================
+vim.pack.add({ "https://github.com/jmbuhr/otter.nvim" })
+
+require("otter").setup({
+	buffers = {
+		preambles = {
+			lua = {
+				"response, client, request = response --[[@as rest.Response]], client --[[@as rest.HandlerEnv.Client]], request --[[@as rest.HandlerEnv.Request]]",
+			},
+		},
+	},
+})
+
+-- For rest.nvim scripts
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "http",
+	callback = function()
+		require("otter").activate({ "lua" }, true, false)
+	end,
+})

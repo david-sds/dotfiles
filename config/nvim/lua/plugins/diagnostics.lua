@@ -42,17 +42,29 @@ vim.pack.add({ "https://github.com/mfussenegger/nvim-lint" })
 
 local lint = require("lint")
 
--- Custom linter.
-lint.linters.phpcs.cmd = vim.fn.expand("~/.config/composer/vendor/bin/phpcs")
-lint.linters.phpcs.args = {
-	"-q",
-	"--standard=Moodle",
-	"--report=json",
-	"-",
+lint.linters.phpcs = {
+	cmd = vim.fn.expand("~/.config/composer/vendor/bin/phpcs"),
+	args = { "-q", "--standard=Moodle", "--report=json", "-" },
 }
+lint.linters.xmllint = {
+	cmd = "xmllint",
+	stdin = true,
+	args = { "--noout", "-" },
+	stream = "stderr",
+	ignore_exitcode = true,
+	parser = require("lint.parser").from_errorformat("-:%l: %m"),
+}
+
+lint.linters.mypy = require("lint.util").wrap(lint.linters.mypy, function(d)
+	d.severity = vim.diagnostic.severity.WARN
+	return d
+end)
+
 lint.linters_by_ft = {
 	-- php = { "phpstan" },
 	php = { "phpcs" },
+	xml = { "xmllint" },
+	python = { "mypy" },
 }
 
 -- Attempts to lint buffer
@@ -63,6 +75,7 @@ vim.api.nvim_create_autocmd({
 	"BufEnter",
 	"BufWritePost",
 	"InsertLeave",
+	"TextChanged",
 }, {
 	group = try_lint_group,
 	callback = function()

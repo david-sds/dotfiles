@@ -34,6 +34,27 @@ return {
 				typeCheckingMode = "basic",
 				autoSearchPaths = true,
 				diagnosticMode = "openFilesOnly",
+				-- Editable installs via setuptools import hooks are invisible to static
+				-- analysis; relative to the detected project root (no-op elsewhere).
+				extraPaths = { "terceiros/PyNFe", "terceiros/python-sped" },
+				-- Type-inference complaints → warning. Real breakage (undefined names,
+				-- missing imports, syntax) stays as error.
+				diagnosticSeverityOverrides = {
+					reportOptionalMemberAccess = "warning",
+					reportOptionalSubscript = "warning",
+					reportOptionalIterable = "warning",
+					reportOptionalCall = "warning",
+					reportOptionalOperand = "warning",
+					reportOptionalContextManager = "warning",
+					reportAttributeAccessIssue = "warning",
+					reportArgumentType = "warning",
+					reportAssignmentType = "warning",
+					reportReturnType = "warning",
+					reportIndexIssue = "warning",
+					reportCallIssue = "warning",
+					reportOperatorIssue = "warning",
+					reportGeneralTypeIssues = "warning",
+				},
 			},
 		},
 	},

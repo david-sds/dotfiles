@@ -49,6 +49,19 @@ M.eval_selection = function()
 	vim.api.nvim_paste(res, true, -1)
 end
 
+---@enum position_scope
+local position_scope = {
+	CWD = "%:.",
+	ROOT = "%:p",
+	HOME = "%:p:~",
+}
+M.position_scope = position_scope
+
+---@param pos position_scope
+M.copy_buffer_line = function(pos)
+	return vim.fn.setreg("+", vim.fn.expand(pos) .. ":" .. vim.fn.line("."))
+end
+
 M.close_hidden_buffers = function()
 	local visible = {}
 	for _, win in ipairs(vim.api.nvim_list_wins()) do

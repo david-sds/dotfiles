@@ -51,6 +51,19 @@ vim.keymap.set("n", "<leader>P", function()
 	vim.pack.update(nil, { offline = true })
 end, { desc = "Manage vim.pack plugins" })
 
+-- Copy cursor position
+vim.keymap.set("n", "<leader>yy", function()
+	U.copy_buffer_line(U.position_scope.CWD)
+end, { desc = "Copy cursor position" })
+
+vim.keymap.set("n", "<leader>yh", function()
+	U.copy_buffer_line(U.position_scope.HOME)
+end, { desc = "Copy cursor position" })
+
+vim.keymap.set("n", "<leader>yr", function()
+	U.copy_buffer_line(U.position_scope.ROOT)
+end, { desc = "Copy cursor position" })
+
 -- Custom utilities
 vim.keymap.set("n", "<leader>l", "<CMD>nohlsearch<CR>", { desc = "Clear search highlights" })
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
@@ -60,6 +73,5 @@ vim.keymap.set("n", "<leader>Q", "<CMD>wqa!<CR>", { desc = "Write and Quit all n
 vim.keymap.set("n", "<leader>K", U.close_hidden_buffers, { desc = "Close all hidden buffers" })
 vim.keymap.set("v", "<leader>x", U.expand_selection, { desc = "Expand visual selection" })
 vim.keymap.set("v", "<leader>e", U.eval_selection, { desc = "Eval lua visual selection" })
--- vim.keymap.set({ "n", "i", "v", "t" }, "<M-q>", U.toggle_floating_term, { desc = "Toggles floating terminal" })
 vim.keymap.set({ "n", "x", "o" }, "<M-o>", U.increase_selection, { desc = "Select parent node" })
 vim.keymap.set({ "n", "x", "o" }, "<M-i>", U.decrease_selection, { desc = "Select child node" })
