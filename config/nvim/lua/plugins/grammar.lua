@@ -39,8 +39,11 @@ require("nvim-treesitter").install({
 	"typst",
 })
 
--- Show only the first line of each context (hides long parameter lists)
-require("treesitter-context").setup({ multiline_threshold = 1 })
+require("treesitter-context").setup({
+	multiline_threshold = 1, -- Show only first like of each context
+	max_lines = 5, -- Cap context nesting
+	trim_scope = "inner", -- Past the cap, keep the outermost contexts
+})
 
 -- Start Treesitter automatically for every filetype buffer.
 local ts_group = vim.api.nvim_create_augroup("TreesitterStartGroup", { clear = true })
