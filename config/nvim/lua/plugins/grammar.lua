@@ -42,7 +42,7 @@ require("nvim-treesitter").install({
 
 require("treesitter-context").setup({
 	multiline_threshold = 1, -- Show only first like of each context
-	max_lines = 7, -- Cap context nesting
+	max_lines = 5, -- Cap context nesting
 	trim_scope = "inner", -- Past the cap, keep the outermost contexts
 })
 
