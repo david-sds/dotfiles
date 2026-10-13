@@ -54,17 +54,25 @@ lint.linters.xmllint = {
 	ignore_exitcode = true,
 	parser = require("lint.parser").from_errorformat("-:%l: %m"),
 }
-
 lint.linters.mypy = require("lint.util").wrap(lint.linters.mypy, function(d)
 	d.severity = vim.diagnostic.severity.WARN
 	return d
 end)
+lint.linters.ruff.cmd = function()
+	local venv = vim.fs.find(".venv", {
+		upward = true,
+		type = "directory",
+		path = vim.fn.expand("%:p:h"),
+	})[1]
+	local ruff = venv and venv .. "/bin/ruff"
+	return (ruff and vim.fn.executable(ruff) == 1) and ruff or "ruff"
+end
 
 lint.linters_by_ft = {
 	-- php = { "phpstan" },
 	php = { "phpcs" },
 	xml = { "xmllint" },
-	python = { "mypy" },
+	python = { "ruff", "mypy" },
 }
 
 -- Attempts to lint buffer
