@@ -27,8 +27,8 @@ push_to_talk=none,none,Push to talk
 
 [ksmserver]
 Halt Without Confirmation=none,none,Shut Down Without Confirmation
-Lock Session=Screensaver\tCtrl+Alt+L,Screensaver\tMeta+L,Lock Session
-Log Out=Ctrl+Alt+Del,Ctrl+Alt+Del,Show Logout Screen
+Lock Session=Screensaver\tMeta+Esc,Screensaver\tMeta+L,Lock Session
+Log Out=none,Ctrl+Alt+Del,Show Logout Screen
 Log Out Without Confirmation=none,none,Log Out Without Confirmation
 LogOut=none,none,Log Out
 Reboot=none,none,Reboot
@@ -282,9 +282,8 @@ _launch=Search\tAlt+F2\tMeta+Space
 [services][org.kde.kscreen.desktop]
 ShowOSD=Display\tCtrl+Alt+P
 
-[services][org.kde.spectacle.desktop]
-CurrentMonitorScreenShot=none
-OpenWithoutScreenshot=none
+[services][org.kde.plasma-systemmonitor.desktop]
+_launch=Ctrl+Alt+Del
 
 [services][systemsettings.desktop]
 kcm-screenlocker=none
