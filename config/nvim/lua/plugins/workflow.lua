@@ -114,6 +114,7 @@ require("oil").setup({
 	default_file_explorer = true,
 	delete_to_trash = true,
 	use_default_keymaps = false,
+	watch_for_changes = true,
 	columns = { "icon", "size", "permissions" },
 	keymaps = {
 		["g?"] = { "actions.show_help", mode = "n" },
@@ -142,6 +143,16 @@ require("oil").setup({
 			mode = "n",
 			nowait = true,
 			desc = "Go to the Home directory",
+		},
+		["M"] = {
+			desc = "chmod entry under cursor",
+			callback = function()
+				local oil = require("oil")
+				local entry, dir = oil.get_cursor_entry(), oil.get_current_dir()
+				vim.ui.input({ prompt = "chmod " .. entry.name .. ": " }, function(mode)
+					vim.fn.system({ "chmod", mode, dir .. entry.name })
+				end)
+			end,
 		},
 	},
 	view_options = {

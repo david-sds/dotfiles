@@ -1,0 +1,1 @@
+/home/david/Core/vault/src/skills/lucrorural-comentario.md
