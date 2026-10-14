@@ -114,6 +114,7 @@ require("oil").setup({
 	default_file_explorer = true,
 	delete_to_trash = true,
 	use_default_keymaps = false,
+	watch_for_changes = true,
 	columns = { "icon", "size", "permissions" },
 	keymaps = {
 		["g?"] = { "actions.show_help", mode = "n" },
@@ -148,23 +149,8 @@ require("oil").setup({
 			callback = function()
 				local oil = require("oil")
 				local entry, dir = oil.get_cursor_entry(), oil.get_current_dir()
-				if not entry or not dir then
-					return
-				end
 				vim.ui.input({ prompt = "chmod " .. entry.name .. ": " }, function(mode)
-					if mode == "" then
-						return
-					end
 					vim.fn.system({ "chmod", mode, dir .. entry.name })
-					local view = vim.fn.winsaveview()
-					vim.api.nvim_create_autocmd("User", {
-						pattern = "OilEnter",
-						once = true,
-						callback = function()
-							vim.fn.winrestview(view)
-						end,
-					})
-					require("oil.actions").refresh.callback()
 				end)
 			end,
 		},
