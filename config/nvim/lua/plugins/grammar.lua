@@ -37,6 +37,8 @@ require("nvim-treesitter").install({
 	"commonlisp",
 	"qmljs",
 	"typst",
+	"python",
+  "mermaid",
 })
 
 require("treesitter-context").setup({
