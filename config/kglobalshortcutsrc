@@ -38,6 +38,8 @@ _k_friendly_name=Session Management
 
 [kwin]
 Activate Window Demanding Attention=Meta+Ctrl+A,Meta+Ctrl+A,Activate Window Demanding Attention
+ClearLastMouseMark=Meta+Shift+F12,Meta+Shift+F12,Clear Last Mouse Mark
+ClearMouseMarks=Meta+Shift+F11,Meta+Shift+F11,Clear Mouse Marks
 Cycle Overview=none,none,Cycle through Overview and Grid View
 Cycle Overview Opposite=none,none,Cycle through Grid View and Overview
 Decrease Opacity=none,none,Decrease Opacity of Active Window by 5%
@@ -120,7 +122,7 @@ Walk Through Windows of Current Application Alternative=none,none,Walk Through W
 Walk Through Windows of Current Application Alternative (Reverse)=none,none,Walk Through Windows of Current Application Alternative (Reverse)
 Window Above Other Windows=none,none,Keep Window Above Others
 Window Below Other Windows=none,none,Keep Window Below Others
-Window Close=Alt+F4,Alt+F4,Close Window
+Window Close=Alt+F4\tMeta+Q,Alt+F4,Close Window
 Window Custom Quick Tile Bottom=none,none,Custom Quick Tile Window to the Bottom
 Window Custom Quick Tile Left=none,none,Custom Quick Tile Window to the Left
 Window Custom Quick Tile Right=none,none,Custom Quick Tile Window to the Right
@@ -258,8 +260,8 @@ cycle-panels=Meta+Alt+P,Meta+Alt+P,Move keyboard focus between panels
 cycleNextAction=none,none,Next History Item
 cyclePrevAction=none,none,Previous History Item
 edit_clipboard=none,none,Edit Contents…
-manage activities=Meta+Q,Meta+Q,Show Activity Switcher
-next activity=Meta+A,none,Walk through activities
+manage activities=Meta+A,Meta+Q,Show Activity Switcher
+next activity=none,none,Walk through activities
 previous activity=Meta+Shift+A,none,Walk through activities (Reverse)
 repeat_action=none,none,Manually Invoke Action on Current Clipboard
 show dashboard=Ctrl+F12,Ctrl+F12,Show Desktop
@@ -281,6 +283,10 @@ _launch=Search\tAlt+F2\tMeta+Space
 
 [services][org.kde.kscreen.desktop]
 ShowOSD=Display\tCtrl+Alt+P
+
+[services][org.kde.spectacle.desktop]
+CurrentMonitorScreenShot=none
+OpenWithoutScreenshot=none
 
 [services][org.kde.spectacle.desktop]
 CurrentMonitorScreenShot=none
