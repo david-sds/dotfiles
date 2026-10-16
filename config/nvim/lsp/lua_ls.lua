@@ -8,6 +8,7 @@
 local lsp_config_module = require("core.lsp")
 local on_attach = lsp_config_module.on_attach
 
+-- Enable plugin autocomplete by plugin directory name
 local function core_pack_library(plugin_names)
 	local library = {
 		vim.fn.expand("$VIMRUNTIME/lua"),
@@ -54,17 +55,7 @@ return {
 			},
 			workspace = {
 				checkThirdParty = false,
-				library = core_pack_library({
-					"rest.nvim",
-					-- "lazy.nvim",
-					-- "nvim-cmp",
-					-- "conform.nvim",
-					-- "oklch-color-picker.nvim",
-					-- "fzf-lua",
-					-- "trouble.nvim",
-					-- "grug-far.nvim",
-					-- "render-markdown.nvim",
-				}),
+				library = core_pack_library({}),
 			},
 		},
 	},

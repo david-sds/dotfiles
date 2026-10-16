@@ -56,7 +56,6 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
 	end,
 })
 
----@type cmp.ConfigSchema
 local opts = {
 	enabled = function()
 		local context = require("cmp.config.context")
