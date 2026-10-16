@@ -56,8 +56,6 @@ vim.pack.add({
 	"https://github.com/nvim-treesitter/nvim-treesitter",
 })
 
----@module 'render-markdown'
----@type render.md.Config
 require("render-markdown").setup({})
 -- require("render-markdown").disable()
 
