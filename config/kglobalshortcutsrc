@@ -287,9 +287,5 @@ ShowOSD=Display\tCtrl+Alt+P
 [services][org.kde.plasma-systemmonitor.desktop]
 _launch=Ctrl+Alt+Del
 
-[services][org.kde.spectacle.desktop]
-CurrentMonitorScreenShot=none
-OpenWithoutScreenshot=none
-
 [services][systemsettings.desktop]
 kcm-screenlocker=none
