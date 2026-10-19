@@ -16,7 +16,7 @@ alias grep='grep --color=auto'
 o() { (xdg-open "$@" >/dev/null 2>&1 &) }
 
 # Show git branch name
-source /usr/share/git/completion/git-prompt.sh
+source /usr/share/git-core/contrib/completion/git-prompt.sh
 BLUE="\[\e[34m\]"
 GREEN="\[\e[32m\]"
 RED="\[\e[31m\]"
@@ -55,7 +55,7 @@ export QT_QPA_PLATFORM=wayland
 export XDG_CURRENT_DESKTOP=Hyprland
 
 # NVM Config
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 
 # SDKMAN Config (Must be at the end of the file)
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
