@@ -1,0 +1,3 @@
+flathub	com.discordapp.Discord
+flathub	com.google.Chrome
+flathub	md.obsidian.Obsidian
