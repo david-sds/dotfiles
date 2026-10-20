@@ -22,19 +22,19 @@ y = 0
 
 # Styles
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "Hack Nerd Font"
 style = "Regular"
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "Hack Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "Hack Nerd Font"
 style = "Italic"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
+family = "Hack Nerd Font"
 style = "bold italic"
 
 # -----------------------------------------------------------------------------
