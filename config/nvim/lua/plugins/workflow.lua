@@ -19,6 +19,10 @@ require("fzf-lua").setup({
 		fzf = {
 			true,
 			["ctrl-q"] = "select-all+accept",
+			["ctrl-d"] = "preview-page-down",
+			["ctrl-u"] = "preview-page-up",
+			["ctrl-j"] = "preview-down",
+			["ctrl-k"] = "preview-up",
 		},
 	},
 	grep = {
