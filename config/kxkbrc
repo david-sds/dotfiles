@@ -1,0 +1,6 @@
+[Layout]
+DisplayNames=br.,,,us.
+LayoutDefaultGlobal=2
+LayoutList=br,br,us,us
+Use=true
+VariantList=,nodeadkeys,,intl
