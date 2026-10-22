@@ -7,9 +7,6 @@ local utils = require("utils.vim")
 
 vim.pack.add({ "https://github.com/ibhagwan/fzf-lua" })
 
----@module "fzf-lua"
----@type fzf-lua.Config|{}
----@diagnostic disable: missing-fields
 require("fzf-lua").setup({
 	keymap = {
 		builtin = {
@@ -22,6 +19,10 @@ require("fzf-lua").setup({
 		fzf = {
 			true,
 			["ctrl-q"] = "select-all+accept",
+			["ctrl-d"] = "preview-page-down",
+			["ctrl-u"] = "preview-page-up",
+			["ctrl-j"] = "preview-down",
+			["ctrl-k"] = "preview-up",
 		},
 	},
 	grep = {
@@ -85,9 +86,9 @@ vim.keymap.set("n", "<leader>gff", function()
 	require("fzf-lua").git_files()
 end, { desc = "FZF Git Files" })
 
-vim.keymap.set("n", "<leader>gfd", function()
-	require("fzf-lua").git_diff()
-end, { desc = "FZF Git Diffs" })
+vim.keymap.set("n", "<leader>gfs", function()
+	require("fzf-lua").git_status()
+end, { desc = "FZF Git Status" })
 
 -- ============================================================================
 -- TITLE : vim-tmux-navigator
@@ -177,7 +178,6 @@ vim.keymap.set("v", "<leader>r", function()
 	require("grug-far").open({ prefills = { search = selection } })
 end, { desc = "Find & Replace (grug-far.nvim)" })
 
---- @type grug.far.OptionsOverride
 require("grug-far").setup({
 	startInInsertMode = false,
 	keymaps = {
