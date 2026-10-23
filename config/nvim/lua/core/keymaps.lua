@@ -30,14 +30,14 @@ vim.keymap.set("n", "<leader>W", "<CMD>tabclose<CR>")
 vim.keymap.set("n", "<leader>O", "<CMD>tabonly<CR>")
 
 -- Toggle Inlay hints
-vim.keymap.set("n", "<leader>i", function()
+vim.keymap.set("n", "<leader>ti", function()
 	local enabled = vim.lsp.inlay_hint.is_enabled()
 	vim.lsp.inlay_hint.enable(not enabled)
 end, { desc = "Toggle Inlay Hints" })
 
 -- Toggle Undotree
 vim.cmd("packadd nvim.undotree")
-vim.keymap.set("n", "<leader>u", function()
+vim.keymap.set("n", "<leader>tu", function()
 	require("undotree").open({
 		command = math.floor(vim.api.nvim_win_get_width(0) / 3) .. "vnew",
 	})
@@ -67,6 +67,7 @@ vim.keymap.set("n", "<leader>l", "<CMD>nohlsearch<CR>", { desc = "Clear search h
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buffer" })
 vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
+vim.keymap.set("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit current buffers" })
 vim.keymap.set("n", "<leader>Q", "<CMD>wqa!<CR>", { desc = "Write and Quit all named buffers" })
 vim.keymap.set("n", "<leader>K", U.vim.close_hidden_buffers, { desc = "Close all hidden buffers" })
 vim.keymap.set("v", "<leader>x", U.vim.expand_selection, { desc = "Expand visual selection" })
