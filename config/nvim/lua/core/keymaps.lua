@@ -30,14 +30,14 @@ vim.keymap.set("n", "<leader>W", "<CMD>tabclose<CR>")
 vim.keymap.set("n", "<leader>O", "<CMD>tabonly<CR>")
 
 -- Toggle Inlay hints
-vim.keymap.set("n", "<leader>i", function()
+vim.keymap.set("n", "<leader>ti", function()
 	local enabled = vim.lsp.inlay_hint.is_enabled()
 	vim.lsp.inlay_hint.enable(not enabled)
 end, { desc = "Toggle Inlay Hints" })
 
 -- Toggle Undotree
 vim.cmd("packadd nvim.undotree")
-vim.keymap.set("n", "<leader>u", function()
+vim.keymap.set("n", "<leader>tu", function()
 	require("undotree").open({
 		command = math.floor(vim.api.nvim_win_get_width(0) / 3) .. "vnew",
 	})
