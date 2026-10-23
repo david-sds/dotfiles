@@ -67,6 +67,7 @@ vim.keymap.set("n", "<leader>l", "<CMD>nohlsearch<CR>", { desc = "Clear search h
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buffer" })
 vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
+vim.keymap.set("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit current buffers" })
 vim.keymap.set("n", "<leader>Q", "<CMD>wqa!<CR>", { desc = "Write and Quit all named buffers" })
 vim.keymap.set("n", "<leader>K", U.vim.close_hidden_buffers, { desc = "Close all hidden buffers" })
 vim.keymap.set("v", "<leader>x", U.vim.expand_selection, { desc = "Expand visual selection" })
