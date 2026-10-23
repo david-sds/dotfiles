@@ -1,3 +1,5 @@
+local U = require("utils")
+
 -- ============================================================================
 -- TITLE: keymaps
 -- ABOUT: sets some quality-of-life keymaps
