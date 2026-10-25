@@ -147,3 +147,12 @@ hl.window_rule({
 	},
 	float = true,
 })
+
+hl.window_rule({
+	name = "floating-nwg-look",
+	match = {
+		class = "nwg-look",
+	},
+	float = true,
+})
+
