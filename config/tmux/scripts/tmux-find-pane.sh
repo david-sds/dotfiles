@@ -4,7 +4,7 @@ TMUX_PANE_TITLE=${1:-"FZF tmux panes"}
 
 NUM_PANES_RUNNING=$(tmux list-panes -a -F "#{pane_title}" | grep "$TMUX_PANE_TITLE" | wc -l)
 if [[ "$NUM_PANES_RUNNING" -ge 2 ]]; then
-  tmux display-message "A instance of '$TMUX_PANE_TITLE' is already open."
+  tmux display-message "A instance of '$TMUX_PANE_TITLE' already exists."
   exit 1
 fi
 
