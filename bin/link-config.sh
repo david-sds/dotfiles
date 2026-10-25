@@ -99,9 +99,11 @@ configs=(
   "imv"
   "vlc"
   "mimeapps.list"
+  "keyd"
   "kglobalshortcutsrc"
   "kxkbrc"
   "ktimezonedrc"
+  "kcminputrc"
 )
 
 for config in "${configs[@]}"; do
