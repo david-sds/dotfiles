@@ -318,5 +318,16 @@ _launch=Search\tAlt+F2\tMeta+Space
 [services][org.kde.kscreen.desktop]
 ShowOSD=Display\tCtrl+Alt+P
 
+[services][org.kde.spectacle.desktop]
+CurrentMonitorScreenShot=none
+OpenWithoutScreenshot=none
+
+[services][org.kde.spectacle.desktop]
+CurrentMonitorScreenShot=none
+OpenWithoutScreenshot=none
+
+[services][systemsettings.desktop]
+kcm-screenlocker=none
+
 [services][thunar.desktop]
 _launch=Meta+E

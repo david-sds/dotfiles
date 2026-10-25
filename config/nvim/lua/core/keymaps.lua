@@ -1,9 +1,9 @@
+local U = require("utils")
+
 -- ============================================================================
 -- TITLE: keymaps
 -- ABOUT: sets some quality-of-life keymaps
 -- ============================================================================
-
-local U = require("utils.vim")
 
 -- Better window navigation - Better window navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
@@ -32,18 +32,18 @@ vim.keymap.set("n", "<leader>W", "<CMD>tabclose<CR>")
 vim.keymap.set("n", "<leader>O", "<CMD>tabonly<CR>")
 
 -- Toggle Inlay hints
-vim.keymap.set("n", "<leader>i", function()
+vim.keymap.set("n", "<leader>ti", function()
 	local enabled = vim.lsp.inlay_hint.is_enabled()
 	vim.lsp.inlay_hint.enable(not enabled)
 end, { desc = "Toggle Inlay Hints" })
 
 -- Toggle Undotree
 vim.cmd("packadd nvim.undotree")
-vim.keymap.set("n", "<leader>u", function()
+vim.keymap.set("n", "<leader>tu", function()
 	require("undotree").open({
 		command = math.floor(vim.api.nvim_win_get_width(0) / 3) .. "vnew",
 	})
-end, { desc = "[U]ndotree toggle" })
+end, { desc = "Toggle Undotree" })
 
 -- Vim Pack
 vim.keymap.set("n", "<leader>U", vim.pack.update, { desc = "Update vim.pack plugins" })
@@ -53,15 +53,15 @@ end, { desc = "Manage vim.pack plugins" })
 
 -- Copy cursor position
 vim.keymap.set("n", "<leader>yy", function()
-	U.copy_buffer_line(U.position_scope.CWD)
+	U.vim.copy_buffer_line(U.vim.position_scope.CWD)
 end, { desc = "Copy cursor position" })
 
 vim.keymap.set("n", "<leader>yh", function()
-	U.copy_buffer_line(U.position_scope.HOME)
+	U.vim.copy_buffer_line(U.vim.position_scope.HOME)
 end, { desc = "Copy cursor position" })
 
 vim.keymap.set("n", "<leader>yr", function()
-	U.copy_buffer_line(U.position_scope.ROOT)
+	U.vim.copy_buffer_line(U.vim.position_scope.ROOT)
 end, { desc = "Copy cursor position" })
 
 -- Custom utilities
@@ -69,9 +69,10 @@ vim.keymap.set("n", "<leader>l", "<CMD>nohlsearch<CR>", { desc = "Clear search h
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Replaces without losing copy register" })
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>", { desc = "Focus on current buffer" })
 vim.keymap.set("n", "<leader>R", "<CMD>restart<CR>", { desc = "Restart Neovim" })
+vim.keymap.set("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit current buffers" })
 vim.keymap.set("n", "<leader>Q", "<CMD>wqa!<CR>", { desc = "Write and Quit all named buffers" })
-vim.keymap.set("n", "<leader>K", U.close_hidden_buffers, { desc = "Close all hidden buffers" })
-vim.keymap.set("v", "<leader>x", U.expand_selection, { desc = "Expand visual selection" })
-vim.keymap.set("v", "<leader>e", U.eval_selection, { desc = "Eval lua visual selection" })
-vim.keymap.set({ "n", "x", "o" }, "<M-o>", U.increase_selection, { desc = "Select parent node" })
-vim.keymap.set({ "n", "x", "o" }, "<M-i>", U.decrease_selection, { desc = "Select child node" })
+vim.keymap.set("n", "<leader>K", U.vim.close_hidden_buffers, { desc = "Close all hidden buffers" })
+vim.keymap.set("v", "<leader>x", U.vim.expand_selection, { desc = "Expand visual selection" })
+vim.keymap.set("v", "<leader>e", U.vim.eval_selection, { desc = "Eval lua visual selection" })
+vim.keymap.set({ "n", "x", "o" }, "<M-o>", U.vim.increase_selection, { desc = "Select parent node" })
+vim.keymap.set({ "n", "x", "o" }, "<M-i>", U.vim.decrease_selection, { desc = "Select child node" })

@@ -56,11 +56,22 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
 	end,
 })
 
+local cmp_enabled = true
+vim.keymap.set("n", "<leader>tc", function ()
+  cmp_enabled = not cmp_enabled
+  if (not U.bloat) then
+    cmp_enabled = false
+  end
+end, {desc = "Toggles completion (nvim-cmp)"})
+
 local opts = {
 	enabled = function()
 		local context = require("cmp.config.context")
-		if context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment") then
-			return vim.bo.filetype == "lua"
+    if not cmp_enabled then
+      return false
+    end
+    if context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment") then
+			return false
 		end
 		return true
 	end,

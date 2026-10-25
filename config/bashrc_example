@@ -8,6 +8,9 @@ if command -v tmux &>/dev/null && [[ -z $TMUX && -z $NVIM && -z $SSH_CONNECTION 
   exec tmux
 fi
 
+# Pane title (tmux pane-border-format)
+PROMPT_COMMAND+=('printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"')
+
 # Aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'

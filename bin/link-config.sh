@@ -43,6 +43,43 @@ remove_broken_links() {
   done
 }
 
+handle_links_list() {
+  local orig_dir=$1 dest_dir=$2 template=${3:-%s}
+  local -n list=$4
+
+  mkdir -p "$dest_dir"
+  remove_broken_links "$dest_dir"
+
+  for target in "${list[@]}"; do
+    orig_path="$orig_dir/$target"
+    local target_label=$(printf -- "$template" "$target")
+
+    if [ ! -e "$orig_path" ]; then
+      log_failed "$target_label:source not found: $orig_path"
+      continue
+    fi
+
+    dest_path="$dest_dir/$target"
+    if [ -L "$dest_path" ] && [ -e "$dest_path" ]; then
+      log_exists "$target_label already exists."
+      continue
+    fi
+
+    err=$(ln -sfT "$orig_path" "$dest_path" 2>&1)
+    status=$?
+
+    if [ $status -eq 0 ]; then
+      log_success "$target_label was linked successfully!"
+    else
+      if echo "$err" | grep -qi "exists"; then
+        log_exists "$target_label already exists."
+      else
+        log_failed "$target_label:$err"
+      fi
+    fi
+  done
+}
+
 handle_links() {
   local orig_dir=$1 dest_dir=$2 template=${3:-%s}
 
@@ -77,9 +114,6 @@ handle_links() {
 
 printf '%s\n' "> Installing .config directories..."
 
-mkdir -p "$HOME/.config"
-remove_broken_links "$HOME/.config"
-
 configs=(
   "nvim"
   "tmux"
@@ -105,34 +139,7 @@ configs=(
   "ktimezonedrc"
   "kcminputrc"
 )
-
-for config in "${configs[@]}"; do
-  config_path="$DOTFILES/config/$config"
-
-  if [ ! -e "$config_path" ]; then
-    log_failed "$config:source not found: $config_path"
-    continue
-  fi
-
-  target_config="$HOME/.config/$config"
-  if [ -L "$target_config" ] && [ -e "$target_config" ]; then
-    log_exists "$config config already exists."
-    continue
-  fi
-
-  err=$(ln -sfT "$config_path" "$target_config" 2>&1)
-  status=$?
-
-  if [ $status -eq 0 ]; then
-    log_success "$config config was linked successfully!"
-  else
-    if echo "$err" | grep -qi "exists"; then
-      log_exists "$config config already exists."
-    else
-      log_failed "$config config:$err"
-    fi
-  fi
-done
+handle_links_list "$DOTFILES/config" "$HOME/.config" '%s config' configs
 
 # -----------------------------------------------------------------------------
 # Installing local and global scripts

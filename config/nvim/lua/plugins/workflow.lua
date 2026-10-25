@@ -19,6 +19,10 @@ require("fzf-lua").setup({
 		fzf = {
 			true,
 			["ctrl-q"] = "select-all+accept",
+			["ctrl-d"] = "preview-page-down",
+			["ctrl-u"] = "preview-page-up",
+			["ctrl-j"] = "preview-down",
+			["ctrl-k"] = "preview-up",
 		},
 	},
 	grep = {
@@ -165,7 +169,7 @@ vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 vim.pack.add({ "https://github.com/MagicDuck/grug-far.nvim" })
 
-vim.keymap.set("n", "<leader>q", function()
+vim.keymap.set("n", "<leader>rr", function()
 	require("grug-far").open({ prefills = { search = "" } })
 end, { desc = "GrugFar Find & Replace (grug-far.nvim)" })
 
