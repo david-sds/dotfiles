@@ -1,0 +1,6 @@
+[Keyboard]
+RepeatDelay=300
+RepeatRate=50
+
+[Libinput][2362][597][PNP0C50:0b 093A:0255 Touchpad]
+NaturalScroll=true
