@@ -43,14 +43,77 @@ remove_broken_links() {
   done
 }
 
+handle_links_list() {
+  local orig_dir=$1 dest_dir=$2 template=${3:-%s}
+  local -n list=$4
+
+  mkdir -p "$dest_dir"
+  remove_broken_links "$dest_dir"
+
+  for target in "${list[@]}"; do
+    orig_path="$orig_dir/$target"
+    local target_label=$(printf -- "$template" "$target")
+
+    if [ ! -e "$orig_path" ]; then
+      log_failed "$target_label:source not found: $orig_path"
+      continue
+    fi
+
+    dest_path="$dest_dir/$target"
+    if [ -L "$dest_path" ] && [ -e "$dest_path" ]; then
+      log_exists "$target_label already exists."
+      continue
+    fi
+
+    err=$(ln -sfT "$orig_path" "$dest_path" 2>&1)
+    status=$?
+
+    if [ $status -eq 0 ]; then
+      log_success "$target_label was linked successfully!"
+    else
+      if echo "$err" | grep -qi "exists"; then
+        log_exists "$target_label already exists."
+      else
+        log_failed "$target_label:$err"
+      fi
+    fi
+  done
+}
+
+handle_links() {
+  local orig_dir=$1 dest_dir=$2 template=${3:-%s}
+
+  mkdir -p "$dest_dir"
+  remove_broken_links "$dest_dir"
+
+  for orig in "$orig_dir"/*; do
+    local orig_name=$(basename $orig)
+    local orig_link="$dest_dir/$orig_name"
+    local subject=$(printf -- "$template" "$orig_name")
+
+    if [ -L "$orig_link" ] && [ -e "$orig_link" ]; then
+      log_exists "$subject already exists."
+      continue
+    fi
+
+    err=$(ln -sfT "$orig" "$orig_link" 2>&1)
+    status=$?
+
+    if [ $status -eq 0 ]; then
+      log_success "$subject was linked successfully!"
+    else
+      log_failed "$subject:$err"
+    fi
+
+  done
+}
+
 #------------------------------------------------------------------------------
 # Installing .config directories
 #------------------------------------------------------------------------------
 
 printf '%s\n' "> Installing .config directories..."
 
-mkdir -p "$HOME/.config"
-remove_broken_links "$HOME/.config"
 configs=(
   "nvim"
   "tmux"
@@ -72,33 +135,7 @@ configs=(
   "mimeapps.list"
   "kglobalshortcutsrc"
 )
-for config in "${configs[@]}"; do
-  config_path="$DOTFILES/config/$config"
-
-  if [ ! -e "$config_path" ]; then
-    log_failed "$config:source not found: $config_path"
-    continue
-  fi
-
-  target_config="$HOME/.config/$config"
-  if [ -L "$target_config" ] && [ -e "$target_config" ]; then
-    log_exists "$config config already exists."
-    continue
-  fi
-
-  err=$(ln -sfT "$config_path" "$target_config" 2>&1)
-  status=$?
-
-  if [ $status -eq 0 ]; then
-    log_success "$config config was linked successfully!"
-  else
-    if echo "$err" | grep -qi "exists"; then
-      log_exists "$config config already exists."
-    else
-      log_failed "$config config:$err"
-    fi
-  fi
-done
+handle_links_list "$DOTFILES/config" "$HOME/.config" '%s config' configs
 
 # -----------------------------------------------------------------------------
 # Installing local and global scripts
@@ -106,45 +143,9 @@ done
 
 printf '%s\n' "> Installing local and global scripts..."
 
-mkdir -p "$HOME/.local/bin"
-remove_broken_links "$HOME/.local/bin"
-for script in "$DOTFILES"/bin/local/*; do
-  script_name=$(basename $script)
-  installed_script="$HOME/.local/bin/$script_name"
-  if [ -L "$installed_script" ] && [ -e "$installed_script" ]; then
-    log_exists "local script $script_name already exists."
-    continue
-  fi
+handle_links "$DOTFILES/bin/local" "$HOME/.local/bin" 'local script %s'
 
-  err=$(ln -sfT "$script" "$installed_script" 2>&1)
-  status=$?
-
-  if [ $status -eq 0 ]; then
-    log_success "local script $script_name was linked successfully!"
-  else
-    log_failed "local script $script_name:$err"
-  fi
-done
-
-mkdir -p "/usr/local/bin"
-remove_broken_links "/usr/local/bin"
-for script in "$DOTFILES"/bin/global/*; do
-  script_name=$(basename $script)
-  installed_script="/usr/local/bin/$script_name"
-  if [ -L "$installed_script" ] && [ -e "$installed_script" ]; then
-    log_exists "global script $script_name already exists."
-    continue
-  fi
-
-  err=$(ln -sfT "$script" "$installed_script" 2>&1)
-  status=$?
-
-  if [ $status -eq 0 ]; then
-    log_success "global script $script_name was linked successfully!"
-  else
-    log_failed "global script $script_name:$err"
-  fi
-done
+handle_links "$DOTFILES/bin/global" "/usr/local/bin" 'global script %s'
 
 # -----------------------------------------------------------------------------
 # Installing services
@@ -152,45 +153,9 @@ done
 
 printf '%s\n' "> Installing services..."
 
-mkdir -p "$HOME/.config/systemd/user"
-remove_broken_links "$HOME/.config/systemd/user"
-for service_file in "$DOTFILES"/service/local/*; do
-  service_file_name=$(basename $service_file)
-  installed_service_file="$HOME/.config/systemd/user/$service_file_name"
-  if [ -L "$installed_service_file" ] && [ -e "$installed_service_file" ]; then
-    log_exists "local service $service_file_name already exists."
-    continue
-  fi
+handle_links "$DOTFILES/service/local" "$HOME/.config/systemd/user" 'local service %s'
 
-  err=$(ln -sfT "$service_file" "$installed_service_file" 2>&1)
-  status=$?
-
-  if [ $status -eq 0 ]; then
-    log_success "local service $service_file_name was linked successfully!"
-  else
-    log_failed "local service $service_file_name:$err"
-  fi
-done
-
-mkdir -p "/etc/systemd/system"
-remove_broken_links "/etc/systemd/system"
-for service_file in "$DOTFILES"/service/global/*; do
-  service_file_name=$(basename $service_file)
-  installed_service_file="/etc/systemd/system/$service_file_name"
-  if [ -L "$installed_service_file" ] && [ -e "$installed_service_file" ]; then
-    log_exists "global service $service_file_name already exists."
-    continue
-  fi
-
-  err=$(ln -sfT "$service_file" "$installed_service_file" 2>&1)
-  status=$?
-
-  if [ $status -eq 0 ]; then
-    log_success "global service $service_file_name was linked successfully!"
-  else
-    log_failed "global service $service_file_name:$err"
-  fi
-done
+handle_links "$DOTFILES/service/global" "/etc/systemd/system" 'global service %s'
 
 # -----------------------------------------------------------------------------
 # Installing desktop files
@@ -198,65 +163,10 @@ done
 
 printf '%s\n' "> Installing desktop files..."
 
-mkdir -p "$HOME/.local/share/applications/"
-remove_broken_links "$HOME/.local/share/applications/"
-for desktop_file in "$DOTFILES"/desktop/local/*; do
-  desktop_file_name=$(basename $desktop_file)
-  installed_desktop_file="$HOME/.local/share/applications/$desktop_file_name"
-  if [ -L "$installed_desktop_file" ] && [ -e "$installed_desktop_file" ]; then
-    log_exists "local desktop file $desktop_file_name already exists."
-    continue
-  fi
+handle_links "$DOTFILES/desktop/local" "$HOME/.local/share/applications" 'local desktop file %s'
 
-  err=$(ln -sfT "$desktop_file" "$installed_desktop_file" 2>&1)
-  status=$?
+handle_links "$DOTFILES/desktop/global" "/usr/share/applications" 'global desktop file %s'
 
-  if [ $status -eq 0 ]; then
-    log_success "local desktop file $desktop_file_name was linked successfully!"
-  else
-    log_failed "local desktop file $desktop_file_name:$err"
-  fi
-
-done
-
-mkdir -p "/usr/share/applications/"
-remove_broken_links "/usr/share/applications/"
-for desktop_file in "$DOTFILES"/desktop/global/*; do
-  desktop_file_name=$(basename $desktop_file)
-  installed_desktop_file="/usr/share/applications/$desktop_file_name"
-  if [ -L "$installed_desktop_file" ] && [ -e "$installed_desktop_file" ]; then
-    log_exists "global desktop file $desktop_file_name already exists."
-    continue
-  fi
-
-  err=$(ln -sfT "$desktop_file" "$installed_desktop_file" 2>&1)
-  status=$?
-
-  if [ $status -eq 0 ]; then
-    log_success "global desktop file $service_file_name was linked successfully!"
-  else
-    log_failed "global desktop file $config:$err"
-  fi
-done
-
-mkdir -p "$HOME/.local/share/xfce4/helpers"
-remove_broken_links "$HOME/.local/share/xfce4/helpers"
-for desktop_file in "$DOTFILES"/desktop/xfce4-helpers/*; do
-  desktop_file_name=$(basename $desktop_file)
-  installed_desktop_file="$HOME/.local/share/xfce4/helpers/$desktop_file_name"
-  if [ -L "$installed_desktop_file" ] && [ -e "$installed_desktop_file" ]; then
-    log_exists "xfce4 desktop helper file $desktop_file_name already exists."
-    continue
-  fi
-
-  err=$(ln -sfT "$desktop_file" "$installed_desktop_file" 2>&1)
-  status=$?
-
-  if [ $status -eq 0 ]; then
-    log_success "xfce4 desktop helper file $service_file_name was linked successfully!"
-  else
-    log_failed "xfce4 desktop helper file $config:$err"
-  fi
-done
+handle_links "$DOTFILES/desktop/xfce4-helpers" "$HOME/.local/share/xfce4/helpers" 'xfce4 desktop helper file %s'
 
 printf '%s\n' "> Finished!"
