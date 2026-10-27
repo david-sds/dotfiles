@@ -13,6 +13,10 @@ Switch to Last-Used Keyboard Layout=Meta+Alt+L,Meta+Alt+L,Switch to Last-Used Ke
 Switch to Next Keyboard Layout=Alt+Space,Meta+Alt+K,Switch to Next Keyboard Layout
 _k_friendly_name=Keyboard Layout Switcher
 
+[kaccess]
+Toggle Screen Reader On and Off=Meta+Alt+S,Meta+Alt+S,Toggle Screen Reader On and Off
+_k_friendly_name=Accessibility
+
 [kmix]
 _k_friendly_name=Audio Volume
 decrease_microphone_volume=Microphone Volume Down,Microphone Volume Down,Decrease Microphone Volume
@@ -44,16 +48,16 @@ Cycle Overview=none,none,Cycle through Overview and Grid View
 Cycle Overview Opposite=none,none,Cycle through Grid View and Overview
 Decrease Opacity=none,none,Decrease Opacity of Active Window by 5%
 Edit Tiles=Meta+T,Meta+T,Toggle Tiles Editor
-Expose=Ctrl+F9,Ctrl+F9\tMeta+F9,Toggle Present Windows (Current desktop)
-ExposeAll=Launch (C)\tCtrl+F10,Launch (C)\tCtrl+F10\tMeta+F10,Toggle Present Windows (All desktops)
-ExposeClass=Ctrl+F7,Ctrl+F7\tMeta+F7,Toggle Present Windows (Window class)
+Expose=\tCtrl+F9,Ctrl+F9\tMeta+F9,Toggle Present Windows (Current desktop)
+ExposeAll=\tLaunch (C)\tCtrl+F10,Launch (C)\tCtrl+F10\tMeta+F10,Toggle Present Windows (All desktops)
+ExposeClass=\tCtrl+F7,Ctrl+F7\tMeta+F7,Toggle Present Windows (Window class)
 ExposeClassCurrentDesktop=none,none,Toggle Present Windows (Window class on current desktop)
 Grid View=Meta+G,Meta+G,Toggle Grid View
 Increase Opacity=none,none,Increase Opacity of Active Window by 5%
 Kill Window=Meta+Ctrl+Esc,Meta+Ctrl+Esc,Kill Window
 Move Tablet to Next LogicalOutput=none,none,Move the tablet to the next output
-MoveMouseToCenter=none,Meta+F6,Center Pointer in Screen
-MoveMouseToFocus=none,Meta+F5,Center Pointer in Focused Window
+MoveMouseToCenter=none,Meta+F6,Move Mouse to Center
+MoveMouseToFocus=none,Meta+F5,Move Mouse to Focus
 MoveZoomDown=none,none,Move Zoomed Area Downwards
 MoveZoomLeft=none,none,Move Zoomed Area to Left
 MoveZoomRight=none,none,Move Zoomed Area to Right
@@ -117,7 +121,7 @@ Walk Through Windows=Alt+Tab\tMeta+Tab,Alt+Tab\tMeta+Tab,Walk Through Windows
 Walk Through Windows (Reverse)=Alt+Shift+Tab\tMeta+Shift+Tab,Alt+Shift+Tab\tMeta+Shift+Tab,Walk Through Windows (Reverse)
 Walk Through Windows Alternative=none,none,Walk Through Windows Alternative
 Walk Through Windows Alternative (Reverse)=none,none,Walk Through Windows Alternative (Reverse)
-Walk Through Windows of Current Application=Meta+`,Alt+`\tMeta+`,Walk Through Windows of Current Application
+Walk Through Windows of Current Application=Alt+`\tMeta+`,Alt+`\tMeta+`,Walk Through Windows of Current Application
 Walk Through Windows of Current Application (Reverse)=Alt+~\tMeta+~,Alt+~\tMeta+~,Walk Through Windows of Current Application (Reverse)
 Walk Through Windows of Current Application Alternative=none,none,Walk Through Windows of Current Application Alternative
 Walk Through Windows of Current Application Alternative (Reverse)=none,none,Walk Through Windows of Current Application Alternative (Reverse)
@@ -210,34 +214,7 @@ view_zoom_in=Meta++\tMeta+=,Meta++\tMeta+=,Zoom In
 view_zoom_out=Meta+-,Meta+-,Zoom Out
 
 [kwin][$InverseAction]
-Cycle Overview=Cycle Overview Opposite
-Increase Opacity=Decrease Opacity
-MoveZoomDown=MoveZoomUp
-MoveZoomLeft=MoveZoomRight
-Switch One Desktop Down=Switch One Desktop Up
-Switch One Desktop to the Right=Switch One Desktop to the Left
-Switch Window Right=Switch Window Left
-Switch Window Up=Switch Window Down
-Switch to Next Desktop=Switch to Previous Desktop
-Switch to Next Screen=Switch to Previous Screen
-Switch to Screen Below=Switch to Screen Above
-Switch to Screen to the Right=Switch to Screen to the Left
-Walk Through Windows=Walk Through Windows (Reverse)
-Walk Through Windows Alternative (Reverse)=Walk Through Windows Alternative
-Walk Through Windows of Current Application=Walk Through Windows of Current Application (Reverse)
-Walk Through Windows of Current Application Alternative=Walk Through Windows of Current Application Alternative (Reverse)
-Window Grow Vertical=Window Shrink Vertical
-Window Lower=Window Raise
-Window One Desktop Up=Window One Desktop Down
-Window One Desktop to the Left=Window One Desktop to the Right
-Window One Screen Down=Window One Screen Up
-Window One Screen to the Left=Window One Screen to the Right
-Window Pack Down=Window Pack Up
-Window Pack Left=Window Pack Right
-Window Shrink Horizontal=Window Grow Horizontal
-Window to Previous Desktop=Window to Next Desktop
-Window to Previous Screen=Window to Next Screen
-view_zoom_out=view_zoom_in
+_k_friendly_name=
 
 [mediacontrol]
 _k_friendly_name=Media Controller
@@ -290,7 +267,7 @@ activate widget 39=none,none,Activate Application Launcher Widget
 activate widget 41=none,none,Activate Peek at Desktop Widget
 clear history=none,none,Clear Notification History
 clear-history=none,none,Clear Clipboard History
-clipboard_action=Meta+Ctrl+X,none,Toggle Automatic Popping Up of Action Menu
+clipboard_action=Meta+Ctrl+X,Meta+Ctrl+X,Automatic Action Popup Menu
 cycle-panels=Meta+Alt+P,Meta+Alt+P,Move keyboard focus between panels
 cycleNextAction=none,none,Next History Item
 cyclePrevAction=none,none,Previous History Item
@@ -310,6 +287,7 @@ toggle do not disturb=none,none,Toggle do not disturb
 
 [services][Alacritty.desktop]
 New=Ctrl+Alt+T
+_launch=none
 
 [services][org.kde.konsole.desktop]
 _launch=none
