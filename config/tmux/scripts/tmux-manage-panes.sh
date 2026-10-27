@@ -12,7 +12,7 @@ LIST_PANES="tmux list-panes -a -F '(#{session_name}:#{window_index}.#{pane_index
 
 TMUX_PANE=$(
   fzf --style full --layout reverse --delimiter '[()]' \
-    --header "Enter: select   C-x: kill   C-y: copy" \
+    --footer "Enter: select   C-x: kill   C-y: copy" \
     --bind "start:reload($LIST_PANES)" \
     --bind "ctrl-x:execute-silent(tmux kill-pane -t {2})+reload($LIST_PANES)" \
     --bind "ctrl-y:execute-silent(bash ~/.config/tmux/scripts/tmux-copy.sh 'tmux {2}')" |
