@@ -1,7 +1,69 @@
 # vim: filetype=bash
 
+# Fedora initial config
+
+# # Source global definitions
+# if [ -f /etc/bashrc ]; then
+#   . /etc/bashrc
+# fi
+#
+# # User specific environment
+# if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+#   PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+# fi
+# export PATH
+#
+# # Uncomment the following line if you don't like systemctl's auto-paging feature:
+# # export SYSTEMD_PAGER=
+#
+# # User specific aliases and functions
+# if [ -d ~/.bashrc.d ]; then
+#   for rc in ~/.bashrc.d/*; do
+#     if [ -f "$rc" ]; then
+#       . "$rc"
+#     fi
+#   done
+# fi
+# unset rc
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
+# Fzf colors (Gruvbox Material)
+color00='#32302f'
+color01='#3c3836'
+color02='#504945'
+color03='#665c54'
+color04='#bdae93'
+color05='#d5c4a1'
+color06='#ebdbb2'
+color07='#fbf1c7'
+color08='#fb4934'
+color09='#fe8019'
+color0A='#fabd2f'
+color0B='#b8bb26'
+color0C='#8ec07c'
+color0D='#83a598'
+color0E='#d3869b'
+color0F='#d65d0e'
+export FZF_DEFAULT_OPTS="
+  --color=bg:-1
+  --color=bg+:$color01
+  --color=fg:$color04
+  --color=fg+:$color06
+  --color=hl:$color0B
+  --color=hl+:$color08
+  --color=info:$color0A
+  --color=prompt:$color0A
+  --color=pointer:$color08
+  --color=marker:$color08
+  --color=spinner:$color0C
+  --color=header:$color0D
+  --color=border:$color02
+  --color=label:$color03
+  --color=query:$color06
+  --color=gutter:$color01
+"
 
 # Exec Tmux on every session
 if command -v tmux &>/dev/null && [[ -z $TMUX && -z $NVIM && -z $SSH_CONNECTION ]]; then
@@ -9,7 +71,13 @@ if command -v tmux &>/dev/null && [[ -z $TMUX && -z $NVIM && -z $SSH_CONNECTION 
 fi
 
 # Pane title (tmux pane-border-format)
-PROMPT_COMMAND+=('printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"')
+if [[ -z $__title_init ]]; then
+  __title_init=1
+  __title() { printf '\e]0;%s@%s:%s%s\a' "$USER" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}" "${1:+ $1}"; }
+  PROMPT_COMMAND=('__title_live=' "${PROMPT_COMMAND[@]}" '__title')
+  PS0+='${__title_live[__title_live=1]}'
+  trap '[[ $__title_live && $BASH_COMMAND != __title_live= ]] && __title "$BASH_COMMAND"' DEBUG
+fi
 
 # Aliases
 alias ls='ls --color=auto'
@@ -53,12 +121,16 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+export PATH=/home/david/.opencode/bin:$PATH
 
 export QT_QPA_PLATFORM=wayland
-export XDG_CURRENT_DESKTOP=Hyprland
+# export XDG_CURRENT_DESKTOP=Hyprland
+
+# Fzf key bindings (C-t, C-r, M-c) and completion
+command -v fzf &>/dev/null && eval "$(fzf --bash)"
 
 # NVM Config
-# source /usr/share/nvm/init-nvm.sh
+[[ -s "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
 
 # SDKMAN Config (Must be at the end of the file)
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
