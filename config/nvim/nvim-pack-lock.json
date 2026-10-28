@@ -48,10 +48,6 @@
       "rev": "11d779b26a9ab2b3db8c22c6ac9fb6e8ed4fea79",
       "src": "https://github.com/sainnhe/gruvbox-material"
     },
-    "kulala.nvim": {
-      "rev": "125751ea9f41c1ee966c5c7e3032e3539dd2f33e",
-      "src": "https://github.com/mistweaverco/kulala.nvim"
-    },
     "lspkind.nvim": {
       "rev": "c7274c48137396526b59d86232eabcdc7fed8a32",
       "src": "https://github.com/onsails/lspkind.nvim"
@@ -73,7 +69,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.ai": {
-      "rev": "d0c4987a1ead2bcf4eb22cc9815c662d76677c08",
+      "rev": "a4f5648dedf435e6306205135d1babb563b55d28",
       "src": "https://github.com/echasnovski/mini.ai"
     },
     "mini.bufremove": {
@@ -81,7 +77,7 @@
       "src": "https://github.com/echasnovski/mini.bufremove"
     },
     "mini.comment": {
-      "rev": "7b6e37ad79a9d11ff08e6706d5d84eaf4c389213",
+      "rev": "3aa39b795c6dc54dbeaf2863aa91215850c4c8e0",
       "src": "https://github.com/echasnovski/mini.comment"
     },
     "mini.cursorword": {
@@ -93,11 +89,11 @@
       "src": "https://github.com/echasnovski/mini.icons"
     },
     "mini.indentscope": {
-      "rev": "f75e6e4d560641cbb42e97182819af0175bdfe0e",
+      "rev": "b26a8ee619c0f4158dd4df1a8151b236b7d100bc",
       "src": "https://github.com/echasnovski/mini.indentscope"
     },
     "mini.move": {
-      "rev": "57435a0f6654c232405424a78424bb3edbedfa7c",
+      "rev": "5207c4de3d7db84aadedf72e4a27048d9e46ccf9",
       "src": "https://github.com/echasnovski/mini.move"
     },
     "mini.notify": {
@@ -105,7 +101,7 @@
       "src": "https://github.com/echasnovski/mini.notify"
     },
     "mini.operators": {
-      "rev": "0e25aac29dd6cdbcfdbd8a6505a8e3be5064ef1a",
+      "rev": "9e844663fe217bae78e857b7dc59468d8ee6d425",
       "src": "https://github.com/echasnovski/mini.operators"
     },
     "mini.pairs": {
@@ -113,7 +109,7 @@
       "src": "https://github.com/echasnovski/mini.pairs"
     },
     "mini.surround": {
-      "rev": "59ce0acf79e1d930756ef3a7cb4c2369560cf548",
+      "rev": "5357f00aca51a3b43e7775901b1ad9699f8c2678",
       "src": "https://github.com/echasnovski/mini.surround"
     },
     "mini.trailspace": {
@@ -156,10 +152,6 @@
       "rev": "6f05811621460eca983bf2cd877e63c59a40720e",
       "src": "https://github.com/jmbuhr/otter.nvim"
     },
-    "plenary.nvim": {
-      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
-      "src": "https://github.com/nvim-lua/plenary.nvim"
-    },
     "render-markdown.nvim": {
       "rev": "8e8795368391036643b622875a6da6a51bcd33f4",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
@@ -169,12 +161,8 @@
       "src": "https://github.com/rest-nvim/rest.nvim"
     },
     "schemastore.nvim": {
-      "rev": "067b472f6dbc04520982acc9ab14f27c68195c70",
+      "rev": "a59b43cffa5a11d80b4ca4fd6a52350ac7bd6104",
       "src": "https://github.com/b0o/schemastore.nvim"
-    },
-    "tree-sitter-manager.nvim": {
-      "rev": "06c90a3af8eb471f4a4ff979d681312284a8583a",
-      "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "treesj": {
       "rev": "9f349ba62c524f065d6f43254d731ddf8319b9bf",
@@ -203,10 +191,6 @@
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim"
-    },
-    "windsurf.nvim": {
-      "rev": "821b570b526dbb05b57aa4ded578b709a704a38a",
-      "src": "https://github.com/Exafunction/windsurf.nvim"
     },
     "xml2lua": {
       "rev": "b0d2b0b156b4e66078da2dc4b31d978daa69b3ef",
