@@ -10,10 +10,14 @@ fi
 
 LIST_PANES="tmux list-panes -a -F '(#{session_name}:#{window_index}.#{pane_index}) #{session_name}:#{window_name}.#{pane_title}' | grep -v '$TMUX_PANE_TITLE'"
 
+SWAP_MARKED="execute-silent(tmux swap-pane -d -s '{marked}' -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)"
+
 TMUX_PANE=$(
   fzf --style full --layout reverse --delimiter '[()]' \
-    --footer "Enter: select   C-x: kill   C-y: copy" \
+    --footer "Enter: select   C-x: kill   C-y: copy   C-M-n: move down   C-M-p: move up" \
     --bind "start:reload($LIST_PANES)" \
+    --bind "ctrl-alt-n:execute-silent(tmux select-pane -m -t {2})+down+$SWAP_MARKED" \
+    --bind "ctrl-alt-p:execute-silent(tmux select-pane -m -t {2})+up+$SWAP_MARKED" \
     --bind "ctrl-x:execute-silent(tmux kill-pane -t {2})+reload($LIST_PANES)" \
     --bind "ctrl-y:execute-silent(bash ~/.config/tmux/scripts/tmux-copy.sh 'tmux {2}')" |
     sed 's/).*//; s/(//'
