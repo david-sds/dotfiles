@@ -121,6 +121,15 @@ configs=(
   "nvim"
   "opencode"
   "tmux"
+  "satty"
+  "zathura"
+  "btop"
+  "xfce4"
+  "imv"
+  "vlc"
+  "mimeapps.list"
+  "kglobalshortcutsrc"
+  "keyd"
 )
 handle_links_list "$DOTFILES/config" "$HOME/.config" '%s config' configs
 
