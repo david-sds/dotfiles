@@ -1,28 +1,64 @@
 #!/usr/bin/env bash
 
-TMUX_PANE_TITLE=${1:-"FZF tmux panes"}
+# Script session (exported: the binds read it at runtime)
+export SELF_SESSION=$(tmux display -p -t "$TMUX_PANE" '#{session_id}')
 
-NUM_PANES_RUNNING=$(tmux list-panes -a -F "#{pane_title}" | grep "$TMUX_PANE_TITLE" | wc -l)
-if [[ "$NUM_PANES_RUNNING" -ge 2 ]]; then
-  tmux display-message "A instance of '$TMUX_PANE_TITLE' already exists."
-  exit 1
-fi
+# Row format
+TARGET_FORMAT='#{session_name}:#{window_index}.#{pane_index}'
+LIST_FORMAT="($TARGET_FORMAT) #{session_name}:#{window_name}.#{pane_title}"
 
-LIST_PANES="tmux list-panes -a -F '(#{session_name}:#{window_index}.#{pane_index}) #{session_name}:#{window_name}.#{pane_title}' | grep -v '$TMUX_PANE_TITLE'"
+# Pane list
+LIST_PANES="tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT'"
 
-SWAP_MARKED="execute-silent(tmux swap-pane -d -s '{marked}' -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)"
+# Marked pane
+MARKED='m=$(tmux list-panes -a -f "#{pane_marked}" -F "#{pane_id}"); [ -n "$m" ] || exit 0'
 
-TMUX_PANE=$(
-  fzf --style full --layout reverse --delimiter '[()]' \
-    --footer "Enter: select   C-x: kill   C-y: copy   C-M-n/j: move down   C-M-p/k: move up" \
-    --bind "start:reload($LIST_PANES)" \
-    --bind "ctrl-alt-n:execute-silent(tmux select-pane -m -t {2})+down+$SWAP_MARKED" \
-    --bind "ctrl-alt-j:execute-silent(tmux select-pane -m -t {2})+down+$SWAP_MARKED" \
-    --bind "ctrl-alt-p:execute-silent(tmux select-pane -m -t {2})+up+$SWAP_MARKED" \
-    --bind "ctrl-alt-k:execute-silent(tmux select-pane -m -t {2})+up+$SWAP_MARKED" \
-    --bind "ctrl-x:execute-silent(tmux kill-pane -t {2})+reload($LIST_PANES)" \
-    --bind "ctrl-y:execute-silent(bash ~/.config/tmux/scripts/tmux-copy.sh 'tmux {2}')" |
-    sed 's/).*//; s/(//'
+# Marked row highlight
+SHOW_MARKED="m=\$(tmux list-panes -a -f '#{pane_marked}' -F '$TARGET_FORMAT'); i=\$($LIST_PANES | grep -nF \"(\$m)\" | cut -d: -f1); echo clear-multi\${i:+\"+pos(\$i)+select+pos(\$(({n} + 1)))\"}"
+
+# Target pane info
+CWD='"$(tmux display -p -t {2} "#{pane_current_path}")"'
+SESSION='$(tmux display -p -t {2} "#{session_name}")'
+
+# Footer hints
+HINTS='Enter:select  C-x:kill  C-y:copy  M-n:pane  M-w:window  M-s:session  C-M-m:mark  C-M-u:join  C-M-i:swap'
+FOOTER="transform-footer(echo '$HINTS' | fold -s -w \$((FZF_COLUMNS - 6)))"
+
+# fzf args
+FZF_ARGS=(
+  # Basic
+  --style full
+  --layout reverse
+  --delimiter '[()]'
+  --multi
+  --bind "ctrl-alt-n:down"
+  --bind "ctrl-alt-p:up"
+
+  # Utils
+  --bind "ctrl-x:execute-silent(s=\$(tmux display -p -t {2} '#{session_id}'); n=\$(tmux list-panes -s -t \"\$s\" -F '#{pane_id}' | grep -vcxF \"$TMUX_PANE\"); if [ \"\$s\" != \"\$SELF_SESSION\" ] || [ \"\$n\" -gt 1 ]; then tmux kill-pane -t {2}; fi)+reload-sync($LIST_PANES)"
+  --bind "ctrl-y:execute-silent(bash ~/.config/tmux/scripts/tmux-copy.sh 'tmux {2}')"
+
+  # Footer
+  --bind "start:reload-sync($LIST_PANES)+$FOOTER"
+  --bind "resize:$FOOTER"
+
+  # Use fzf selection for marked panes
+  --bind "load:transform:$SHOW_MARKED"
+  --bind "btab:ignore"
+  --bind "enter:clear-multi+accept"
+
+  # Mark / Join / Swap
+  --bind "tab,ctrl-alt-m:execute-silent(tmux select-pane -m -t {2})+reload-sync($LIST_PANES)"
+  --bind "ctrl-alt-u:execute-silent($MARKED; tmux join-pane -d -s \"\$m\" -t {2} && tmux select-pane -m -t \"\$m\")+reload-sync($LIST_PANES)"
+  --bind "ctrl-alt-i:execute-silent($MARKED; tmux swap-pane -d -s \"\$m\" -t {2} && tmux select-pane -m -t \"\$m\")+reload-sync($LIST_PANES)"
+
+  # Create commands
+  --bind "alt-n:execute-silent(tmux split-window -d -t {2} -c $CWD)+reload-sync($LIST_PANES)"
+  --bind "alt-w:execute-silent(tmux new-window -d -t $SESSION -c $CWD)+reload-sync($LIST_PANES)"
+  --bind "alt-s:execute-silent(tmux new-session -d -c $CWD)+reload-sync($LIST_PANES)"
 )
 
-[[ -n "$TMUX_PANE" ]] && tmux switch-client -t "$TMUX_PANE"
+# Selected pane
+TARGET=$(fzf "${FZF_ARGS[@]}" | sed 's/).*//; s/(//')
+
+[[ -n "$TARGET" ]] && tmux switch-client -t "$TARGET"
