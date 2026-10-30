@@ -20,43 +20,46 @@ SHOW_MARKED="m=\$(tmux list-panes -a -f '#{pane_marked}' -F '$TARGET_FORMAT'); i
 CWD='"$(tmux display -p -t {2} "#{pane_current_path}")"'
 SESSION='$(tmux display -p -t {2} "#{session_name}")'
 
-# Footer hints
-HINTS='Enter:select  C-x:kill  C-y:copy  M-n:pane  M-w:window  M-s:session  C-M-m:mark  C-M-u:join  C-M-i:swap'
-FOOTER="transform-footer(echo '$HINTS' | fold -s -w \$((FZF_COLUMNS - 6)))"
-
-# fzf args
+# Basic fzf args
 FZF_ARGS=(
-  # Basic
   --style full
   --layout reverse
   --delimiter '[()]'
   --multi
-  --bind "ctrl-alt-n:down"
-  --bind "ctrl-alt-p:up"
-
-  # Utils
-  --bind "ctrl-x:execute-silent(s=\$(tmux display -p -t {2} '#{session_id}'); n=\$(tmux list-panes -s -t \"\$s\" -F '#{pane_id}' | grep -vcxF \"$TMUX_PANE\"); if [ \"\$s\" != \"\$SELF_SESSION\" ] || [ \"\$n\" -gt 1 ]; then tmux kill-pane -t {2}; fi)+reload-sync($LIST_PANES)"
-  --bind "ctrl-y:execute-silent(bash ~/.config/tmux/scripts/tmux-copy.sh 'tmux {2}')"
-
-  # Footer
-  --bind "start:reload-sync($LIST_PANES)+$FOOTER"
-  --bind "resize:$FOOTER"
-
-  # Use fzf selection for marked panes
-  --bind "load:transform:$SHOW_MARKED"
-  --bind "btab:ignore"
-  --bind "enter:clear-multi+accept"
-
-  # Mark / Join / Swap
-  --bind "tab,ctrl-alt-m:execute-silent(tmux select-pane -m -t {2})+reload-sync($LIST_PANES)"
-  --bind "ctrl-alt-u:execute-silent($MARKED; tmux join-pane -d -s \"\$m\" -t {2} && tmux select-pane -m -t \"\$m\")+reload-sync($LIST_PANES)"
-  --bind "ctrl-alt-i:execute-silent($MARKED; tmux swap-pane -d -s \"\$m\" -t {2} && tmux select-pane -m -t \"\$m\")+reload-sync($LIST_PANES)"
-
-  # Create commands
-  --bind "alt-n:execute-silent(tmux split-window -d -t {2} -c $CWD)+reload-sync($LIST_PANES)"
-  --bind "alt-w:execute-silent(tmux new-window -d -t $SESSION -c $CWD)+reload-sync($LIST_PANES)"
-  --bind "alt-s:execute-silent(tmux new-session -d -c $CWD)+reload-sync($LIST_PANES)"
 )
+
+# Bind + hint
+HINTS=()
+bind() { FZF_ARGS+=(--bind "$1:$2"); HINTS+=("$3"); }
+
+# Utils
+bind enter "clear-multi+accept" "Enter:select"
+bind ctrl-r "reload-sync($LIST_PANES)" "C-r:refresh"
+bind ctrl-x "execute-silent(s=\$(tmux display -p -t {2} '#{session_id}'); n=\$(tmux list-panes -s -t \"\$s\" -F '#{pane_id}' | grep -vcxF \"$TMUX_PANE\"); if [ \"\$s\" != \"\$SELF_SESSION\" ] || [ \"\$n\" -gt 1 ]; then tmux kill-pane -t {2}; fi)+reload-sync($LIST_PANES)" "C-x:kill"
+bind ctrl-y "execute-silent(bash ~/.config/tmux/scripts/tmux-copy.sh 'tmux {2}')" "C-y:copy"
+
+# Mark / Join / Swap
+bind "tab,ctrl-alt-m" "execute-silent(tmux select-pane -m -t {2})+reload-sync($LIST_PANES)" "C-M-m:mark"
+bind ctrl-alt-u "execute-silent($MARKED; tmux join-pane -d -s \"\$m\" -t {2} && tmux select-pane -m -t \"\$m\")+reload-sync($LIST_PANES)" "C-M-u:join"
+bind ctrl-alt-i "execute-silent($MARKED; tmux swap-pane -d -s \"\$m\" -t {2} && tmux select-pane -m -t \"\$m\")+reload-sync($LIST_PANES)" "C-M-i:swap"
+
+# Move pane
+bind ctrl-alt-j,ctrl-alt-n "execute-silent(tmux swap-pane -d -D -t {2})+reload-sync($LIST_PANES)+down" "C-M-j/n:move down"
+bind ctrl-alt-k,ctrl-alt-p "execute-silent(tmux swap-pane -d -U -t {2})+reload-sync($LIST_PANES)+up" "C-M-k/p:move up"
+
+# Create commands
+bind alt-n "execute-silent(tmux split-window -d -t {2} -c $CWD)+reload-sync($LIST_PANES)" "M-n:pane"
+bind alt-w "execute-silent(tmux new-window -d -t $SESSION -c $CWD)+reload-sync($LIST_PANES)" "M-w:window"
+bind alt-s "execute-silent(tmux new-session -d -c $CWD)+reload-sync($LIST_PANES)" "M-s:session"
+
+# Marked pane highlight
+FZF_ARGS+=(--bind "load:transform:$SHOW_MARKED" --bind "btab:ignore")
+
+# Footer
+HINTS_NB=()
+for h in "${HINTS[@]}"; do HINTS_NB+=("${h// /$'\001'}"); done
+FOOTER="transform-footer(printf '%s   ' ${HINTS_NB[@]} | fold -s -w \$((FZF_COLUMNS - 6)) | tr '\001' ' ' | sed 's/^ *//; s/ *\$//')"
+FZF_ARGS+=(--bind "start:reload-sync($LIST_PANES)+$FOOTER" --bind "resize:$FOOTER")
 
 # Selected pane
 TARGET=$(fzf "${FZF_ARGS[@]}" | sed 's/).*//; s/(//')
