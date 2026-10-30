@@ -21,7 +21,9 @@ fi
 
 git reset --keep "origin/$BRANCH"
 
-pull-conf-master
+# Keep going on failure (e.g. merge conflict) so the cd below still happens
+STATUS=0
+pull-conf-master || STATUS=$?
 
 # Pre-type the cd at the prompt (tmux), or print it
 if [ -n "$TMUX_PANE" ]; then
@@ -29,3 +31,4 @@ if [ -n "$TMUX_PANE" ]; then
 else
   echo "cd ~/Core/dotfiles"
 fi
+exit "$STATUS"
