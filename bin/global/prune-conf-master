@@ -22,3 +22,10 @@ fi
 git reset --keep "origin/$BRANCH"
 
 pull-conf-master
+
+# Pre-type the cd at the prompt (tmux), or print it
+if [ -n "$TMUX_PANE" ]; then
+  tmux send-keys -t "$TMUX_PANE" "cd ~/Core/dotfiles"
+else
+  echo "cd ~/Core/dotfiles"
+fi
