@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -e
+cd "$HOME/Core/dotfiles"
+
+# Remove leftover worktrees from failed push-conf-master runs
+rm -rf "${TMPDIR:-/tmp}"/push-conf-master.*
+git worktree prune
+
+# Reset current branch to its remote; master's changes come back via pull
+BRANCH=$(git branch --show-current)
+git fetch origin master "$BRANCH"
+
+# Abort if resetting would lose anything: replaying the unpushed changes onto master must leave it unchanged
+REPLAYED=$(git merge-tree --write-tree --merge-base="origin/$BRANCH" origin/master HEAD | head -1)
+if [ "$REPLAYED" != "$(git rev-parse 'origin/master^{tree}')" ]; then
+  echo "Unpushed changes not on master, not resetting:" >&2
+  git log --oneline "origin/$BRANCH..HEAD" >&2
+  exit 1
+fi
+
+git reset --keep "origin/$BRANCH"
+
+# Keep going on failure (e.g. merge conflict) so the cd below still happens
+STATUS=0
+pull-conf-master || STATUS=$?
+
+# Pre-type the cd at the prompt (tmux), or print it
+if [ -n "$TMUX_PANE" ]; then
+  tmux send-keys -t "$TMUX_PANE" "cd ~/Core/dotfiles"
+else
+  echo "cd ~/Core/dotfiles"
+fi
+exit "$STATUS"

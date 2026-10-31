@@ -133,11 +133,11 @@ configs=(
   "imv"
   "vlc"
   "mimeapps.list"
-  "keyd"
-  "kglobalshortcutsrc"
   "kxkbrc"
   "ktimezonedrc"
   "kcminputrc"
+  "kglobalshortcutsrc"
+  "keyd"
 )
 handle_links_list "$DOTFILES/config" "$HOME/.config" '%s config' configs
 
