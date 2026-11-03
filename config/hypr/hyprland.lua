@@ -1,7 +1,0 @@
-require("settings.bindings")
-require("settings.autostart")
-require("settings.environment")
-require("settings.input")
-require("settings.monitors")
-require("settings.rules")
-require("settings.styles")

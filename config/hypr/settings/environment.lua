@@ -1,7 +1,0 @@
-hl.env("PATH", os.getenv("HOME") .. "/.local/bin:" .. os.getenv("PATH"))
-hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("GTK_IM_MODULE", "cedilla")
-hl.env("QT_IM_MODULE", "cedilla")
-hl.env("XCOMPOSEFILE", ".XCompose")
-hl.env("HYPRSHOT_DIR", "Pictures/Screenshots")
