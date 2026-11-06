@@ -57,7 +57,7 @@ vim.pack.add({
 })
 
 require("render-markdown").setup({})
--- require("render-markdown").disable()
+require("render-markdown").disable()
 
 vim.keymap.set(
 	"n",
