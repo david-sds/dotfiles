@@ -1,0 +1,33 @@
+# keyd global config example.
+#
+# keyd only reads /etc/keyd/*.conf, never ~/.config/keyd. Copy this file into
+# place (or symlink it) and reload:
+#
+#   sudo mkdir -p /etc/keyd
+#   sudo install -m644 "$HOME/Core/dotfiles/config/etc_keyd_example" /etc/keyd/default.conf
+#   sudo keyd check
+#   sudo keyd reload
+#
+# To keep the live config in sync with the repo instead of copying:
+#
+#   sudo ln -sfT "$HOME/Core/dotfiles/config/etc_keyd_example" /etc/keyd/default.conf
+#
+# The [ids] section is mandatory. "*" captures every keyboard, which is also
+# what lets ~/.config/keyd/app.conf (keyd-application-mapper) rebind keys.
+# Do not put app.conf in /etc/keyd: it has no [ids] section.
+#
+# For application-specific mappings, your user must also be in the keyd group.
+# The new group only applies after a FULL logout/login (not lock/switch-user):
+#
+#   sudo usermod -aG keyd "$USER"
+#   # log out and back in, then verify:
+#   id | grep keyd
+#   systemctl --user status keyd-application-mapper
+
+[ids]
+*
+
+# Global remaps go here, for example:
+#
+# [main]
+# capslock = esc
