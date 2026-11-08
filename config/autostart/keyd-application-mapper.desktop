@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=keyd application mapper
+Comment=Activate keyd app-specific bindings from app.conf
+Exec=systemctl --user start keyd-application-mapper
+Terminal=false
