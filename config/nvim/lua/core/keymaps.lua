@@ -76,3 +76,4 @@ vim.keymap.set("v", "<leader>x", U.vim.expand_selection, { desc = "Expand visual
 vim.keymap.set("v", "<leader>e", U.vim.eval_selection, { desc = "Eval lua visual selection" })
 vim.keymap.set({ "n", "x", "o" }, "<M-o>", U.vim.increase_selection, { desc = "Select parent node" })
 vim.keymap.set({ "n", "x", "o" }, "<M-i>", U.vim.decrease_selection, { desc = "Select child node" })
+vim.keymap.set("n", "<M-,>", "<CMD>t.<CR>", { desc = "Duplicate line" })
