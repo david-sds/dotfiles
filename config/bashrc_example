@@ -73,7 +73,7 @@ fi
 # Pane title (tmux pane-border-format)
 if [[ -z $__title_init ]]; then
   __title_init=1
-  __title() { printf '\e]0;%s@%s:%s%s\a' "$USER" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}" "${1:+ $1}"; }
+  __title() { printf '\e]0;%s%s\a' "${PWD/#$HOME/\~}" "${1:+ $1}"; }
   PROMPT_COMMAND=('__title_live=' "${PROMPT_COMMAND[@]}" '__title')
   PS0+='${__title_live[__title_live=1]}'
   trap '[[ $__title_live && $BASH_COMMAND != __title_live= ]] && __title "$BASH_COMMAND"' DEBUG

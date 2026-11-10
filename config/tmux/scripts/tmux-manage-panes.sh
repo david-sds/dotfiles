@@ -5,13 +5,20 @@ export SELF_SESSION=$(tmux display -p -t "$TMUX_PANE" '#{session_id}')
 
 # Row format
 TARGET_FORMAT='#{session_name}:#{window_index}.#{pane_index}'
-LIST_FORMAT="($TARGET_FORMAT) #{session_name}:#{window_name}.#{pane_title}"
+LIST_FORMAT="($TARGET_FORMAT) #{pane_title}"$'\t'"#{window_name}"
 
 # Reversed when the list label is set
 IS_REVERSED='[ -n "$FZF_LIST_LABEL" ]'
 
-# Pane list
-LIST_PANES="tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT' | if $IS_REVERSED; then tac; else cat; fi"
+# Pane list: all panes but this one
+# (awk pads each row to the pane width so [window] sits at the right edge)
+LIST_PANES="tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT' \
+  | awk -F'\t' -v w=\$(tmux display -p -t $TMUX_PANE '#{pane_width}') '{
+      r = \"[\" \$2 \"]\"
+      n = w - 6 - length(r)
+      printf \"%-\" n \".\" n \"s%s\\n\", \$1, r
+    }' \
+  | if $IS_REVERSED; then tac; else cat; fi"
 
 # Marked pane
 MARKED='m=$(tmux list-panes -a -f "#{pane_marked}" -F "#{pane_id}"); [ -n "$m" ] || exit 0'
@@ -49,15 +56,15 @@ bind ctrl-b "last" "C-b:last"
 
 # Mark / Join(unite) / Swap(interchange)
 bind "tab,ctrl-alt-m" "execute-silent(tmux select-pane -m -t {2})+reload-sync($LIST_PANES)" "C-M-m:mark"
-bind ctrl-alt-u "execute-silent($MARKED; tmux join-pane -d -s \"\$m\" -t {2} && tmux select-pane -m -t \"\$m\")+reload-sync($LIST_PANES)" "C-M-u:join"
-bind ctrl-alt-i "execute-silent($MARKED; tmux swap-pane -d -s \"\$m\" -t {2} && tmux select-pane -m -t \"\$m\")+reload-sync($LIST_PANES)" "C-M-i:swap"
+bind ctrl-alt-j "execute-silent($MARKED; tmux join-pane -d -s \"\$m\" -t {2})+reload-sync($LIST_PANES)" "C-M-j:join"
+bind ctrl-alt-s "execute-silent($MARKED; tmux swap-pane -d -s \"\$m\" -t {2})+reload-sync($LIST_PANES)" "C-M-s:swap"
 
 # Move pane (mark it, move the cursor, join the marked pane into the new row)
 # Reversed list: swap before/after (-b)
 BELOW_FLAG="\$($IS_REVERSED && echo -b)"
 ABOVE_FLAG="\$($IS_REVERSED || echo -b)"
-bind ctrl-alt-j,ctrl-alt-n "execute-silent(tmux select-pane -M; tmux select-pane -m -t {2})+down+execute-silent(tmux join-pane -d $BELOW_FLAG -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)" "C-M-j/n:move down"
-bind ctrl-alt-k,ctrl-alt-p "execute-silent(tmux select-pane -M; tmux select-pane -m -t {2})+up+execute-silent(tmux join-pane -d $ABOVE_FLAG -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)" "C-M-k/p:move up"
+bind ctrl-alt-n "execute-silent(tmux select-pane -M; tmux select-pane -m -t {2})+down+execute-silent(tmux join-pane -d $BELOW_FLAG -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)" "C-M-n:move down"
+bind ctrl-alt-p "execute-silent(tmux select-pane -M; tmux select-pane -m -t {2})+up+execute-silent(tmux join-pane -d $ABOVE_FLAG -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)" "C-M-p:move up"
 
 # Create commands
 bind alt-n "execute-silent(tmux split-window -d -t {2} -c $CWD)+reload-sync($LIST_PANES)" "M-n:new pane"
@@ -71,7 +78,7 @@ FZF_ARGS+=(--bind "load:transform:$SHOW_MARKED" --bind "btab:ignore")
 HINTS_NB=()
 for h in "${HINTS[@]}"; do HINTS_NB+=("${h// /$'\001'}"); done
 FOOTER="transform-footer(printf '%s   ' ${HINTS_NB[@]} | fold -s -w \$((FZF_COLUMNS - 6)) | tr '\001' ' ' | sed 's/^ *//; s/ *\$//')"
-FZF_ARGS+=(--bind "start:reload-sync($LIST_PANES)+$FOOTER" --bind "resize:$FOOTER")
+FZF_ARGS+=(--bind "start:reload-sync($LIST_PANES)+$FOOTER" --bind "resize:reload-sync($LIST_PANES)+$FOOTER")
 
 # Selected pane
 TARGET=$(fzf "${FZF_ARGS[@]}" | sed 's/).*//; s/(//')
