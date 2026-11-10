@@ -49,15 +49,15 @@ bind ctrl-b "last" "C-b:last"
 
 # Mark / Join(unite) / Swap(interchange)
 bind "tab,ctrl-alt-m" "execute-silent(tmux select-pane -m -t {2})+reload-sync($LIST_PANES)" "C-M-m:mark"
-bind ctrl-alt-j "execute-silent($MARKED; tmux join-pane -d -s \"\$m\" -t {2})+reload-sync($LIST_PANES)" "C-M-u:join"
-bind ctrl-alt-s "execute-silent($MARKED; tmux swap-pane -d -s \"\$m\" -t {2})+reload-sync($LIST_PANES)" "C-M-i:swap"
+bind ctrl-alt-j "execute-silent($MARKED; tmux join-pane -d -s \"\$m\" -t {2})+reload-sync($LIST_PANES)" "C-M-j:join"
+bind ctrl-alt-s "execute-silent($MARKED; tmux swap-pane -d -s \"\$m\" -t {2})+reload-sync($LIST_PANES)" "C-M-s:swap"
 
 # Move pane (mark it, move the cursor, join the marked pane into the new row)
 # Reversed list: swap before/after (-b)
 BELOW_FLAG="\$($IS_REVERSED && echo -b)"
 ABOVE_FLAG="\$($IS_REVERSED || echo -b)"
-bind ctrl-alt-n "execute-silent(tmux select-pane -M; tmux select-pane -m -t {2})+down+execute-silent(tmux join-pane -d $BELOW_FLAG -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)" "C-M-j/n:move down"
-bind ctrl-alt-p "execute-silent(tmux select-pane -M; tmux select-pane -m -t {2})+up+execute-silent(tmux join-pane -d $ABOVE_FLAG -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)" "C-M-k/p:move up"
+bind ctrl-alt-n "execute-silent(tmux select-pane -M; tmux select-pane -m -t {2})+down+execute-silent(tmux join-pane -d $BELOW_FLAG -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)" "C-M-n:move down"
+bind ctrl-alt-p "execute-silent(tmux select-pane -M; tmux select-pane -m -t {2})+up+execute-silent(tmux join-pane -d $ABOVE_FLAG -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)" "C-M-p:move up"
 
 # Create commands
 bind alt-n "execute-silent(tmux split-window -d -t {2} -c $CWD)+reload-sync($LIST_PANES)" "M-n:new pane"
