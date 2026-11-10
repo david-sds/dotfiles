@@ -5,13 +5,20 @@ export SELF_SESSION=$(tmux display -p -t "$TMUX_PANE" '#{session_id}')
 
 # Row format
 TARGET_FORMAT='#{session_name}:#{window_index}.#{pane_index}'
-LIST_FORMAT="($TARGET_FORMAT) #{session_name}:#{window_name}.#{pane_title}"
+LIST_FORMAT="($TARGET_FORMAT) #{pane_title}"$'\t'"#{window_name}"
 
 # Reversed when the list label is set
 IS_REVERSED='[ -n "$FZF_LIST_LABEL" ]'
 
-# Pane list
-LIST_PANES="tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT' | if $IS_REVERSED; then tac; else cat; fi"
+# Pane list: all panes but this one
+# (awk pads each row to the pane width so [window] sits at the right edge)
+LIST_PANES="tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT' \
+  | awk -F'\t' -v w=\$(tmux display -p -t $TMUX_PANE '#{pane_width}') '{
+      r = \"[\" \$2 \"]\"
+      n = w - 6 - length(r)
+      printf \"%-\" n \".\" n \"s%s\\n\", \$1, r
+    }' \
+  | if $IS_REVERSED; then tac; else cat; fi"
 
 # Marked pane
 MARKED='m=$(tmux list-panes -a -f "#{pane_marked}" -F "#{pane_id}"); [ -n "$m" ] || exit 0'
@@ -71,7 +78,7 @@ FZF_ARGS+=(--bind "load:transform:$SHOW_MARKED" --bind "btab:ignore")
 HINTS_NB=()
 for h in "${HINTS[@]}"; do HINTS_NB+=("${h// /$'\001'}"); done
 FOOTER="transform-footer(printf '%s   ' ${HINTS_NB[@]} | fold -s -w \$((FZF_COLUMNS - 6)) | tr '\001' ' ' | sed 's/^ *//; s/ *\$//')"
-FZF_ARGS+=(--bind "start:reload-sync($LIST_PANES)+$FOOTER" --bind "resize:$FOOTER")
+FZF_ARGS+=(--bind "start:reload-sync($LIST_PANES)+$FOOTER" --bind "resize:reload-sync($LIST_PANES)+$FOOTER")
 
 # Selected pane
 TARGET=$(fzf "${FZF_ARGS[@]}" | sed 's/).*//; s/(//')
