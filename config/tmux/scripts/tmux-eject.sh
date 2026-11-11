@@ -8,5 +8,3 @@ tmux switch-client -t "$TARGET"
 WIN=$(tmux break-pane -s "$PANE" -t "$TARGET" -P -F '#{window_id}')
 tmux select-window -t "$WIN"
 [ -z "$TMP" ] || tmux kill-window -t "$TMP"
-
-tmux move-window -r -t "$TARGET" 2>/dev/null
