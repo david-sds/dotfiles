@@ -5,19 +5,24 @@ export SELF_SESSION=$(tmux display -p -t "$TMUX_PANE" '#{session_id}')
 
 # Row format
 TARGET_FORMAT='#{session_name}:#{window_index}.#{pane_index}'
-LIST_FORMAT="($TARGET_FORMAT) #{pane_title}"$'\t'"#{window_name}"
+LIST_FORMAT="($TARGET_FORMAT) #{pane_title}"$'\t'"#{window_name}"$'\t'"#{window_bell_flag}"
 
 # Reversed when the list label is set
 IS_REVERSED='[ -n "$FZF_LIST_LABEL" ]'
 
+# Row layout: "title 🔔 ...padding... [window]", fitted to the pane width w
+# (exported: LIST_PANES runs in fzf's shell and reads it there)
+export FORMAT_ROW='{
+  win   = "[" $2 "]"
+  bell  = $3 ? " 🔔" : ""
+  room  = w - 6 - length(win) - (bell ? 3 : 0)
+  title = substr($1, 1, room)
+  printf "%s%s%*s\n", title, bell, room - length(title) + length(win), win
+}'
+
 # Pane list: all panes but this one
-# (awk pads each row to the pane width so [window] sits at the right edge)
 LIST_PANES="tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT' \
-  | awk -F'\t' -v w=\$(tmux display -p -t $TMUX_PANE '#{pane_width}') '{
-      r = \"[\" \$2 \"]\"
-      n = w - 6 - length(r)
-      printf \"%-\" n \".\" n \"s%s\\n\", \$1, r
-    }' \
+  | awk -F'\t' -v w=\$(tmux display -p -t $TMUX_PANE '#{pane_width}') \"\$FORMAT_ROW\" \
   | if $IS_REVERSED; then tac; else cat; fi"
 
 # Marked pane
