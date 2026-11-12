@@ -126,4 +126,46 @@ return {
 			i(4),
 		})
 	),
+	s(
+		{
+			trig = get_date_regex("jf"),
+			trigEngine = "pattern",
+			name = "caju food entry",
+			condition = function(_, _, captures)
+				return captures[1] and utils.parse_date(captures[1]) ~= nil
+			end,
+		},
+		fmt(ENTRY_PLACEHOLDER, {
+			f(function(_, snip)
+				return utils.parse_date(snip.captures[1])
+			end),
+			i(1, "lanche"),
+			t("Expenses:Food"),
+			i(2, "0"),
+			t("Assets:Caju:Food"),
+			f(utils.negate, { 2 }),
+			i(3),
+		})
+	),
+	s(
+		{
+			trig = get_date_regex("jm"),
+			trigEngine = "pattern",
+			name = "caju multi entry",
+			condition = function(_, _, captures)
+				return captures[1] and utils.parse_date(captures[1]) ~= nil
+			end,
+		},
+		fmt(ENTRY_PLACEHOLDER, {
+			f(function(_, snip)
+				return utils.parse_date(snip.captures[1])
+			end),
+			i(1, "Caju Multi"),
+			i(2, "Expenses:Food"),
+			i(3, "0"),
+			t("Assets:Caju:Multi"),
+			f(utils.negate, { 3 }),
+			i(4),
+		})
+	),
 }
