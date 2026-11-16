@@ -18,6 +18,7 @@ require("nvim-treesitter").install({
 	"markdown",
 	"markdown_inline",
 	"ecma",
+	"html",
 	"javascript",
 	"typescript",
 	"jsx",
@@ -38,7 +39,7 @@ require("nvim-treesitter").install({
 	"qmljs",
 	"typst",
 	"python",
-  "mermaid",
+	"mermaid",
 })
 
 require("treesitter-context").setup({
