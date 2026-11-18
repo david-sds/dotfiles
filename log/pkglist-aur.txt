@@ -1,3 +1,0 @@
-paru 2.1.0-2
-paru-debug 2.1.0-2
-sunshine 2026.516.143833-1
