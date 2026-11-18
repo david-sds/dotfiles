@@ -45,10 +45,34 @@ on_screen() {
   tmux list-clients -F '#{pane_id}' | grep -qx "$1"
 }
 
+window_of() {
+  tmux display-message -p -t "$1" '#{window_id}' 2>/dev/null || true
+}
+
 record() {
-  local pane=$1
+  local pane=$1 win i list
   on_screen "$pane" || return 0
   [[ $pane == "$(last "$visited")" ]] && return
+  # Like nvim's jumplist: a new move after going back keeps the panes ahead
+  # (put them back in order, then the pane we're leaving) instead of dropping them.
+  if [[ -s $undone ]]; then
+    local from
+    from=$(last "$visited")
+    tac "$undone" >>"$visited"
+    echo "$from" >>"$visited"
+    : >"$undone"
+  fi
+  # Walk the top entries that share this pane's window; if the pane is
+  # already among them, drop that old entry (no A B A B ... from C-h spam).
+  win=$(window_of "$pane")
+  mapfile -t list <"$visited"
+  for ((i = ${#list[@]} - 1; i >= 0; i--)); do
+    [[ $(window_of "${list[i]}") == "$win" ]] || break
+    if [[ ${list[i]} == "$pane" ]]; then
+      sed -i "$((i + 1))d" "$visited"
+      break
+    fi
+  done
   echo "$pane" >>"$visited"
   : >"$undone"
 }
