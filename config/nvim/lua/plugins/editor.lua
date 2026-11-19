@@ -73,6 +73,7 @@ require("conform").setup({
 		jsonc = { "prettierd" },
 		md = { "prettierd" },
 		yaml = { "prettierd" },
+		markdown = { "prettierd" },
 		xml = { "xmllint" },
 		sh = { "shfmt" },
 		bash = { "shfmt" },

@@ -46,22 +46,3 @@ require("lualine").setup({
 		lualine_c = { smart_filename },
 	},
 })
-
--- ============================================================================
--- TITLE : render-markdown.nvim
--- ABOUT : Plugin to improve viewing Markdown files in Neovim
--- ============================================================================
-vim.pack.add({
-	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
-	"https://github.com/nvim-treesitter/nvim-treesitter",
-})
-
-require("render-markdown").setup({})
-require("render-markdown").disable()
-
-vim.keymap.set(
-	"n",
-	"<leader>tm",
-	"<CMD>RenderMarkdown toggle<CR>",
-	{ desc = "Toogle RenderMarkdown (render-markdown.nvim)" }
-)
