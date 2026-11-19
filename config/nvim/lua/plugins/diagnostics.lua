@@ -62,7 +62,6 @@ end
 lint.linters_by_ft = {
 	-- php = { "phpstan" },
 	php = { "phpcs" },
-	xml = { "xmllint" },
 	-- mypy só entra se existir no PATH (evita ENOENT em projetos sem mypy)
 	python = vim.fn.executable("mypy") == 1 and { "ruff", "mypy" } or { "ruff" },
 }
