@@ -5,26 +5,24 @@ export SELF_SESSION=$(tmux display -p -t "$TMUX_PANE" '#{session_id}')
 
 # Row format
 TARGET_FORMAT='#{session_name}:#{window_index}.#{pane_index}'
-LIST_FORMAT="($TARGET_FORMAT) #{pane_title}"$'\t'"#{window_name}"
+# Line break marker (unit separator): tmux rows are one line, tr makes it \n
+BREAK=$'\037'
+# Two-line item: "title 🔔" / dim "~/path window" (dim: --color nth)
+LIST_FORMAT="($TARGET_FORMAT) #{pane_title}#{?window_bell_flag, 🔔,}$BREAK#{s|^$HOME|~|:pane_current_path} #{window_name}"
 
 # Reversed when the list label is set
 IS_REVERSED='[ -n "$FZF_LIST_LABEL" ]'
 
 # Pane list: all panes but this one
-# (awk pads each row to the pane width so [window] sits at the right edge)
 LIST_PANES="tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT' \
-  | awk -F'\t' -v w=\$(tmux display -p -t $TMUX_PANE '#{pane_width}') '{
-      r = \"[\" \$2 \"]\"
-      n = w - 6 - length(r)
-      printf \"%-\" n \".\" n \"s%s\\n\", \$1, r
-    }' \
-  | if $IS_REVERSED; then tac; else cat; fi"
+  | if $IS_REVERSED; then tac; else cat; fi \
+  | tr '\n$BREAK' '\0\n'"
 
 # Marked pane
 MARKED='m=$(tmux list-panes -a -f "#{pane_marked}" -F "#{pane_id}"); [ -n "$m" ] || exit 0'
 
 # Marked row highlight
-SHOW_MARKED="m=\$(tmux list-panes -a -f '#{pane_marked}' -F '$TARGET_FORMAT'); i=\$($LIST_PANES | grep -nF \"(\$m)\" | cut -d: -f1); echo clear-multi\${i:+\"+pos(\$i)+select+pos(\$(({n} + 1)))\"}"
+SHOW_MARKED="m=\$(tmux list-panes -a -f '#{pane_marked}' -F '$TARGET_FORMAT'); i=\$($LIST_PANES | tr '\0' '\n' | grep '^(' | grep -nF \"(\$m)\" | cut -d: -f1); echo clear-multi\${i:+\"+pos(\$i)+select+pos(\$(({n} + 1)))\"}"
 
 # Target pane info
 CWD='"$(tmux display -p -t {2} "#{pane_current_path}")"'
@@ -34,8 +32,12 @@ SESSION='$(tmux display -p -t {2} "#{session_name}")'
 FZF_ARGS=(
   --style full
   --layout reverse
-  --delimiter '[()]'
+  --delimiter '[()\n]'
+  --nth ..3
+  --color fg:dim,nth:regular
   --multi
+  --read0
+  --marker-multi-line '┃┃┃'
 )
 
 # Bind + hint
@@ -81,6 +83,6 @@ FOOTER="transform-footer(printf '%s   ' ${HINTS_NB[@]} | fold -s -w \$((FZF_COLU
 FZF_ARGS+=(--bind "start:reload-sync($LIST_PANES)+$FOOTER" --bind "resize:reload-sync($LIST_PANES)+$FOOTER")
 
 # Selected pane
-TARGET=$(fzf "${FZF_ARGS[@]}" | sed 's/).*//; s/(//')
+TARGET=$(fzf "${FZF_ARGS[@]}" | head -1 | sed 's/).*//; s/(//')
 
 [[ -n "$TARGET" ]] && tmux switch-client -t "$TARGET"
