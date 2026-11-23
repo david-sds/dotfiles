@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# Live reload socket, one per open instance (tmux alert-bell hook calls --reload)
+SOCK_PREFIX="${XDG_RUNTIME_DIR:-/tmp}/tmux-manage-panes-"
+if [[ $1 == --reload ]]; then
+  for s in "$SOCK_PREFIX"*.sock; do
+    [ -S "$s" ] && curl -s -m 1 --unix-socket "$s" http -d 'reload-sync(eval "$LIST_PANES")' >/dev/null
+  done
+  exit 0
+fi
+
 # Script session (exported: the binds read it at runtime)
 export SELF_SESSION=$(tmux display -p -t "$TMUX_PANE" '#{session_id}')
 
@@ -13,8 +22,8 @@ LIST_FORMAT="($TARGET_FORMAT) #{pane_title}#{?window_bell_flag, 🔔,}$BREAK#{s|
 # Reversed when the list label is set
 IS_REVERSED='[ -n "$FZF_LIST_LABEL" ]'
 
-# Pane list: all panes but this one
-LIST_PANES="tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT' \
+# Pane list: all panes but this one (exported: --reload evals it inside fzf)
+export LIST_PANES="tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT' \
   | if $IS_REVERSED; then tac; else cat; fi \
   | tr '\n$BREAK' '\0\n'"
 
@@ -38,6 +47,7 @@ FZF_ARGS=(
   --multi
   --read0
   --marker-multi-line '┃┃┃'
+  --listen "$SOCK_PREFIX${TMUX_PANE#%}.sock"
 )
 
 # Bind + hint
