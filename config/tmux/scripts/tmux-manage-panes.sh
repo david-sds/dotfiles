@@ -18,12 +18,17 @@ TARGET_FORMAT='#{session_name}:#{window_index}.#{pane_index}'
 BREAK=$'\037'
 # Two-line item: "title 🔔" / dim "~/path window" (dim: --color nth)
 LIST_FORMAT="($TARGET_FORMAT) #{pane_title}#{?window_bell_flag, 🔔,}$BREAK#{s|^$HOME|~|:pane_current_path} #{window_name}"
+# Collapsed item: one title line per pane (this pane left out)
+# (sed pulls the first pane line up next to the target)
+WINDOW_FORMAT="(#{session_name}:#{window_index})#{P:#{?#{==:#{pane_id},$TMUX_PANE},,$BREAK#{pane_title}}}#{?window_bell_flag, 🔔,}"
 
-# Reversed when the list label is set
+# Reversed when the list label is set, collapsed when the input label is set
 IS_REVERSED='[ -n "$FZF_LIST_LABEL" ]'
+IS_WINDOWS='[ -n "$FZF_INPUT_LABEL" ]'
 
-# Pane list: all panes but this one (exported: --reload evals it inside fzf)
-export LIST_PANES="tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT' \
+# Pane list: all panes but this one, or windows (exported: --reload evals it inside fzf)
+export LIST_PANES="if $IS_WINDOWS; then tmux list-windows -a -F '$WINDOW_FORMAT' | sed 's/^\(([^)]*)\)$BREAK/\1 /'; \
+  else tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT'; fi \
   | if $IS_REVERSED; then tac; else cat; fi \
   | tr '\n$BREAK' '\0\n'"
 
@@ -58,6 +63,7 @@ bind() { FZF_ARGS+=(--bind "$1:$2"); HINTS+=("$3"); }
 bind enter "clear-multi+accept" "Enter:select"
 bind ctrl-r "reload-sync($LIST_PANES)" "C-r:refresh"
 bind alt-r "transform-list-label($IS_REVERSED || echo ' reversed ')+reload-sync($LIST_PANES)" "M-r:reverse"
+bind alt-c "transform-input-label($IS_WINDOWS || echo ' windows ')+reload-sync($LIST_PANES)" "M-c:collapse"
 bind ctrl-y "execute-silent(bash ~/.config/tmux/scripts/tmux-copy.sh 'tmux {2}')" "C-y:copy"
 # Remove all panes except the last
 bind ctrl-x "execute-silent(s=\$(tmux display -p -t {2} '#{session_id}'); n=\$(tmux list-panes -s -t \"\$s\" -F '#{pane_id}' | grep -vcxF \"$TMUX_PANE\"); if [ \"\$s\" != \"\$SELF_SESSION\" ] || [ \"\$n\" -gt 1 ]; then tmux kill-pane -t {2}; fi)+reload-sync($LIST_PANES)" "C-x:kill"
