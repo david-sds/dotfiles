@@ -16,18 +16,19 @@ export SELF_SESSION=$(tmux display -p -t "$TMUX_PANE" '#{session_id}')
 TARGET_FORMAT='#{session_name}:#{window_index}.#{pane_index}'
 # Line break marker (unit separator): tmux rows are one line, tr makes it \n
 BREAK=$'\037'
-# Two-line item: "title 🔔" / dim "~/path window" (dim: --color nth)
-LIST_FORMAT="($TARGET_FORMAT) #{pane_title}#{?window_bell_flag, 🔔,}$BREAK#{s|^$HOME|~|:pane_current_path} #{window_name}"
+# Rows start with a hidden id (pane/window id, field 1): fzf tracks it across reloads
+# Two-line item: "title 🔔" / dim "window: ~/path command" (dim: --color nth)
+LIST_FORMAT="#{pane_id}($TARGET_FORMAT) #{pane_title}#{?window_bell_flag, 🔔,}$BREAK#{window_name}: #{s|^$HOME|~|:pane_current_path} #{pane_current_command}"
 # Collapsed item: one title line per pane (this pane left out)
 # (sed pulls the first pane line up next to the target)
-WINDOW_FORMAT="(#{session_name}:#{window_index})#{P:#{?#{==:#{pane_id},$TMUX_PANE},,$BREAK#{pane_title}}}#{?window_bell_flag, 🔔,}"
+WINDOW_FORMAT="#{window_id}(#{session_name}:#{window_index})#{P:#{?#{==:#{pane_id},$TMUX_PANE},,$BREAK#{pane_title}}}#{?window_bell_flag, 🔔,}"
 
 # Reversed when the list label is set, collapsed when the input label is set
 IS_REVERSED='[ -n "$FZF_LIST_LABEL" ]'
 IS_WINDOWS='[ -n "$FZF_INPUT_LABEL" ]'
 
 # Pane list: all panes but this one, or windows (exported: --reload evals it inside fzf)
-export LIST_PANES="if $IS_WINDOWS; then tmux list-windows -a -F '$WINDOW_FORMAT' | sed 's/^\(([^)]*)\)$BREAK/\1 /'; \
+export LIST_PANES="if $IS_WINDOWS; then tmux list-windows -a -F '$WINDOW_FORMAT' | sed 's/^\([^(]*([^)]*)\)$BREAK/\1 /'; \
   else tmux list-panes -a -f '#{!=:#{pane_id},$TMUX_PANE}' -F '$LIST_FORMAT'; fi \
   | if $IS_REVERSED; then tac; else cat; fi \
   | tr '\n$BREAK' '\0\n'"
@@ -36,7 +37,7 @@ export LIST_PANES="if $IS_WINDOWS; then tmux list-windows -a -F '$WINDOW_FORMAT'
 MARKED='m=$(tmux list-panes -a -f "#{pane_marked}" -F "#{pane_id}"); [ -n "$m" ] || exit 0'
 
 # Marked row highlight
-SHOW_MARKED="m=\$(tmux list-panes -a -f '#{pane_marked}' -F '$TARGET_FORMAT'); i=\$($LIST_PANES | tr '\0' '\n' | grep '^(' | grep -nF \"(\$m)\" | cut -d: -f1); echo clear-multi\${i:+\"+pos(\$i)+select+pos(\$(({n} + 1)))\"}"
+SHOW_MARKED="m=\$(tmux list-panes -a -f '#{pane_marked}' -F '$TARGET_FORMAT'); i=\$($LIST_PANES | tr '\0' '\n' | grep '^[%@][0-9]*(' | grep -nF \"(\$m)\" | cut -d: -f1); echo clear-multi\${i:+\"+pos(\$i)+select+pos(\$(({n} + 1)))\"}"
 
 # Target pane info
 CWD='"$(tmux display -p -t {2} "#{pane_current_path}")"'
@@ -49,6 +50,9 @@ FZF_ARGS=(
   --delimiter '[()\n]'
   --nth ..3
   --color fg:dim,nth:regular
+  --with-nth '({2}){3..}'
+  --track
+  --id-nth 1
   --multi
   --read0
   --marker-multi-line '┃┃┃'
@@ -77,6 +81,12 @@ bind "tab,ctrl-alt-m" "execute-silent(tmux select-pane -m -t {2})+reload-sync($L
 bind ctrl-alt-j "execute-silent($MARKED; tmux join-pane -d -s \"\$m\" -t {2})+reload-sync($LIST_PANES)" "C-M-j:join"
 bind ctrl-alt-s "execute-silent($MARKED; tmux swap-pane -d -s \"\$m\" -t {2})+reload-sync($LIST_PANES)" "C-M-s:swap"
 
+# Move window: swap with the next/previous window (no window there = tmux errors, nothing happens),
+# then show this pane's window again (tmux changes the active window on swap)
+SWAP_WITH="tmux swap-window -d -s {2} -t \$(tmux display -p -t {2} '#{session_id}:#{e|%s:#{window_index},1}') \\; select-window -t \$TMUX_PANE"
+bind ctrl-alt-n "execute-silent~$(printf "$SWAP_WITH" +)~+reload-sync($LIST_PANES)" "C-M-n:window down"
+bind ctrl-alt-p "execute-silent~$(printf "$SWAP_WITH" -)~+reload-sync($LIST_PANES)" "C-M-p:window up"
+
 # Create commands
 bind alt-n "execute-silent(tmux split-window -d -t {2} -c $CWD)+reload-sync($LIST_PANES)" "M-n:new pane"
 bind alt-w "execute-silent(tmux new-window -d -t $SESSION: -c $CWD)+reload-sync($LIST_PANES)" "M-w:new window"
@@ -92,6 +102,6 @@ FOOTER="transform-footer(printf '%s   ' ${HINTS_NB[@]} | fold -s -w \$((FZF_COLU
 FZF_ARGS+=(--bind "start:reload-sync($LIST_PANES)+$FOOTER" --bind "resize:reload-sync($LIST_PANES)+$FOOTER")
 
 # Selected pane
-TARGET=$(fzf "${FZF_ARGS[@]}" | head -1 | sed 's/).*//; s/(//')
+TARGET=$(fzf "${FZF_ARGS[@]}" | head -1 | sed 's/).*//; s/.*(//')
 
 [[ -n "$TARGET" ]] && tmux switch-client -t "$TARGET"
