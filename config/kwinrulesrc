@@ -1,0 +1,26 @@
+[4610b91d-8494-49ad-91da-46ba8d07371f]
+Description=Obsidian position
+desktops=6fd5aa9e-5f7e-4533-ac99-bd9bddc1a712
+desktopsrule=3
+maximizehoriz=true
+maximizehorizrule=3
+maximizevert=true
+maximizevertrule=3
+screen=1
+screenrule=3
+wmclassmatch=1
+
+[General]
+Order=4610b91d-8494-49ad-91da-46ba8d07371f,fb983eff-57e2-4111-8e64-8fc49a0db582
+
+[fb983eff-57e2-4111-8e64-8fc49a0db582]
+Description=Discord position
+desktops=6fd5aa9e-5f7e-4533-ac99-bd9bddc1a712
+desktopsrule=3
+maximizehoriz=true
+maximizehorizrule=3
+maximizevert=true
+maximizevertrule=3
+screen=1
+screenrule=3
+wmclassmatch=1
