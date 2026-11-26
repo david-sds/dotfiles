@@ -31,6 +31,8 @@ log_failed() {
 remove_broken_links() {
   local target_dir=$1
   [ -d "$target_dir" ] || return
+
+  local link
   for link in $(find "$target_dir" -maxdepth 1 -type l ! -exec test -e {} \; -print 2>&1); do
     link_name=$(basename "$link")
     err=$(rm -f "$link" 2>&1)
@@ -50,6 +52,7 @@ handle_links_list() {
   mkdir -p "$dest_dir"
   remove_broken_links "$dest_dir"
 
+  local target
   for target in "${list[@]}"; do
     orig_path="$orig_dir/$target"
     local target_label=$(printf -- "$template" "$target")
