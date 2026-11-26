@@ -63,7 +63,7 @@ bind() { FZF_ARGS+=(--bind "$1:$2"); HINTS+=("$3"); }
 bind enter "clear-multi+accept" "Enter:select"
 bind ctrl-r "reload-sync($LIST_PANES)" "C-r:refresh"
 bind alt-r "transform-list-label($IS_REVERSED || echo ' reversed ')+reload-sync($LIST_PANES)" "M-r:reverse"
-bind alt-c "transform-input-label($IS_WINDOWS || echo ' windows ')+reload-sync($LIST_PANES)" "M-c:collapse"
+bind alt-z "transform-input-label($IS_WINDOWS || echo ' windows ')+reload-sync($LIST_PANES)" "M-z:collapse"
 bind ctrl-y "execute-silent(bash ~/.config/tmux/scripts/tmux-copy.sh 'tmux {2}')" "C-y:copy"
 # Remove all panes except the last
 bind ctrl-x "execute-silent(s=\$(tmux display -p -t {2} '#{session_id}'); n=\$(tmux list-panes -s -t \"\$s\" -F '#{pane_id}' | grep -vcxF \"$TMUX_PANE\"); if [ \"\$s\" != \"\$SELF_SESSION\" ] || [ \"\$n\" -gt 1 ]; then tmux kill-pane -t {2}; fi)+reload-sync($LIST_PANES)" "C-x:kill"
@@ -76,13 +76,6 @@ bind ctrl-b "last" "C-b:last"
 bind "tab,ctrl-alt-m" "execute-silent(tmux select-pane -m -t {2})+reload-sync($LIST_PANES)" "C-M-m:mark"
 bind ctrl-alt-j "execute-silent($MARKED; tmux join-pane -d -s \"\$m\" -t {2})+reload-sync($LIST_PANES)" "C-M-j:join"
 bind ctrl-alt-s "execute-silent($MARKED; tmux swap-pane -d -s \"\$m\" -t {2})+reload-sync($LIST_PANES)" "C-M-s:swap"
-
-# Move pane (mark it, move the cursor, join the marked pane into the new row)
-# Reversed list: swap before/after (-b)
-BELOW_FLAG="\$($IS_REVERSED && echo -b)"
-ABOVE_FLAG="\$($IS_REVERSED || echo -b)"
-bind ctrl-alt-n "execute-silent(tmux select-pane -M; tmux select-pane -m -t {2})+down+execute-silent(tmux join-pane -d $BELOW_FLAG -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)" "C-M-n:move down"
-bind ctrl-alt-p "execute-silent(tmux select-pane -M; tmux select-pane -m -t {2})+up+execute-silent(tmux join-pane -d $ABOVE_FLAG -t {2}; tmux select-pane -M)+reload-sync($LIST_PANES)" "C-M-p:move up"
 
 # Create commands
 bind alt-n "execute-silent(tmux split-window -d -t {2} -c $CWD)+reload-sync($LIST_PANES)" "M-n:new pane"
