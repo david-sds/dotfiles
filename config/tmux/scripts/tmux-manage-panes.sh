@@ -67,7 +67,7 @@ bind() { FZF_ARGS+=(--bind "$1:$2"); HINTS+=("$3"); }
 bind enter "clear-multi+accept" "Enter:select"
 bind ctrl-r "reload-sync($LIST_PANES)" "C-r:refresh"
 bind alt-r "transform-list-label($IS_REVERSED || echo ' reversed ')+reload-sync($LIST_PANES)" "M-r:reverse"
-bind alt-z "transform-input-label($IS_WINDOWS || echo ' windows ')+reload-sync($LIST_PANES)" "M-z:collapse"
+bind alt-c "transform-input-label($IS_WINDOWS || echo ' windows ')+reload-sync($LIST_PANES)" "M-z:collapse"
 bind ctrl-y "execute-silent(bash ~/.config/tmux/scripts/tmux-copy.sh 'tmux {2}')" "C-y:copy"
 # Remove all panes except the last
 bind ctrl-x "execute-silent(s=\$(tmux display -p -t {2} '#{session_id}'); n=\$(tmux list-panes -s -t \"\$s\" -F '#{pane_id}' | grep -vcxF \"$TMUX_PANE\"); if [ \"\$s\" != \"\$SELF_SESSION\" ] || [ \"\$n\" -gt 1 ]; then tmux kill-pane -t {2}; fi)+reload-sync($LIST_PANES)" "C-x:kill"
